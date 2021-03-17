@@ -4,12 +4,15 @@ import Home from "./components/home/home";
 import applicationStore from "./store/application-store";
 import Login from "./components/login/login";
 import SignUp from "./components/sign-up/sign-up";
+import ChoreManager from "./components/chore-manager/chore-manager";
+import "./App.css"
+
 
 function App() {
     return (
-        <Provider store={applicationStore}>
+        <Provider store={applicationStore} classname="hci-full-height">
             <BrowserRouter>
-                <div className="container-fluid">
+                <div className="container-fluid hci-full-height">
                     <Route path={["/", "/home"]} exact={true}>
                         <Home/>
                     </Route>
@@ -22,7 +25,9 @@ function App() {
                         <SignUp/>
                     </Route>
 
-
+                    <Route path="/choreManager" exact={true}>
+                        <ChoreManager/>
+                    </Route>
                 </div>
             </BrowserRouter>
         </Provider>

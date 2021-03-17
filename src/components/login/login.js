@@ -1,7 +1,14 @@
-import React from "react";
-import {Link} from "react-router-dom";
+import React, {useState} from "react";
+import {Link, Redirect} from "react-router-dom";
 
 const Login = () => {
+    const handleSubmit = () => {
+    //    TODO: implement check for valid info
+        setValidCredentials(true);
+    }
+
+    const [validCredentials, setValidCredentials] = useState(false);
+
     return (
         <div className="container">
             <h1 className="text-center">
@@ -29,9 +36,14 @@ const Login = () => {
                 </div>
 
 
-                <button className="btn btn-success btn-block">
+                <button className="btn btn-success btn-block" onClick={handleSubmit}>
                     Start Chores
                 </button>
+
+                {
+                    validCredentials &&
+                    <Redirect to="/choreManager"/>
+                }
 
                 <br/>
                 <br/>

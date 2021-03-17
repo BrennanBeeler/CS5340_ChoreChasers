@@ -36,8 +36,10 @@ const Home = () => {
 
             <div className="row">
                 {/*TODO: need to figure out image*/}
-                <img src="https://via.placeholder.com/500" alt="Home page" className="col-5 mx-auto"/>
+                <img src="https://via.placeholder.com/500" alt="Home page" width="500" height="500" className="mx-auto"/>
 
+
+                {/*TODO: look into jumbotron from boostrap*/}
                 <div className="col-3 font-weight-bold text-center mx-auto align-self-center pb-5">
                     Ready to finish some chores?
 

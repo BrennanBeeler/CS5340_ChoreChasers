@@ -1,13 +1,20 @@
 import React, {useState} from "react";
 import {Link, Redirect} from "react-router-dom";
+import {connect} from "react-redux";
+import actions from "../../actions/actions";
 
-const Login = () => {
-    const handleSubmit = () => {
-    //    TODO: implement check for valid info
-        setValidCredentials(true);
+const Login = ({
+                   checkLoginCredentials,
+                    loggedIn = false
+               }) => {
+
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        checkLoginCredentials(email, password)
     }
 
-    const [validCredentials, setValidCredentials] = useState(false);
+    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("");
 
     return (
         <div className="container">
@@ -24,7 +31,8 @@ const Login = () => {
                     <label htmlFor="emailFld" className="label ">
                         Email *
                     </label>
-                    <input id="emailFld" placeholder="example@domain.com" className="form-control"/>
+                    <input id="emailFld" placeholder="example@domain.com" className="form-control"
+                           value={email} onChange={(event => setEmail(event.target.value))}/>
 
                 </div>
 
@@ -32,16 +40,17 @@ const Login = () => {
                     <label htmlFor="passwordFld" className="label">
                         Password *
                     </label>
-                    <input id="passwordFld" placeholder="Enter your password" className="form-control"/>
+                    <input id="passwordFld" placeholder="Enter your password" className="form-control"
+                           value={password} onChange={(event => setPassword(event.target.value))}/>
                 </div>
 
-
-                <button className="btn btn-success btn-block" onClick={handleSubmit}>
+                {/*TODO: figure out why this is clearing fields*/}
+                <button className="btn btn-success btn-block" onClick={(event) =>  handleSubmit(event)}>
                     Start Chores
                 </button>
 
                 {
-                    validCredentials &&
+                    loggedIn &&
                     <Redirect to="/choreManager"/>
                 }
 
@@ -62,4 +71,12 @@ const Login = () => {
     )
 }
 
-export default Login;
+const stpm = (state) => ({
+    loggedIn: state.loggedIn
+})
+
+const dtpm = (dispatch) => ({
+    checkLoginCredentials : (email, password) => actions.logIn(dispatch, email, password)
+})
+
+export default connect(stpm, dtpm)(Login);

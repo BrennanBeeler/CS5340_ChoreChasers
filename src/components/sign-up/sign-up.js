@@ -1,18 +1,25 @@
 import React, {useState} from "react";
 import {Link, Redirect} from "react-router-dom"
+import applicationActions from "../../actions/actions";
+import {connect} from "react-redux";
 
 
-const SignUp = () => {
-    const handleSubmit = () => {
-        //    TODO: implement check for valid info
-        setValidCredentials(true);
+const SignUp = ({
+                    signUp,
+                    logIn,
+                    loggedIn
+                }) => {
+
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        // TODO: need to handle user feedback on bad input
+        signUp(email, username, password)
+        logIn(email, password)
     }
 
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [validCredentials, setValidCredentials] = useState(false);
-
 
     return (
         <div className="container">
@@ -51,18 +58,19 @@ const SignUp = () => {
                     <label htmlFor="passwordFld" className="label">
                         Set up a secure password to access your choice in the future:
                     </label>
+                    {/*TODO: figure out if want to have confirm password and hidden type*/}
                     <input id="passwordFld" placeholder="Enter a password" className="form-control"
                            value={password}
                            onChange={(event) => setPassword(event.target.value)}/>
                 </div>
 
 
-                <button className="btn btn-success btn-block" onClick={handleSubmit}>
+                <button className="btn btn-success btn-block" onClick={(event => handleSubmit(event))}>
                     Start Chores
                 </button>
 
                 {
-                    validCredentials &&
+                    loggedIn &&
                         <Redirect to="/choreManager"/>
                 }
 
@@ -84,4 +92,14 @@ const SignUp = () => {
     )
 }
 
-export default SignUp;
+
+const stpm = (state) => ({
+    loggedIn: state.loggedIn
+})
+
+const dtpm = (dispatch) => ({
+    signUp : (email, username, password) => applicationActions.signUp(dispatch, email, username, password),
+    logIn : (email, password) => applicationActions.logIn(dispatch, email, password)
+})
+
+export default connect(stpm, dtpm)(SignUp);

@@ -1,7 +1,18 @@
-import React from "react";
+import React, {useState} from "react";
 import PersonalChores from "./personal-chores";
+import applicationActions from "../../actions/actions";
+import {connect} from "react-redux";
 
-const ChoreManager = () => {
+const ChoreManager = ({
+                        profile
+
+                      }) => {
+
+    const [currentGroup, setCurrentGroup] = useState();
+
+    console.log(profile)
+
+
     return (
         <div className="hci-full-height row">
             <div className="col-3 border-right hci-full-height">
@@ -43,4 +54,15 @@ const ChoreManager = () => {
     )
 }
 
-export default ChoreManager;
+const stpm = (state) => ({
+    profile: state.profiles[state.activeProfile]
+})
+
+const dtpm = (dispatch) => ({
+    signUp : (email, username, password) => applicationActions.signUp(dispatch, email, username, password),
+    logIn : (email, password) => applicationActions.logIn(dispatch, email, password)
+})
+
+export default connect(stpm, dtpm)(ChoreManager);
+
+

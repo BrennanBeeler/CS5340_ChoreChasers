@@ -1,9 +1,31 @@
-const LOG_IN = "LOG_IN";
-const LOG_OUT = "LOG_OUT";
+export const LOG_IN = "LOG_IN";
+export const LOG_OUT = "LOG_OUT";
+export const SIGN_UP = "SIGN_UP";
 
-const actions = {
-    LOG_IN,
-    LOG_OUT
+const logIn = (dispatch, email, password) =>
+    dispatch({
+        type : LOG_IN,
+        email,
+        password
+    })
+
+const logOut = (dispatch, email) =>
+    dispatch({
+        type : LOG_IN,
+        email
+    })
+
+const signUp = (dispatch, email, username, password) => {
+    dispatch({
+        type : SIGN_UP,
+        email,
+        username,
+        password
+    })
 }
 
-export default actions;
+const applicationActions = {
+    logIn, logOut,signUp
+}
+
+export default applicationActions;

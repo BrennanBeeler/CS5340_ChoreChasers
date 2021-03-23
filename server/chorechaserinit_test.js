@@ -1,6 +1,7 @@
 /*
 * This is a trial for creating a mongo db, collection and inserting values into said collections
-* */
+* This file can be deleted after mongo integrations are complete.
+*  */
 
 const { MongoClient } = require('mongodb');
 

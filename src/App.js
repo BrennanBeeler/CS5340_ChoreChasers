@@ -5,6 +5,7 @@ import applicationStore from "./store/application-store";
 import Login from "./components/login/login";
 import SignUp from "./components/sign-up/sign-up";
 import ChoreManager from "./components/chore-manager/chore-manager";
+import Profile from "./components/profile/profile";
 import "./App.css"
 
 
@@ -27,6 +28,10 @@ function App() {
 
                     <Route path="/choreManager" exact={true}>
                         <ChoreManager/>
+                    </Route>
+
+                    <Route path="/profile" exact={true}>
+                        <Profile/>
                     </Route>
                 </div>
             </BrowserRouter>

@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import PersonalChores from "./personal-chores";
 import applicationActions from "../../actions/actions";
 import {connect} from "react-redux";
+import {Link} from "react-router-dom";
 
 const ChoreManager = ({
                         profile
@@ -19,7 +20,7 @@ const ChoreManager = ({
                 <div className="row-12 border-bottom border-dark pb-2">
                     Level 1
                     <br/>
-                    <button className="btn fa fa-user-circle fa-2x"/>
+                    <Link to="/profile" button className="btn fa fa-user-circle fa-2x"/>
                     0/10 points
                     <br/>
                     Username

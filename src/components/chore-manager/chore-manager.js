@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import PersonalChores from "./personal-chores";
 import applicationActions from "../../actions/actions";
 import {connect} from "react-redux";
+import GroupChores from "./group-chores";
 
 const ChoreManager = ({
                         profile
@@ -10,7 +11,7 @@ const ChoreManager = ({
 
     const [currentGroup, setCurrentGroup] = useState();
 
-    console.log(profile)
+    // console.log(profile)
 
 
     return (
@@ -49,6 +50,8 @@ const ChoreManager = ({
 
             <div className="col-9">
                 <PersonalChores/>
+
+                {/*<GroupChores/>*/}
             </div>
         </div>
     )

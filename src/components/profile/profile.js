@@ -32,8 +32,8 @@ const Profile = (
               {profile.name || defaultName}'s Profile
             </h2>
             <button className="btn fa fa-cog"/>
-            <Link to="profile-settings" className="nav-link-center">
-                Account Settings
+            <Link to="/profileSettings" className="nav-link-center">
+                View Account Settings
             </Link>
             <div style={{padding: 20}} />
 

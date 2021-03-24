@@ -1,15 +1,18 @@
-import {LOG_IN, LOG_OUT, SIGN_UP} from "../actions/actions";
+import {LOG_IN, LOG_OUT, SIGN_UP, SET_ACTIVE_GROUP} from "../actions/actions";
 
 const initialState = {
     loggedIn: false,
-    activeProfile : null,
+    //TODO: populate these
+    activeProfile : "test",
     profiles : {
         // profiles will hold all the profiles that have been created on this run of the application
         test: {
             password: "password",
-            username: "testing account"
+            username: "Jimmy"
         }
-    }
+    },
+    activeGroup : "Personal Chores",
+    groups : ["Test Group 1", "Test Group 2", "Test Group 3"]
 }
 
 const applicationReducer = (state = initialState, action) => {
@@ -46,6 +49,11 @@ const applicationReducer = (state = initialState, action) => {
                 }
             }
             return state
+        case SET_ACTIVE_GROUP:
+            return {
+                ...state,
+                activeGroup: action.activeGroup
+            }
         default:
             return state
     }

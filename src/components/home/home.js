@@ -46,9 +46,9 @@ const Home = () => {
 
                     <br/>
 
-                    <button className="btn btn-info">
+                    <Link to="/signUp" className="btn btn-lg btn-info float-right">
                         Sign Up
-                    </button>
+                    </Link>
 
                     <br/>
 

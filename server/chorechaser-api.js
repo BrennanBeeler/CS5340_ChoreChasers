@@ -42,7 +42,7 @@ async function addGroupChore(newChore, groupId) {
                     }
                 }
             );
-            console.log('Updated group');
+            console.log('Added group chore');
         } catch (err) {
             console.log(err);
         }
@@ -69,7 +69,7 @@ async function addPersonalChore(newChore, userEmailID) {
                     }
                 }
             );
-            console.log('Updated user');
+            console.log('Added user personal chore');
         } catch (err) {
             console.log(err);
         }
@@ -212,7 +212,6 @@ async function getAllPersonalChores(userEmailID) {
     if (db != null) {
         const userCollection = db.collection("users");
         try {
-            //db.groups.find({},{chores:1,id:1,_id:0})
             await userCollection
                 .find({}).project({chores:1,emailId:userEmailID,_id:0})
                 .toArray(function(err, result){
@@ -231,6 +230,54 @@ async function getAllPersonalChores(userEmailID) {
         return [];
     }
 }
+
+
+/*
+* POST
+* Takes JSON of of user's input, adhering to group JSON format.
+* Toggle is assumed to be true and chores is assumed to be empty, by default.
+* Group is added to chore chasers (adding groupId to users will be done later).
+* */
+async function addNewGroup(newGroup) {
+    //TODO make sure newChore's id field is auto-incremented
+    const db = await getDB();
+    // TODO not sure if it's a bad thing for program to keep running when this function is run
+    if (db != null) {
+        const groupCollection = db.collection("groups");
+        try {
+            await groupCollection.insertOne(
+                newGroup,
+            );
+            console.log('Added group');
+        } catch (err) {
+            console.log(err);
+        }
+    }
+}
+
+
+/*
+* DELETE
+* Takes group ID of the group to be deleted.
+* Group will be permanently deleted.
+* */
+async function deleteGroup(groupId) {
+    const db = await getDB();
+    // TODO not sure if it's a bad thing for program to keep running when this function is run
+    if (db != null) {
+        const groupCollection = db.collection("groups");
+        try {
+            await groupCollection.deleteOne(
+                {"id": groupId}
+            );
+
+            console.log('Deleted group');
+        } catch (err) {
+            console.log(err);
+        }
+    }
+}
+
 
 
 console.log('\n --- Testing ---');
@@ -291,6 +338,14 @@ const editedGroupChore = {
     splitReward:{everyoneGetsReward:false,fcfs:false}
 };
 
+// add new group record
+const roomiesGroup = {
+    id: 2,
+    name: 'Roomies',
+    progressBar: true,
+    chores: []
+};
+
 // addGroupChore(newGroupChore,1);
 // addPersonalChore(newPersonalChore,'max123@gmail.com');
 // editPersonalChore(editedUserChore,'max123@gmail.com',1);
@@ -299,3 +354,5 @@ const editedGroupChore = {
 // deletePersonalChore('max123@gmail.com',2);
 // getAllPersonalChores('max123@gmail.com');
 // getAllGroupChores(1);
+// addNewGroup(roomiesGroup);
+// deleteGroup(2);

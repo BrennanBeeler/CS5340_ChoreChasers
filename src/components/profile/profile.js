@@ -27,11 +27,11 @@ const Profile = (
     return (
         <div className="container">
           <div className="mx-auto text-center">
-            <button className="btn fa fa-user-circle fa-4x"/>
+            <span className="btn fa fa-user-circle fa-4x"/>
             <h2 className="text-center">
               {profile.name || defaultName}'s Profile
             </h2>
-            <button className="btn fa fa-cog"/>
+            <Link to="/profileSettings" className="btn fa fa-cog"/>
             <Link to="/profileSettings" className="nav-link-center">
                 View Account Settings
             </Link>
@@ -67,7 +67,7 @@ const Profile = (
                 delay={{ show: 250, hide: 400 }}
                 overlay={renderTooltip}
               >
-              <button className="btn fa fa-question-circle"/>
+              <span className="btn fa fa-question-circle"/>
               </OverlayTrigger>
             </div>
             <div className="scrollbar scrollbar-primary mt-5 mx-auto" style={{height: "250px", maxHeight: "250px"}}>
@@ -94,9 +94,9 @@ const Profile = (
                     </div>
                 )})}
               </div>
-              <button className="btn btn-info">
+              <Link to="/choreManager" className="btn btn-info">
                Save and Exit
-              </button>
+              </Link>
             </div>
           </div>
         </div>

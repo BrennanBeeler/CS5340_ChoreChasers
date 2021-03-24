@@ -176,33 +176,61 @@ async function deletePersonalChore(userEmailID, choreId) {
 * Takes user's email ID.
 * All personal chores of the user is returned.
 * */
-// async function getAllPersonalChores(userEmailID) {
-//     const db = await getDB();
-//     // TODO not sure if it's a bad thing for program to keep running when this function is run
-//     if (db != null) {
-//         const userCollection = db.collection("users");
-//         try {
-//             //db.groups.find({},{chores:1,id:1,_id:0})
-//             //db.users.find({},{chores:1,emailId:'max123@gmail.com',_id:0})
-//             await userCollection
-//                 .find({}, {chores:1,emailId:userEmailID,_id:0}).toArray(function(err, result){
-//                     if(err) throw err;
-//                     console.log(result);
-//                     return result;
-//                 });
-//             // TODO this works on terminal but returns the whole user _id through code?
-//             console.log('Retrieved all personal chores');
-//             // console.log(result);
-//             // return result;
-//
-//         } catch (err) {
-//             console.log(err);
-//         }
-//     }
-//     else {
-//         return [];
-//     }
-// }
+async function getAllGroupChores(groupId) {
+    const db = await getDB();
+    // TODO not sure if it's a bad thing for program to keep running when this function is run
+    if (db != null) {
+        const groupCollection = db.collection("groups");
+        try {
+            await groupCollection
+                .find({}).project({chores:1,id:groupId,_id:0})
+                .toArray(function(err, result){
+                    if(err) throw err;
+                    console.log(result);
+                    return result;
+                });
+            // TODO this shows full chores on mongo shell but returns the chore array as [Object]s - check if this is okay for frontend
+            console.log('Retrieved all group chores');
+
+        } catch (err) {
+            console.log(err);
+        }
+    }
+    else {
+        return [];
+    }
+}
+
+/*
+* GET
+* Takes user's email ID.
+* All personal chores of the user is returned.
+* */
+async function getAllPersonalChores(userEmailID) {
+    const db = await getDB();
+    // TODO not sure if it's a bad thing for program to keep running when this function is run
+    if (db != null) {
+        const userCollection = db.collection("users");
+        try {
+            //db.groups.find({},{chores:1,id:1,_id:0})
+            await userCollection
+                .find({}).project({chores:1,emailId:userEmailID,_id:0})
+                .toArray(function(err, result){
+                    if(err) throw err;
+                    console.log(result);
+                    return result;
+                });
+            // TODO this shows full chores on mongo shell but returns the chore array as [Object]s - check if this is okay for frontend
+            console.log('Retrieved all personal chores');
+
+        } catch (err) {
+            console.log(err);
+        }
+    }
+    else {
+        return [];
+    }
+}
 
 
 console.log('\n --- Testing ---');
@@ -270,3 +298,4 @@ const editedGroupChore = {
 // deleteGroupChore(1,3);
 // deletePersonalChore('max123@gmail.com',2);
 // getAllPersonalChores('max123@gmail.com');
+// getAllGroupChores(1);

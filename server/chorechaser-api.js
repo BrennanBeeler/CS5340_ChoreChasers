@@ -23,22 +23,20 @@ async function getDB() {
 
 /*
 * POST
-* Takes JSON of user input from Add New Chore.
+* Takes JSON of user input from Add New Chore and group ID.
 * Chore is added to respective group list of chores.
 * */
 async function addGroupChore(newChore, groupId) {
+    //TODO make sure newChore's id field is auto-incremented
     const db = await getDB();
     // TODO not sure if it's a bad thing for program to keep running when this function is run
     if (db != null) {
         const groupCollection = db.collection("groups");
-        const docs = await groupCollection.find({id: groupId})
-            .toArray();
-        console.log('Result of find:\n', docs);
         try {
             await groupCollection.updateOne(
                 {"id": groupId},
                 {
-                    $push: {
+                    $addToSet: {
                         // TODO does each chore need to be checked for uniqueness in some way?
                         chores: newChore
                     }
@@ -54,7 +52,7 @@ async function addGroupChore(newChore, groupId) {
 
 /*
 * POST
-* Takes JSON of user input from Add New Chore.
+* Takes JSON of user input from Add New Chore and user's email ID.
 * Chore is added to the user's personal chores.
 * */
 async function addPersonalChore(newChore, userEmailID) {
@@ -62,14 +60,11 @@ async function addPersonalChore(newChore, userEmailID) {
     // TODO not sure if it's a bad thing for program to keep running when this function is run
     if (db != null) {
         const userCollection = db.collection("users");
-        const docs = await userCollection.find({emailId: userEmailID})
-            .toArray();
-        console.log('Result of find:\n', docs);
         try {
             await userCollection.updateOne(
                 {"emailId": userEmailID},
                 {
-                    $push: {
+                    $addToSet: {
                         chores: newChore
                     }
                 }
@@ -80,6 +75,134 @@ async function addPersonalChore(newChore, userEmailID) {
         }
     }
 }
+
+
+/*
+* POST
+* Takes edited JSON of user input from Edit Chore, group ID, and selected chore ID.
+* Chore is edited onto the selected group chore.
+* */
+async function editGroupChore(newChore, groupId, choreId) {
+    const db = await getDB();
+    // TODO not sure if it's a bad thing for program to keep running when this function is run
+    if (db != null) {
+        const groupCollection = db.collection("groups");
+        try {
+            await groupCollection.updateOne(
+                { "id": groupId, "chores.id": choreId },
+                { $set: { chores : newChore } }
+            );
+
+            console.log('Updated group chore');
+        } catch (err) {
+            console.log(err);
+        }
+    }
+}
+
+/*
+* POST
+* Takes edited JSON of user input from Edit Chore, user's email ID and required chore ID.
+* Chore is edited onto the user's selected personal chore.
+* */
+async function editPersonalChore(newChore, userEmailID,choreId) {
+    const db = await getDB();
+    // TODO not sure if it's a bad thing for program to keep running when this function is run
+    if (db != null) {
+        const userCollection = db.collection("users");
+        try {
+            await userCollection.updateOne(
+                { "emailId": userEmailID, "chores.id": choreId },
+                { $set: { chores : newChore } }
+            );
+
+            console.log('Updated user chore');
+        } catch (err) {
+            console.log(err);
+        }
+    }
+}
+
+
+/*
+* DELETE
+* Takes group ID and chore ID of group chore to be deleted.
+* Chore is deleted from the selected group.
+* */
+async function deleteGroupChore(groupId, choreId) {
+    const db = await getDB();
+    // TODO not sure if it's a bad thing for program to keep running when this function is run
+    if (db != null) {
+        const groupCollection = db.collection("groups");
+        try {
+            await groupCollection.updateOne(
+                {"id": groupId},
+                { $pull: { chores: { id: choreId} } },
+            );
+
+            console.log('Deleted group chore');
+        } catch (err) {
+            console.log(err);
+        }
+    }
+}
+
+/*
+* DELETE
+* Takes user's email ID and required chore ID.
+* Chore is deleted from the user's personal chores.
+* */
+async function deletePersonalChore(userEmailID, choreId) {
+    const db = await getDB();
+    // TODO not sure if it's a bad thing for program to keep running when this function is run
+    if (db != null) {
+        const userCollection = db.collection("users");
+        try {
+            await userCollection.updateOne(
+                {"emailId": userEmailID},
+                { $pull: { chores: { id: choreId} } },
+            );
+
+            console.log('Deleted personal chore');
+        } catch (err) {
+            console.log(err);
+        }
+    }
+}
+
+
+/*
+* GET
+* Takes user's email ID.
+* All personal chores of the user is returned.
+* */
+// async function getAllPersonalChores(userEmailID) {
+//     const db = await getDB();
+//     // TODO not sure if it's a bad thing for program to keep running when this function is run
+//     if (db != null) {
+//         const userCollection = db.collection("users");
+//         try {
+//             //db.groups.find({},{chores:1,id:1,_id:0})
+//             //db.users.find({},{chores:1,emailId:'max123@gmail.com',_id:0})
+//             await userCollection
+//                 .find({}, {chores:1,emailId:userEmailID,_id:0}).toArray(function(err, result){
+//                     if(err) throw err;
+//                     console.log(result);
+//                     return result;
+//                 });
+//             // TODO this works on terminal but returns the whole user _id through code?
+//             console.log('Retrieved all personal chores');
+//             // console.log(result);
+//             // return result;
+//
+//         } catch (err) {
+//             console.log(err);
+//         }
+//     }
+//     else {
+//         return [];
+//     }
+// }
 
 
 console.log('\n --- Testing ---');
@@ -112,5 +235,38 @@ const newPersonalChore = {
     splitReward:{everyoneGetsReward:false,fcfs:false}
 };
 
-addGroupChore(newGroupChore,1);
-addPersonalChore(newPersonalChore,'max123@gmail.com');
+//test JSON chore to edit a personal chore
+const editedUserChore = {
+    id:1,
+    done:false,
+    choreName: 'Clean your room',
+    dueDate: new Date("2021-03-22"),
+    repeatChore: "Weekly",
+    choreInstructions: "",
+    rewards:{points:false,realLifeItem:false},
+    points:0,
+    realLifeItem:"",
+    splitReward:{everyoneGetsReward:false,fcfs:false}
+};
+
+//test JSON chore to edit a Group chore
+const editedGroupChore = {
+    id:2,
+    done:false,
+    choreName: 'Wash the kitchen',
+    dueDate: new Date("2021-03-25"),
+    repeatChore: "Never",
+    choreInstructions: "",
+    rewards:{points:false,realLifeItem:false},
+    points:0,
+    realLifeItem:"",
+    splitReward:{everyoneGetsReward:false,fcfs:false}
+};
+
+// addGroupChore(newGroupChore,1);
+// addPersonalChore(newPersonalChore,'max123@gmail.com');
+// editPersonalChore(editedUserChore,'max123@gmail.com',1);
+// editGroupChore(editedGroupChore,1,2);
+// deleteGroupChore(1,3);
+// deletePersonalChore('max123@gmail.com',2);
+// getAllPersonalChores('max123@gmail.com');

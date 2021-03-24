@@ -10,11 +10,19 @@ const url = 'mongodb://localhost:/chorechaser';
 
 
 /*
-* Creates text index for "masterchef" database's "recipe" collection
-* Adds weights to specific fields to give priority to them while searching
+* Creates text index for "chorechaser" database's "user" collection
+* Makes certain fields unique.
 */
 async function createUserIndex(userCollection) {
     await userCollection.createIndexes( { "emailId": 1 }, { unique: true });
+}
+
+/*
+* Creates text index for "chorechaser" database's "group" collection
+* Makes certain fields unique.
+*/
+async function createGroupIndex(userCollection) {
+    await userCollection.createIndexes( { "id": 1 }, { unique: true });
 }
 
 /**
@@ -102,6 +110,7 @@ async function initializeDB() {
                     console.log("Deleting existing group collection...");
                     groupCollection.drop();
                     console.log("Re-entering test group data into groupsCollection...");
+                    createGroupIndex(groupCollection);
                     groupCollection
                         .insertOne(familyGroup, (err) => {
                             if (err) throw err;
@@ -111,6 +120,7 @@ async function initializeDB() {
                 }
                 else {
                     console.log("Newly entering test group data into groupsCollection...");
+                    createGroupIndex(groupCollection);
                     groupCollection
                         .insertOne(familyGroup, (err) => {
                             if (err) throw err;

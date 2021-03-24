@@ -2,6 +2,12 @@
 <project version="4">
   <component name="JavaScriptSettings">
     <option name="languageLevel" value="JSX" />
+<<<<<<< HEAD
+=======
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_12" default="false" project-jdk-name="13" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+>>>>>>> d2148c70900422fef33908e0ae735520957cd90b
   </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="13" project-jdk-type="JavaSDK" />
 </project>

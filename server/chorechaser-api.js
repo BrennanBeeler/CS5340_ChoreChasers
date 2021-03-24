@@ -239,7 +239,6 @@ async function getAllPersonalChores(userEmailID) {
 * Group is added to chore chasers (adding groupId to users will be done later).
 * */
 async function addNewGroup(newGroup) {
-    //TODO make sure newChore's id field is auto-incremented
     const db = await getDB();
     // TODO not sure if it's a bad thing for program to keep running when this function is run
     if (db != null) {
@@ -272,6 +271,52 @@ async function deleteGroup(groupId) {
             );
 
             console.log('Deleted group');
+        } catch (err) {
+            console.log(err);
+        }
+    }
+}
+
+
+/*
+* POST
+* Takes JSON of of user's input, adhering to user JSON format.
+* Group ids and chores are assumed to be empty, by default.
+* User is added to chore chasers (adding groupId to users will be done later).
+* */
+async function addNewUser(newUser) {
+    const db = await getDB();
+    // TODO not sure if it's a bad thing for program to keep running when this function is run
+    if (db != null) {
+        const userCollection = db.collection("users");
+        try {
+            await userCollection.insertOne(
+                newUser,
+            );
+            console.log('Added user to ChoreChasers');
+        } catch (err) {
+            console.log(err);
+        }
+    }
+}
+
+
+/*
+* DELETE
+* Takes user's email ID to be deleted.
+* User will be removed from ChoreChasers.
+* */
+async function deleteUser(userEmailID) {
+    const db = await getDB();
+    // TODO not sure if it's a bad thing for program to keep running when this function is run
+    if (db != null) {
+        const userCollection = db.collection("users");
+        try {
+            await userCollection.deleteOne(
+                {"emailId": userEmailID}
+            );
+
+            console.log('Deleted user from ChoreChasers');
         } catch (err) {
             console.log(err);
         }
@@ -346,6 +391,15 @@ const roomiesGroup = {
     chores: []
 };
 
+// add new user record
+const userVinnie = {
+    emailId: 'vinnie00@gmail.com',
+    groupIds: [],
+    username: 'vinnie00',
+    password:'password',
+    chores: []
+};
+
 // addGroupChore(newGroupChore,1);
 // addPersonalChore(newPersonalChore,'max123@gmail.com');
 // editPersonalChore(editedUserChore,'max123@gmail.com',1);
@@ -356,3 +410,5 @@ const roomiesGroup = {
 // getAllGroupChores(1);
 // addNewGroup(roomiesGroup);
 // deleteGroup(2);
+// addNewUser(userVinnie);
+deleteUser('vinnie00@gmail.com');

@@ -1,3 +1,4 @@
+const ObjectId = require('mongodb').ObjectID;
 /*
 * GET
 * Retrieves database from Atlas and sets connection
@@ -33,8 +34,9 @@ async function addGroupChore(newChore, groupId) {
     if (db != null) {
         const groupCollection = db.collection("groups");
         try {
+            groupId = new ObjectId(groupId);
             await groupCollection.updateOne(
-                {"id": groupId},
+                {"_id": groupId},
                 {
                     $addToSet: {
                         // TODO does each chore need to be checked for uniqueness in some way?
@@ -88,9 +90,10 @@ async function editGroupChore(newChore, groupId, choreId) {
     if (db != null) {
         const groupCollection = db.collection("groups");
         try {
+            groupId = new ObjectId(groupId);
             await groupCollection.updateOne(
-                { "id": groupId, "chores.id": choreId },
-                { $set: { chores : newChore } }
+                { "_id": groupId, "chores.id": choreId },
+                { $set: { 'chores.$' : {newChore } } }
             );
 
             console.log('Updated group chore');
@@ -113,7 +116,7 @@ async function editPersonalChore(newChore, userEmailID,choreId) {
         try {
             await userCollection.updateOne(
                 { "emailId": userEmailID, "chores.id": choreId },
-                { $set: { chores : newChore } }
+                { $set: { 'chores.$' : {newChore } } }
             );
 
             console.log('Updated user chore');
@@ -135,8 +138,9 @@ async function deleteGroupChore(groupId, choreId) {
     if (db != null) {
         const groupCollection = db.collection("groups");
         try {
+            groupId = new ObjectId(groupId);
             await groupCollection.updateOne(
-                {"id": groupId},
+                {"_id": groupId},
                 { $pull: { chores: { id: choreId} } },
             );
 
@@ -173,7 +177,7 @@ async function deletePersonalChore(userEmailID, choreId) {
 
 /*
 * GET
-* Takes user's email ID.
+* Takes group id as string.
 * All personal chores of the user is returned.
 * */
 async function getAllGroupChores(groupId) {
@@ -182,8 +186,9 @@ async function getAllGroupChores(groupId) {
     if (db != null) {
         const groupCollection = db.collection("groups");
         try {
+            groupId = new ObjectId(groupId); //converts string id to mongo object _id
             await groupCollection
-                .find({}).project({chores:1,id:groupId,_id:0})
+                .find({"_id":groupId}).project({chores:1,_id:0})
                 .toArray(function(err, result){
                     if(err) throw err;
                     console.log(result);
@@ -213,7 +218,7 @@ async function getAllPersonalChores(userEmailID) {
         const userCollection = db.collection("users");
         try {
             await userCollection
-                .find({}).project({chores:1,emailId:userEmailID,_id:0})
+                .find({"emailId":userEmailID}).project({chores:1,_id:0})
                 .toArray(function(err, result){
                     if(err) throw err;
                     console.log(result);
@@ -266,8 +271,9 @@ async function deleteGroup(groupId) {
     if (db != null) {
         const groupCollection = db.collection("groups");
         try {
+            groupId = new ObjectId(groupId);
             await groupCollection.deleteOne(
-                {"id": groupId}
+                {"_id": groupId}
             );
 
             console.log('Deleted group');
@@ -331,9 +337,9 @@ console.log('\n --- Testing ---');
 const newGroupChore = {
     id:3,
     done:false,
-    choreName: 'Walk the dog',
+    choreName: 'Walk the dogs',
     dueDate: new Date("2021-03-22"),
-    repeatChore: "Weekly",
+    repeatChore: "Daily",
     choreInstructions: "",
     rewards:{points:false,realLifeItem:false},
     points:0,
@@ -385,8 +391,16 @@ const editedGroupChore = {
 
 // add new group record
 const roomiesGroup = {
-    id: 2,
+    // id: 2,
     name: 'Roomies',
+    progressBar: true,
+    chores: []
+};
+
+// add another new group record
+const friendsGroup = {
+    // id: 2,
+    name: 'Friends',
     progressBar: true,
     chores: []
 };
@@ -400,15 +414,18 @@ const userVinnie = {
     chores: []
 };
 
-// addGroupChore(newGroupChore,1);
+// addGroupChore(newGroupChore,"605bed229cd089604954ed1b");
 // addPersonalChore(newPersonalChore,'max123@gmail.com');
 // editPersonalChore(editedUserChore,'max123@gmail.com',1);
-// editGroupChore(editedGroupChore,1,2);
-// deleteGroupChore(1,3);
+// editGroupChore(editedGroupChore,"605bed229cd089604954ed1b",2);
+// deleteGroupChore("605bed229cd089604954ed1b",3);
 // deletePersonalChore('max123@gmail.com',2);
 // getAllPersonalChores('max123@gmail.com');
-// getAllGroupChores(1);
+// getAllGroupChores("605bed229cd089604954ed1b"); //gives result as [Object], must fix
 // addNewGroup(roomiesGroup);
-// deleteGroup(2);
+// addNewGroup(friendsGroup);
+// deleteGroup("605bed229cd089604954ed1b");
 // addNewUser(userVinnie);
-deleteUser('vinnie00@gmail.com');
+// deleteUser('vinnie00@gmail.com');
+
+//605bed229cd089604954ed1b

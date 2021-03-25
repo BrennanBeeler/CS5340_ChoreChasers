@@ -1,15 +1,18 @@
-import {LOG_IN, LOG_OUT, SIGN_UP} from "../actions/actions";
+import {LOG_IN, LOG_OUT, SIGN_UP, SET_ACTIVE_GROUP, CREATE_GROUP} from "../actions/actions";
 
 const initialState = {
     loggedIn: false,
-    activeProfile : null,
+    //TODO: populate these
+    activeProfile : "test",
     profiles : {
         // profiles will hold all the profiles that have been created on this run of the application
         test: {
             password: "password",
-            username: "testing account"
+            username: "Jimmy"
         }
-    }
+    },
+    activeGroup : "Personal Chores",
+    groups : ["Test Group 1", "Test Group 2", "Test Group 3"]
 }
 
 const applicationReducer = (state = initialState, action) => {
@@ -33,6 +36,7 @@ const applicationReducer = (state = initialState, action) => {
             return state
         case SIGN_UP:
             if (!(action.email in state.profiles)) {
+                //TODO: maybe fix so doesn't have temp variable
                 let newProfiles = state.profiles
                 newProfiles[action.email] = {
                     password: action.password,
@@ -46,6 +50,21 @@ const applicationReducer = (state = initialState, action) => {
                 }
             }
             return state
+        case SET_ACTIVE_GROUP:
+            return {
+                ...state,
+                activeGroup: action.activeGroup
+            }
+        case CREATE_GROUP:
+            //TODO: figure out why can't be done in one line
+            let newGroups = state.groups
+            newGroups.push(action.group.groupName)
+
+            return {
+                ...state,
+                groups : newGroups
+            }
+
         default:
             return state
     }

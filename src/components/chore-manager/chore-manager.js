@@ -46,8 +46,7 @@ const ChoreManager = ({
 
                 <CreateGroupModal key={new Date().getTime()} show={createGroupModal}
                                   onHide={()=> setCreateGroupModal(false)}
-                                  profile={profile} createGroup={createGroup}/>
-
+                                  profile={profile}/>
 
                 <br/>
 

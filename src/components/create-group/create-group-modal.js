@@ -1,8 +1,9 @@
 import React, {useState} from "react";
 import {Button, Col, Form, Modal, OverlayTrigger, Row, Tooltip} from "react-bootstrap";
 import {connect} from "react-redux";
+import applicationActions from "../../actions/actions";
 
-const CreateGroupModal = (props, {createGroup}) => {
+const CreateGroupModal = ({props, createGroup, profile}) => {
     const [groupName, setGroupName] = useState("");
     const [memberName, setMemberName] = useState("");
     const [memberList, setMemberList] = useState([]);
@@ -20,7 +21,7 @@ const CreateGroupModal = (props, {createGroup}) => {
             //TODO: construct group object here- likely ignore emails that aren't in database
             let group = {groupName: groupName}
             //TODO: CLAIMS ISNT FUNCTION- HELP
-            props.createGroup(props.profile, group)
+            createGroup(profile, group)
 
             props.onHide()
         }
@@ -104,15 +105,16 @@ const CreateGroupModal = (props, {createGroup}) => {
     )
 }
 
-// const stpm = (state) => ({
-//     profile: state.profiles[state.activeProfile]
-// })
-//
-// const dtpm = (dispatch) => ({
-//     createGroup: (profile, group) => {applicationActions.createGroup(dispatch, profile, group)}
-// })
-//
-// export default connect(stpm, dtpm)(CreateGroupModal);
+const stpm = (state, ownProps) => ({
+    profile: state.profiles[state.activeProfile],
+    props: ownProps
+})
 
-//TODO: try alternative way around connecting at all
-export default CreateGroupModal;
+const dtpm = (dispatch) => ({
+    createGroup: (profile, group) => {applicationActions.createGroup(dispatch, profile, group)}
+})
+
+export default connect(stpm, dtpm)(CreateGroupModal);
+
+// //TODO: try alternative way around connecting at all
+// export default CreateGroupModal;

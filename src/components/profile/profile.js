@@ -96,7 +96,7 @@ const Profile = ({
                 )})}
               </div>
               <Link to="/choreManager" className="btn btn-info">
-               Save and Exit
+               Return to Chores
               </Link>
             </div>
           </div>

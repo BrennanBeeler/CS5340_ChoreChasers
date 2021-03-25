@@ -36,6 +36,12 @@ const GroupSettings = ({
           </button>
 
           <LeaveGroupModal show={confirmationModal} onHide={() => setConfirmationModal(false)}/>
+
+          <br/>
+          <br/>
+          <Link to="/choreManager" className="btn btn-info">
+            Return to Chores
+          </Link>
         </div>
     )
 }

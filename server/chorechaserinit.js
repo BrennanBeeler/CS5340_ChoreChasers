@@ -32,6 +32,9 @@ async function initializeDB() {
         const db = client.db();
         const groupCollection = db.collection('groups');
         const userCollection = db.collection('users');
+        //---
+        const choreCollection = db.collection('chores');
+        //---
         createUserIndex(userCollection);
 
         // //check if group collection already exists
@@ -51,7 +54,7 @@ async function initializeDB() {
 
 
         //check if user collection already exists
-        await userCollection.countDocuments({})
+        userCollection.countDocuments({})
             .then(async function (checkExists) {
                 // console.log(checkExists);
                 if(checkExists > 0) {
@@ -64,6 +67,23 @@ async function initializeDB() {
                     client.close();
                 }
             });
+
+        //------
+        // //check if chore collection already exists
+        choreCollection.countDocuments({})
+            .then(async function (checkExists) {
+                // console.log(checkExists);
+                if(checkExists > 0) {
+                    console.log("Deleting existing chore collection...");
+                    await choreCollection.drop();
+                    client.close();
+                }
+                else {
+                    console.log("No existing chore collections to delete");
+                    client.close();
+                }
+            });
+        //-----
     }
     catch(err) {
         console.log(err);

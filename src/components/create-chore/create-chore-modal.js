@@ -65,7 +65,7 @@ const CreateChoreModal = (props) => {
                     </Form.Group>
 
                     <Form.Group>
-                        <Form.Label>Chose your group *</Form.Label>
+                        <Form.Label>Choose your group *</Form.Label>
                         <Form.Control as="select" value={choreGroup}
                                       onChange={event => setChoreGroup(event.target.value)}>
                             <option value={choreGroup}>{choreGroup}</option>

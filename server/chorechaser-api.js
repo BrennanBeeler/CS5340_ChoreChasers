@@ -243,7 +243,7 @@ async function getAllPersonalChores(userEmailID) {
 * Toggle is assumed to be true and chores is assumed to be empty, by default.
 * Group is added to chore chasers (adding groupId to users will be done later).
 * */
-async function addNewGroup(newGroup) {
+async function addNewGroup(newGroup) { //pass in an array of members, person who created the group
     const db = await getDB();
     // TODO not sure if it's a bad thing for program to keep running when this function is run
     if (db != null) {
@@ -414,14 +414,14 @@ const userVinnie = {
     chores: []
 };
 
-// addGroupChore(newGroupChore,"605bed229cd089604954ed1b");
+// addGroupChore(newGroupChore,"605ccd1c5307f06df7bfef7d");
 // addPersonalChore(newPersonalChore,'max123@gmail.com');
 // editPersonalChore(editedUserChore,'max123@gmail.com',1);
 // editGroupChore(editedGroupChore,"605bed229cd089604954ed1b",2);
 // deleteGroupChore("605bed229cd089604954ed1b",3);
 // deletePersonalChore('max123@gmail.com',2);
 // getAllPersonalChores('max123@gmail.com');
-// getAllGroupChores("605bed229cd089604954ed1b"); //gives result as [Object], must fix
+// getAllGroupChores("605ccd1c5307f06df7bfef7d"); //gives result as [Object], must fix
 // addNewGroup(roomiesGroup);
 // addNewGroup(friendsGroup);
 // deleteGroup("605bed229cd089604954ed1b");

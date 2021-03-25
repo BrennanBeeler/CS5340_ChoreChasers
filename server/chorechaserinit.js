@@ -114,6 +114,7 @@ const userMax = {
     emailId: 'max123@gmail.com',
     // TODO figure out how to add group _id and not id field
     groupIds: [],
+    pendingGroups:[],
     username: 'max123',
     password:'password',
     chores: [

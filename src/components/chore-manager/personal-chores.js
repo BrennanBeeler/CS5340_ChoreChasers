@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import "./personal-chores.css"
 import {Button, Modal} from "react-bootstrap";
 import CreateChoreModal from "../create-chore/create-chore-modal"
+import ChoreDisplay from "./chore-display";
 
 const PersonalChores = () => {
     const [choreModal, setChoreModal] = useState(false);
@@ -26,6 +27,8 @@ const PersonalChores = () => {
                 </div>
             </div>
             <br/>
+
+            <ChoreDisplay></ChoreDisplay>
         </div>
     )
 }

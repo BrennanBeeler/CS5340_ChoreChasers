@@ -1,4 +1,5 @@
 import React from "react";
+import ChoreDisplay from "./chore-display";
 
 const GroupChores = () => {
     return(
@@ -28,6 +29,8 @@ const GroupChores = () => {
                 </div>
             </div>
             <br/>
+
+            <ChoreDisplay></ChoreDisplay>
         </div>
     )
 }

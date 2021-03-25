@@ -7,6 +7,7 @@ import SignUp from "./components/sign-up/sign-up";
 import ChoreManager from "./components/chore-manager/chore-manager";
 import Profile from "./components/profile/profile";
 import ProfileSettings from "./components/profile/profile-settings";
+import GroupSettings from "./components/group-settings/group-settings";
 import "./App.css"
 
 
@@ -29,6 +30,10 @@ function App() {
 
                     <Route path="/choreManager" exact={true}>
                         <ChoreManager/>
+                    </Route>
+
+                    <Route path="/groupSettings" exact={true}>
+                        <GroupSettings/>
                     </Route>
 
                     <Route path="/profile" exact={true}>

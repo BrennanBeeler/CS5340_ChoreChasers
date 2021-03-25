@@ -1,5 +1,6 @@
 import React from "react";
 import ChoreDisplay from "./chore-display";
+import {Link} from "react-router-dom";
 
 const GroupChores = () => {
     return(
@@ -29,6 +30,9 @@ const GroupChores = () => {
                 </div>
             </div>
             <br/>
+            <Link to="/groupSettings" className="btn btn-info">
+              Group Settings
+            </Link>
 
             <ChoreDisplay></ChoreDisplay>
         </div>

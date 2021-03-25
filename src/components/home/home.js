@@ -37,7 +37,7 @@ const Home = () => {
 
             <div className="row">
                 {/*TODO: need to figure out image*/}
-                <img src="https://via.placeholder.com/500" alt="Home page" width="500" height="500" className="mx-auto"/>
+                <img src="https://via.placeholder.com/500" alt="Home page" width="500" height="400" className="mx-auto"/>
 
 
                 {/*TODO: look into jumbotron from boostrap*/}

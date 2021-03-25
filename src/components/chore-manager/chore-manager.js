@@ -3,11 +3,8 @@ import PersonalChores from "./personal-chores";
 import applicationActions from "../../actions/actions";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
-<<<<<<< HEAD
-=======
 import GroupChores from "./group-chores";
 import CreateGroupModal from "../create-group/create-group-modal";
->>>>>>> 96ee83e8c78bd4a2888f2ae2d5ab44e542ec5ea4
 
 const ChoreManager = ({
                         profile,
@@ -34,11 +31,7 @@ const ChoreManager = ({
                 <div className="row-12 border-bottom border-dark pb-2">
                     Level 1
                     <br/>
-<<<<<<< HEAD
-                    <Link to="/profile" button className="btn fa fa-user-circle fa-2x"/>
-=======
                     <Link to="/profile" className="btn fa fa-user-circle fa-2x"/>
->>>>>>> 96ee83e8c78bd4a2888f2ae2d5ab44e542ec5ea4
                     0/10 points
                     <br/>
                     <Link to="/profile">
@@ -61,7 +54,7 @@ const ChoreManager = ({
 
                     <li className={`nav-link nav-item mb-4 border border-dark ${activeGroup === "Personal Chores" ? 'active':''}`}
                         onClick={() => setActiveGroup("Personal Chores")}>
-                        Personal Chores
+                        View Personal Chores
                     </li>
 
                     {
@@ -69,7 +62,7 @@ const ChoreManager = ({
                             <li className={`nav-link nav-item mb-4 border border-dark ${activeGroup === group ? 'active':''}`}
                                 key={group}
                                 onClick={() => setActiveGroup(group)}>
-                                {group}
+                                {"View " + group}
                             </li>
                         )
                     }

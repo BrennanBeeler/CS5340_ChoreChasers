@@ -42,7 +42,7 @@ const ChoreDisplay = ({
 
                             </Navbar.Text>
 
-                            <Navbar.Toggle style={{position: "absolute", bottom: "10px", right: "10px"}}>Details</Navbar.Toggle>
+                            <Navbar.Toggle style={{position: "absolute", bottom: "10px", right: "10px"}}>View Details</Navbar.Toggle>
 
                             <Navbar.Collapse id="basic-navbar-nav">
                                 <Navbar.Text>
@@ -84,7 +84,7 @@ const ChoreDisplay = ({
 
                             </Navbar.Text>
 
-                            <Navbar.Toggle style={{position: "absolute", bottom: "10px", right: "10px"}}>Details</Navbar.Toggle>
+                            <Navbar.Toggle style={{position: "absolute", bottom: "10px", right: "10px"}}>View Details</Navbar.Toggle>
 
                             <Navbar.Collapse id="basic-navbar-nav">
                                 <Navbar.Text>
@@ -146,7 +146,7 @@ const ChoreDisplay = ({
 
                             </Navbar.Text>
 
-                            <Navbar.Toggle style={{position: "absolute", bottom: "10px", right: "10px"}}>Details</Navbar.Toggle>
+                            <Navbar.Toggle style={{position: "absolute", bottom: "10px", right: "10px"}}>View Details</Navbar.Toggle>
 
                             <Navbar.Collapse id="basic-navbar-nav">
                                 <Navbar.Text>
@@ -188,7 +188,7 @@ const ChoreDisplay = ({
 
                             </Navbar.Text>
 
-                            <Navbar.Toggle style={{position: "absolute", bottom: "10px", right: "10px"}}>Details</Navbar.Toggle>
+                            <Navbar.Toggle style={{position: "absolute", bottom: "10px", right: "10px"}}>View Details</Navbar.Toggle>
 
                             <Navbar.Collapse id="basic-navbar-nav">
                                 <Navbar.Text>

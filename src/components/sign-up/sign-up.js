@@ -21,6 +21,7 @@ const SignUp = ({
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
+    //TODO: redo once database is ready
     return (
         <div className="container">
             <h1 className="text-center">

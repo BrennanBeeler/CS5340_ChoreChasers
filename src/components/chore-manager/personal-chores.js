@@ -1,10 +1,17 @@
 import React, {useState} from "react";
 import "./personal-chores.css"
-import {Button, Modal} from "react-bootstrap";
+import {Button} from "react-bootstrap";
 import CreateChoreModal from "../create-chore/create-chore-modal"
 import ChoreDisplay from "./chore-display";
+import applicationActions from "../../actions/actions";
+import {connect} from "react-redux";
 
-const PersonalChores = () => {
+const PersonalChores = ({
+                            activeGroupId,
+                            activeProfile,
+                            group,
+                            getGroupData
+                        }) => {
     const [choreModal, setChoreModal] = useState(false);
 
     return(
@@ -28,9 +35,24 @@ const PersonalChores = () => {
             </div>
             <br/>
 
-            <ChoreDisplay></ChoreDisplay>
+            <h1>
+                Personal Chores
+            </h1>
+
+            <ChoreDisplay chores={group.chores}/>
         </div>
     )
 }
 
-export default PersonalChores;
+const stpm = (state) => ({
+    activeGroupId: state.activeGroupId,
+    activeProfile: state.activeProfile,
+    // TODO: eventually groups will be actually populated
+    group : state.groups[0]
+})
+
+const dtpm = (dispatch) => ({
+    getGroupData : (profile, groupId) => applicationActions.getGroupData(dispatch, profile, groupId)
+})
+
+export default connect(stpm, dtpm)(PersonalChores);

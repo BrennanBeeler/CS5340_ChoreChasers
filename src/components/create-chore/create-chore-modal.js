@@ -17,7 +17,6 @@ const CreateChoreModal = (props) => {
             alert("issue")
             return;
         }
-
     //    TODO: if all data looks good create the chore and submit to database
 
         props.onHide()
@@ -73,6 +72,7 @@ const CreateChoreModal = (props) => {
                         </Form.Control>
                     </Form.Group>
 
+                    {/*TODO: handle assignees*/}
                     <Form.Group>
                         <Form.Label>Assignees</Form.Label>
                     </Form.Group>
@@ -156,8 +156,6 @@ const CreateChoreModal = (props) => {
                                 </Row>
                             </>
                         }
-
-
                     </Form.Group>
                 </Form>
             </Modal.Body>

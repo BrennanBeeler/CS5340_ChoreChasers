@@ -12,7 +12,8 @@ const initialState = {
         }
     },
     activeGroup : "Personal Chores",
-    groups : ["Test Group 1", "Test Group 2", "Test Group 3"]
+    groups : ["Test Group 1", "Test Group 2", "Test Group 3"],
+    pendingGroups: ["Family"]
 }
 
 const applicationReducer = (state = initialState, action) => {

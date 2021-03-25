@@ -4,6 +4,7 @@ import applicationActions from "../../actions/actions";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import GroupChores from "./group-chores";
+import PendingGroup from "./pending-group";
 import CreateGroupModal from "../create-group/create-group-modal";
 
 const ChoreManager = ({
@@ -11,8 +12,8 @@ const ChoreManager = ({
                         setActiveGroup,
                         activeGroup,
                         groups,
-                        createGroup
-
+                        createGroup,
+                        pendingGroups
                       }) => {
 
     const [createGroupModal, setCreateGroupModal] = useState(false);
@@ -66,6 +67,14 @@ const ChoreManager = ({
                             </li>
                         )
                     }
+
+                    {
+                        pendingGroups.map(group =>
+                            <PendingGroup
+                              groupName={group}
+                            />
+                        )
+                    }
                 </ul>
             </div>
 
@@ -91,7 +100,8 @@ const ChoreManager = ({
 const stpm = (state) => ({
     profile: state.profiles[state.activeProfile],
     activeGroup: state.activeGroup,
-    groups : state.groups
+    groups : state.groups,
+    pendingGroups: state.pendingGroups,
 })
 
 const dtpm = (dispatch) => ({

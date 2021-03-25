@@ -115,6 +115,3 @@ const dtpm = (dispatch) => ({
 })
 
 export default connect(stpm, dtpm)(CreateGroupModal);
-
-// //TODO: try alternative way around connecting at all
-// export default CreateGroupModal;

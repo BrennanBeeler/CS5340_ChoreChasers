@@ -2,6 +2,7 @@ export const LOG_IN = "LOG_IN";
 export const LOG_OUT = "LOG_OUT";
 export const SIGN_UP = "SIGN_UP";
 export const SET_ACTIVE_GROUP = "SET_ACTIVE_GROUP";
+export const CREATE_GROUP = "CREATE_GROUP";
 
 const logIn = (dispatch, email, password) =>
     dispatch({
@@ -33,8 +34,16 @@ const setActiveGroup = (dispatch, activeGroup) => {
     })
 }
 
+//TODO: figure out how to deal with group addition once database is ready- other members in particular
+const createGroup = (dispatch, profile, group) => {
+    dispatch({
+        type : CREATE_GROUP,
+        group
+    })
+}
+
 const applicationActions = {
-    logIn, logOut,signUp, setActiveGroup
+    logIn, logOut,signUp, setActiveGroup, createGroup
 }
 
 export default applicationActions;

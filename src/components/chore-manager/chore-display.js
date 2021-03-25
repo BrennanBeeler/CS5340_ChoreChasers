@@ -5,7 +5,6 @@ import {Button,
     Navbar,
     Row
 } from "react-bootstrap";
-import { useAccordionToggle } from 'react-bootstrap/AccordionToggle';
 import {connect} from "react-redux";
 
 const ChoreDisplay = ({

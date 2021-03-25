@@ -4,20 +4,25 @@ import applicationActions from "../../actions/actions";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import GroupChores from "./group-chores";
+import CreateGroupModal from "../create-group/create-group-modal";
 
 const ChoreManager = ({
                         profile,
                         setActiveGroup,
                         activeGroup,
-                        groups
+                        groups,
+                        createGroup
 
                       }) => {
+
+    const [createGroupModal, setCreateGroupModal] = useState(false);
 
     useEffect(() => {
     //    TODO: get chores here
 
 
     })
+
 
 
     return (
@@ -34,10 +39,17 @@ const ChoreManager = ({
                     </Link>
                 </div>
 
-                <button className="btn btn-info btn-block mt-4">
+                <button className="btn btn-info btn-block mt-4" onClick={() => setCreateGroupModal(true)}>
                     Create Group
-                    <i className="fa fa-plus"/>
+                    <i className="fa fa-plus" style={{paddingLeft: "10px"}}/>
                 </button>
+
+                <CreateGroupModal key={new Date().getTime()} show={createGroupModal}
+                                  onHide={()=> setCreateGroupModal(false)}
+                                  profile={profile} createGroup={createGroup}/>
+
+
+                <br/>
 
                 <ul className="nav flex-column nav-pills mt-4" role="navigation">
 
@@ -86,7 +98,8 @@ const stpm = (state) => ({
 const dtpm = (dispatch) => ({
     signUp : (email, username, password) => applicationActions.signUp(dispatch, email, username, password),
     logIn : (email, password) => applicationActions.logIn(dispatch, email, password),
-    setActiveGroup : (activeGroup) => applicationActions.setActiveGroup(dispatch, activeGroup)
+    setActiveGroup : (activeGroup) => applicationActions.setActiveGroup(dispatch, activeGroup),
+    createGroup: (profile, group) => applicationActions.createGroup(dispatch, profile, group)
 })
 
 export default connect(stpm, dtpm)(ChoreManager);

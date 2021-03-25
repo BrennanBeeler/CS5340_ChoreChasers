@@ -1,4 +1,4 @@
-import {LOG_IN, LOG_OUT, SIGN_UP, SET_ACTIVE_GROUP, CREATE_GROUP, GET_GROUP_DATA} from "../actions/actions";
+import {LOG_IN, LOG_OUT, SET_ACTIVE_GROUP, CREATE_GROUP, GET_GROUP_DATA, CREATE_CHORE} from "../actions/actions";
 
 const initialState = {
     loggedIn: false,
@@ -77,35 +77,18 @@ const applicationReducer = (state = initialState, action) => {
                 }
             }
             return state
-        case SIGN_UP:
-            if (!(action.email in state.profiles)) {
-                //TODO: maybe fix so doesn't have temp variable
-                let newProfiles = state.profiles
-                newProfiles[action.email] = {
-                    password: action.password,
-                    username: action.username
-                }
-
-                return {
-                    ...state,
-                    profiles: newProfiles
-
-                }
-            }
-            return state
         case SET_ACTIVE_GROUP:
             return {
                 ...state,
                 activeGroupId: action.activeGroupId
             }
         case CREATE_GROUP:
-            //TODO: figure out why can't be done in one line
-            let newGroups = state.groups
-            newGroups.push(action.group.groupName)
-
             return {
                 ...state,
-                groups : newGroups
+                groups : [
+                    ...state.groups,
+                    action.group.groupName
+                ]
             }
         //    TODO: check once db connected
         // case GET_GROUP_DATA:
@@ -113,6 +96,14 @@ const applicationReducer = (state = initialState, action) => {
         //         ...state,
         //         groups : state.groups.filter(group => group.id === state.activeGroupId)
         //     }
+        case CREATE_CHORE:
+            return {
+                ...state,
+                chores : [
+                    ...state.chores,
+                    action.newChore
+                ]
+            }
 
         default:
             return state

@@ -4,6 +4,7 @@ export const SIGN_UP = "SIGN_UP";
 export const SET_ACTIVE_GROUP = "SET_ACTIVE_GROUP";
 export const CREATE_GROUP = "CREATE_GROUP";
 export const GET_GROUP_DATA = "GET_GROUP_DATA";
+export const CREATE_CHORE = "CREATE_CHORE";
 
 const logIn = (dispatch, email, password) =>
     dispatch({
@@ -18,6 +19,7 @@ const logOut = (dispatch, email) =>
         email
     })
 
+//TODO: determine if this is needed since sign up won't affect state of application directly.
 const signUp = (dispatch, email, username, password) => {
     dispatch({
         type : SIGN_UP,

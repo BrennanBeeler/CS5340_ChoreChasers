@@ -4,11 +4,11 @@ import "./create-chore-modal.css"
 
 const CreateChoreModal = (props) => {
     const [choreName, setChoreName] = useState("");
-    const [dueDate, setDueDate] = useState(null);
+    const [dueDate, setDueDate] = useState();
     const [repeatChore, setRepeatChore] = useState("");
     const [choreInstructions, setChoreInstructions] = useState("");
     const [choreGroup, setChoreGroup] = useState(props.group);
-    const [rewardMode, setRewardMode] = useState(null);
+    const [rewardMode, setRewardMode] = useState();
     const [pointsChecked, setPointsChecked] = useState(false)
     const [prizeChecked, setPrizeChecked] = useState(false)
 
@@ -17,7 +17,6 @@ const CreateChoreModal = (props) => {
             alert("issue")
             return;
         }
-
     //    TODO: if all data looks good create the chore and submit to database
 
         props.onHide()
@@ -73,6 +72,7 @@ const CreateChoreModal = (props) => {
                         </Form.Control>
                     </Form.Group>
 
+                    {/*TODO: handle assignees*/}
                     <Form.Group>
                         <Form.Label>Assignees</Form.Label>
                     </Form.Group>
@@ -94,20 +94,18 @@ const CreateChoreModal = (props) => {
                             </OverlayTrigger>
 
                             <Form.Check label="Points" type="checkbox" checked={pointsChecked}
-                                        onClick={() => {setPointsChecked(!pointsChecked)}}/>
+                                        onChange={() => {setPointsChecked(!pointsChecked)}}/>
                         </Row>
 
-
-                        {/*TODO: figure out what we want to put here for tool tip*/}
                         <Row>
                             <OverlayTrigger
                                 placement="left"
                                 delay={{ show: 250, hide: 400 }}
-                                overlay={<Tooltip {...props}>FIGURE OUT WHAT TO SAY</Tooltip>}>
+                                overlay={<Tooltip {...props}>Assign a real life treat to the chore</Tooltip>}>
                                 <span className="btn fa fa-question-circle"/>
                             </OverlayTrigger>
                             <Form.Check label="Real-life item" type="checkbox" checked={prizeChecked}
-                                        onClick={() => {setPrizeChecked(!prizeChecked)}}/>
+                                        onChange={() => {setPrizeChecked(!prizeChecked)}}/>
                         </Row>
 
                         {
@@ -131,7 +129,7 @@ const CreateChoreModal = (props) => {
                                     </OverlayTrigger>
 
                                     <Form.Check type="radio" name="rewardRadios" id="cooperativeRadio"
-                                                onClick={() => setRewardMode("cooperative")}/>
+                                                defaultChecked={true} onClick={() => setRewardMode("cooperative")}/>
                                     <label htmlFor="cooperativeRadio">
                                         Everyone gets the reward
                                     </label>
@@ -156,8 +154,6 @@ const CreateChoreModal = (props) => {
                                 </Row>
                             </>
                         }
-
-
                     </Form.Group>
                 </Form>
             </Modal.Body>

@@ -1,30 +1,21 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import PersonalChores from "./personal-chores";
 import applicationActions from "../../actions/actions";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import GroupChores from "./group-chores";
-import PendingGroup from "./pending-group";
 import CreateGroupModal from "../create-group/create-group-modal";
+import PendingGroup from "./pending-group";
 
 const ChoreManager = ({
                         profile,
                         setActiveGroup,
-                        activeGroup,
+                        activeGroupId = "Personal Chores",
                         groups,
-                        createGroup,
                         pendingGroups
                       }) => {
 
     const [createGroupModal, setCreateGroupModal] = useState(false);
-
-    useEffect(() => {
-    //    TODO: get chores here
-
-
-    })
-
-
 
     return (
         <div className="hci-full-height row">
@@ -35,8 +26,9 @@ const ChoreManager = ({
                     <Link to="/profile" className="btn fa fa-user-circle fa-2x"/>
                     0/10 points
                     <br/>
+
                     <Link to="/profile">
-                        View {profile.username}'s Account
+                        {profile}'s Account
                     </Link>
                 </div>
 
@@ -53,17 +45,17 @@ const ChoreManager = ({
 
                 <ul className="nav flex-column nav-pills mt-4" role="navigation">
 
-                    <li className={`nav-link nav-item mb-4 border border-dark ${activeGroup === "Personal Chores" ? 'active':''}`}
+                    <li className={`nav-link nav-item mb-4 border border-dark ${activeGroupId === "Personal Chores" ? 'active':''}`}
                         onClick={() => setActiveGroup("Personal Chores")}>
-                        {activeGroup === "Personal Chores" ? "Personal Chores" : "View Personal Chores"}
+                        Personal Chores
                     </li>
 
                     {
                         groups.map(group =>
-                            <li className={`nav-link nav-item mb-4 border border-dark ${activeGroup === group ? 'active':''}`}
-                                key={group}
-                                onClick={() => setActiveGroup(group)}>
-                                {activeGroup === group ? group : "View " + group}
+                            <li className={`nav-link nav-item mb-4 border border-dark ${activeGroupId === group.id ? 'active':''}`}
+                                key={group.id}
+                                onClick={() => setActiveGroup(group.id)}>
+                                {group.name}
                             </li>
                         )
                     }
@@ -71,7 +63,7 @@ const ChoreManager = ({
                     {
                         pendingGroups.map(group =>
                             <PendingGroup
-                              groupName={group}
+                              groupName={group.name}
                             />
                         )
                     }
@@ -80,15 +72,15 @@ const ChoreManager = ({
 
             <div className="col-9">
                 {
-                    activeGroup === "Personal Chores" &&
+                    activeGroupId === "Personal Chores" &&
                     <PersonalChores/>
 
                 }
 
                 {
-                    activeGroup !== "Personal Chores" &&
+                    activeGroupId !== "Personal Chores" &&
                     <>
-                        <GroupChores key={activeGroup}/>
+                        <GroupChores/>
                     </>
                 }
 
@@ -98,8 +90,8 @@ const ChoreManager = ({
 }
 
 const stpm = (state) => ({
-    profile: state.profiles[state.activeProfile],
-    activeGroup: state.activeGroup,
+    profile: state.profile.username,
+    activeGroupId: state.activeGroupId,
     groups : state.groups,
     pendingGroups: state.pendingGroups,
 })
@@ -107,10 +99,8 @@ const stpm = (state) => ({
 const dtpm = (dispatch) => ({
     signUp : (email, username, password) => applicationActions.signUp(dispatch, email, username, password),
     logIn : (email, password) => applicationActions.logIn(dispatch, email, password),
-    setActiveGroup : (activeGroup) => applicationActions.setActiveGroup(dispatch, activeGroup),
-    createGroup: (profile, group) => applicationActions.createGroup(dispatch, profile, group)
+    setActiveGroup : (activeGroupId) => applicationActions.setActiveGroup(dispatch, activeGroupId)
 })
 
 export default connect(stpm, dtpm)(ChoreManager);
-
 

@@ -106,7 +106,7 @@ const CreateGroupModal = ({props, createGroup, profile}) => {
 }
 
 const stpm = (state, ownProps) => ({
-    profile: state.profiles[state.activeProfile],
+    profile: state.profile,
     props: ownProps
 })
 

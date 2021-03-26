@@ -51,3 +51,4 @@ const ChoreDisplay = ({chores}) => {
 }
 
 export default ChoreDisplay;
+

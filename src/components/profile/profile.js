@@ -30,7 +30,7 @@ const Profile = ({
           <div className="mx-auto text-center">
             <span className="btn fa fa-user-circle fa-4x"/>
             <h2 className="text-center">
-              {profile.username || defaultName}'s Profile
+              {profile || defaultName}'s Profile
             </h2>
             <Link to="/profileSettings" className="btn fa fa-cog"/>
             <Link to="/profileSettings" className="nav-link-center">
@@ -56,7 +56,7 @@ const Profile = ({
             </text>
           </div>
             <h5 style={{padding:5}}>
-              You're doing great, {profile.username || defaultName}! Keep up the good work.
+              You're doing great, {profile || defaultName}! Keep up the good work.
             </h5>
             <div style={{padding: 10}} />
             <div className="row justify-content-center " style={{height: "0px", margin: "0px"}}>
@@ -105,7 +105,7 @@ const Profile = ({
 }
 
 const stpm = (state) => ({
-    profile: state.profiles[state.activeProfile],
+    profile: state.profile.username,
 })
 
 const dtpm = (dispatch) => ({

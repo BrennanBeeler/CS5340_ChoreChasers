@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import {Modal, Button, Form, Tooltip, OverlayTrigger, Row, Col} from "react-bootstrap";
 import "./create-chore-modal.css"
+import applicationActions from "../../actions/actions";
+import {connect} from "react-redux";
 
 const CreateChoreModal = ({hide, show, group, profileUsername, createChore}) => {
     const [choreName, setChoreName] = useState("");
@@ -14,6 +16,7 @@ const CreateChoreModal = ({hide, show, group, profileUsername, createChore}) => 
     const [prizeChecked, setPrizeChecked] = useState(false)
     const [prizeText, setPrizeText] = useState("")
     const [pointNumber, setPointNumber] = useState(0)
+
 
     const validateChore = () => {
         if(choreName === "") {
@@ -41,9 +44,7 @@ const CreateChoreModal = ({hide, show, group, profileUsername, createChore}) => 
             assignees: []
         }
 
-        console.log(newChore)
-
-        createChore(choreGroup.id, newChore)
+        createChore(choreGroup, newChore)
         hide()
     }
 
@@ -88,7 +89,7 @@ const CreateChoreModal = ({hide, show, group, profileUsername, createChore}) => 
                     </Form.Group>
 
                     <Form.Group>
-                        <Form.Label>Chose your group *</Form.Label>
+                        <Form.Label>Choose your group *</Form.Label>
                         <Form.Control as="select" value={choreGroup}
                                       onChange={event => setChoreGroup(event.target.value)}>
                             <option value={choreGroup}>{choreGroup}</option>
@@ -223,4 +224,11 @@ const CreateChoreModal = ({hide, show, group, profileUsername, createChore}) => 
     )
 }
 
-export default CreateChoreModal;
+const stpm = (state) => ({
+})
+
+const dtpm = (dispatch) => ({
+    createChore : (groupName, chore) => applicationActions.createChore(dispatch, groupName, chore)
+})
+
+export default connect(stpm, dtpm)(CreateChoreModal);

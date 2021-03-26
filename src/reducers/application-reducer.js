@@ -158,10 +158,9 @@ const applicationReducer = (state = initialState, action) => {
         //         groups : state.groups.filter(group => group.id === state.activeGroupId)
         //     }
         case CREATE_CHORE:
-            console.log(action.chore)
-
-            let tempGroups = state.groups
-            tempGroups = tempGroups.map(group => group.id === action.groupId ? (group) => group.chores.push(action.chore) : group)
+            let tempGroups = state.groups;
+            tempGroups.forEach(group => group.name === action.groupName ? group.chores = [...group.chores, action.chore] : group)
+            console.log(tempGroups)
 
             console.log({
                 ...state,

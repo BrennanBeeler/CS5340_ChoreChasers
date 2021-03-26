@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {Modal, Button, Form, Tooltip, OverlayTrigger, Row, Col} from "react-bootstrap";
+import { Typeahead } from 'react-bootstrap-typeahead';
 import "./create-chore-modal.css"
 
 const CreateChoreModal = (props) => {
@@ -8,9 +9,11 @@ const CreateChoreModal = (props) => {
     const [repeatChore, setRepeatChore] = useState("");
     const [choreInstructions, setChoreInstructions] = useState("");
     const [choreGroup, setChoreGroup] = useState(props.group);
+    const [assignee, setAssignees] = useState("");
     const [rewardMode, setRewardMode] = useState();
     const [pointsChecked, setPointsChecked] = useState(false)
     const [prizeChecked, setPrizeChecked] = useState(false)
+    const [memberList, setMemberList] = useState([]);
 
     const validateChore = () => {
         if(choreName === "") {
@@ -20,6 +23,14 @@ const CreateChoreModal = (props) => {
     //    TODO: if all data looks good create the chore and submit to database
 
         props.onHide()
+    }
+
+    const handleMemberAdd = () => {
+        if(assignee !== "" && !(assignee in memberList)) {
+            setMemberList(memberList => [...memberList, assignee])
+        }
+
+        console.log(memberList)
     }
 
 
@@ -64,7 +75,7 @@ const CreateChoreModal = (props) => {
                     </Form.Group>
 
                     <Form.Group>
-                        <Form.Label>Chose your group *</Form.Label>
+                        <Form.Label>Choose your group *</Form.Label>
                         <Form.Control as="select" value={choreGroup}
                                       onChange={event => setChoreGroup(event.target.value)}>
                             <option value={choreGroup}>{choreGroup}</option>
@@ -75,6 +86,22 @@ const CreateChoreModal = (props) => {
                     {/*TODO: handle assignees*/}
                     <Form.Group>
                         <Form.Label>Assignees</Form.Label>
+                        <Typeahead
+                          id="assignees"
+                          onChange={setAssignees}
+                          options={props.group.members || ["Bill", "Bob", "Alice"]}
+                          placeholder="Type the name of the person this chore is assigned to..."
+                          selected={""}
+                          onClick={handleMemberAdd}
+                        />
+                        {
+                            //TODO: create pretty member tags/ allow removal
+                            memberList.map(member =>
+                                <div>
+                                    {member}
+                                </div>
+                            )
+                        }
                     </Form.Group>
 
                     <Form.Group>

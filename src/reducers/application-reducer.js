@@ -54,6 +54,37 @@ const initialState = {
                 realLifeItem:"",
                 splitReward:{everyoneGetsReward:false,fcfs:false}
             }]
+    }],
+    pendingGroups : [{
+        id: "1",
+        name: 'Pending Family',
+        progressBar: true,
+        chores: [
+            {
+                id:1,
+                done:false,
+                choreName: 'Pick dad up from the airport',
+                dueDate: new Date("2021-03-23"),
+                repeatChore: "Never",
+                choreInstructions: "flight lands at 5pm, be at airport by 4:45pm and DON'T BE LATE",
+                rewards:{points:true,realLifeItem:false},
+                points:20,
+                realLifeItem:"",
+                splitReward:{everyoneGetsReward:true,fcfs:false}
+            },
+
+            {
+                id:"2",
+                done:false,
+                choreName: 'Wash the dishes',
+                dueDate: new Date("2021-03-22"),
+                repeatChore: "Weekly",
+                choreInstructions: "",
+                rewards:{points:false,realLifeItem:false},
+                points:0,
+                realLifeItem:"",
+                splitReward:{everyoneGetsReward:false,fcfs:false}
+            }]
     }]
 }
 

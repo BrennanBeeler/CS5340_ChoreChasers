@@ -1,12 +1,13 @@
 import React, {useState} from "react";
+import {connect} from "react-redux";
 import {Link, Redirect} from "react-router-dom";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import "./background-preview.css";
 
-const Profile = (
-  profile
-) => {
+const Profile = ({
+                        profile,
+                      }) => {
   const defaultName = "Username";
   const level = parseInt(profile.level) || 1;
   const unlockableBackgrounds = ["https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Animated_Wallpaper_Windows_" +
@@ -29,7 +30,7 @@ const Profile = (
           <div className="mx-auto text-center">
             <span className="btn fa fa-user-circle fa-4x"/>
             <h2 className="text-center">
-              {profile.name || defaultName}'s Profile
+              {profile.username || defaultName}'s Profile
             </h2>
             <Link to="/profileSettings" className="btn fa fa-cog"/>
             <Link to="/profileSettings" className="nav-link-center">
@@ -55,7 +56,7 @@ const Profile = (
             </text>
           </div>
             <h5 style={{padding:5}}>
-              You're doing great, {profile.name || defaultName}! Keep up the good work.
+              You're doing great, {profile.username || defaultName}! Keep up the good work.
             </h5>
             <div style={{padding: 10}} />
             <div className="row justify-content-center " style={{height: "0px", margin: "0px"}}>
@@ -95,7 +96,7 @@ const Profile = (
                 )})}
               </div>
               <Link to="/choreManager" className="btn btn-info">
-               Save and Exit
+               Return to Chores
               </Link>
             </div>
           </div>
@@ -103,4 +104,12 @@ const Profile = (
     )
 }
 
-export default Profile;
+const stpm = (state) => ({
+    profile: state.profiles[state.activeProfile],
+})
+
+const dtpm = (dispatch) => ({
+
+})
+
+export default connect(stpm, dtpm)(Profile);

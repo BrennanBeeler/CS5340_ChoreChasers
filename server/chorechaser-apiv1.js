@@ -1,3 +1,7 @@
+/*Let's not delete this file until we're fully done because some of the mongo concepts used here
+* could be potentially helpful if we need it in the future.
+*/
+
 const ObjectId = require('mongodb').ObjectID;
 /*
 * GET

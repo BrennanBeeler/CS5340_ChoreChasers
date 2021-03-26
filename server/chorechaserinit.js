@@ -68,22 +68,20 @@ async function initializeDB() {
                 }
             });
 
-        //------
-        // //check if chore collection already exists
         choreCollection.countDocuments({})
             .then(async function (checkExists) {
                 // console.log(checkExists);
                 if(checkExists > 0) {
-                    console.log("Deleting existing chore collection...");
+                    console.log("Deleting existing chores collection...");
                     await choreCollection.drop();
                     client.close();
                 }
                 else {
-                    console.log("No existing chore collections to delete");
+                    console.log("No existing chores collections to delete");
                     client.close();
                 }
             });
-        //-----
+
     }
     catch(err) {
         console.log(err);

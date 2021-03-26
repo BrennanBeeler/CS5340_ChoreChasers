@@ -1,5 +1,6 @@
 import React from "react";
 import ChoreDisplay from "./chore-display";
+import {Link} from "react-router-dom";
 import applicationActions from "../../actions/actions";
 import {connect} from "react-redux";
 
@@ -41,6 +42,9 @@ const GroupChores = ({
                 </div>
             </div>
             <br/>
+            <Link to="/groupSettings" className="btn btn-info">
+              Group Settings
+            </Link>
 
             <h1>
                 {group.name}

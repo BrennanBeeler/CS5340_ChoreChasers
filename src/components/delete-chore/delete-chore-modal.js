@@ -17,7 +17,7 @@ const DeleteChoreModal = ({deleteChore, hide, show, choreId}) => {
                         </Button>
                     </Col>
                     <Col xs={6}>
-                        <Button variant="danger" onClick={deleteChore(choreId)}>
+                        <Button variant="danger" onClick={() => deleteChore(choreId)}>
                             Yes, delete this chore!
                         </Button>
                     </Col>

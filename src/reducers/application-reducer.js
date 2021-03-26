@@ -113,35 +113,25 @@ const applicationReducer = (state = initialState, action) => {
         //         ...state,
         //         groups : state.groups.filter(group => group.id === state.activeGroupId)
         //     }
-        case CREATE_CHORE:
-            return {
-                ...state,
-                chores : [
-                    ...state.chores,
-                    action.newChore
-                ]
-            }
+        // case CREATE_CHORE:
+        //     return {
+        //         ...state,
+        //         chores : [
+        //             ...state.chores,
+        //             action.newChore
+        //         ]
+        //     }
         case DELETE_CHORE:
             let modifiedGroup = action.group
             modifiedGroup.chores = modifiedGroup.chores.filter(chore => chore.id !== action.choreId)
 
-            console.log(action)
+            let newState = {
+                ...state,
+                groups: state.groups.map(group => group.id === modifiedGroup.id ? modifiedGroup : group)
 
-            console.log(modifiedGroup)
+            }
 
-            //
-            // return {
-            //     ...state,
-            //     groups: [
-            //         ...state.groups,
-            //         state.groups.filter(group => group.id === action.group.id).chores filter(),
-            //
-            //
-            //     ]
-            // }
-
-
-            return state
+            return JSON.parse(JSON.stringify(newState))
 
         default:
             return state

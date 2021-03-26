@@ -29,7 +29,6 @@ const GroupChores = ({
 
             </div>
 
-
             <div className="progress">
                 <div className="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
                      aria-valuemax="100">
@@ -52,7 +51,7 @@ const GroupChores = ({
                 {group.name}
             </h1>
 
-            <ChoreDisplay chores={group.chores} deleteChore={() => handleDelete()}/>
+            <ChoreDisplay key={new Date().getTime()} chores={group.chores} deleteChore={handleDelete}/>
         </div>
     )
 }
@@ -61,7 +60,7 @@ const stpm = (state) => ({
     activeGroupId: state.activeGroupId,
     activeProfile: state.activeProfile,
     // TODO: eventually groups will be actually populated
-    group : state.groups[0]
+    group : state.groups.filter(group => group.id === state.activeGroupId)[0]
 })
 
 const dtpm = (dispatch) => ({

@@ -37,7 +37,7 @@ const ChoreDisplay = ({chores, deleteChore}) => {
                         {
                             chores.map(chore =>
                                 <div key={chore.id}>
-                                    <ChoreCard chore={chore} deleteChore={() => deleteChore()}/>
+                                    <ChoreCard chore={chore} deleteChore={deleteChore}/>
                                     <br/>
                                 </div>
                             )
@@ -50,3 +50,5 @@ const ChoreDisplay = ({chores, deleteChore}) => {
 }
 
 export default ChoreDisplay;
+
+

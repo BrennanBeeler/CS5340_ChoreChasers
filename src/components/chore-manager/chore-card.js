@@ -39,22 +39,22 @@ const ChoreCard = ({chore, deleteChore}) => {
             </Navbar.Text>
 
             <DeleteChoreModal key={new Date().getTime()} show={showDeleteModal}
-                              hide={()=> setShowDeleteModal(false)} deleteChore={() => deleteChore()} choreId={chore.id}/>
+                              hide={()=> setShowDeleteModal(false)} deleteChore={deleteChore} choreId={chore.id}/>
 
             <Navbar.Toggle style={{position: "absolute", bottom: "10px", right: "10px"}}>Details</Navbar.Toggle>
 
             <Navbar.Collapse id="basic-navbar-nav">
                 <Navbar.Text>
-                    {
-                        chore.dueDate !== null &&
-                        <>
-                            <div>
-                                Due Date: {chore.dueDate.toDateString()}
-                            </div>
+                    {/*{*/}
+                    {/*    chore.dueDate !== null &&*/}
+                    {/*    <>*/}
+                    {/*        <div>*/}
+                    {/*            Due Date: {chore.dueDate.toDateString()}*/}
+                    {/*        </div>*/}
 
-                            <br/>
-                        </>
-                    }
+                    {/*        <br/>*/}
+                    {/*    </>*/}
+                    {/*}*/}
 
                     {
                         chore.choreInstructions !== "" &&
@@ -73,15 +73,15 @@ const ChoreCard = ({chore, deleteChore}) => {
                     <br/>
 
 
-                    {
-                        chore.dateAdded !== null &&
-                            <>
-                                <div>
-                                    Date Added: {chore.dateAdded.toDateString()}
-                                </div>
-                                <br/>
-                            </>
-                    }
+                    {/*{*/}
+                    {/*    chore.dateAdded !== null &&*/}
+                    {/*        <>*/}
+                    {/*            <div>*/}
+                    {/*                Date Added: {chore.dateAdded.toDateString()}*/}
+                    {/*            </div>*/}
+                    {/*            <br/>*/}
+                    {/*        </>*/}
+                    {/*}*/}
 
                     Assignees: {chore.assignees}
 

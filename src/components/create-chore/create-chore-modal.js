@@ -2,30 +2,54 @@ import React, {useState} from "react";
 import {Modal, Button, Form, Tooltip, OverlayTrigger, Row, Col} from "react-bootstrap";
 import "./create-chore-modal.css"
 
-const CreateChoreModal = (props) => {
+const CreateChoreModal = ({hide, show, group, profileUsername, createChore}) => {
     const [choreName, setChoreName] = useState("");
     const [dueDate, setDueDate] = useState();
     const [repeatChore, setRepeatChore] = useState("");
     const [choreInstructions, setChoreInstructions] = useState("");
-    const [choreGroup, setChoreGroup] = useState(props.group);
-    const [rewardMode, setRewardMode] = useState();
+    // TODO: currently can only make chores from group you are in - fix
+    const [choreGroup, setChoreGroup] = useState(group);
+    const [rewardMode, setRewardMode] = useState(true);
     const [pointsChecked, setPointsChecked] = useState(false)
     const [prizeChecked, setPrizeChecked] = useState(false)
+    const [prizeText, setPrizeText] = useState("")
+    const [pointNumber, setPointNumber] = useState(0)
 
     const validateChore = () => {
         if(choreName === "") {
             alert("issue")
             return;
         }
-    //    TODO: if all data looks good create the chore and submit to database
 
-        props.onHide()
+        //TODO: if users sets assignees then moves to personal group the chore will have assignees in personal- idk if matters
+
+        let newChore = {
+            id: Date.now(),
+            done:false,
+            choreName: choreName,
+            //TODO: Figure out no date
+            dueDate: dueDate,
+            repeatChore: repeatChore,
+            choreInstructions: choreInstructions,
+            rewards:{points:pointsChecked,realLifeItem:prizeChecked},
+            points: pointNumber,
+            realLifeItem: prizeText,
+            splitReward:{everyoneGetsReward:rewardMode,fcfs:!rewardMode},
+            dateAdded: new Date(),
+            assignor: profileUsername,
+            //TODO: need to figure out assignees for create
+            assignees: []
+        }
+
+        console.log(newChore)
+
+        createChore(choreGroup.id, newChore)
+        hide()
     }
 
 
     return (
-        // TODO: had to set animation to false because of issue with react-bootstrap https://github.com/react-bootstrap/react-bootstrap/issues/5075
-        <Modal {...props} animation={false} backdrop="static">
+        <Modal onHide={hide} animation={false} show={show} backdrop="static">
             <Modal.Header closeButton>
                 <Modal.Title className="text-center">Add New Chore</Modal.Title>
             </Modal.Header>
@@ -48,11 +72,11 @@ const CreateChoreModal = (props) => {
                         <Form.Label>Does the chore need to repeat itself?</Form.Label>
                         <Form.Control as="select" value={repeatChore}
                                       onChange={event => setRepeatChore(event.target.value)}>
-                            <option value="">Don't repeat</option>
-                            <option value="daily">Daily</option>
-                            <option value="weekly">Weekly</option>
-                            <option value="monthly">Monthly</option>
-                            <option value="yearly">Yearly</option>
+                            <option value="Never">Don't repeat</option>
+                            <option value="Daily">Daily</option>
+                            <option value="Weekly">Weekly</option>
+                            <option value="Monthly">Monthly</option>
+                            <option value="Yearly">Yearly</option>
                         </Form.Control>
                     </Form.Group>
 
@@ -86,7 +110,7 @@ const CreateChoreModal = (props) => {
                                 placement="left"
                                 delay={{ show: 250, hide: 400 }}
                                 overlay={
-                                    <Tooltip {...props}>
+                                    <Tooltip>
                                         Points from 10-100 can be appended to your total points
                                     </Tooltip>
                                 }>
@@ -95,17 +119,38 @@ const CreateChoreModal = (props) => {
 
                             <Form.Check label="Points" type="checkbox" checked={pointsChecked}
                                         onChange={() => {setPointsChecked(!pointsChecked)}}/>
+
+                            {
+                                pointsChecked &&
+                                    <Col>
+                                        {/*0 20*/} {pointNumber}
+                                        <Form.Group controlId="formBasicRange">
+                                            <Form.Control type="range" value={pointNumber} min="0" max="20"
+                                                          onChange={event => setPointNumber(parseInt(event.target.value))}/>
+                                        </Form.Group>
+                                    </Col>
+                            }
                         </Row>
 
                         <Row>
                             <OverlayTrigger
                                 placement="left"
                                 delay={{ show: 250, hide: 400 }}
-                                overlay={<Tooltip {...props}>Assign a real life treat to the chore</Tooltip>}>
+                                overlay={<Tooltip>Assign a real life treat to the chore</Tooltip>}>
                                 <span className="btn fa fa-question-circle"/>
                             </OverlayTrigger>
                             <Form.Check label="Real-life item" type="checkbox" checked={prizeChecked}
                                         onChange={() => {setPrizeChecked(!prizeChecked)}}/>
+
+                            {
+                                prizeChecked &&
+                                <Col>
+                                    <Form.Group>
+                                        <Form.Control placeholder="Enter reward description" value={prizeText}
+                                                      onChange={event => setPrizeText(event.target.value)}/>
+                                    </Form.Group>
+                                </Col>
+                            }
                         </Row>
 
                         {
@@ -120,7 +165,7 @@ const CreateChoreModal = (props) => {
                                         placement="left"
                                         delay={{ show: 250, hide: 400 }}
                                         overlay={
-                                            <Tooltip {...props}>
+                                            <Tooltip>
                                                 All assignees will receive the same reward.
                                                 <br/>
                                                 Eg: If points is set to 20pts, each assignee will receive 20pts.
@@ -129,7 +174,7 @@ const CreateChoreModal = (props) => {
                                     </OverlayTrigger>
 
                                     <Form.Check type="radio" name="rewardRadios" id="cooperativeRadio"
-                                                defaultChecked={true} onClick={() => setRewardMode("cooperative")}/>
+                                                defaultChecked={true} onClick={() => setRewardMode(true)}/>
                                     <label htmlFor="cooperativeRadio">
                                         Everyone gets the reward
                                     </label>
@@ -140,14 +185,14 @@ const CreateChoreModal = (props) => {
                                         placement="left"
                                         delay={{ show: 250, hide: 400 }}
                                         overlay={
-                                            <Tooltip {...props}>This is a race! Whoever completes the chore first
+                                            <Tooltip>This is a race! Whoever completes the chore first
                                             upon approval of the assignor will receive the reward.
                                             </Tooltip>}>
                                         <span className="btn fa fa-question-circle"/>
                                     </OverlayTrigger>
 
                                     <Form.Check type="radio" id="competitiveRadio" name="rewardRadios"
-                                                onClick={() => setRewardMode("competitive")}/>
+                                                onClick={() => setRewardMode(false)}/>
                                     <label htmlFor="competitiveRadio">
                                         First come first serve
                                     </label>
@@ -162,7 +207,7 @@ const CreateChoreModal = (props) => {
                 <Row>
                     {/*TODO: figure out layout*/}
                     <Col xs={6}>
-                        <Button variant="danger" onClick={props.onHide}>
+                        <Button variant="danger" onClick={hide}>
                             Nevermind
                         </Button>
                     </Col>

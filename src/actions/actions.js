@@ -47,6 +47,14 @@ const createGroup = (dispatch, profile, group) => {
     })
 }
 
+const createChore = (dispatch, groupId, chore) => {
+    dispatch({
+        type: CREATE_CHORE,
+        groupId,
+        chore
+    })
+}
+
 const getGroupData = (dispatch, profile, groupId) => {
     //TODO: call to server here for group info
     dispatch({
@@ -72,7 +80,7 @@ const deletePersonalChore = (dispatch, choreId) => {
 }
 
 const applicationActions = {
-    logIn, logOut,signUp, setActiveGroup, createGroup, getGroupData, deleteChore, deletePersonalChore
+    logIn, logOut,signUp, setActiveGroup, createGroup, getGroupData, deleteChore, deletePersonalChore, createChore
 }
 
 export default applicationActions;

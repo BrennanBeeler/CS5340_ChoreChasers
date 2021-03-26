@@ -1,14 +1,18 @@
-import React from "react";
+import React, {useState} from "react";
 import ChoreDisplay from "./chore-display";
 import applicationActions from "../../actions/actions";
 import {connect} from "react-redux";
+import CreateChoreModal from "../create-chore/create-chore-modal";
+import {Button, ProgressBar} from "react-bootstrap";
 
 const GroupChores = ({
                          activeGroupId,
                          activeProfile,
                          group,
                          getGroupData,
-                         deleteChore
+                         deleteChore,
+                         profileUsername,
+                         createChore
                      }) => {
 
     // useEffect(() => {
@@ -17,6 +21,7 @@ const GroupChores = ({
     //
     // }, [activeGroupId])
 
+    const [choreModal, setChoreModal] = useState(false);
 
     const handleDelete = (choreId) => {
         deleteChore(group, choreId)
@@ -24,27 +29,22 @@ const GroupChores = ({
 
     return(
         <div className="container-fluid">
-            <div className="row">
-                Today's Progress
 
-            </div>
+            {/*TODO: evaluate temp fix for duplicate keys- +15*/}
+            <CreateChoreModal key={new Date().getTime() + 15} show={choreModal}
+                              hide={()=> setChoreModal(false)} group={group.name}
+                              profileUsername={profileUsername} createChore={createChore}/>
 
-            <div className="progress">
-                <div className="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
-                     aria-valuemax="100">
-                    0%
-                </div>
-                <div className="progress-bar bg-success" role="progressbar" aria-valuenow="0" aria-valuemin="0"
-                     aria-valuemax="100">
-                    0%
-                </div>
-                <div className="progress">
-                    <div className="progress-bar bg-info" role="progressbar" aria-valuenow="0" aria-valuemin="0"
-                         aria-valuemax="100">
-                        0%
-                    </div>
-                </div>
-            </div>
+            <ProgressBar>
+                <ProgressBar variant="success" now={35} key={1} />
+                <ProgressBar variant="warning" now={20} key={2} />
+                <ProgressBar variant="danger" now={10} key={3} />
+            </ProgressBar>
+
+            <Button variant="primary" onClick={() => setChoreModal(true)}>
+                Create Chore
+            </Button>
+
             <br/>
 
             <h1>
@@ -60,12 +60,14 @@ const stpm = (state) => ({
     activeGroupId: state.activeGroupId,
     activeProfile: state.activeProfile,
     // TODO: eventually groups will be actually populated
-    group : state.groups.filter(group => group.id === state.activeGroupId)[0]
+    group : state.groups.filter(group => group.id === state.activeGroupId)[0],
+    profileUsername : state.profile.username
 })
 
 const dtpm = (dispatch) => ({
     getGroupData : (profile, groupId) => applicationActions.getGroupData(dispatch, profile, groupId),
-    deleteChore : (group, choreId) => applicationActions.deleteChore(dispatch, group, choreId)
+    deleteChore : (group, choreId) => applicationActions.deleteChore(dispatch, group, choreId),
+    createChore : (groupId, chore) => applicationActions.createChore(dispatch, groupId, chore)
 })
 
 export default connect(stpm, dtpm)(GroupChores);

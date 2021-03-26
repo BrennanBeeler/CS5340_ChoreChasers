@@ -9,6 +9,7 @@ import PendingGroup from "./pending-group";
 
 const ChoreManager = ({
                         profile,
+                        points,
                         setActiveGroup,
                         activeGroupId = "Personal Chores",
                         groups,
@@ -24,7 +25,7 @@ const ChoreManager = ({
                     Level 1
                     <br/>
                     <Link to="/profile" className="btn fa fa-user-circle fa-2x"/>
-                    0/10 points
+                      {points}/10 points
                     <br/>
 
                     <Link to="/profile">
@@ -91,6 +92,7 @@ const ChoreManager = ({
 
 const stpm = (state) => ({
     profile: state.profile.username,
+    points: state.profile.points,
     activeGroupId: state.activeGroupId,
     groups : state.groups,
     pendingGroups: state.pendingGroups,

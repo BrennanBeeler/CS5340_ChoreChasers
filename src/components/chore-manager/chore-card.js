@@ -1,9 +1,12 @@
 import React, {useState} from "react";
 import {Button, FormCheck, Navbar} from "react-bootstrap";
+import applicationActions from "../../actions/actions";
+import {connect} from "react-redux";
 
-const ChoreCard = ({chore}) => {
+const ChoreCard = ({chore, addPoints}) => {
     const [toggleText, setToggleText] = useState(0);
     const toggleTextStr = ["View", "Hide"];
+
     return(
         <Navbar bg="light" expand="xs">
             <Navbar.Text>
@@ -11,7 +14,7 @@ const ChoreCard = ({chore}) => {
                     {chore.choreName}
                 </h3>
 
-                <FormCheck style={{position: "absolute", top: "10px", right: "10px"}}/>
+                <FormCheck style={{position: "absolute", top: "10px", right: "10px"}} onClick={() => addPoints(parseInt(chore.points))}/>
 
                 Reward:
                 {
@@ -68,4 +71,13 @@ const ChoreCard = ({chore}) => {
     )
 }
 
-export default ChoreCard;
+const stpm = (state, ownProps) => ({
+    profile: state.profile,
+    props: ownProps
+})
+
+const dtpm = (dispatch) => ({
+    addPoints: (points) => {applicationActions.addPoints(dispatch, points)}
+})
+
+export default connect(stpm, dtpm)(ChoreCard);

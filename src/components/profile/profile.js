@@ -56,11 +56,7 @@ const Profile = ({
             </text>
           </div>
             <h5 style={{padding:5}}>
-<<<<<<< HEAD
               You're doing great, {profile || defaultName}! Keep up the good work.
-=======
-              You're doing great, {profile.username || defaultName}! Keep up the good work.
->>>>>>> 6823aedaa22165855ec42a99e2ac6038aa1cdacf
             </h5>
             <div style={{padding: 10}} />
             <div className="row justify-content-center " style={{height: "0px", margin: "0px"}}>

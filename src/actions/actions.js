@@ -5,6 +5,7 @@ export const SET_ACTIVE_GROUP = "SET_ACTIVE_GROUP";
 export const CREATE_GROUP = "CREATE_GROUP";
 export const GET_GROUP_DATA = "GET_GROUP_DATA";
 export const CREATE_CHORE = "CREATE_CHORE";
+export const ADD_POINT_VALUE = "ADD_POINT_VALUE";
 
 const logIn = (dispatch, email, password) =>
     dispatch({
@@ -54,8 +55,15 @@ const getGroupData = (dispatch, profile, groupId) => {
     })
 }
 
+const addPoints = (dispatch, points) => {
+    dispatch({
+        type : ADD_POINT_VALUE,
+        points
+    })
+}
+
 const applicationActions = {
-    logIn, logOut,signUp, setActiveGroup, createGroup, getGroupData
+    logIn, logOut,signUp, setActiveGroup, createGroup, getGroupData, addPoints
 }
 
 export default applicationActions;

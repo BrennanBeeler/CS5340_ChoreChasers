@@ -1,4 +1,4 @@
-import {LOG_IN, LOG_OUT, SET_ACTIVE_GROUP, CREATE_GROUP, GET_GROUP_DATA, CREATE_CHORE} from "../actions/actions";
+import {LOG_IN, LOG_OUT, SET_ACTIVE_GROUP, CREATE_GROUP, GET_GROUP_DATA, CREATE_CHORE, ADD_POINT_VALUE} from "../actions/actions";
 
 const initialState = {
     loggedIn: false,
@@ -6,6 +6,7 @@ const initialState = {
     activeProfile : "test",
     profile : {
             emailId: 'test',
+            points: 5,
             groupIds: [],
             username: 'max123',
             password:'password',
@@ -134,6 +135,12 @@ const applicationReducer = (state = initialState, action) => {
                     ...state.chores,
                     action.newChore
                 ]
+            }
+        case ADD_POINT_VALUE:
+            state.profile.points += action.points;
+            console.log(state.profile.points);
+            return {
+                ...state
             }
 
         default:

@@ -7,7 +7,8 @@ const GroupChores = ({
                          activeGroupId,
                          activeProfile,
                          group,
-                         getGroupData
+                         getGroupData,
+                         deleteChore
                      }) => {
 
     // useEffect(() => {
@@ -15,6 +16,11 @@ const GroupChores = ({
     //     getGroupData(activeProfile, activeGroupId)
     //
     // }, [activeGroupId])
+
+
+    const handleDelete = (choreId) => {
+        deleteChore(group, choreId)
+    }
 
     return(
         <div className="container-fluid">
@@ -46,7 +52,7 @@ const GroupChores = ({
                 {group.name}
             </h1>
 
-            <ChoreDisplay chores={group.chores}/>
+            <ChoreDisplay chores={group.chores} deleteChore={() => handleDelete()}/>
         </div>
     )
 }
@@ -59,7 +65,8 @@ const stpm = (state) => ({
 })
 
 const dtpm = (dispatch) => ({
-    getGroupData : (profile, groupId) => applicationActions.getGroupData(dispatch, profile, groupId)
+    getGroupData : (profile, groupId) => applicationActions.getGroupData(dispatch, profile, groupId),
+    deleteChore : (group, choreId) => applicationActions.deleteChore(dispatch, group, choreId)
 })
 
 export default connect(stpm, dtpm)(GroupChores);

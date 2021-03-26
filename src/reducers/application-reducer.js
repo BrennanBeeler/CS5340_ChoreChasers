@@ -1,4 +1,12 @@
-import {LOG_IN, LOG_OUT, SET_ACTIVE_GROUP, CREATE_GROUP, GET_GROUP_DATA, CREATE_CHORE} from "../actions/actions";
+import {
+    LOG_IN,
+    LOG_OUT,
+    SET_ACTIVE_GROUP,
+    CREATE_GROUP,
+    GET_GROUP_DATA,
+    CREATE_CHORE,
+    DELETE_CHORE
+} from "../actions/actions";
 
 const initialState = {
     loggedIn: false,
@@ -29,8 +37,9 @@ const initialState = {
         name: 'Family',
         progressBar: true,
         chores: [
+            //TODO: required fields- id, done, chorename, rewards,splitrewards, assignor, assignees
             {
-                id:1,
+                id:"1",
                 done:false,
                 choreName: 'Pick dad up from the airport',
                 dueDate: new Date("2021-03-23"),
@@ -39,7 +48,11 @@ const initialState = {
                 rewards:{points:true,realLifeItem:false},
                 points:20,
                 realLifeItem:"",
-                splitReward:{everyoneGetsReward:true,fcfs:false}
+                splitReward:{everyoneGetsReward:true,fcfs:false},
+                dateAdded: new Date("2021-03-23"),
+                assignor: "Steve",
+                //TODO:
+                assignees: ["max123"]
             },
 
             {
@@ -52,8 +65,12 @@ const initialState = {
                 rewards:{points:false,realLifeItem:false},
                 points:0,
                 realLifeItem:"",
-                splitReward:{everyoneGetsReward:false,fcfs:false}
-            }]
+                splitReward:{everyoneGetsReward:false,fcfs:false},
+                dateAdded: null,
+                assignor: "Steve",
+                assignees: ["max123, Steve, Frank"]
+            }
+            ]
     }]
 }
 
@@ -104,6 +121,27 @@ const applicationReducer = (state = initialState, action) => {
                     action.newChore
                 ]
             }
+        case DELETE_CHORE:
+            let modifiedGroup = action.group
+            modifiedGroup.chores = modifiedGroup.chores.filter(chore => chore.id !== action.choreId)
+
+            console.log(action)
+
+            console.log(modifiedGroup)
+
+            //
+            // return {
+            //     ...state,
+            //     groups: [
+            //         ...state.groups,
+            //         state.groups.filter(group => group.id === action.group.id).chores filter(),
+            //
+            //
+            //     ]
+            // }
+
+
+            return state
 
         default:
             return state

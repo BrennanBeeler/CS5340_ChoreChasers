@@ -5,6 +5,7 @@ export const SET_ACTIVE_GROUP = "SET_ACTIVE_GROUP";
 export const CREATE_GROUP = "CREATE_GROUP";
 export const GET_GROUP_DATA = "GET_GROUP_DATA";
 export const CREATE_CHORE = "CREATE_CHORE";
+export const DELETE_CHORE = "DELETE_CHORE";
 
 const logIn = (dispatch, email, password) =>
     dispatch({
@@ -54,8 +55,16 @@ const getGroupData = (dispatch, profile, groupId) => {
     })
 }
 
+const deleteChore = (dispatch, group, choreId) => {
+    dispatch({
+        type : DELETE_CHORE,
+        group,
+        choreId
+    })
+}
+
 const applicationActions = {
-    logIn, logOut,signUp, setActiveGroup, createGroup, getGroupData
+    logIn, logOut,signUp, setActiveGroup, createGroup, getGroupData, deleteChore
 }
 
 export default applicationActions;

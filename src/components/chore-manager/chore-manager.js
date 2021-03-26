@@ -13,7 +13,7 @@ const ChoreManager = ({
                         groups
                       }) => {
 
-    const [createGroupModal, setCreateGroupModal] = useState(false);
+    const [showCreateGroupModal, setCreateGroupModal] = useState(false);
 
     return (
         <div className="hci-full-height row">
@@ -35,7 +35,7 @@ const ChoreManager = ({
                     <i className="fa fa-plus" style={{paddingLeft: "10px"}}/>
                 </button>
 
-                <CreateGroupModal key={new Date().getTime()} show={createGroupModal}
+                <CreateGroupModal key={new Date().getTime()} show={showCreateGroupModal}
                                   onHide={()=> setCreateGroupModal(false)}
                                   profile={profile}/>
 

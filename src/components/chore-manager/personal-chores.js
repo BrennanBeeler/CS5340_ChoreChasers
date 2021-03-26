@@ -10,14 +10,13 @@ const PersonalChores = ({
                             activeGroupId,
                             activeProfile,
                             chores,
-                            getGroupData,
-                            deleteChore
+                            deletePersonalChore
                         }) => {
     const [choreModal, setChoreModal] = useState(false);
 
-    // const handleDelete = (choreId) => {
-    //     deleteChore(group, choreId)
-    // }
+    const handleDelete = (choreId) => {
+        deletePersonalChore(choreId)
+    }
 
     return(
         <div className="container-fluid">
@@ -29,7 +28,7 @@ const PersonalChores = ({
                 </Button>
             </div>
 
-            <CreateChoreModal key={new Date().getTime()} show={choreModal}
+            <CreateChoreModal key={new Date().getTime() + 1} show={choreModal}
                               onHide={()=> setChoreModal(false)} group={"Personal Chores"}/>
 
             <div className="progress hci-personal-progress-div">
@@ -44,7 +43,7 @@ const PersonalChores = ({
                 Personal Chores
             </h1>
 
-            <ChoreDisplay key={new Date().getTime()} chores={chores}/>
+            <ChoreDisplay key={new Date().getTime()} chores={chores} deleteChore={handleDelete}/>
         </div>
     )
 }
@@ -52,13 +51,11 @@ const PersonalChores = ({
 const stpm = (state) => ({
     activeGroupId: state.activeGroupId,
     activeProfile: state.activeProfile,
-    // TODO: eventually groups will be actually populated
     chores : state.profile.chores
 })
 
 const dtpm = (dispatch) => ({
-    getGroupData : (profile, groupId) => applicationActions.getGroupData(dispatch, profile, groupId)
-    // deleteChore : (group, choreId) => applicationActions.deleteChore(dispatch, group, choreId)
+    deletePersonalChore : (choreId) => applicationActions.deletePersonalChore(dispatch, choreId)
 })
 
 export default connect(stpm, dtpm)(PersonalChores);

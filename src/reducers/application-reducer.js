@@ -1,12 +1,4 @@
-import {
-    LOG_IN,
-    LOG_OUT,
-    SET_ACTIVE_GROUP,
-    CREATE_GROUP,
-    GET_GROUP_DATA,
-    CREATE_CHORE,
-    DELETE_CHORE
-} from "../actions/actions";
+import {CREATE_GROUP, DELETE_CHORE, DELETE_PERSONAL_CHORE, LOG_IN, LOG_OUT, SET_ACTIVE_GROUP} from "../actions/actions";
 
 const initialState = {
     loggedIn: false,
@@ -22,6 +14,18 @@ const initialState = {
                     id:"1",
                     done:true,
                     choreName: 'Call Anne about the party',
+                    dueDate: new Date(),
+                    repeatChore: "Never",
+                    choreInstructions: "Call before 6PM",
+                    rewards:{points:true,realLifeItem:false},
+                    points:0,
+                    realLifeItem:"snack",
+                    splitReward:{everyoneGetsReward:false,fcfs:false}
+                },
+                {
+                    id:"2",
+                    done:true,
+                    choreName: 'Test',
                     dueDate: new Date(),
                     repeatChore: "Never",
                     choreInstructions: "Call before 6PM",
@@ -132,7 +136,14 @@ const applicationReducer = (state = initialState, action) => {
             }
 
             return JSON.parse(JSON.stringify(newState))
+        case DELETE_PERSONAL_CHORE:
+            let initialProfile = state.profile
+            initialProfile.chores = initialProfile.chores.filter(chore => chore.id !== action.choreId)
 
+            return {
+                ...state,
+                profile: initialProfile
+            }
         default:
             return state
     }

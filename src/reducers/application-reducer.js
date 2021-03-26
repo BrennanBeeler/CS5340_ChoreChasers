@@ -158,18 +158,21 @@ const applicationReducer = (state = initialState, action) => {
         //         groups : state.groups.filter(group => group.id === state.activeGroupId)
         //     }
         case CREATE_CHORE:
-            let tempGroups = state.groups;
-            tempGroups.forEach(group => group.name === action.groupName ? group.chores = [...group.chores, action.chore] : group)
-            console.log(tempGroups)
+            if (action.groupName === "Personal Chores") {
+                state.profile.chores.push(action.chore);
 
-            console.log({
-                ...state,
-                groups: tempGroups
-            })
+                return {
+                    ...state
+                }
+            }
+            else {
+                let tempGroups = state.groups;
+                tempGroups.forEach(group => group.name === action.groupName ? group.chores = [...group.chores, action.chore] : group)
 
-            return {
-                ...state,
-                groups: tempGroups
+                return {
+                    ...state,
+                    groups: tempGroups
+                }
             }
         //    TODO: create personal chore
         // case CREATE_PERSONAL_CHORE:

@@ -19,11 +19,16 @@ const CreateGroupModal = ({props, createGroup, profile}) => {
     const handleCreateGroup = () => {
         if(groupName !== "") {
             //TODO: construct group object here- likely ignore emails that aren't in database
-            let group = {groupName: groupName}
-            //TODO: CLAIMS ISNT FUNCTION- HELP
-            createGroup(profile, group)
+            let group = {
+                name: groupName,
+                id: 2,
+                progressBar: true,
+                chores: []
+            };
+                    //TODO: CLAIMS ISNT FUNCTION- HELP
+            createGroup(profile, group);
 
-            props.onHide()
+            props.onHide();
         }
     }
 

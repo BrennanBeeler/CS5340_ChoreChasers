@@ -1,7 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 import {Button, FormCheck, Navbar} from "react-bootstrap";
 
 const ChoreCard = ({chore}) => {
+    const [toggleText, setToggleText] = useState(0);
+    const toggleTextStr = ["View", "Hide"];
     return(
         <Navbar bg="light" expand="xs">
             <Navbar.Text>
@@ -28,7 +30,11 @@ const ChoreCard = ({chore}) => {
 
             </Navbar.Text>
 
-            <Navbar.Toggle style={{position: "absolute", bottom: "10px", right: "10px"}}>Details</Navbar.Toggle>
+            <Navbar.Toggle
+              style={{position: "absolute", bottom: "10px", right: "10px"}}
+              onClick={() => setToggleText(1 - toggleText)}>
+                {toggleTextStr[toggleText]} Details
+            </Navbar.Toggle>
 
             <Navbar.Collapse id="basic-navbar-nav">
                 <Navbar.Text>

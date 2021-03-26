@@ -118,7 +118,7 @@ const applicationReducer = (state = initialState, action) => {
                 ...state,
                 groups : [
                     ...state.groups,
-                    action.group.groupName
+                    action.group
                 ]
             }
         //    TODO: check once db connected

@@ -15,7 +15,7 @@ const logIn = (dispatch, email, password) =>
 
 const logOut = (dispatch, email) =>
     dispatch({
-        type : LOG_IN,
+        type : LOG_OUT,
         email
     })
 

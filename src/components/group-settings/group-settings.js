@@ -9,7 +9,7 @@ const GroupSettings = ({
         // flip progress bar
     };
 
-  const [confirmationModal, setConfirmationModal] = useState(true);
+  const [confirmationModal, setConfirmationModal] = useState(false);
     return (
         <div className="container">
             <h1 className="text-center">

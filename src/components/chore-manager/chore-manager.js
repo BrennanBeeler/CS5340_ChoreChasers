@@ -28,7 +28,7 @@ const ChoreManager = ({
                     <br/>
 
                     <Link to="/profile">
-                        {profile}'s Account
+                        View {profile}'s Account
                     </Link>
                 </div>
 
@@ -47,7 +47,7 @@ const ChoreManager = ({
 
                     <li className={`nav-link nav-item mb-4 border border-dark ${activeGroupId === "Personal Chores" ? 'active':''}`}
                         onClick={() => setActiveGroup("Personal Chores")}>
-                        Personal Chores
+                        {activeGroupId === "Personal Chores" ? "Personal Chores" : "View Personal Chores"}
                     </li>
 
                     {
@@ -55,7 +55,7 @@ const ChoreManager = ({
                             <li className={`nav-link nav-item mb-4 border border-dark ${activeGroupId === group.id ? 'active':''}`}
                                 key={group.id}
                                 onClick={() => setActiveGroup(group.id)}>
-                                {group.name}
+                                {activeGroupId === group.id ? group.name : "View " + group.name}
                             </li>
                         )
                     }

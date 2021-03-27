@@ -45,16 +45,16 @@ const ChoreCard = ({chore, deleteChore}) => {
 
             <Navbar.Collapse id="basic-navbar-nav">
                 <Navbar.Text>
-                    {/*{*/}
-                    {/*    chore.dueDate !== null &&*/}
-                    {/*    <>*/}
-                    {/*        <div>*/}
-                    {/*            Due Date: {chore.dueDate.toDateString()}*/}
-                    {/*        </div>*/}
+                    {
+                        chore.dueDate !== null &&
+                        <>
+                            <div>
+                                Due Date: {chore.dueDate.toDateString()}
+                            </div>
 
-                    {/*        <br/>*/}
-                    {/*    </>*/}
-                    {/*}*/}
+                            <br/>
+                        </>
+                    }
 
                     {
                         chore.choreInstructions !== "" &&

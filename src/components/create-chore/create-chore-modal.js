@@ -5,21 +5,19 @@ import "./create-chore-modal.css"
 import applicationActions from "../../actions/actions";
 import {connect} from "react-redux";
 
-const CreateChoreModal = ({hide, show, group, profileUsername, createChore}) => {
+const CreateChoreModal = ({hide, show, profileUsername, createChore, currentGroup}) => {
     const [choreName, setChoreName] = useState("");
     const [dueDate, setDueDate] = useState();
     const [repeatChore, setRepeatChore] = useState("");
     const [choreInstructions, setChoreInstructions] = useState("");
     // TODO: currently can only make chores from group you are in - fix
-    const [choreGroup, setChoreGroup] = useState(group);
+    const [choreGroup, setChoreGroup] = useState(currentGroup.name);
     const [rewardMode, setRewardMode] = useState(true);
-    const [assignee, setAssignees] = useState("");
-    const [pointsChecked, setPointsChecked] = useState(false)
-    const [prizeChecked, setPrizeChecked] = useState(false)
-    const [prizeText, setPrizeText] = useState("")
-    const [pointNumber, setPointNumber] = useState(0)
-
-    const [memberList, setMemberList] = useState([]);
+    const [assignees, setAssignees] = useState([]);
+    const [pointsChecked, setPointsChecked] = useState(false);
+    const [prizeChecked, setPrizeChecked] = useState(false);
+    const [prizeText, setPrizeText] = useState("");
+    const [pointNumber, setPointNumber] = useState(0);
 
     const validateChore = () => {
         if(choreName === "") {
@@ -44,20 +42,22 @@ const CreateChoreModal = ({hide, show, group, profileUsername, createChore}) => 
             dateAdded: new Date(),
             assignor: profileUsername,
             //TODO: need to figure out assignees for create
-            assignees: []
+            assignees: (choreGroup === ("Personal Chores" ? profileUsername : assignees))
         }
+
+        console.log(newChore)
 
         createChore(choreGroup, newChore)
         hide()
     }
 
-    const handleMemberAdd = () => {
-        if(assignee !== "" && !(assignee in memberList)) {
-            setMemberList(memberList => [...memberList, assignee])
-        }
-
-        console.log(memberList)
-    }
+    // const handleMemberAdd = () => {
+    //     if(assignees !== "" && !(assignees in memberList)) {
+    //         setMemberList(memberList => [...memberList, assignees])
+    //     }
+    //
+    //     console.log(memberList)
+    // }
 
 
     return (
@@ -109,25 +109,55 @@ const CreateChoreModal = ({hide, show, group, profileUsername, createChore}) => 
                     </Form.Group>
 
                     {/*TODO: handle assignees*/}
-                    <Form.Group>
-                        <Form.Label>Assignees</Form.Label>
-                        <Typeahead
-                          id="assignees"
-                          onChange={setAssignees}
-                          options={props.group.members || ["Bill", "Bob", "Alice"]}
-                          placeholder="Type the name of the person this chore is assigned to..."
-                          selected={""}
-                          onClick={handleMemberAdd}
-                        />
-                        {
-                            //TODO: create pretty member tags/ allow removal
-                            memberList.map(member =>
-                                <div>
-                                    {member}
-                                </div>
-                            )
-                        }
-                    </Form.Group>
+                    {/*<Form.Group>*/}
+                    {/*    <Form.Label>Assignees</Form.Label>*/}
+                    {/*    <Typeahead*/}
+                    {/*      id="assignees"*/}
+                    {/*      onChange={setAssignees}*/}
+                    {/*      options={group.members || ["Bill", "Bob", "Alice"]}*/}
+                    {/*      placeholder="Type the name of the person this chore is assigned to..."*/}
+                    {/*      selected={assignees}*/}
+                    {/*      // onClick={handleMemberAdd}*/}
+                    {/*      multiple*/}
+                    {/*    />*/}
+
+                    {/*    {*/}
+                    {/*        //TODO: create pretty member tags/ allow removal*/}
+                    {/*        assignees.map(member =>*/}
+                    {/*            <div>*/}
+                    {/*                {member}*/}
+                    {/*            </div>*/}
+                    {/*        )*/}
+                    {/*    }*/}
+                    {/*</Form.Group>*/}
+
+                    {/*TODO: confirm this works*/}
+                    {/*{*/}
+                    {/*    choreGroup !== "Personal Chores" &&*/}
+                    {/*    <Form.Group controlId="exampleForm.ControlSelect2">*/}
+                    {/*        <Form.Label>Example multiple select</Form.Label>*/}
+                    {/*        <Form.Control as="select" multiple>*/}
+                    {/*            {*/}
+                    {/*                (group.members.filter(member => !(member in assignees))).map(option =>*/}
+                    {/*                    <option>*/}
+                    {/*                        {option}*/}
+                    {/*                    </option>*/}
+                    {/*                )*/}
+
+                    {/*            }*/}
+                    {/*        </Form.Control>*/}
+
+                    {/*        {*/}
+                    {/*            //TODO: create pretty member tags/ allow removal*/}
+                    {/*            assignees.map(member =>*/}
+                    {/*                <div>*/}
+                    {/*                    {member}*/}
+                    {/*                </div>*/}
+                    {/*            )*/}
+                    {/*        }*/}
+                    {/*    </Form.Group>*/}
+                    {/*}*/}
+
 
                     <Form.Group>
                         <Form.Label>Set a reward</Form.Label>
@@ -251,7 +281,9 @@ const CreateChoreModal = ({hide, show, group, profileUsername, createChore}) => 
     )
 }
 
-const stpm = (state) => ({
+const stpm = (state,ownProps) => ({
+    currentGroup: state.activeGroupId === "Personal Chores" ? "Personal Chores" :
+        state.groups.filter(group => group.id === state.activeGroupId)[0]
 })
 
 const dtpm = (dispatch) => ({

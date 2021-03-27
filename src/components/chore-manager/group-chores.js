@@ -33,7 +33,7 @@ const GroupChores = ({
 
             {/*TODO: evaluate temp fix for duplicate keys- +15*/}
             <CreateChoreModal key={new Date().getTime() + 15} show={choreModal}
-                              hide={()=> setChoreModal(false)} group={group.name}
+                              hide={()=> setChoreModal(false)}
                               profileUsername={profileUsername} createChore={createChore}/>
 
             <ProgressBar>

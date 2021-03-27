@@ -1,12 +1,12 @@
 import {CREATE_GROUP, DELETE_CHORE, DELETE_PERSONAL_CHORE, LOG_IN, LOG_OUT, SET_ACTIVE_GROUP, CREATE_CHORE} from "../actions/actions";
-import {act} from "@testing-library/react";
 
 const initialState = {
     loggedIn: false,
     //TODO: populate these
     activeProfile : "test",
     profile : {
-            emailId: 'test',
+            id : "test",
+            emailId: 'test@email.com',
             groupIds: [],
             username: 'max123',
             password:'password',
@@ -21,7 +21,9 @@ const initialState = {
                     rewards:{points:true,realLifeItem:false},
                     points:0,
                     realLifeItem:"snack",
-                    splitReward:{everyoneGetsReward:false,fcfs:false}
+                    splitReward:{everyoneGetsReward:false,fcfs:false},
+                    dateAdded: new Date("2021-03-23")
+
                 },
                 {
                     id:"2",
@@ -33,7 +35,9 @@ const initialState = {
                     rewards:{points:true,realLifeItem:false},
                     points:0,
                     realLifeItem:"snack",
-                    splitReward:{everyoneGetsReward:false,fcfs:false}
+                    splitReward:{everyoneGetsReward:false,fcfs:false},
+                    dateAdded: new Date("2021-03-23")
+
                 }]
     },
     activeGroupId : "Personal Chores",
@@ -71,41 +75,8 @@ const initialState = {
                 points:0,
                 realLifeItem:"",
                 splitReward:{everyoneGetsReward:false,fcfs:false}
-            }]
-    }],
-    pendingGroups : [{
-        id: "1",
-        name: 'Pending Family',
-        progressBar: true,
-        chores: [
-            {
-                id:1,
-                done:false,
-                choreName: 'Pick dad up from the airport',
-                dueDate: new Date("2021-03-23"),
-                repeatChore: "Never",
-                choreInstructions: "flight lands at 5pm, be at airport by 4:45pm and DON'T BE LATE",
-                rewards:{points:true,realLifeItem:false},
-                points:20,
-                realLifeItem:"",
-                splitReward:{everyoneGetsReward:true,fcfs:false}
-            },
-
-            {
-                id:"2",
-                done:false,
-                choreName: 'Wash the dishes',
-                dueDate: new Date("2021-03-22"),
-                repeatChore: "Weekly",
-                choreInstructions: "",
-                rewards:{points:false,realLifeItem:false},
-                points:0,
-                realLifeItem:"",
-                splitReward:{everyoneGetsReward:false,fcfs:false},
-                dateAdded: null,
-                assignor: "Steve",
-                assignees: ["max123, Steve, Frank"]
-            }]
+            }
+        ]
     },
         {
             id: "2",
@@ -145,7 +116,8 @@ const initialState = {
                     assignor: "Steve",
                     assignees: ["max123, Steve, Frank"]
                 }]
-        }]
+        }
+    ]
 }
 
 const applicationReducer = (state = initialState, action) => {
@@ -159,12 +131,12 @@ const applicationReducer = (state = initialState, action) => {
             }
         //   TODO: redo
         case LOG_IN:
-            // Confirms that the submitted email and password are in the profile dictionary
-            if (action.email === state.profile.emailId && state.profile.password === action.password) {
+            // TODO: redo once db connected
+            if (action.id === state.profile.id) {
                 return {
                     ...state,
                     loggedIn: true,
-                    activeProfile : action.email
+                    activeProfile : action.id
                 }
             }
             return state
@@ -205,8 +177,6 @@ const applicationReducer = (state = initialState, action) => {
                     groups: tempGroups
                 }
             }
-        //    TODO: create personal chore
-        // case CREATE_PERSONAL_CHORE:
         case DELETE_CHORE:
             let modifiedGroup = action.group
             modifiedGroup.chores = modifiedGroup.chores.filter(chore => chore.id !== action.choreId)

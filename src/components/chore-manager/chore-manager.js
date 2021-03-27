@@ -60,13 +60,12 @@ const ChoreManager = ({
                         )
                     }
 
-                    {
-                        pendingGroups.map(group =>
-                            <PendingGroup
-                              groupName={group.name}
-                            />
-                        )
-                    }
+                    {/*TODO: determine at end of project if pending is needed*/}
+                    {/*{*/}
+                    {/*    pendingGroups.map(group =>*/}
+                    {/*        <PendingGroup groupName={group.name} key={group.name}/>*/}
+                    {/*    )*/}
+                    {/*}*/}
                 </ul>
             </div>
 

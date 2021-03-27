@@ -31,7 +31,7 @@ const PersonalChores = ({
 
             {/*TODO: evaluate temp fix for duplicate keys- +15*/}
             <CreateChoreModal key={new Date().getTime() + 15} show={choreModal}
-                              hide={()=> setChoreModal(false)} group={"Personal Chores"} profileUsername={profileUsername}/>
+                              hide={()=> setChoreModal(false)} profileUsername={profileUsername}/>
 
             <ProgressBar>
                 <ProgressBar variant="success" now={35} key={1} />

@@ -8,12 +8,18 @@ export const CREATE_CHORE = "CREATE_CHORE";
 export const DELETE_CHORE = "DELETE_CHORE";
 export const DELETE_PERSONAL_CHORE = "DELETE_PERSONAL_CHORE";
 
-const logIn = (dispatch, email, password) =>
-    dispatch({
-        type : LOG_IN,
-        email,
-        password
-    })
+const logIn = (dispatch, email, password) => {
+    let id = email
+    //TODO: validate login credentials via database AND IF valid dispatch
+    return(
+        dispatch({
+            type : LOG_IN,
+            id
+        })
+    )
+}
+
+
 
 const logOut = (dispatch, email) =>
     dispatch({

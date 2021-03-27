@@ -7,7 +7,18 @@ import EditChoreModal from "../edit-chore/edit-chore-modal";
 const ChoreCard = ({chore, group, addPoints}) => {
     const [toggleText, setToggleText] = useState(0);
     const [editModal, setEditModal] = useState(false);
+    const [completed, setCompleted] = useState(false);
     const toggleTextStr = ["View", "Hide"];
+
+    const markCompleted = () => {
+        addPoints(parseInt(chore.points));
+        setCompleted(!completed);
+    }
+
+    const undoCompleted = () => {
+        addPoints(-parseInt(chore.points));
+        setCompleted(!completed);
+    }
 
     return(
       <div>
@@ -17,7 +28,8 @@ const ChoreCard = ({chore, group, addPoints}) => {
                     {chore.choreName}
                 </h3>
 
-                <FormCheck style={{position: "absolute", top: "10px", right: "10px"}} onClick={() => addPoints(parseInt(chore.points))}/>
+                {completed ? <button className="btn" style={{position: "absolute", top: "3px", right: "5px"}} onClick={undoCompleted}>Undo?</button>
+                  : <FormCheck style={{position: "absolute", top: "10px", right: "10px"}} onClick={markCompleted}/>}
 
                 Reward:
                 {

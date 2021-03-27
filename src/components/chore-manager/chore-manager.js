@@ -33,7 +33,6 @@ const ChoreManager = ({
     };
     // TODO: It doesn't affect performance but this is pretty bad practice, change later
     updateLevel();
-    const [createGroupModal, setCreateGroupModal] = useState(false);
 
     return (
         <div className="hci-full-height row">

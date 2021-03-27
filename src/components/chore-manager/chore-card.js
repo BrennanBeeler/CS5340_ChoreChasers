@@ -11,7 +11,7 @@ const ChoreCard = ({chore, group, addPoints, deleteChore}) => {
     const [completed, setCompleted] = useState(false);
     const [countDown, setCountDown] = useState(10);
     const [visibility, setVisibility] = useState(true);
-    const toggleTextStr = ["View", "Hide"];
+    const toggleTextStr = ["View Details", "Hide Details"];
 
     const successSound = new Audio("/success.wav");
 
@@ -35,7 +35,7 @@ const ChoreCard = ({chore, group, addPoints, deleteChore}) => {
     }
 
     return(visibility &&
-      <div>
+      <>
 
         <Navbar bg="light" expand="xs">
             <Navbar.Text>
@@ -73,11 +73,11 @@ const ChoreCard = ({chore, group, addPoints, deleteChore}) => {
             <DeleteChoreModal key={new Date().getTime()} show={showDeleteModal}
                               hide={()=> setShowDeleteModal(false)} deleteChore={deleteChore} choreId={chore.id}/>
 
-            <Navbar.Toggle style={{position: "absolute", bottom: "10px", right: "10px"}}>Details</Navbar.Toggle>
+            {/*<Navbar.Toggle style={{position: "absolute", bottom: "10px", right: "10px"}}>Details</Navbar.Toggle>*/}
             <Navbar.Toggle
               style={{position: "absolute", bottom: "10px", right: "10px"}}
               onClick={() => setToggleText(1 - toggleText)}>
-                {toggleTextStr[toggleText]} Details
+                {toggleTextStr[toggleText]}
             </Navbar.Toggle>
 
             <Navbar.Collapse id="basic-navbar-nav">
@@ -137,13 +137,13 @@ const ChoreCard = ({chore, group, addPoints, deleteChore}) => {
             </Navbar.Collapse>
         </Navbar>
       <EditChoreModal key={new Date().getTime()} show={editModal} onHide={()=> setEditModal(false)} group={group} chore={chore}/>
-      </div>
+      </>
     )
 }
 
 const stpm = (state, ownProps) => ({
     profile: state.profile,
-    group: state.currentGroupId,
+    group: state.activeGroupId,
     props: ownProps
 })
 

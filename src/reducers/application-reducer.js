@@ -1,5 +1,14 @@
-import {LOG_IN, LOG_OUT, SET_ACTIVE_GROUP, CREATE_GROUP, GET_GROUP_DATA, CREATE_CHORE, EDIT_CHORE, ADD_POINT_VALUE} from "../actions/actions";
-import {CREATE_GROUP, DELETE_CHORE, DELETE_PERSONAL_CHORE, LOG_IN, LOG_OUT, SET_ACTIVE_GROUP, CREATE_CHORE} from "../actions/actions";
+import {LOG_IN,
+    LOG_OUT,
+    SET_ACTIVE_GROUP,
+    CREATE_GROUP,
+    GET_GROUP_DATA,
+    CREATE_CHORE,
+    EDIT_CHORE,
+    ADD_POINT_VALUE,
+    DELETE_CHORE,
+    DELETE_PERSONAL_CHORE} from "../actions/actions";
+
 
 const initialState = {
     loggedIn: false,

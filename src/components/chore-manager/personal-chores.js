@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import "./personal-chores.css"
-import {Button} from "react-bootstrap";
+import {Button, ProgressBar} from "react-bootstrap";
 import CreateChoreModal from "../create-chore/create-chore-modal"
 import ChoreDisplay from "./chore-display";
 import applicationActions from "../../actions/actions";
@@ -9,10 +9,15 @@ import {connect} from "react-redux";
 const PersonalChores = ({
                             activeGroupId,
                             activeProfile,
-                            group,
-                            getGroupData
+                            chores,
+                            deletePersonalChore,
+                            profileUsername
                         }) => {
     const [choreModal, setChoreModal] = useState(false);
+
+    const handleDelete = (choreId) => {
+        deletePersonalChore(choreId)
+    }
 
     return(
         <div className="container-fluid">
@@ -24,22 +29,20 @@ const PersonalChores = ({
                 </Button>
             </div>
 
+            {/*TODO: evaluate temp fix for duplicate keys- +15*/}
+            <CreateChoreModal key={new Date().getTime() + 15} show={choreModal}
+                              hide={()=> setChoreModal(false)} profileUsername={profileUsername}/>
 
-            <CreateChoreModal key={new Date().getTime()} show={choreModal} onHide={()=> setChoreModal(false)} group={"Personal Chores"}/>
-
-            <div className="progress hci-personal-progress-div">
-                <div className="progress-bar hci-personal-progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0"
-                     aria-valuemax="100">
-                    0/1
-                </div>
-            </div>
+            <ProgressBar>
+                <ProgressBar variant="success" now={35} key={1} />
+            </ProgressBar>
             <br/>
 
             <h1>
                 Personal Chores
             </h1>
 
-            <ChoreDisplay chores={group.chores} />
+            <ChoreDisplay key={new Date().getTime()} chores={chores} deleteChore={handleDelete}/>
         </div>
     )
 }
@@ -47,12 +50,12 @@ const PersonalChores = ({
 const stpm = (state) => ({
     activeGroupId: state.activeGroupId,
     activeProfile: state.activeProfile,
-    // TODO: eventually groups will be actually populated
-    group : state.groups[0]
+    chores : state.profile.chores,
+    profileUsername : state.profile.username
 })
 
 const dtpm = (dispatch) => ({
-    getGroupData : (profile, groupId) => applicationActions.getGroupData(dispatch, profile, groupId)
+    deletePersonalChore : (choreId) => applicationActions.deletePersonalChore(dispatch, choreId)
 })
 
 export default connect(stpm, dtpm)(PersonalChores);

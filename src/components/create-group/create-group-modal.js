@@ -25,7 +25,6 @@ const CreateGroupModal = ({props, createGroup, profile}) => {
                 progressBar: true,
                 chores: []
             };
-                    //TODO: CLAIMS ISNT FUNCTION- HELP
             createGroup(profile, group);
 
             props.onHide();

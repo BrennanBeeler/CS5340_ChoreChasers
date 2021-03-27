@@ -15,6 +15,8 @@ const ChoreManager = ({
                         groups,
                         pendingGroups
                       }) => {
+
+    const [showCreateGroupModal, setCreateGroupModal] = useState(false);
     let level = 1;
     let maxPoints = 10;
     const updateLevel = () => {
@@ -53,7 +55,7 @@ const ChoreManager = ({
                     <i className="fa fa-plus" style={{paddingLeft: "10px"}}/>
                 </button>
 
-                <CreateGroupModal key={new Date().getTime()} show={createGroupModal}
+                <CreateGroupModal key={new Date().getTime()} show={showCreateGroupModal}
                                   onHide={()=> setCreateGroupModal(false)}
                                   profile={profile}/>
 
@@ -76,13 +78,12 @@ const ChoreManager = ({
                         )
                     }
 
-                    {
-                        pendingGroups.map(group =>
-                            <PendingGroup
-                              groupName={group.name}
-                            />
-                        )
-                    }
+                    {/*TODO: determine at end of project if pending is needed*/}
+                    {/*{*/}
+                    {/*    pendingGroups.map(group =>*/}
+                    {/*        <PendingGroup groupName={group.name} key={group.name}/>*/}
+                    {/*    )*/}
+                    {/*}*/}
                 </ul>
             </div>
 

@@ -1,10 +1,11 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import {Button, FormCheck, Navbar} from "react-bootstrap";
+import DeleteChoreModal from "../delete-chore/delete-chore-modal";
 import applicationActions from "../../actions/actions";
 import {connect} from "react-redux";
 import EditChoreModal from "../edit-chore/edit-chore-modal";
 
-const ChoreCard = ({chore, group, addPoints}) => {
+const ChoreCard = ({chore, group, addPoints, deleteChore}) => {
     const [toggleText, setToggleText] = useState(0);
     const [editModal, setEditModal] = useState(false);
     const [completed, setCompleted] = useState(false);
@@ -26,6 +27,8 @@ const ChoreCard = ({chore, group, addPoints}) => {
         //setVisibility(false);
     }
 
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+
     const undoCompleted = () => {
         addPoints(-parseInt(chore.points));
         setCompleted(!completed);
@@ -44,7 +47,13 @@ const ChoreCard = ({chore, group, addPoints}) => {
                       Undo?</button>
                   : <FormCheck style={{position: "absolute", top: "10px", right: "10px"}} onClick={markCompleted}/>}
 
-                Reward:
+                {
+                    (chore.rewards.points === true || chore.rewards.realLifeItem === true) &&
+                        <div>
+                            Reward:
+
+                        </div>
+                }
                 {
                     (chore.rewards.points === true) &&
                     <div style={{paddingLeft: "10px"}}>
@@ -61,6 +70,10 @@ const ChoreCard = ({chore, group, addPoints}) => {
 
             </Navbar.Text>
 
+            <DeleteChoreModal key={new Date().getTime()} show={showDeleteModal}
+                              hide={()=> setShowDeleteModal(false)} deleteChore={deleteChore} choreId={chore.id}/>
+
+            <Navbar.Toggle style={{position: "absolute", bottom: "10px", right: "10px"}}>Details</Navbar.Toggle>
             <Navbar.Toggle
               style={{position: "absolute", bottom: "10px", right: "10px"}}
               onClick={() => setToggleText(1 - toggleText)}>
@@ -69,28 +82,55 @@ const ChoreCard = ({chore, group, addPoints}) => {
 
             <Navbar.Collapse id="basic-navbar-nav">
                 <Navbar.Text>
-                    Due Date: {chore.dueDate.toDateString()}
+                    {
+                        chore.dueDate !== null &&
+                        <>
+                            <div>
+                                Due Date: {chore.dueDate.toDateString()}
+                            </div>
+
+                            <br/>
+                        </>
+                    }
+
+                    {
+                        chore.choreInstructions !== "" &&
+                        <>
+                            <div>
+                                Chore Description: {chore.choreInstructions}
+                            </div>
+                            <br/>
+                        </>
+                    }
+
+                    <div>
+                        Assignor: {chore.assignor}
+                    </div>
+
                     <br/>
-                    <br/>
-                    Chore Description: {chore.choreInstructions}
-                    <br/>
-                    <br/>
-                    Assignor:
-                    <br/>
-                    <br/>
-                    Date Added:
-                    <br/>
-                    <br/>
-                    Assignees:
+
+
+                    {/*{*/}
+                    {/*    chore.dateAdded !== null &&*/}
+                    {/*        <>*/}
+                    {/*            <div>*/}
+                    {/*                Date Added: {chore.dateAdded.toDateString()}*/}
+                    {/*            </div>*/}
+                    {/*            <br/>*/}
+                    {/*        </>*/}
+                    {/*}*/}
+
+                    Assignees: {chore.assignees}
+
                 </Navbar.Text>
 
                 <br/>
 
-                <div style={{paddingBottom: "50px"}}>
+                <div style={{paddingTop: "15px"}}>
                     <Button style={{marginRight: "15px"}} onClick={() => {setEditModal(true)}}>
                         Edit Chore
                     </Button>
-                    <Button variant="danger">
+                    <Button variant="danger" onClick={() => setShowDeleteModal(true)}>
                         Delete Chore
                     </Button>
                 </div>

@@ -6,7 +6,7 @@ const PendingGroup = (props) => {
   return (
     <div>
       <li className={`nav-link nav-item border border-dark`}>
-          {props.groupName}
+          Group Invite to: {props.groupName}
       </li>
       <button className="btn btn-outline-success mt-1" onClick={handleAccept}>
           Accept

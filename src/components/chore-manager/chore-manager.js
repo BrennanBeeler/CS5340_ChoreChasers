@@ -9,22 +9,38 @@ import PendingGroup from "./pending-group";
 
 const ChoreManager = ({
                         profile,
+                        points,
                         setActiveGroup,
                         activeGroupId = "Personal Chores",
                         groups,
                         pendingGroups
                       }) => {
-
+    let level = 1;
+    let maxPoints = 10;
+    const updateLevel = () => {
+      if (points < 10) {
+        level = 1;
+        maxPoints = 10;
+      } else if (points < 100) {
+        level = 2;
+        maxPoints = 100;
+      } else if (points < 1000000) {
+        level = 3;
+        maxPoints = 1000000;
+      }
+    };
+    // TODO: It doesn't affect performance but this is pretty bad practice, change later
+    updateLevel();
     const [createGroupModal, setCreateGroupModal] = useState(false);
 
     return (
         <div className="hci-full-height row">
             <div className="col-3 border-right hci-full-height">
                 <div className="row-12 border-bottom border-dark pb-2">
-                    Level 1
+                    Level {level}
                     <br/>
                     <Link to="/profile" className="btn fa fa-user-circle fa-2x"/>
-                    0/10 points
+                      {points}/{maxPoints} points
                     <br/>
 
                     <Link to="/profile">
@@ -91,6 +107,7 @@ const ChoreManager = ({
 
 const stpm = (state) => ({
     profile: state.profile.username,
+    points: state.profile.points,
     activeGroupId: state.activeGroupId,
     groups : state.groups,
     pendingGroups: state.pendingGroups,

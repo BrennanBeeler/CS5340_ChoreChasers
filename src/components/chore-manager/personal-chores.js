@@ -39,7 +39,7 @@ const PersonalChores = ({
                 Personal Chores
             </h1>
 
-            <ChoreDisplay chores={group.chores}/>
+            <ChoreDisplay chores={group.chores} />
         </div>
     )
 }

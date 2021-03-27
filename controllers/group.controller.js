@@ -62,6 +62,8 @@ exports.addGroupChore = (req, res) => {
                                           {$push: {chores: groupChoreData._id}}, { new: true, useFindAndModify: false});
         })
         .then(groupData=> {
+            console.log("Success!");
+            console.log(groupData);
             res.send(groupData);
         })
         .catch(err => {

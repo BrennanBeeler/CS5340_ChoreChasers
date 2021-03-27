@@ -50,5 +50,3 @@ const ChoreDisplay = ({chores, deleteChore}) => {
 }
 
 export default ChoreDisplay;
-
-

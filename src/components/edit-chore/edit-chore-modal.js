@@ -1,25 +1,19 @@
 import React, {useState} from "react";
 import {Modal, Button, Form, Tooltip, OverlayTrigger, Row, Col} from "react-bootstrap";
 import { Typeahead } from 'react-bootstrap-typeahead';
-import "./create-chore-modal.css"
-import applicationActions from "../../actions/actions";
-import {connect} from "react-redux";
+import "./edit-chore-modal.css"
 
-const CreateChoreModal = ({hide, show, group, profileUsername, createChore}) => {
-    const [choreName, setChoreName] = useState("");
-    const [dueDate, setDueDate] = useState();
-    const [repeatChore, setRepeatChore] = useState("");
-    const [choreInstructions, setChoreInstructions] = useState("");
-    // TODO: currently can only make chores from group you are in - fix
-    const [choreGroup, setChoreGroup] = useState(group);
-    const [rewardMode, setRewardMode] = useState(true);
+const EditChoreModal = (props) => {
+    const [choreName, setChoreName] = useState(props.choreName);
+    const [dueDate, setDueDate] = useState(props.dueDate);
+    const [repeatChore, setRepeatChore] = useState(props.repeatChore);
+    const [choreInstructions, setChoreInstructions] = useState(props.choreInstructions);
+    const [choreGroup, setChoreGroup] = useState(props.group);
     const [assignee, setAssignees] = useState("");
-    const [pointsChecked, setPointsChecked] = useState(false)
-    const [prizeChecked, setPrizeChecked] = useState(false)
-    const [prizeText, setPrizeText] = useState("")
-    const [pointNumber, setPointNumber] = useState(0)
-
-    const [memberList, setMemberList] = useState([]);
+    const [rewardMode, setRewardMode] = useState(props.rewardMode);
+    const [pointsChecked, setPointsChecked] = useState(props.pointsChecked)
+    const [prizeChecked, setPrizeChecked] = useState(props.prizeChecked)
+    const [memberList, setMemberList] = useState(props.assignees);
 
     const validateChore = () => {
         if(choreName === "") {
@@ -27,28 +21,9 @@ const CreateChoreModal = ({hide, show, group, profileUsername, createChore}) => 
             return;
         }
 
-        //TODO: if users sets assignees then moves to personal group the chore will have assignees in personal- idk if matters
+    //    TODO: if all data looks good create the chore and submit to database
 
-        let newChore = {
-            id: Date.now(),
-            done:false,
-            choreName: choreName,
-            //TODO: Figure out no date
-            dueDate: dueDate,
-            repeatChore: repeatChore,
-            choreInstructions: choreInstructions,
-            rewards:{points:pointsChecked,realLifeItem:prizeChecked},
-            points: pointNumber,
-            realLifeItem: prizeText,
-            splitReward:{everyoneGetsReward:rewardMode,fcfs:!rewardMode},
-            dateAdded: new Date(),
-            assignor: profileUsername,
-            //TODO: need to figure out assignees for create
-            assignees: []
-        }
-
-        createChore(choreGroup, newChore)
-        hide()
+        props.onHide()
     }
 
     const handleMemberAdd = () => {
@@ -61,9 +36,10 @@ const CreateChoreModal = ({hide, show, group, profileUsername, createChore}) => 
 
 
     return (
-        <Modal onHide={hide} animation={false} show={show} backdrop="static">
+        // TODO: had to set animation to false because of issue with react-bootstrap https://github.com/react-bootstrap/react-bootstrap/issues/5075
+        <Modal {...props} animation={false} backdrop="static">
             <Modal.Header closeButton>
-                <Modal.Title className="text-center">Add New Chore</Modal.Title>
+                <Modal.Title className="text-center">Edit Chore</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Form>
@@ -84,11 +60,11 @@ const CreateChoreModal = ({hide, show, group, profileUsername, createChore}) => 
                         <Form.Label>Does the chore need to repeat itself?</Form.Label>
                         <Form.Control as="select" value={repeatChore}
                                       onChange={event => setRepeatChore(event.target.value)}>
-                            <option value="Never">Don't repeat</option>
-                            <option value="Daily">Daily</option>
-                            <option value="Weekly">Weekly</option>
-                            <option value="Monthly">Monthly</option>
-                            <option value="Yearly">Yearly</option>
+                            <option value="">Don't repeat</option>
+                            <option value="daily">Daily</option>
+                            <option value="weekly">Weekly</option>
+                            <option value="monthly">Monthly</option>
+                            <option value="yearly">Yearly</option>
                         </Form.Control>
                     </Form.Group>
 
@@ -108,7 +84,6 @@ const CreateChoreModal = ({hide, show, group, profileUsername, createChore}) => 
                         </Form.Control>
                     </Form.Group>
 
-                    {/*TODO: handle assignees*/}
                     <Form.Group>
                         <Form.Label>Assignees</Form.Label>
                         <Typeahead
@@ -138,7 +113,7 @@ const CreateChoreModal = ({hide, show, group, profileUsername, createChore}) => 
                                 placement="left"
                                 delay={{ show: 250, hide: 400 }}
                                 overlay={
-                                    <Tooltip>
+                                    <Tooltip {...props}>
                                         Points from 10-100 can be appended to your total points
                                     </Tooltip>
                                 }>
@@ -146,39 +121,20 @@ const CreateChoreModal = ({hide, show, group, profileUsername, createChore}) => 
                             </OverlayTrigger>
 
                             <Form.Check label="Points" type="checkbox" checked={pointsChecked}
-                                        onChange={() => {setPointsChecked(!pointsChecked)}}/>
-
-                            {
-                                pointsChecked &&
-                                    <Col>
-                                        {/*0 20*/} {pointNumber}
-                                        <Form.Group controlId="formBasicRange">
-                                            <Form.Control type="range" value={pointNumber} min="0" max="20"
-                                                          onChange={event => setPointNumber(parseInt(event.target.value))}/>
-                                        </Form.Group>
-                                    </Col>
-                            }
+                                        onClick={() => {setPointsChecked(!pointsChecked)}}/>
                         </Row>
 
+
+                        {/*TODO: figure out what we want to put here for tool tip*/}
                         <Row>
                             <OverlayTrigger
                                 placement="left"
                                 delay={{ show: 250, hide: 400 }}
-                                overlay={<Tooltip>Assign a real life treat to the chore</Tooltip>}>
+                                overlay={<Tooltip {...props}>FIGURE OUT WHAT TO SAY</Tooltip>}>
                                 <span className="btn fa fa-question-circle"/>
                             </OverlayTrigger>
                             <Form.Check label="Real-life item" type="checkbox" checked={prizeChecked}
-                                        onChange={() => {setPrizeChecked(!prizeChecked)}}/>
-
-                            {
-                                prizeChecked &&
-                                <Col>
-                                    <Form.Group>
-                                        <Form.Control placeholder="Enter reward description" value={prizeText}
-                                                      onChange={event => setPrizeText(event.target.value)}/>
-                                    </Form.Group>
-                                </Col>
-                            }
+                                        onClick={() => {setPrizeChecked(!prizeChecked)}}/>
                         </Row>
 
                         {
@@ -193,7 +149,7 @@ const CreateChoreModal = ({hide, show, group, profileUsername, createChore}) => 
                                         placement="left"
                                         delay={{ show: 250, hide: 400 }}
                                         overlay={
-                                            <Tooltip>
+                                            <Tooltip {...props}>
                                                 All assignees will receive the same reward.
                                                 <br/>
                                                 Eg: If points is set to 20pts, each assignee will receive 20pts.
@@ -202,7 +158,7 @@ const CreateChoreModal = ({hide, show, group, profileUsername, createChore}) => 
                                     </OverlayTrigger>
 
                                     <Form.Check type="radio" name="rewardRadios" id="cooperativeRadio"
-                                                defaultChecked={true} onClick={() => setRewardMode(true)}/>
+                                                onClick={() => setRewardMode("cooperative")}/>
                                     <label htmlFor="cooperativeRadio">
                                         Everyone gets the reward
                                     </label>
@@ -213,20 +169,22 @@ const CreateChoreModal = ({hide, show, group, profileUsername, createChore}) => 
                                         placement="left"
                                         delay={{ show: 250, hide: 400 }}
                                         overlay={
-                                            <Tooltip>This is a race! Whoever completes the chore first
+                                            <Tooltip {...props}>This is a race! Whoever completes the chore first
                                             upon approval of the assignor will receive the reward.
                                             </Tooltip>}>
                                         <span className="btn fa fa-question-circle"/>
                                     </OverlayTrigger>
 
                                     <Form.Check type="radio" id="competitiveRadio" name="rewardRadios"
-                                                onClick={() => setRewardMode(false)}/>
+                                                onClick={() => setRewardMode("competitive")}/>
                                     <label htmlFor="competitiveRadio">
                                         First come first serve
                                     </label>
                                 </Row>
                             </>
                         }
+
+
                     </Form.Group>
                 </Form>
             </Modal.Body>
@@ -235,14 +193,14 @@ const CreateChoreModal = ({hide, show, group, profileUsername, createChore}) => 
                 <Row>
                     {/*TODO: figure out layout*/}
                     <Col xs={6}>
-                        <Button variant="danger" onClick={hide}>
+                        <Button variant="danger" onClick={props.onHide}>
                             Nevermind
                         </Button>
                     </Col>
                     <Col xs={6}>
                         {/*TODO: nee to make creat chore validate and submit data*/}
                         <Button variant="primary" onClick={validateChore}>
-                            Create Chore
+                            Finish Editing
                         </Button>
                     </Col>
                 </Row>
@@ -251,11 +209,4 @@ const CreateChoreModal = ({hide, show, group, profileUsername, createChore}) => 
     )
 }
 
-const stpm = (state) => ({
-})
-
-const dtpm = (dispatch) => ({
-    createChore : (groupName, chore) => applicationActions.createChore(dispatch, groupName, chore)
-})
-
-export default connect(stpm, dtpm)(CreateChoreModal);
+export default EditChoreModal;

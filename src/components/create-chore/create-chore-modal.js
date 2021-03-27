@@ -1,9 +1,10 @@
 import React, {useState} from "react";
 import {Modal, Button, Form, Tooltip, OverlayTrigger, Row, Col} from "react-bootstrap";
-import { Typeahead } from 'react-bootstrap-typeahead';
 import "./create-chore-modal.css"
 import applicationActions from "../../actions/actions";
 import {connect} from "react-redux";
+import {Typeahead} from "react-bootstrap-typeahead";
+import 'react-bootstrap-typeahead/css/Typeahead.css';
 
 const CreateChoreModal = ({hide, show, profileUsername, createChore, currentGroup}) => {
     const [choreName, setChoreName] = useState("");
@@ -11,7 +12,7 @@ const CreateChoreModal = ({hide, show, profileUsername, createChore, currentGrou
     const [repeatChore, setRepeatChore] = useState("");
     const [choreInstructions, setChoreInstructions] = useState("");
     // TODO: currently can only make chores from group you are in - fix
-    const [choreGroup, setChoreGroup] = useState(currentGroup.name);
+    const [choreGroup, setChoreGroup] = useState(currentGroup);
     const [rewardMode, setRewardMode] = useState(true);
     const [assignees, setAssignees] = useState([]);
     const [pointsChecked, setPointsChecked] = useState(false);
@@ -101,63 +102,29 @@ const CreateChoreModal = ({hide, show, profileUsername, createChore, currentGrou
 
                     <Form.Group>
                         <Form.Label>Choose your group *</Form.Label>
-                        <Form.Control as="select" value={choreGroup}
+                        <Form.Control as="select" value={choreGroup.name}
                                       onChange={event => setChoreGroup(event.target.value)}>
-                            <option value={choreGroup}>{choreGroup}</option>
+                            <option value={choreGroup.name}>{choreGroup.name}</option>
                             {/*TODO: populate from list of possible user groups*/}
                         </Form.Control>
                     </Form.Group>
 
-                    {/*TODO: handle assignees*/}
-                    {/*<Form.Group>*/}
-                    {/*    <Form.Label>Assignees</Form.Label>*/}
-                    {/*    <Typeahead*/}
-                    {/*      id="assignees"*/}
-                    {/*      onChange={setAssignees}*/}
-                    {/*      options={group.members || ["Bill", "Bob", "Alice"]}*/}
-                    {/*      placeholder="Type the name of the person this chore is assigned to..."*/}
-                    {/*      selected={assignees}*/}
-                    {/*      // onClick={handleMemberAdd}*/}
-                    {/*      multiple*/}
-                    {/*    />*/}
-
-                    {/*    {*/}
-                    {/*        //TODO: create pretty member tags/ allow removal*/}
-                    {/*        assignees.map(member =>*/}
-                    {/*            <div>*/}
-                    {/*                {member}*/}
-                    {/*            </div>*/}
-                    {/*        )*/}
-                    {/*    }*/}
-                    {/*</Form.Group>*/}
-
-                    {/*TODO: confirm this works*/}
-                    {/*{*/}
-                    {/*    choreGroup !== "Personal Chores" &&*/}
-                    {/*    <Form.Group controlId="exampleForm.ControlSelect2">*/}
-                    {/*        <Form.Label>Example multiple select</Form.Label>*/}
-                    {/*        <Form.Control as="select" multiple>*/}
-                    {/*            {*/}
-                    {/*                (group.members.filter(member => !(member in assignees))).map(option =>*/}
-                    {/*                    <option>*/}
-                    {/*                        {option}*/}
-                    {/*                    </option>*/}
-                    {/*                )*/}
-
-                    {/*            }*/}
-                    {/*        </Form.Control>*/}
-
-                    {/*        {*/}
-                    {/*            //TODO: create pretty member tags/ allow removal*/}
-                    {/*            assignees.map(member =>*/}
-                    {/*                <div>*/}
-                    {/*                    {member}*/}
-                    {/*                </div>*/}
-                    {/*            )*/}
-                    {/*        }*/}
-                    {/*    </Form.Group>*/}
-                    {/*}*/}
-
+                    {
+                        //TODO: find better solution for users
+                        choreGroup.name !== "Personal Chores" &&
+                        <Form.Group>
+                            <Form.Label>Assignees</Form.Label>
+                            <Typeahead
+                                id="assignees"
+                                onChange={setAssignees}
+                                options={currentGroup.members}
+                                placeholder="Type the name of the person this chore is assigned to..."
+                                selected={assignees}
+                                multiple
+                                style={{width: "100%"}}
+                            />
+                        </Form.Group>
+                    }
 
                     <Form.Group>
                         <Form.Label>Set a reward</Form.Label>
@@ -282,7 +249,7 @@ const CreateChoreModal = ({hide, show, profileUsername, createChore, currentGrou
 }
 
 const stpm = (state,ownProps) => ({
-    currentGroup: state.activeGroupId === "Personal Chores" ? "Personal Chores" :
+    currentGroup: state.activeGroupId === "Personal Chores" ? {name: "Personal Chores"} :
         state.groups.filter(group => group.id === state.activeGroupId)[0]
 })
 

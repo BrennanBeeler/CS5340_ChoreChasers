@@ -45,6 +45,7 @@ const initialState = {
         id: "1",
         name: 'Family',
         progressBar: true,
+        members: ["test1", "test2", "test3", "max123"],
         chores: [
             //TODO: required fields- id, done, chorename, rewards,splitrewards, assignor, assignees
             {
@@ -82,6 +83,7 @@ const initialState = {
             id: "2",
             name: 'Roomies',
             progressBar: true,
+            members: [],
             chores: [
                 //TODO: required fields- id, done, chorename, rewards,splitrewards, assignor, assignees
                 {

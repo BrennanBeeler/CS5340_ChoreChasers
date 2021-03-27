@@ -10,7 +10,10 @@ const ChoreCard = ({chore, group, addPoints}) => {
     const [completed, setCompleted] = useState(false);
     const toggleTextStr = ["View", "Hide"];
 
+    const successSound = new Audio("/success.wav");
+
     const markCompleted = () => {
+        successSound.play();
         addPoints(parseInt(chore.points));
         setCompleted(!completed);
     }

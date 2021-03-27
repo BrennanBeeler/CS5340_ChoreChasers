@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {Button, FormCheck, Navbar} from "react-bootstrap";
 import applicationActions from "../../actions/actions";
 import {connect} from "react-redux";
@@ -8,14 +8,22 @@ const ChoreCard = ({chore, group, addPoints}) => {
     const [toggleText, setToggleText] = useState(0);
     const [editModal, setEditModal] = useState(false);
     const [completed, setCompleted] = useState(false);
+    const [countDown, setCountDown] = useState(10);
+    const [visibility, setVisibility] = useState(true);
     const toggleTextStr = ["View", "Hide"];
 
     const successSound = new Audio("/success.wav");
 
-    const markCompleted = () => {
+    const markCompleted = (event) => {
         successSound.play();
         addPoints(parseInt(chore.points));
         setCompleted(!completed);
+        timeOut()
+    }
+
+    async function timeOut() {
+        await new Promise(res => setTimeout(() => setCountDown(countDown - 1), 10000))
+        //setVisibility(false);
     }
 
     const undoCompleted = () => {
@@ -23,15 +31,17 @@ const ChoreCard = ({chore, group, addPoints}) => {
         setCompleted(!completed);
     }
 
-    return(
+    return(visibility &&
       <div>
+
         <Navbar bg="light" expand="xs">
             <Navbar.Text>
                 <h3>
                     {chore.choreName}
                 </h3>
 
-                {completed ? <button className="btn" style={{position: "absolute", top: "3px", right: "5px"}} onClick={undoCompleted}>Undo?</button>
+                {completed ? <button className="btn" style={{position: "absolute", top: "3px", right: "5px"}} onClick={undoCompleted}>
+                      Undo?</button>
                   : <FormCheck style={{position: "absolute", top: "10px", right: "10px"}} onClick={markCompleted}/>}
 
                 Reward:
@@ -86,7 +96,6 @@ const ChoreCard = ({chore, group, addPoints}) => {
                 </div>
             </Navbar.Collapse>
         </Navbar>
-
       <EditChoreModal key={new Date().getTime()} show={editModal} onHide={()=> setEditModal(false)} group={group} chore={chore}/>
       </div>
     )

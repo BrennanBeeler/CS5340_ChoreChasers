@@ -2,12 +2,15 @@ import React, {useState} from "react";
 import {Button, FormCheck, Navbar} from "react-bootstrap";
 import applicationActions from "../../actions/actions";
 import {connect} from "react-redux";
+import EditChoreModal from "../edit-chore/edit-chore-modal";
 
-const ChoreCard = ({chore, addPoints}) => {
+const ChoreCard = ({chore, group, addPoints}) => {
     const [toggleText, setToggleText] = useState(0);
+    const [editModal, setEditModal] = useState(false);
     const toggleTextStr = ["View", "Hide"];
 
     return(
+      <div>
         <Navbar bg="light" expand="xs">
             <Navbar.Text>
                 <h3>
@@ -59,7 +62,7 @@ const ChoreCard = ({chore, addPoints}) => {
                 <br/>
 
                 <div style={{paddingBottom: "50px"}}>
-                    <Button style={{marginRight: "15px"}}>
+                    <Button style={{marginRight: "15px"}} onClick={() => {setEditModal(true)}}>
                         Edit Chore
                     </Button>
                     <Button variant="danger">
@@ -68,11 +71,15 @@ const ChoreCard = ({chore, addPoints}) => {
                 </div>
             </Navbar.Collapse>
         </Navbar>
+
+      <EditChoreModal key={new Date().getTime()} show={editModal} onHide={()=> setEditModal(false)} group={group} chore={chore}/>/>
+      </div>
     )
 }
 
 const stpm = (state, ownProps) => ({
     profile: state.profile,
+    group: state.currentGroupId,
     props: ownProps
 })
 

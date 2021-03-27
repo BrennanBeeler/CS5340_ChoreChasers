@@ -1,4 +1,4 @@
-import {LOG_IN, LOG_OUT, SET_ACTIVE_GROUP, CREATE_GROUP, GET_GROUP_DATA, CREATE_CHORE, ADD_POINT_VALUE} from "../actions/actions";
+import {LOG_IN, LOG_OUT, SET_ACTIVE_GROUP, CREATE_GROUP, GET_GROUP_DATA, CREATE_CHORE, EDIT_CHORE, ADD_POINT_VALUE} from "../actions/actions";
 
 const initialState = {
     loggedIn: false,
@@ -134,6 +134,14 @@ const applicationReducer = (state = initialState, action) => {
                 chores : [
                     ...state.chores,
                     action.newChore
+                ]
+            }
+        case EDIT_CHORE:
+            const newChores = state.chores.map(chore => action.chore.id === chore.id ? action.chore : chore);
+            return {
+                ...state,
+                chores : [
+                    newChores
                 ]
             }
         case ADD_POINT_VALUE:

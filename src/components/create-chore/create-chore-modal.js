@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import {Modal, Button, Form, Tooltip, OverlayTrigger, Row, Col} from "react-bootstrap";
 import { Typeahead } from 'react-bootstrap-typeahead';
-import "./create-chore-modal.css"
 
 const CreateChoreModal = (props) => {
     const [choreName, setChoreName] = useState("");

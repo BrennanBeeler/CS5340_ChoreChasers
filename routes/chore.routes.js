@@ -6,6 +6,9 @@ module.exports = app => {
     // Create a new Chore
     router.post("/:id",chores.updateChore);
 
+    //Get a specific chore with its id
+    router.get("/:id",chores.getChore);
+
     //Delete a specific Chore with its id
     router.delete("/:id",chores.deleteChore);
 

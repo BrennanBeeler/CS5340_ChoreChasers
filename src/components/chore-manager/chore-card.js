@@ -72,7 +72,7 @@ const ChoreCard = ({chore, group, addPoints}) => {
             </Navbar.Collapse>
         </Navbar>
 
-      <EditChoreModal key={new Date().getTime()} show={editModal} onHide={()=> setEditModal(false)} group={group} chore={chore}/>/>
+      <EditChoreModal key={new Date().getTime()} show={editModal} onHide={()=> setEditModal(false)} group={group} chore={chore}/>
       </div>
     )
 }

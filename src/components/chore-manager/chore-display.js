@@ -1,13 +1,14 @@
 import React from "react";
 import {Col, Row} from "react-bootstrap";
 import ChoreCard from "./chore-card";
+import "./chore-display.css"
 
 
 const ChoreDisplay = ({chores}) => {
 
     return(
         <div>
-            <div className="border-top border-dark">
+            <div className="border-top border-dark hero">
                 <Row>
                     <Col xs={6}>
                         <h3>

@@ -78,7 +78,7 @@ const initialState = {
 
             {
                 id:"2",
-                done:false,
+                done:true,
                 choreName: 'Wash the dishes',
                 dueDate: new Date("2021-03-22"),
                 repeatChore: "Weekly",
@@ -87,7 +87,7 @@ const initialState = {
                 points:5,
                 realLifeItem:"",
                 splitReward:{everyoneGetsReward:false,fcfs:false},
-                assignees: ['test1', 'test2']
+                assignees: ['test1']
             }
         ]
     },

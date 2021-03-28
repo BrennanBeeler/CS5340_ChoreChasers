@@ -20,12 +20,14 @@ class GroupChores extends React.Component {
         const multiplier = chore.assignees.length > 0 ? chore.assignees.length : 1
         totalPoints += chore.points * multiplier;
         if (chore.done) {
-          for (const member of group.members)
+          for (const member of chore.assignees)
           {
             members[member] += chore.points;
           }
         }
       });
+
+      console.log(members)
 
       const colors = ['success', 'danger', 'warning', 'info'];
       this.state = {

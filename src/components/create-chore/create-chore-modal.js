@@ -56,7 +56,7 @@ const CreateChoreModal = ({
 
         console.log(newChore)
 
-        createChore(choreGroup, newChore)
+        createChore(choreGroup.name, newChore)
         hide()
     }
 

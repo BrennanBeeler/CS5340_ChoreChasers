@@ -64,9 +64,9 @@ const ProfileSettings = ({
                       This will permanently delete your Chore Chasers account.
                     </p>
 
-                    <button className="btn btn-danger mt-2">
+                    <Link to="/" className="btn btn-danger mt-2">
                         Delete Account
-                    </button>
+                    </Link>
                 </div>
             </form>
         </div>

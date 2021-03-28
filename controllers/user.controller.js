@@ -15,8 +15,6 @@ exports.createNewUser =  (req, res) => {
                               emailId: req.body.emailId,
                               username: req.body.username,
                               password: req.body.password,
-                              groups: req.body.groups, //ref to Group collection
-                              pendingGroups: req.body.pendingGroups,
                               chores: req.body.chores
                           });
 
@@ -77,12 +75,32 @@ exports.addPersonalChore = (req, res) => {
 };
 
 
-// Retrieve a user with their personal chores
-exports.getUser =  (req, res) => {
+// Retrieve a user, along with their personal chores, by using _id
+exports.getUserWithId =  (req, res) => {
 
     User
         .findOne({ _id: req.params.id })
         .populate("chores")
+        .then(userData=> {
+            res.send(userData);
+        })
+        .catch(err => {
+            res.status(500).send({
+                                     message:
+                                         err.message || "User could not be retrieved!"
+                                 });
+        });
+
+};
+
+
+// Retrieve a user with their emailId
+exports.getUserWithEmail =  (req, res) => {
+    const emailId = req.query.emailiD;
+    var condition = emailId ? { emailId: { $regex: new RegExp(emailId), $options: "i" } } : {};
+
+    User
+        .findOne(condition)
         .then(userData=> {
             res.send(userData);
         })

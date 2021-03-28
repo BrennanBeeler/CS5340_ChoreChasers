@@ -10,7 +10,10 @@ module.exports = app => {
     router.post("/:id",users.addPersonalChore);
 
     //Get a specific User with their id
-    router.get("/:id",users.getUser);
+    router.get("/:id",users.getUserWithId);
+
+    //Get a specific User with their emailId
+    router.get("/",users.getUserWithEmail);
 
     //Delete a specific User with its id
     router.delete("/:id", users.deleteUser);

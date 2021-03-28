@@ -3,12 +3,15 @@ const mongoose = require('mongoose');
 
 
 const choreSchema = new Schema({
-                                   done: Boolean,
-                                   choreName: String,
+                                   done: {type: Boolean, required : true},
+                                   choreName: {type: String, required : true},
                                    dueDate: Date,
                                    repeatChore: String,
                                    choreInstructions: String,
-                                   assignees: [], // if empty, that means it is a personal chore
+                                   assignees: [{
+                                       type: Schema.Types.ObjectId, unique : true
+                                   }
+                                   ], // if empty, that means it is a personal chore
                                    assignor: String, //can be personal chore as well
                                    rewards: {pointsCB:Boolean,realLifeItemCB:Boolean},
                                    points: Number,

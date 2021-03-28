@@ -26,7 +26,7 @@ const EditChoreModal = ({onHide, show, group, profileUsername, chore, editChore}
         //TODO: if users sets assignees then moves to personal group the chore will have assignees in personal- idk if matters
 
         let newChore = {
-            id: chore.id,
+            id: Date.now(),
             done:false,
             choreName: choreName,
             //TODO: Figure out no date
@@ -43,7 +43,7 @@ const EditChoreModal = ({onHide, show, group, profileUsername, chore, editChore}
             assignees: []
         }
 
-        editChore(newChore, choreGroup);
+        editChore(choreGroup, newChore);
         onHide()
     }
 

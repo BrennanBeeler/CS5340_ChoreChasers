@@ -55,10 +55,11 @@ const createGroup = (dispatch, profile, group) => {
     })
 }
 
-const editChore = (dispatch, chore) => {
+const editChore = (dispatch, chore, groupId) => {
     dispatch({
         type: EDIT_CHORE,
-        chore
+        chore,
+        groupId
     })
 }
 

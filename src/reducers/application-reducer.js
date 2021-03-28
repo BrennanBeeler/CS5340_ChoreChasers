@@ -30,7 +30,7 @@ const initialState = {
                     repeatChore: "Never",
                     choreInstructions: "Call before 6PM",
                     rewards:{points:true,realLifeItem:false},
-                    points:0,
+                    points:20,
                     realLifeItem:"snack",
                     splitReward:{everyoneGetsReward:false,fcfs:false},
                     dateAdded: new Date("2021-03-23")
@@ -73,7 +73,7 @@ const initialState = {
                 dateAdded: new Date("2021-03-23"),
                 assignor: "Steve",
                 //TODO:
-                assignees: ["max123"]
+                assignees: ["max123"],
             },
 
             {
@@ -200,6 +200,37 @@ const applicationReducer = (state = initialState, action) => {
 
             }
         case EDIT_CHORE:
+            if (action.groupId === "Personal Chores") {
+              console.log("Personal")
+              state.profile.chores = state.profile.chores.map(chore => {
+                if (action.chore.id === chore.id) {
+                  console.log("nice")
+                  return action.chore
+                } else {
+                  return chore
+                }
+              })
+              console.log(state.profile.chores)
+
+              return {
+                ...state,
+              }
+            } else {
+              console.log("Group")
+              const groups = state.groups;
+              state.groups = groups.map(group => {
+                if (group.id == action.groupId) {
+                  const chores = group.chores.map(chore => action.chore.id === chore.id ? action.chore : chore);
+                  group.chores = chores;
+                  return group;
+                } else {
+                  return group;
+                }
+              })
+              return {
+                ...state,
+              }
+            }
             const newChores = state.chores.map(chore => action.chore.id === chore.id ? action.chore : chore);
             return {
                 ...state,
@@ -209,7 +240,6 @@ const applicationReducer = (state = initialState, action) => {
             }
         case ADD_POINT_VALUE:
             state.profile.points += action.points;
-            console.log(state.profile.points);
             return {
                 ...state
             }

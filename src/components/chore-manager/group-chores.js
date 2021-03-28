@@ -70,7 +70,7 @@ class GroupChores extends React.Component {
 
           {this.props.group.progressBar ? <ProgressBar>
               {Object.keys(members).map((member, index) => {
-                return (<ProgressBar variant={this.state.colors[index % 4]} now={members[member]/this.state.totalPoints*100} key={index} />)
+                return (<ProgressBar animated={true} variant={this.state.colors[index % 4]} label={member} now={members[member]/this.state.totalPoints*100} key={index}/>)
               })
               }
             </ProgressBar> : <div/>}

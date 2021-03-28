@@ -126,12 +126,13 @@ const CreateChoreModal = ({
                     {
                         //TODO: find better solution for users
                         choreGroup.name !== "Personal Chores" &&
+
                         <Form.Group>
                             <Form.Label>Assignees</Form.Label>
                             <Typeahead
                                 id="assignees"
                                 onChange={setAssignees}
-                                options={choreGroup.assignees}
+                                options={choreGroup.members}
                                 placeholder="Type the name of the person this chore is assigned to..."
                                 selected={assignees}
                                 multiple
@@ -263,8 +264,8 @@ const CreateChoreModal = ({
 const stpm = (state,ownProps) => ({
     currentGroup: state.activeGroupId === "Personal Chores" ? {name: "Personal Chores", id: "Personal Chores"} :
         state.groups.filter(group => group.id === state.activeGroupId)[0],
-    groupOptions: [{name: "Personal Chores", id : "Personal Chores", assignees: []}]
-        .concat(state.groups.map(group => ({name: group.name, id: group.id, assignees: group.members})))
+    groupOptions: [{name: "Personal Chores", id : "Personal Chores", members: []}]
+        .concat(state.groups.map(group => ({name: group.name, id: group.id, members: group.members})))
 })
 
 const dtpm = (dispatch) => ({

@@ -7,10 +7,10 @@ module.exports = app => {
     router.post("/", users.createNewUser);
 
     //Add a chore to an existing user's personal chores
-    router.post("/:id",users.addPersonalChore);
+    router.post("/chore/:id",users.addPersonalChore);
 
     //Get a specific User with their id
-    router.get("/:id",users.getUserWithId);
+    router.get("/id/:id",users.getUserWithId);
 
     //Get a specific User with their emailId --still doubtful
     router.get("/email/:email",users.getUserWithEmail);
@@ -18,8 +18,11 @@ module.exports = app => {
     //Get a specific User with their emailId
     router.get("/username/:username",users.getUserWithUsername);
 
+    //Check if a User exists before logging them in
+    router.post("/login",users.checkLoginUser);
+
     //Delete a specific User with its id
-    router.delete("/:id", users.deleteUser);
+    router.delete("/id/:id", users.deleteUser);
 
     //Delete all Users in the users collection
     router.delete("/",users.deleteAllUsers);

@@ -8,10 +8,7 @@ const choreSchema = new Schema({
                                    dueDate: Date,
                                    repeatChore: String,
                                    choreInstructions: String,
-                                   assignees: [{
-                                       type: Schema.Types.ObjectId, unique : true
-                                   }
-                                   ], // if empty, that means it is a personal chore
+                                   assignees: [], // if empty, that means it is a personal chore
                                    assignor: String, //can be personal chore as well
                                    rewards: {pointsCB:Boolean,realLifeItemCB:Boolean},
                                    points: Number,

@@ -29,6 +29,24 @@ exports.updateChore = (req, res) => {
 
 };
 
+//Find a single chore based on its id
+exports.getChoreWithId = (req,res) => {
+    const id = req.params.id;
+
+    Chore.findById(id)
+        .then(choreData => {
+            if (!choreData)
+                res.status(404).send({ message: "Chore with id " + id + "was not found"});
+            else res.send(choreData);
+        })
+        .catch(err => {
+            res
+                .status(500)
+                .send({ message: err.message || "Error retrieving Chore with id=" + id });
+        });
+};
+
+
 // Delete a Chore with the specified id in the request
 exports.deleteChore = (req, res) => {
 
@@ -69,23 +87,6 @@ exports.deleteAllChores = (req, res) => {
                                  });
         });
 
-};
-
-//Find a single chore based on its id
-exports.getChore = (req,res) => {
-    const id = req.params.id;
-
-    Chore.findById(id)
-        .then(choreData => {
-            if (!choreData)
-                res.status(404).send({ message: "Chore with id " + id + "was not found"});
-            else res.send(choreData);
-        })
-        .catch(err => {
-            res
-                .status(500)
-                .send({ message: err.message || "Error retrieving Chore with id=" + id });
-        });
 };
 
 // Find all published Chores

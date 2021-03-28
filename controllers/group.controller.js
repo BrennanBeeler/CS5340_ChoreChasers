@@ -13,6 +13,7 @@ exports.createNewGroup =  (req, res) => {
     // Create a Group
     const group = new Group({
                                       name: req.body.name,
+                                      members:req.body.members,
                                       progressBar: req.body.progressBar,
                                       chores: req.body.chores
                                   });
@@ -76,8 +77,8 @@ exports.addGroupChore = (req, res) => {
 };
 
 
-// Retrieve a group with its chores
-exports.getGroup =  (req, res) => {
+// Retrieve a group, along with its chores, with its id
+exports.getGroupWithId =  (req, res) => {
 
     Group
         .findOne({ _id: req.params.id })

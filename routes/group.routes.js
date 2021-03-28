@@ -7,13 +7,13 @@ module.exports = app => {
     router.post("/", groups.createNewGroup);
 
     //Add a chore to an existing Group
-    router.post("/:id",groups.addGroupChore);
+    router.post("/chore/:id",groups.addGroupChore);
 
     //Get a specific Group with its id
-    router.get("/:id",groups.getGroup);
+    router.get("/id/:id",groups.getGroupWithId);
 
     //Delete a specific Group with its id
-    router.delete("/:id", groups.deleteGroup);
+    router.delete("/id/:id", groups.deleteGroup);
 
     //Delete all Groups in the groups collection
     router.delete("/",groups.deleteAllGroups);

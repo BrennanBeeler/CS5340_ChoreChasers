@@ -6,46 +6,15 @@ import {connect} from "react-redux";
 import CreateChoreModal from "../create-chore/create-chore-modal";
 import {Button, ProgressBar} from "react-bootstrap";
 
-class GroupChores extends React.Component {
-    constructor(props) {
-      super(props);
-      let completedPoints = 0;
-      let totalPoints = 0;
-
-      let members = {};
-      const {group} = this.props;
-      group.members.map(member => members[member] = 0);
-
-      group.chores.map(chore => {
-        const multiplier = chore.assignees.length > 0 ? chore.assignees.length : 1
-        totalPoints += chore.points * multiplier;
-        if (chore.done) {
-          for (const member of chore.assignees)
-          {
-            members[member] += chore.points;
-          }
-        }
-      });
-
-      console.log(members)
-
-      const colors = ['success', 'danger', 'warning', 'info'];
-      this.state = {
-        choreModal: false,
-        completedPoints,
-        totalPoints,
-        members,
-        colors,
-      };
-        this.handleDelete = this.handleDelete.bind(this);
-        this.updateProgress = this.updateProgress.bind(this);
-    }
-
-    updateProgress(points) {
-        const temp = this.state.members;
-        temp[this.props.profileUsername] += points;
-        this.setState({members: temp});
-    }
+const GroupChores = ({
+                         activeGroupId,
+                         activeProfile,
+                         group,
+                         getGroupData,
+                         deleteChore,
+                         profileUsername,
+                         createChore
+                     }) => {
 
     // useEffect(() => {
     //     //    TODO: get chores from database and populate each column based on if has a due date
@@ -53,29 +22,27 @@ class GroupChores extends React.Component {
     //
     // }, [activeGroupId])
 
+    const [choreModal, setChoreModal] = useState(false);
 
-    handleDelete(choreId) {
-        this.props.deleteChore(this.props.group, choreId)
+    const handleDelete = (choreId) => {
+        deleteChore(group, choreId)
     }
 
-    render() {
-      const {members} = this.state;
     return(
         <div className="container-fluid">
 
             {/*TODO: evaluate temp fix for duplicate keys- +15*/}
-            <CreateChoreModal key={new Date().getTime() + 15} show={this.state.choreModal}
-                              hide={() => this.setState({choreModal: false})}
-                              profileUsername={this.props.profileUsername} createChore={this.props.createChore}/>
+            <CreateChoreModal key={new Date().getTime() + 15} show={choreModal}
+                              hide={()=> setChoreModal(false)}
+                              profileUsername={profileUsername} createChore={createChore}/>
 
             <ProgressBar>
-              {Object.keys(members).map((member, index) => {
-                return (<ProgressBar variant={this.state.colors[index % 4]} now={members[member]/this.state.totalPoints*100} key={index} />)
-              })
-              }
+                <ProgressBar variant="success" now={35} key={1} />
+                <ProgressBar variant="warning" now={20} key={2} />
+                <ProgressBar variant="danger" now={10} key={3} />
             </ProgressBar>
 
-            <Button variant="primary" onClick={() => this.setState({choreModal: true})}>
+            <Button variant="primary" onClick={() => setChoreModal(true)}>
                 Create Chore
             </Button>
 
@@ -85,12 +52,12 @@ class GroupChores extends React.Component {
             </Link>
 
             <h1>
-                {this.props.group.name}
+                {group.name}
             </h1>
 
-            <ChoreDisplay key={new Date().getTime()} chores={this.props.group.chores} deleteChore={this.handleDelete} updateProgress={this.updateProgress}/>
+            <ChoreDisplay key={new Date().getTime()} chores={group.chores} deleteChore={handleDelete}/>
         </div>
-    )}
+    )
 }
 
 const stpm = (state) => ({

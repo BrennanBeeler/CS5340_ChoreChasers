@@ -4,7 +4,7 @@ import ChoreCard from "./chore-card";
 import "./chore-display.css"
 
 
-const ChoreDisplay = ({chores, deleteChore, updateProgress}) => {
+const ChoreDisplay = ({chores, deleteChore}) => {
     return(
         <div>
             <div className="border-top border-dark hero">
@@ -20,7 +20,7 @@ const ChoreDisplay = ({chores, deleteChore, updateProgress}) => {
                             chores.map(chore => {
                                     return (
                                         <div key={chore.id}>
-                                            <ChoreCard chore={chore} deleteChore={deleteChore} updateProgress={updateProgress}/>
+                                            <ChoreCard chore={chore} deleteChore={deleteChore}/>
                                             <br/>
                                         </div>)
                                 }
@@ -38,7 +38,7 @@ const ChoreDisplay = ({chores, deleteChore, updateProgress}) => {
                         {
                             chores.map(chore =>
                                 <div key={chore.id}>
-                                    <ChoreCard chore={chore} deleteChore={deleteChore} updateProgress={updateProgress}/>
+                                    <ChoreCard chore={chore} deleteChore={deleteChore}/>
                                     <br/>
                                 </div>
                             )

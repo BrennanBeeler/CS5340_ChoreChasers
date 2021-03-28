@@ -1,4 +1,5 @@
 const db = require("../models");
+const bcrypt = require("bcrypt");
 const User = db.users;
 const Chore = db.chores;
 
@@ -148,8 +149,8 @@ exports.checkLoginUser =  (req, res) => {
 
 };
 
-// exports.login = (req, res, next) => {
-//     User.findOne({ email: req.body.email }).then(
+// exports.checkLoginUser = (req, res) => {
+//     User.findOne({ emailId: req.body.emailId }).then(
 //         (user) => {
 //             if (!user) {
 //                 return res.status(401).json({
@@ -183,8 +184,7 @@ exports.checkLoginUser =  (req, res) => {
 //                                  });
 //         }
 //     );
-// }
-
+// };
 
 // Delete a User with the specified id in the request
 exports.deleteUser = (req, res) => {

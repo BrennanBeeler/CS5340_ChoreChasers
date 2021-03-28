@@ -6,7 +6,15 @@ import {connect} from "react-redux";
 import {Typeahead} from "react-bootstrap-typeahead";
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 
-const CreateChoreModal = ({hide, show, profileUsername, createChore, currentGroup}) => {
+const CreateChoreModal = ({
+                              hide,
+                              show,
+                              profileUsername,
+                              createChore,
+                              currentGroup,
+                              groupOptions}) => {
+
+
     const [choreName, setChoreName] = useState("");
     const [dueDate, setDueDate] = useState();
     const [repeatChore, setRepeatChore] = useState("");
@@ -100,11 +108,21 @@ const CreateChoreModal = ({hide, show, profileUsername, createChore, currentGrou
                                       onChange={event => setChoreInstructions(event.target.value)}/>
                     </Form.Group>
 
+                    {
+                        console.log(choreGroup)
+                    }
+
                     <Form.Group>
-                        <Form.Label>Choose your group *</Form.Label>
-                        <Form.Control as="select" value={choreGroup.name}
-                                      onChange={event => setChoreGroup(event.target.value)}>
-                            <option value={choreGroup.name}>{choreGroup.name}</option>
+                        <Form.Label>Choose group for chore *</Form.Label>
+                        <Form.Control as="select" value={choreGroup.id}
+                                      onChange={event => setChoreGroup(groupOptions.find(group =>
+                                          group.id === event.target.value))}>
+                            {
+                                groupOptions.map(option =>
+                                    <option key={option.id} value={option.id}>{option.name}</option>
+                                )
+                            }
+
                             {/*TODO: populate from list of possible user groups*/}
                         </Form.Control>
                     </Form.Group>
@@ -128,8 +146,6 @@ const CreateChoreModal = ({hide, show, profileUsername, createChore, currentGrou
 
                     <Form.Group>
                         <Form.Label>Set a reward</Form.Label>
-
-
                         <Row>
                             <OverlayTrigger
                                 placement="left"
@@ -229,16 +245,16 @@ const CreateChoreModal = ({hide, show, profileUsername, createChore, currentGrou
             </Modal.Body>
 
             <Modal.Footer>
-                <Row>
+                <Row style={{width: "100%"}}>
                     {/*TODO: figure out layout*/}
                     <Col xs={6}>
-                        <Button variant="danger" onClick={hide}>
+                        <Button variant="danger" block onClick={hide}>
                             Nevermind
                         </Button>
                     </Col>
                     <Col xs={6}>
-                        {/*TODO: nee to make creat chore validate and submit data*/}
-                        <Button variant="primary" onClick={validateChore}>
+                        {/*TODO: need to make creat chore validate and submit data*/}
+                        <Button variant="primary" block onClick={validateChore}>
                             Create Chore
                         </Button>
                     </Col>
@@ -249,8 +265,10 @@ const CreateChoreModal = ({hide, show, profileUsername, createChore, currentGrou
 }
 
 const stpm = (state,ownProps) => ({
-    currentGroup: state.activeGroupId === "Personal Chores" ? {name: "Personal Chores"} :
-        state.groups.filter(group => group.id === state.activeGroupId)[0]
+    currentGroup: state.activeGroupId === "Personal Chores" ? {name: "Personal Chores", id: "Personal Chores"} :
+        state.groups.filter(group => group.id === state.activeGroupId)[0],
+    groupOptions: [{name: "Personal Chores", id : "Personal Chores"}]
+        .concat(state.groups.map(group => ({name: group.name, id: group.id})))
 })
 
 const dtpm = (dispatch) => ({

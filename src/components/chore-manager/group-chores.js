@@ -68,12 +68,12 @@ class GroupChores extends React.Component {
                               hide={() => this.setState({choreModal: false})}
                               profileUsername={this.props.profileUsername} createChore={this.props.createChore}/>
 
-            <ProgressBar>
+          {this.props.group.progressBar ? <ProgressBar>
               {Object.keys(members).map((member, index) => {
                 return (<ProgressBar variant={this.state.colors[index % 4]} now={members[member]/this.state.totalPoints*100} key={index} />)
               })
               }
-            </ProgressBar>
+            </ProgressBar> : <div/>}
 
             <Button variant="primary" onClick={() => this.setState({choreModal: true})}>
                 Create Chore

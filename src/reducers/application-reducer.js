@@ -3,6 +3,7 @@ import {LOG_IN,
     SET_ACTIVE_GROUP,
     CREATE_GROUP,
     GET_GROUP_DATA,
+    EDIT_GROUP,
     CREATE_CHORE,
     EDIT_CHORE,
     ADD_POINT_VALUE,
@@ -191,6 +192,13 @@ const applicationReducer = (state = initialState, action) => {
                     groups: tempGroups
                 }
             }
+        case EDIT_GROUP:
+            return {
+                ...state,
+                groups: state.groups.map(group => group.id === action.group.id ? action.group : group)
+
+            }
+
         case DELETE_CHORE:
             let modifiedGroup = action.group
             modifiedGroup.chores = modifiedGroup.chores.filter(chore => chore.id !== action.choreId)

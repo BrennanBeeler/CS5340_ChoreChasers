@@ -13,7 +13,6 @@ const ChoreManager = ({
                         setActiveGroup,
                         activeGroupId = "Personal Chores",
                         groups,
-                        pendingGroups
                       }) => {
 
     const [showCreateGroupModal, setCreateGroupModal] = useState(false);
@@ -110,7 +109,6 @@ const stpm = (state) => ({
     points: state.profile.points,
     activeGroupId: state.activeGroupId,
     groups : state.groups,
-    pendingGroups: state.pendingGroups,
 })
 
 const dtpm = (dispatch) => ({

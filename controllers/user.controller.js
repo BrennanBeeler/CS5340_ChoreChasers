@@ -96,11 +96,28 @@ exports.getUserWithId =  (req, res) => {
 
 // Retrieve a user with their emailId
 exports.getUserWithEmail =  (req, res) => {
-    const emailId = req.query.emailiD;
-    var condition = emailId ? { emailId: { $regex: new RegExp(emailId), $options: "i" } } : {};
 
     User
-        .findOne(condition)
+        .findOne({ emailId: req.params.email })
+        .then(userData=> {
+            res.send(userData);
+        })
+        .catch(err => {
+            res.status(500).send({
+                                     message:
+                                         err.message || "User could not be retrieved!"
+                                 });
+        });
+
+
+};
+
+
+// Retrieve a user with their username
+exports.getUserWithUsername =  (req, res) => {
+
+    User
+        .findOne({ username: req.params.username })
         .then(userData=> {
             res.send(userData);
         })

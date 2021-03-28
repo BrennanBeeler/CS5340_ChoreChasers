@@ -12,8 +12,11 @@ module.exports = app => {
     //Get a specific User with their id
     router.get("/:id",users.getUserWithId);
 
+    //Get a specific User with their emailId --still doubtful
+    router.get("/email/:email",users.getUserWithEmail);
+
     //Get a specific User with their emailId
-    router.get("/",users.getUserWithEmail);
+    router.get("/username/:username",users.getUserWithUsername);
 
     //Delete a specific User with its id
     router.delete("/:id", users.deleteUser);

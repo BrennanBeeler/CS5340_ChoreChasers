@@ -54,8 +54,6 @@ const CreateChoreModal = ({
             assignees: (choreGroup === ("Personal Chores" ? profileUsername : assignees))
         }
 
-        console.log(newChore)
-
         createChore(choreGroup.name, newChore)
         hide()
     }
@@ -108,15 +106,13 @@ const CreateChoreModal = ({
                                       onChange={event => setChoreInstructions(event.target.value)}/>
                     </Form.Group>
 
-                    {
-                        console.log(choreGroup)
-                    }
-
                     <Form.Group>
                         <Form.Label>Choose group for chore *</Form.Label>
                         <Form.Control as="select" value={choreGroup.id}
-                                      onChange={event => setChoreGroup(groupOptions.find(group =>
-                                          group.id === event.target.value))}>
+                                      onChange={event => {
+                                        setChoreGroup(groupOptions.find(group =>
+                                          group.id === event.target.value))}
+                                      }>
                             {
                                 groupOptions.map(option =>
                                     <option key={option.id} value={option.id}>{option.name}</option>

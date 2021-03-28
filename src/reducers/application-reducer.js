@@ -30,7 +30,7 @@ const initialState = {
                     repeatChore: "Never",
                     choreInstructions: "Call before 6PM",
                     rewards:{points:true,realLifeItem:false},
-                    points:0,
+                    points:20,
                     realLifeItem:"snack",
                     splitReward:{everyoneGetsReward:false,fcfs:false},
                     dateAdded: new Date("2021-03-23")
@@ -73,20 +73,21 @@ const initialState = {
                 dateAdded: new Date("2021-03-23"),
                 assignor: "Steve",
                 //TODO:
-                assignees: ["max123"]
+                assignees: ["max123"],
             },
 
             {
                 id:"2",
-                done:false,
+                done:true,
                 choreName: 'Wash the dishes',
                 dueDate: new Date("2021-03-22"),
                 repeatChore: "Weekly",
                 choreInstructions: "",
                 rewards:{points:false,realLifeItem:false},
-                points:0,
+                points:5,
                 realLifeItem:"",
-                splitReward:{everyoneGetsReward:false,fcfs:false}
+                splitReward:{everyoneGetsReward:false,fcfs:false},
+                assignees: ['test1']
             }
         ]
     },
@@ -122,7 +123,7 @@ const initialState = {
                     repeatChore: "Weekly",
                     choreInstructions: "",
                     rewards:{points:false,realLifeItem:false},
-                    points:0,
+                    points:5,
                     realLifeItem:"",
                     splitReward:{everyoneGetsReward:false,fcfs:false},
                     dateAdded: null,
@@ -200,16 +201,35 @@ const applicationReducer = (state = initialState, action) => {
 
             }
         case EDIT_CHORE:
-            const newChores = state.chores.map(chore => action.chore.id === chore.id ? action.chore : chore);
-            return {
+            if (action.groupId === "Personal Chores") {
+              state.profile.chores = state.profile.chores.map(chore => {
+                if (action.chore.id === chore.id) {
+                  return action.chore
+                } else {
+                  return chore
+                }
+              })
+
+              return {
                 ...state,
-                chores : [
-                    newChores
-                ]
+              }
+            } else {
+              const groups = state.groups;
+              state.groups = groups.map(group => {
+                if (group.id === action.groupId) {
+                  const chores = group.chores.map(chore => action.chore.id === chore.id ? action.chore : chore);
+                  group.chores = chores;
+                  return group;
+                } else {
+                  return group;
+                }
+              })
+              return {
+                ...state,
+              }
             }
         case ADD_POINT_VALUE:
             state.profile.points += action.points;
-            console.log(state.profile.points);
             return {
                 ...state
             }

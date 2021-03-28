@@ -5,10 +5,10 @@ import applicationActions from "../../actions/actions";
 import {connect} from "react-redux";
 import EditChoreModal from "../edit-chore/edit-chore-modal";
 
-const ChoreCard = ({chore, group, addPoints, deleteChore}) => {
+const ChoreCard = ({props, chore, group, updateProgress, addPoints, editChore, deleteChore}) => {
     const [toggleText, setToggleText] = useState(0);
     const [editModal, setEditModal] = useState(false);
-    const [completed, setCompleted] = useState(false);
+    const [completed, setCompleted] = useState(chore.done);
     const [countDown, setCountDown] = useState(10);
     const [visibility, setVisibility] = useState(true);
     const toggleTextStr = ["View Details", "Hide Details"];
@@ -18,7 +18,11 @@ const ChoreCard = ({chore, group, addPoints, deleteChore}) => {
     const markCompleted = (event) => {
         successSound.play();
         addPoints(parseInt(chore.points));
+        updateProgress(parseInt(chore.points));
         setCompleted(!completed);
+        chore.done = !chore.done;
+        editChore(chore, group);
+
         timeOut()
     }
 
@@ -31,7 +35,10 @@ const ChoreCard = ({chore, group, addPoints, deleteChore}) => {
 
     const undoCompleted = () => {
         addPoints(-parseInt(chore.points));
+        updateProgress(-parseInt(chore.points));
         setCompleted(!completed);
+        chore.done = !chore.done;
+        editChore(chore, group);
     }
 
     return(visibility &&
@@ -144,11 +151,12 @@ const ChoreCard = ({chore, group, addPoints, deleteChore}) => {
 const stpm = (state, ownProps) => ({
     profile: state.profile,
     group: state.activeGroupId,
-    props: ownProps
+    props: ownProps,
 })
 
 const dtpm = (dispatch) => ({
-    addPoints: (points) => {applicationActions.addPoints(dispatch, points)}
+    addPoints: (points) => {applicationActions.addPoints(dispatch, points)},
+    editChore: (chore, groupId) => {applicationActions.editChore(dispatch, chore, groupId)}
 })
 
 export default connect(stpm, dtpm)(ChoreCard);

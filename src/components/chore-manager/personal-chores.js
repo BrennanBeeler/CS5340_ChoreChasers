@@ -6,45 +6,71 @@ import ChoreDisplay from "./chore-display";
 import applicationActions from "../../actions/actions";
 import {connect} from "react-redux";
 
-const PersonalChores = ({
-                            activeGroupId,
-                            activeProfile,
-                            chores,
-                            deletePersonalChore,
-                            profileUsername
-                        }) => {
-    const [choreModal, setChoreModal] = useState(false);
+class PersonalChores extends React.Component {
+    constructor(props) {
+      super(props);
+      let completedPoints = 0;
+      let totalPoints = 0;
 
-    const handleDelete = (choreId) => {
-        deletePersonalChore(choreId)
+      this.props.chores.map(chore => {
+        totalPoints += chore.points;
+        if (chore.done) {
+          completedPoints += chore.points;
+        }
+      });
+      this.state = {
+        choreModal: false,
+        completedPoints,
+        totalPoints,
+      };
+        this.handleDelete = this.handleDelete.bind(this);
+        this.updateProgress = this.updateProgress.bind(this);
     }
 
-    return(
-        <div className="container-fluid">
-            <div className="row">
-                Today's Progress
+    handleDelete(choreId) {
+        this.props.deletePersonalChore(choreId)
+    }
 
-                <Button variant="primary" onClick={() => setChoreModal(true)}>
-                    Create Chore
-                </Button>
-            </div>
+    updateProgress(points) {
+        const newPoints = this.state.completedPoints + points;
+        this.setState({completedPoints: newPoints})
+    }
 
-            {/*TODO: evaluate temp fix for duplicate keys- +15*/}
-            <CreateChoreModal key={new Date().getTime() + 15} show={choreModal}
-                              hide={()=> setChoreModal(false)} profileUsername={profileUsername}/>
 
-            <ProgressBar>
-                <ProgressBar variant="success" now={35} key={1} />
-            </ProgressBar>
-            <br/>
+    render() {
+      return (
+      <div className="container-fluid">
+        <div className="row">
+          Today's Progress
 
-            <h1>
-                Personal Chores
-            </h1>
-
-            <ChoreDisplay key={new Date().getTime()} chores={chores} deleteChore={handleDelete}/>
+          <Button variant="primary" onClick={() => this.setState({choreModal: true})}>
+            Create Chore
+          </Button>
         </div>
-    )
+
+        {/*TODO: evaluate temp fix for duplicate keys- +15*/}
+        <CreateChoreModal key={new Date().getTime() + 15}
+                          show={this.state.choreModal}
+                          hide={() => this.setState({choreModal: false})}
+                          profileUsername={this.state.profileUsername}
+                          />
+
+        <ProgressBar>
+          <ProgressBar variant="success" now={this.state.completedPoints/this.state.totalPoints *100} key={1}/>
+        </ProgressBar>
+        <br/>
+
+        <h1>
+          Personal Chores
+        </h1>
+
+        <ChoreDisplay key={new Date().getTime()}
+                      chores={this.props.chores}
+                      deleteChore={this.handleDelete}
+                      updateProgress={this.updateProgress}
+        />
+      </div>)
+    }
 }
 
 const stpm = (state) => ({

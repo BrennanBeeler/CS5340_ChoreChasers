@@ -5,17 +5,27 @@ export const SET_ACTIVE_GROUP = "SET_ACTIVE_GROUP";
 export const CREATE_GROUP = "CREATE_GROUP";
 export const GET_GROUP_DATA = "GET_GROUP_DATA";
 export const CREATE_CHORE = "CREATE_CHORE";
+export const EDIT_CHORE = "EDIT_CHORE";
+export const ADD_POINT_VALUE = "ADD_POINT_VALUE";
+export const DELETE_CHORE = "DELETE_CHORE";
+export const DELETE_PERSONAL_CHORE = "DELETE_PERSONAL_CHORE";
 
-const logIn = (dispatch, email, password) =>
-    dispatch({
-        type : LOG_IN,
-        email,
-        password
-    })
+const logIn = (dispatch, email, password) => {
+    let id = email
+    //TODO: validate login credentials via database AND IF valid dispatch
+    return(
+        dispatch({
+            type : LOG_IN,
+            id
+        })
+    )
+}
+
+
 
 const logOut = (dispatch, email) =>
     dispatch({
-        type : LOG_IN,
+        type : LOG_OUT,
         email
     })
 
@@ -45,6 +55,22 @@ const createGroup = (dispatch, profile, group) => {
     })
 }
 
+const editChore = (dispatch, chore, groupId) => {
+    dispatch({
+        type: EDIT_CHORE,
+        chore,
+        groupId
+    })
+}
+
+const createChore = (dispatch, groupName, chore) => {
+    dispatch({
+        type: CREATE_CHORE,
+        groupName,
+        chore
+    })
+}
+
 const getGroupData = (dispatch, profile, groupId) => {
     //TODO: call to server here for group info
     dispatch({
@@ -54,8 +80,31 @@ const getGroupData = (dispatch, profile, groupId) => {
     })
 }
 
+const addPoints = (dispatch, points) => {
+    dispatch({
+        type : ADD_POINT_VALUE,
+        points
+    })
+}
+
+const deleteChore = (dispatch, group, choreId) => {
+    dispatch({
+        type : DELETE_CHORE,
+        group,
+        choreId
+    })
+}
+
+const deletePersonalChore = (dispatch, choreId) => {
+    dispatch({
+        type: DELETE_PERSONAL_CHORE,
+        choreId
+    })
+}
+
 const applicationActions = {
-    logIn, logOut,signUp, setActiveGroup, createGroup, getGroupData
+    logIn, logOut,signUp, setActiveGroup, createGroup, editChore, getGroupData, addPoints,
+    deleteChore, deletePersonalChore, createChore
 }
 
 export default applicationActions;

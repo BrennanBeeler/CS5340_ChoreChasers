@@ -1,24 +1,21 @@
 import React, {useState} from "react";
 import {Modal, Button, Form, Tooltip, OverlayTrigger, Row, Col} from "react-bootstrap";
-import "./create-chore-modal.css"
 import applicationActions from "../../actions/actions";
 import {connect} from "react-redux";
-import {Typeahead} from "react-bootstrap-typeahead";
-import 'react-bootstrap-typeahead/css/Typeahead.css';
 
-const CreateChoreModal = ({hide, show, profileUsername, createChore, currentGroup}) => {
-    const [choreName, setChoreName] = useState("");
-    const [dueDate, setDueDate] = useState();
-    const [repeatChore, setRepeatChore] = useState("");
-    const [choreInstructions, setChoreInstructions] = useState("");
+const EditChoreModal = ({onHide, show, group, profileUsername, chore, editChore}) => {
+    const [choreName, setChoreName] = useState(chore.choreName);
+    const [dueDate, setDueDate] = useState(chore.dueDate);
+    const [repeatChore, setRepeatChore] = useState(chore.repeatChore);
+    const [choreInstructions, setChoreInstructions] = useState(chore.choreInstructions);
     // TODO: currently can only make chores from group you are in - fix
-    const [choreGroup, setChoreGroup] = useState(currentGroup);
-    const [rewardMode, setRewardMode] = useState(true);
-    const [assignees, setAssignees] = useState([]);
-    const [pointsChecked, setPointsChecked] = useState(false);
-    const [prizeChecked, setPrizeChecked] = useState(false);
-    const [prizeText, setPrizeText] = useState("");
-    const [pointNumber, setPointNumber] = useState(0);
+    const [choreGroup, setChoreGroup] = useState(group);
+    const [rewardMode, setRewardMode] = useState(chore.rewardMode);
+    const [pointsChecked, setPointsChecked] = useState(chore.pointsChecked)
+    const [prizeChecked, setPrizeChecked] = useState(chore.prizeChecked)
+    const [prizeText, setPrizeText] = useState(chore.prizeText)
+    const [pointNumber, setPointNumber] = useState(chore.pointNumber)
+
 
     const validateChore = () => {
         if(choreName === "") {
@@ -29,7 +26,7 @@ const CreateChoreModal = ({hide, show, profileUsername, createChore, currentGrou
         //TODO: if users sets assignees then moves to personal group the chore will have assignees in personal- idk if matters
 
         let newChore = {
-            id: Date.now(),
+            id: chore.id,
             done:false,
             choreName: choreName,
             //TODO: Figure out no date
@@ -43,28 +40,18 @@ const CreateChoreModal = ({hide, show, profileUsername, createChore, currentGrou
             dateAdded: new Date(),
             assignor: profileUsername,
             //TODO: need to figure out assignees for create
-            assignees: (choreGroup === ("Personal Chores" ? profileUsername : assignees))
+            assignees: []
         }
 
-        console.log(newChore)
-
-        createChore(choreGroup, newChore)
-        hide()
+        editChore(newChore, choreGroup);
+        onHide()
     }
-
-    // const handleMemberAdd = () => {
-    //     if(assignees !== "" && !(assignees in memberList)) {
-    //         setMemberList(memberList => [...memberList, assignees])
-    //     }
-    //
-    //     console.log(memberList)
-    // }
 
 
     return (
-        <Modal onHide={hide} animation={false} show={show} backdrop="static">
+        <Modal onHide={onHide} animation={false} show={show} backdrop="static">
             <Modal.Header closeButton>
-                <Modal.Title className="text-center">Add New Chore</Modal.Title>
+                <Modal.Title className="text-center">Edit Chore</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Form>
@@ -102,29 +89,17 @@ const CreateChoreModal = ({hide, show, profileUsername, createChore, currentGrou
 
                     <Form.Group>
                         <Form.Label>Choose your group *</Form.Label>
-                        <Form.Control as="select" value={choreGroup.name}
+                        <Form.Control as="select" value={choreGroup}
                                       onChange={event => setChoreGroup(event.target.value)}>
-                            <option value={choreGroup.name}>{choreGroup.name}</option>
+                            <option value={choreGroup}>{choreGroup}</option>
                             {/*TODO: populate from list of possible user groups*/}
                         </Form.Control>
                     </Form.Group>
 
-                    {
-                        //TODO: find better solution for users
-                        choreGroup.name !== "Personal Chores" &&
-                        <Form.Group>
-                            <Form.Label>Assignees</Form.Label>
-                            <Typeahead
-                                id="assignees"
-                                onChange={setAssignees}
-                                options={currentGroup.members}
-                                placeholder="Type the name of the person this chore is assigned to..."
-                                selected={assignees}
-                                multiple
-                                style={{width: "100%"}}
-                            />
-                        </Form.Group>
-                    }
+                    {/*TODO: handle assignees*/}
+                    <Form.Group>
+                        <Form.Label>Assignees</Form.Label>
+                    </Form.Group>
 
                     <Form.Group>
                         <Form.Label>Set a reward</Form.Label>
@@ -232,14 +207,14 @@ const CreateChoreModal = ({hide, show, profileUsername, createChore, currentGrou
                 <Row>
                     {/*TODO: figure out layout*/}
                     <Col xs={6}>
-                        <Button variant="danger" onClick={hide}>
+                        <Button variant="danger" onClick={onHide}>
                             Nevermind
                         </Button>
                     </Col>
                     <Col xs={6}>
-                        {/*TODO: nee to make creat chore validate and submit data*/}
+                        {/*TODO: need to make creat chore validate and submit data*/}
                         <Button variant="primary" onClick={validateChore}>
-                            Create Chore
+                            Save & Exit
                         </Button>
                     </Col>
                 </Row>
@@ -248,13 +223,11 @@ const CreateChoreModal = ({hide, show, profileUsername, createChore, currentGrou
     )
 }
 
-const stpm = (state,ownProps) => ({
-    currentGroup: state.activeGroupId === "Personal Chores" ? {name: "Personal Chores"} :
-        state.groups.filter(group => group.id === state.activeGroupId)[0]
+const stpm = (state) => ({
 })
 
 const dtpm = (dispatch) => ({
-    createChore : (groupName, chore) => applicationActions.createChore(dispatch, groupName, chore)
+    editChore : (groupName, chore) => applicationActions.editChore(dispatch, groupName, chore)
 })
 
-export default connect(stpm, dtpm)(CreateChoreModal);
+export default connect(stpm, dtpm)(EditChoreModal);

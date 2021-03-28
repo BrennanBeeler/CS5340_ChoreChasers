@@ -5,28 +5,47 @@ import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import GroupChores from "./group-chores";
 import CreateGroupModal from "../create-group/create-group-modal";
+import PendingGroup from "./pending-group";
 
 const ChoreManager = ({
                         profile,
+                        points,
                         setActiveGroup,
                         activeGroupId = "Personal Chores",
-                        groups
+                        groups,
+                        pendingGroups
                       }) => {
 
-    const [createGroupModal, setCreateGroupModal] = useState(false);
+    const [showCreateGroupModal, setCreateGroupModal] = useState(false);
+    let level = 1;
+    let maxPoints = 10;
+    const updateLevel = () => {
+      if (points < 10) {
+        level = 1;
+        maxPoints = 10;
+      } else if (points < 100) {
+        level = 2;
+        maxPoints = 100;
+      } else if (points < 1000000) {
+        level = 3;
+        maxPoints = 1000000;
+      }
+    };
+    // TODO: It doesn't affect performance but this is pretty bad practice, change later
+    updateLevel();
 
     return (
         <div className="hci-full-height row">
             <div className="col-3 border-right hci-full-height">
                 <div className="row-12 border-bottom border-dark pb-2">
-                    Level 1
+                    Level {level}
                     <br/>
                     <Link to="/profile" className="btn fa fa-user-circle fa-2x"/>
-                    0/10 points
+                      {points}/{maxPoints} points
                     <br/>
 
                     <Link to="/profile">
-                        {profile}'s Account
+                        View {profile}'s Account
                     </Link>
                 </div>
 
@@ -35,7 +54,7 @@ const ChoreManager = ({
                     <i className="fa fa-plus" style={{paddingLeft: "10px"}}/>
                 </button>
 
-                <CreateGroupModal key={new Date().getTime()} show={createGroupModal}
+                <CreateGroupModal key={new Date().getTime()} show={showCreateGroupModal}
                                   onHide={()=> setCreateGroupModal(false)}
                                   profile={profile}/>
 
@@ -45,7 +64,7 @@ const ChoreManager = ({
 
                     <li className={`nav-link nav-item mb-4 border border-dark ${activeGroupId === "Personal Chores" ? 'active':''}`}
                         onClick={() => setActiveGroup("Personal Chores")}>
-                        Personal Chores
+                        {activeGroupId === "Personal Chores" ? "Personal Chores" : "View Personal Chores"}
                     </li>
 
                     {
@@ -53,10 +72,17 @@ const ChoreManager = ({
                             <li className={`nav-link nav-item mb-4 border border-dark ${activeGroupId === group.id ? 'active':''}`}
                                 key={group.id}
                                 onClick={() => setActiveGroup(group.id)}>
-                                {group.name}
+                                {activeGroupId === group.id ? group.name : "View " + group.name}
                             </li>
                         )
                     }
+
+                    {/*TODO: determine at end of project if pending is needed*/}
+                    {/*{*/}
+                    {/*    pendingGroups.map(group =>*/}
+                    {/*        <PendingGroup groupName={group.name} key={group.name}/>*/}
+                    {/*    )*/}
+                    {/*}*/}
                 </ul>
             </div>
 
@@ -81,8 +107,10 @@ const ChoreManager = ({
 
 const stpm = (state) => ({
     profile: state.profile.username,
+    points: state.profile.points,
     activeGroupId: state.activeGroupId,
-    groups : state.groups
+    groups : state.groups,
+    pendingGroups: state.pendingGroups,
 })
 
 const dtpm = (dispatch) => ({
@@ -92,5 +120,4 @@ const dtpm = (dispatch) => ({
 })
 
 export default connect(stpm, dtpm)(ChoreManager);
-
 

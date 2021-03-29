@@ -3,6 +3,7 @@ export const LOG_OUT = "LOG_OUT";
 export const SIGN_UP = "SIGN_UP";
 export const SET_ACTIVE_GROUP = "SET_ACTIVE_GROUP";
 export const CREATE_GROUP = "CREATE_GROUP";
+export const EDIT_GROUP = "EDIT_GROUP";
 export const GET_GROUP_DATA = "GET_GROUP_DATA";
 export const CREATE_CHORE = "CREATE_CHORE";
 export const EDIT_CHORE = "EDIT_CHORE";
@@ -55,6 +56,13 @@ const createGroup = (dispatch, profile, group) => {
     })
 }
 
+const editGroup = (dispatch, group) => {
+    dispatch({
+        type : EDIT_GROUP,
+        group
+    })
+}
+
 const editChore = (dispatch, chore, groupId) => {
     dispatch({
         type: EDIT_CHORE,
@@ -103,7 +111,7 @@ const deletePersonalChore = (dispatch, choreId) => {
 }
 
 const applicationActions = {
-    logIn, logOut,signUp, setActiveGroup, createGroup, editChore, getGroupData, addPoints,
+    logIn, logOut,signUp, setActiveGroup, createGroup, editGroup, editChore, getGroupData, addPoints,
     deleteChore, deletePersonalChore, createChore
 }
 

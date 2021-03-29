@@ -1,15 +1,24 @@
 import React, {useState} from "react";
 import {Link, Redirect} from "react-router-dom";
 import LeaveGroupModal from "./leave-group-modal";
+import applicationActions from "../../actions/actions";
+import {connect} from "react-redux";
 
 const GroupSettings = ({
-                   profile}) => {
-  const handleToggle = (event) => {
-        event.preventDefault()
-        // flip progress bar
+                   profile,
+                   group,
+                    editGroup,
+                  profileUsername
+}) => {
+
+    const [confirmationModal, setConfirmationModal] = useState(false);
+
+    const toggleProgressBar = () => {
+        group.progressBar = !group.progressBar;
+        console.log(group)
+        editGroup(group);
     };
 
-  const [confirmationModal, setConfirmationModal] = useState(false);
     return (
         <div className="container">
             <h1 className="text-center">
@@ -21,7 +30,7 @@ const GroupSettings = ({
                 Disable 'Weekly Progress Points' bar
             </h4>
             <div className="custom-control custom-switch row">
-              <input type="checkbox" className="custom-control-input" id="toggleProgressBar"/>
+              <input type="checkbox" className="custom-control-input" id="toggleProgressBar" onClick={toggleProgressBar}/>
               <label className="custom-control-label" htmlFor="toggleProgressBar"></label>
             </div>
 
@@ -46,4 +55,19 @@ const GroupSettings = ({
     )
 }
 
-export default GroupSettings;
+const stpm = (state) => ({
+    activeGroupId: state.activeGroupId,
+    activeProfile: state.activeProfile,
+    // TODO: eventually groups will be actually populated
+    group : state.groups.filter(group => group.id === state.activeGroupId)[0],
+    profileUsername : state.profile.username
+})
+
+const dtpm = (dispatch) => ({
+    getGroupData : (profile, groupId) => applicationActions.getGroupData(dispatch, profile, groupId),
+    deleteChore : (group, choreId) => applicationActions.deleteChore(dispatch, group, choreId),
+    createChore : (groupId, chore) => applicationActions.createChore(dispatch, groupId, chore),
+    editGroup: (group) => applicationActions.editGroup(dispatch, group)
+})
+
+export default connect(stpm, dtpm)(GroupSettings);

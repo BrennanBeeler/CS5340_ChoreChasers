@@ -12,6 +12,7 @@ const CreateGroupModal = ({props, createGroup, profile, groups}) => {
         if(memberName !== "" && !(memberName in memberList)) {
             setMemberList(memberList => [...memberList, memberName])
         }
+        setMemberName('');
     }
 
     const handleCreateGroup = () => {

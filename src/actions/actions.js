@@ -51,7 +51,7 @@ const setActiveGroup = (dispatch, activeGroupId) => {
 
 const setBackground = (dispatch, url) => {
     dispatch({
-        type : SET_ACTIVE_GROUP,
+        type : SET_BACKGROUND,
         url
     })
 }

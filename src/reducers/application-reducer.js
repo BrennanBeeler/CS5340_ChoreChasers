@@ -163,9 +163,12 @@ const applicationReducer = (state = initialState, action) => {
                 activeGroupId: action.activeGroupId
             }
         case SET_BACKGROUND:
-            state.profile.background = action.url;
+            const newProfile = state.profile;
+            newProfile.background = action.url;
+
             return {
                 ...state,
+                profile: newProfile,
             }
         //    TODO: redo
         case CREATE_GROUP:

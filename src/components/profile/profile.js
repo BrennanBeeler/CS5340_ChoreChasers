@@ -105,7 +105,7 @@ const Profile = ({
                         (<div className="row justify-content-center align-items-center">
                           <p>Level {index + 1}</p>
                           <img src={value} style={{height: "50px", width: "120px", padding: '4px'}}/>
-                          <button className="btn btn-info" onClick={() => setBackground(value)}>
+                          <button className="btn btn-info" onClick={(event) => setBackground(value)}>
                             Set Background
                             </button>
                         </div>)

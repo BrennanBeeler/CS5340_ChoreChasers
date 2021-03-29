@@ -1,0 +1,26 @@
+.header {
+    font-size: 30px;
+    padding-bottom: 10px;
+    padding-top: 5px;
+    font-family: Verdana, Geneva, sans-serif;
+    /*font-family: Arial, Helvetica, sans-serif;*/
+    /*font-family: Tahoma, Geneva, sans-serif;*/
+    /*font-family: Trebuchet MS, Arial, Helvetica, sans-serif;*/
+    /*font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;*/
+}
+
+.register-button-space {
+    padding-right: 45px;
+}
+
+.body-background {
+    background-color: #acd8d2;
+    padding-top: 30px;
+}
+
+.intro {
+    font-family: Tahoma, Geneva, sans-serif;
+    text-align: center;
+    font-size: 50px;
+}
+

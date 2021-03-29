@@ -76,8 +76,8 @@ class GroupChores extends React.Component {
             </ProgressBar> : <div/>}
             <br/>
 
-            <div className="d-flex justify-content-around">
-              <Button variant="primary" onClick={() => this.setState({choreModal: true})}>
+            <div className="d-flex justify-content-between">
+              <Button variant="info" onClick={() => this.setState({choreModal: true})}>
                   Create Chore
               </Button>
 

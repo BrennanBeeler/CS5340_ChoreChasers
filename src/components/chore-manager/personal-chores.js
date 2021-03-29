@@ -53,7 +53,7 @@ class PersonalChores extends React.Component {
           <ProgressBar variant="success" now={this.state.completedPoints/this.state.totalPoints *100} key={1}/>
         </ProgressBar>
         <br/>
-        <Button variant="primary" onClick={() => this.setState({choreModal: true})}>
+        <Button variant="info" onClick={() => this.setState({choreModal: true})}>
             Create Chore
           </Button>
 

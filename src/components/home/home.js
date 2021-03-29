@@ -91,7 +91,8 @@ const Home = () => {
 
                 </div>
 
-                <div className="register-buttons-container">
+                {/*<div className="register-buttons-container">*/}
+                <div>
                     <div>
                     {/*TODO: figure out if want login/signup to disappear when logged in*/}
                     <Link to="/login" className="btn btn-lg btn-primary floated-register-buttons">
@@ -106,8 +107,11 @@ const Home = () => {
             </div>
 
             <div class="body-background">
-            <blockquote className=" intro">
-                Manage those pesky chores with ease... <br/>- and have fun with them too!
+            <blockquote id="intro1">
+                Manage those pesky chores with ease... <br/>
+            </blockquote>
+            <blockquote id="intro2">
+                - and have fun with them too!
             </blockquote>
 
             <br/>

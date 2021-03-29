@@ -3,7 +3,7 @@ import {Button, Col, Form, Modal, OverlayTrigger, Row, Tooltip} from "react-boot
 import {connect} from "react-redux";
 import applicationActions from "../../actions/actions";
 
-const CreateGroupModal = ({props, createGroup, profile}) => {
+const CreateGroupModal = ({props, createGroup, profile, groups}) => {
     const [groupName, setGroupName] = useState("");
     const [memberName, setMemberName] = useState("");
     const [memberList, setMemberList] = useState([]);
@@ -20,9 +20,10 @@ const CreateGroupModal = ({props, createGroup, profile}) => {
             //TODO: construct group object here- likely ignore emails that aren't in database
             let group = {
                 name: groupName,
-                id: 2,
+                id: (groups.length + 1).toString(),
                 progressBar: true,
-                chores: []
+                chores: [],
+                members: memberList,
             };
             createGroup(profile, group);
 
@@ -110,7 +111,8 @@ const CreateGroupModal = ({props, createGroup, profile}) => {
 
 const stpm = (state, ownProps) => ({
     profile: state.profile,
-    props: ownProps
+    props: ownProps,
+    groups: state.groups
 })
 
 const dtpm = (dispatch) => ({

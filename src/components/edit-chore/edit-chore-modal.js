@@ -2,24 +2,26 @@ import React, {useState} from "react";
 import {Modal, Button, Form, Tooltip, OverlayTrigger, Row, Col} from "react-bootstrap";
 import applicationActions from "../../actions/actions";
 import {connect} from "react-redux";
+import {Typeahead} from "react-bootstrap-typeahead";
 
-const EditChoreModal = ({onHide, show, group, profileUsername, chore, editChore}) => {
+const EditChoreModal = ({onHide, show, currentGroup, profileUsername, chore, editChore}) => {
     const [choreName, setChoreName] = useState(chore.choreName);
     const [dueDate, setDueDate] = useState(chore.dueDate);
     const [repeatChore, setRepeatChore] = useState(chore.repeatChore);
     const [choreInstructions, setChoreInstructions] = useState(chore.choreInstructions);
     // TODO: currently can only make chores from group you are in - fix
-    const [choreGroup, setChoreGroup] = useState(group);
+    const [choreGroup, setChoreGroup] = useState(currentGroup);
     const [rewardMode, setRewardMode] = useState(chore.rewardMode);
     const [pointsChecked, setPointsChecked] = useState(chore.pointsChecked)
     const [prizeChecked, setPrizeChecked] = useState(chore.prizeChecked)
+    const [assignees, setAssignees] = useState(chore.assignees)
     const [prizeText, setPrizeText] = useState(chore.prizeText)
     const [pointNumber, setPointNumber] = useState(chore.pointNumber)
 
 
     const validateChore = () => {
         if(choreName === "") {
-            alert("issue")
+            alert("Please make sure to include a name for your chore")
             return;
         }
 
@@ -91,15 +93,28 @@ const EditChoreModal = ({onHide, show, group, profileUsername, chore, editChore}
                         <Form.Label>Choose your group *</Form.Label>
                         <Form.Control as="select" value={choreGroup}
                                       onChange={event => setChoreGroup(event.target.value)}>
-                            <option value={choreGroup}>{choreGroup}</option>
+                            <option value={choreGroup.name}>{choreGroup.name}</option>
                             {/*TODO: populate from list of possible user groups*/}
                         </Form.Control>
                     </Form.Group>
 
-                    {/*TODO: handle assignees*/}
-                    <Form.Group>
-                        <Form.Label>Assignees</Form.Label>
-                    </Form.Group>
+                    {console.log(choreGroup)}{
+                        //TODO: find better solution for users
+                        choreGroup.name !== "Personal Chores" &&
+
+                        <Form.Group>
+                            <Form.Label>Assignees</Form.Label>
+                            <Typeahead
+                                id="assignees"
+                                onChange={setAssignees}
+                                options={choreGroup.members}
+                                placeholder="Type the name of the person this chore is assigned to..."
+                                selected={assignees}
+                                multiple
+                                style={{width: "100%"}}
+                            />
+                        </Form.Group>
+                    }
 
                     <Form.Group>
                         <Form.Label>Set a reward</Form.Label>
@@ -223,7 +238,11 @@ const EditChoreModal = ({onHide, show, group, profileUsername, chore, editChore}
     )
 }
 
-const stpm = (state) => ({
+const stpm = (state,ownProps) => ({
+    currentGroup: state.activeGroupId === "Personal Chores" ? {name: "Personal Chores", id: "Personal Chores"} :
+        state.groups.filter(group => group.id === state.activeGroupId)[0],
+    groupOptions: [{name: "Personal Chores", id : "Personal Chores", members: []}]
+        .concat(state.groups.map(group => ({name: group.name, id: group.id, members: group.members})))
 })
 
 const dtpm = (dispatch) => ({

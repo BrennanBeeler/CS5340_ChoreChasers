@@ -118,8 +118,6 @@ const CreateChoreModal = ({
                                     <option key={option.id} value={option.id}>{option.name}</option>
                                 )
                             }
-
-                            {/*TODO: populate from list of possible user groups*/}
                         </Form.Control>
                     </Form.Group>
 

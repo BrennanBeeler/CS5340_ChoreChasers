@@ -18,14 +18,14 @@ const initialState = {
     profile : {
             id : "test",
             emailId: 'test@email.com',
-            points: 5,
+            points: 0,
             groupIds: [],
             username: 'max123',
             password:'password',
             chores: [
                 {
                     id:"1",
-                    done:true,
+                    done:false,
                     choreName: 'Call Anne about the party',
                     dueDate: new Date(),
                     repeatChore: "Never",
@@ -39,12 +39,12 @@ const initialState = {
                 },
                 {
                     id:"2",
-                    done:true,
+                    done:false,
                     choreName: 'Test',
                     dueDate: new Date(),
                     repeatChore: "Never",
                     choreInstructions: "Call before 6PM",
-                    rewards:{points:true,realLifeItem:false},
+                    rewards:{points:false,realLifeItem:true},
                     points:0,
                     realLifeItem:"snack",
                     splitReward:{everyoneGetsReward:false,fcfs:false},
@@ -56,7 +56,7 @@ const initialState = {
     groups : [{
         id: "1",
         name: 'Family',
-        progressBar: true,
+        progressBar: false,
         members: ["test1", "test2", "test3", "max123"],
         chores: [
             //TODO: required fields- id, done, chorename, rewards,splitrewards, assignor, assignees
@@ -79,7 +79,7 @@ const initialState = {
 
             {
                 id:"2",
-                done:true,
+                done:false,
                 choreName: 'Wash the dishes',
                 dueDate: new Date("2021-03-22"),
                 repeatChore: "Weekly",

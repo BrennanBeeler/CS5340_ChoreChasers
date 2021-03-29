@@ -9,7 +9,7 @@ const ChoreDisplay = ({chores, deleteChore, updateProgress}) => {
         <div>
             <div className="border-top border-dark hero">
                 <Row>
-                    <Col xs={6}>
+                    <Col xs={6} style={{paddingLeft: "30px", paddingRight : "30px"}}>
                         <h3>
                             Due Today
                         </h3>
@@ -20,7 +20,8 @@ const ChoreDisplay = ({chores, deleteChore, updateProgress}) => {
                             chores.map(chore => {
                                     return (
                                         <div key={chore.id}>
-                                            <ChoreCard chore={chore} deleteChore={deleteChore} updateProgress={updateProgress}/>
+                                            <ChoreCard chore={chore} deleteChore={deleteChore}
+                                                       updateProgress={updateProgress}/>
                                             <br/>
                                         </div>)
                                 }
@@ -28,7 +29,7 @@ const ChoreDisplay = ({chores, deleteChore, updateProgress}) => {
                         }
                     </Col>
 
-                    <Col xs={6}>
+                    <Col xs={6} style={{paddingRight: "30px", paddingLeft: "30px"}}>
                         <h3>
                             Undated Chores
                         </h3>
@@ -38,7 +39,8 @@ const ChoreDisplay = ({chores, deleteChore, updateProgress}) => {
                         {
                             chores.map(chore =>
                                 <div key={chore.id}>
-                                    <ChoreCard chore={chore} deleteChore={deleteChore} updateProgress={updateProgress}/>
+                                    <ChoreCard chore={chore} deleteChore={deleteChore}
+                                               updateProgress={updateProgress}/>
                                     <br/>
                                 </div>
                             )

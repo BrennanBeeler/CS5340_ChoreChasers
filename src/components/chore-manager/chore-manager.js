@@ -75,17 +75,10 @@ const ChoreManager = ({
                             </li>
                         )
                     }
-
-                    {/*TODO: determine at end of project if pending is needed*/}
-                    {/*{*/}
-                    {/*    pendingGroups.map(group =>*/}
-                    {/*        <PendingGroup groupName={group.name} key={group.name}/>*/}
-                    {/*    )*/}
-                    {/*}*/}
                 </ul>
             </div>
 
-            <div className="col-9">
+            <div className="col-9" style={{paddingLeft: 0, paddingRight: 0}}>
                 {
                     activeGroupId === "Personal Chores" &&
                     <PersonalChores/>

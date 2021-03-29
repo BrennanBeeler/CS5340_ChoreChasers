@@ -12,6 +12,7 @@ class PersonalChores extends React.Component {
       let completedPoints = 0;
       let totalPoints = 0;
 
+      //TODO: remove map- map needs return value
       this.props.chores.map(chore => {
         totalPoints += chore.points;
         if (chore.done) {
@@ -39,30 +40,33 @@ class PersonalChores extends React.Component {
 
     render() {
       return (
-      <div className="container-fluid">
-        <div className="row">
-          Today's Progress
+      <div className="container-fluid" style={{paddingLeft: 0, paddingRight: 0}}>
+          <div style={{paddingLeft: "12px", paddingRight: "12px", paddingTop: "10px"}}>
+              <div>
+                  Today's Progress
 
-          <Button variant="primary" onClick={() => this.setState({choreModal: true})}>
-            Create Chore
-          </Button>
-        </div>
+                  <Button variant="primary" onClick={() => this.setState({choreModal: true})}>
+                      Create Chore
+                  </Button>
+              </div>
 
-        {/*TODO: evaluate temp fix for duplicate keys- +15*/}
-        <CreateChoreModal key={new Date().getTime() + 15}
-                          show={this.state.choreModal}
-                          hide={() => this.setState({choreModal: false})}
-                          profileUsername={this.state.profileUsername}
-                          />
+              {/*TODO: evaluate temp fix for duplicate keys- +15*/}
+              <CreateChoreModal key={new Date().getTime() + 15}
+                                show={this.state.choreModal}
+                                hide={() => this.setState({choreModal: false})}
+                                profileUsername={this.state.profileUsername}
+              />
 
-        <ProgressBar>
-          <ProgressBar variant="success" now={this.state.completedPoints/this.state.totalPoints *100} key={1}/>
-        </ProgressBar>
-        <br/>
+              <ProgressBar>
+                  <ProgressBar variant="success" now={this.state.completedPoints/this.state.totalPoints *100} key={1}/>
+              </ProgressBar>
+              <br/>
 
-        <h1>
-          Personal Chores
-        </h1>
+              <h1>
+                  Personal Chores
+              </h1>
+          </div>
+
 
         <ChoreDisplay key={new Date().getTime()}
                       chores={this.props.chores}

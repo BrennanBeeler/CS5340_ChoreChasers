@@ -10,7 +10,6 @@ const EditChoreModal = ({onHide, show, currentGroup, profileUsername, chore, edi
     const [repeatChore, setRepeatChore] = useState(chore.repeatChore);
     const [choreInstructions, setChoreInstructions] = useState(chore.choreInstructions);
     // TODO: currently can only make chores from group you are in - fix
-    const [choreGroup, setChoreGroup] = useState(currentGroup);
     const [rewardMode, setRewardMode] = useState(chore.rewardMode);
     const [pointsChecked, setPointsChecked] = useState(chore.pointsChecked)
     const [prizeChecked, setPrizeChecked] = useState(chore.prizeChecked)
@@ -45,8 +44,8 @@ const EditChoreModal = ({onHide, show, currentGroup, profileUsername, chore, edi
             assignees: []
         }
 
-        editChore(newChore, choreGroup);
-        onHide()
+        editChore(newChore, currentGroup.id);
+        onHide();
     }
 
 
@@ -88,26 +87,16 @@ const EditChoreModal = ({onHide, show, currentGroup, profileUsername, chore, edi
                         <Form.Control as="textarea" placeholder="eg: finish before 5pm" value={choreInstructions}
                                       onChange={event => setChoreInstructions(event.target.value)}/>
                     </Form.Group>
-
-                    <Form.Group>
-                        <Form.Label>Choose your group *</Form.Label>
-                        <Form.Control as="select" value={choreGroup}
-                                      onChange={event => setChoreGroup(event.target.value)}>
-                            <option value={choreGroup.name}>{choreGroup.name}</option>
-                            {/*TODO: populate from list of possible user groups*/}
-                        </Form.Control>
-                    </Form.Group>
-
-                    {console.log(choreGroup)}{
+                    {
                         //TODO: find better solution for users
-                        choreGroup.name !== "Personal Chores" &&
+                        currentGroup.name !== "Personal Chores" &&
 
                         <Form.Group>
                             <Form.Label>Assignees</Form.Label>
                             <Typeahead
                                 id="assignees"
                                 onChange={setAssignees}
-                                options={choreGroup.members}
+                                options={currentGroup.members}
                                 placeholder="Type the name of the person this chore is assigned to..."
                                 selected={assignees}
                                 multiple

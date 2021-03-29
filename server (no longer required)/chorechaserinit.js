@@ -32,6 +32,9 @@ async function initializeDB() {
         const db = client.db();
         const groupCollection = db.collection('groups');
         const userCollection = db.collection('users');
+        //---
+        const choreCollection = db.collection('chores');
+        //---
         createUserIndex(userCollection);
 
         // //check if group collection already exists
@@ -51,7 +54,7 @@ async function initializeDB() {
 
 
         //check if user collection already exists
-        await userCollection.countDocuments({})
+        userCollection.countDocuments({})
             .then(async function (checkExists) {
                 // console.log(checkExists);
                 if(checkExists > 0) {
@@ -64,6 +67,21 @@ async function initializeDB() {
                     client.close();
                 }
             });
+
+        choreCollection.countDocuments({})
+            .then(async function (checkExists) {
+                // console.log(checkExists);
+                if(checkExists > 0) {
+                    console.log("Deleting existing chores collection...");
+                    await choreCollection.drop();
+                    client.close();
+                }
+                else {
+                    console.log("No existing chores collections to delete");
+                    client.close();
+                }
+            });
+
     }
     catch(err) {
         console.log(err);
@@ -114,6 +132,7 @@ const userMax = {
     emailId: 'max123@gmail.com',
     // TODO figure out how to add group _id and not id field
     groupIds: [],
+    pendingGroups:[],
     username: 'max123',
     password:'password',
     chores: [

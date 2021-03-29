@@ -3,7 +3,8 @@ import {connect} from "react-redux";
 import {Link, Redirect} from "react-router-dom";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
-import "./background-preview.css";
+//import "./background-preview.css";
+import "./profile.css";
 import {ProgressBar} from "react-bootstrap";
 
 const Profile = ({
@@ -53,8 +54,8 @@ const Profile = ({
             <Link to="/profileSettings" className="nav-link-center">
                 View Account Settings
             </Link>
-            <div style={{padding: 20}} />
-
+            <br/>
+            <br/>
             <h4 className="text-center">
               CURRENT LEVEL
             </h4>
@@ -74,7 +75,6 @@ const Profile = ({
             <h5 style={{padding:5}}>
               You're doing great, {profile.username || defaultName}! Keep up the good work.
             </h5>
-            <div style={{padding: 10}} />
             <div className="row justify-content-center " style={{height: "0px", margin: "0px"}}>
             <h4>
               UNLOCKED LEVELS
@@ -111,10 +111,11 @@ const Profile = ({
                     </div>
                 )})}
               </div>
-              <Link to="/choreManager" className="btn btn-info">
+
+            </div>
+            <Link to="/choreManager" className="btn btn-info">
                Return to Chores
               </Link>
-            </div>
           </div>
         </div>
     )

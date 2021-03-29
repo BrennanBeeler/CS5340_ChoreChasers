@@ -12,6 +12,7 @@ class PersonalChores extends React.Component {
       let completedPoints = 0;
       let totalPoints = 0;
 
+      //TODO: remove map- map needs return value
       this.props.chores.map(chore => {
         totalPoints += chore.points;
         if (chore.done) {
@@ -57,9 +58,6 @@ class PersonalChores extends React.Component {
             Create Chore
           </Button>
 
-        <h1>
-          Personal Chores
-        </h1>
 
         <ChoreDisplay key={new Date().getTime()}
                       chores={this.props.chores}

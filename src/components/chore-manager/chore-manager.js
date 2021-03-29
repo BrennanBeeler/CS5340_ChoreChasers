@@ -35,6 +35,7 @@ const ChoreManager = ({
 
     return (
         <div className="hci-full-height row">
+            {/*TODO: figure out how to keep separator between groups and chores moving*/}
             <div className="col-3 border-right hci-full-height">
                 <div className="row-12 border-bottom border-dark pb-2">
                     Level {level}
@@ -75,17 +76,10 @@ const ChoreManager = ({
                             </li>
                         )
                     }
-
-                    {/*TODO: determine at end of project if pending is needed*/}
-                    {/*{*/}
-                    {/*    pendingGroups.map(group =>*/}
-                    {/*        <PendingGroup groupName={group.name} key={group.name}/>*/}
-                    {/*    )*/}
-                    {/*}*/}
                 </ul>
             </div>
 
-            <div className="col-9">
+            <div className="col-9" style={{paddingLeft: 0, paddingRight: 0}}>
                 {
                     activeGroupId === "Personal Chores" &&
                     <PersonalChores/>

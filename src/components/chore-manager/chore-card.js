@@ -77,6 +77,10 @@ const ChoreCard = ({props, chore, group, updateProgress, addPoints, editChore, d
 
             </Navbar.Text>
 
+            {
+                console.log(chore)
+            }
+
             <DeleteChoreModal key={new Date().getTime()} show={showDeleteModal}
                               hide={()=> setShowDeleteModal(false)} deleteChore={deleteChore} choreId={chore.id}/>
 
@@ -89,16 +93,16 @@ const ChoreCard = ({props, chore, group, updateProgress, addPoints, editChore, d
 
             <Navbar.Collapse id="basic-navbar-nav">
                 <Navbar.Text>
-                    {/*{*/}
-                    {/*    chore.dueDate !== null &&*/}
-                    {/*    <>*/}
-                    {/*        <div>*/}
-                    {/*            Due Date: {chore.dueDate.toDateString()}*/}
-                    {/*        </div>*/}
+                    {
+                        chore.dueDate !== null &&
+                        <>
+                            <div>
+                                Due Date: {new Date(chore.dueDate).toDateString()}
+                            </div>
 
-                    {/*        <br/>*/}
-                    {/*    </>*/}
-                    {/*}*/}
+                            <br/>
+                        </>
+                    }
 
                     {
                         chore.choreInstructions !== "" &&
@@ -117,15 +121,15 @@ const ChoreCard = ({props, chore, group, updateProgress, addPoints, editChore, d
                     <br/>
 
 
-                    {/*{*/}
-                    {/*    chore.dateAdded !== null &&*/}
-                    {/*        <>*/}
-                    {/*            <div>*/}
-                    {/*                Date Added: {chore.dateAdded.toDateString()}*/}
-                    {/*            </div>*/}
-                    {/*            <br/>*/}
-                    {/*        </>*/}
-                    {/*}*/}
+                    {
+                        chore.dateAdded !== null &&
+                            <>
+                                <div>
+                                    Date Added: {new Date(chore.dateAdded).toDateString()}
+                                </div>
+                                <br/>
+                            </>
+                    }
 
                     Assignees: {chore.assignees}
 

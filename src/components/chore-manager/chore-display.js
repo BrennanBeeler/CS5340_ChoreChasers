@@ -6,17 +6,6 @@ import "./chore-display.css"
 
 const ChoreDisplay = ({chores, deleteChore, updateProgress}) => {
 
-    const findOverdue = () => {
-        return chores.filter(chore => (chore.dueDate !== null && chore.dueDate < new Date()))
-            .sort((a, b) => {
-                if (a.dueDate < b.dueDate) {
-                    return -1
-                } else {
-                    return 1
-                }
-            });
-    }
-
     return(
         <div>
             <div className="border-top border-dark hero">
@@ -25,22 +14,36 @@ const ChoreDisplay = ({chores, deleteChore, updateProgress}) => {
                         {/*TODO: break up chores by date*/}
 
                         {
-                            findOverdue().length !== 0 &&
-                            <>
-                                <h3>
-                                    Overdue
-                                </h3>
-                                <br/>
-                                {
-                                    findOverdue().map(chore =>
-                                        <div key={chore.id}>
+                            console.log(chores)
+                        }
+
+
+                        <>
+                            {/*TODO: decide if we want to have overdue disappear*/}
+                            <h3>
+                                Overdue
+                            </h3>
+                            <br/>
+                            {
+                                chores.filter(chore => (chore.dueDate !== null && chore.dueDate < new Date().toDateString()))
+                                    .sort((a, b) => {
+                                        if (a.dueDate < b.dueDate) {
+                                            return -1
+                                        } else {
+                                            return 1
+                                        }
+                                    }).map(chore => {
+
+                                        return( <div key={chore.id}>
                                             <ChoreCard chore={chore} deleteChore={deleteChore}
                                                        updateProgress={updateProgress}/>
-                                                <br/>
+                                            <br/>
                                         </div>)
-                                }
-                            </>
-                        }
+                                    }
+                                   )
+                            }
+                        </>
+
 
                         <h3>
                             Due Today
@@ -49,22 +52,22 @@ const ChoreDisplay = ({chores, deleteChore, updateProgress}) => {
                         <br/>
 
                         {
-                            chores.filter(chore => chore.dueDate !== null && chore.dueDate > new Date()).sort((a, b) => {
-                                if(a.dueDate < b.dueDate) {
-                                    return -1
-                                }
-                                else {
-                                    return 1
-                                }
-                            }).map(chore => {
+                            chores.filter(chore => chore.dueDate !== null && chore.dueDate > new Date().toDateString())
+                                .sort((a, b) => {
+                                    if(a.dueDate < b.dueDate) {
+                                        return -1
+                                    }
+                                    else {
+                                        return 1
+                                    }
+                                }).map(chore => {
                                     return (
                                         <div key={chore.id}>
                                             <ChoreCard chore={chore} deleteChore={deleteChore}
                                                        updateProgress={updateProgress}/>
                                             <br/>
                                         </div>)
-                                }
-                            )
+                                })
                         }
                     </Col>
 

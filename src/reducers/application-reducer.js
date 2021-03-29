@@ -27,49 +27,64 @@ const initialState = {
                     id:"1",
                     done:false,
                     choreName: 'Call Anne about the party',
-                    dueDate: new Date(2024, 12, 9),
+                    dueDate: "2025-03-23T00:00:00.000Z",
                     repeatChore: "Never",
                     choreInstructions: "Call before 6PM",
                     rewards:{points:true,realLifeItem:false},
                     points:20,
                     realLifeItem:"snack",
                     splitReward:{everyoneGetsReward:false,fcfs:false},
-                    dateAdded: new Date("2021-03-23"),
+                    dateAdded: "2025-03-23T00:00:00.000Z",
+                    assignor: "max123",
+                    assignees: ["max123"]
+                },
+                {
+                    id:"2",
+                    done:false,
+                    choreName: 'Drive somewhere',
+                    dueDate: "2025-03-23T00:00:00.000Z",
+                    repeatChore: "Never",
+                    choreInstructions: "Call before 6PM",
+                    rewards:{points:true,realLifeItem:false},
+                    points:20,
+                    realLifeItem:"snack",
+                    splitReward:{everyoneGetsReward:false,fcfs:false},
+                    dateAdded: "2025-03-23T00:00:00.000Z",
                     assignor: "max123",
                     assignees: ["max123"]
                 },
                 {
                     id:"3",
                     done:false,
-                    choreName: 'Drive somewhere',
-                    dueDate: new Date(2022, 3, 3),
+                    choreName: 'Overduetest',
+                    dueDate: "2025-03-23T00:00:00.000Z",
                     repeatChore: "Never",
                     choreInstructions: "Call before 6PM",
                     rewards:{points:true,realLifeItem:false},
                     points:20,
                     realLifeItem:"snack",
                     splitReward:{everyoneGetsReward:false,fcfs:false},
-                    dateAdded: new Date("2021-03-23"),
+                    dateAdded: "2025-03-23T00:00:00.000Z",
                     assignor: "max123",
                     assignees: ["max123"]
                 },
                 {
                     id:"4",
                     done:false,
-                    choreName: 'Overduetest',
-                    dueDate: new Date(2019, 3, 3),
+                    choreName: 'Overduetest2',
+                    dueDate: "2025-03-23T00:00:00.000Z",
                     repeatChore: "Never",
                     choreInstructions: "Call before 6PM",
                     rewards:{points:true,realLifeItem:false},
                     points:20,
                     realLifeItem:"snack",
                     splitReward:{everyoneGetsReward:false,fcfs:false},
-                    dateAdded: new Date("2021-03-23"),
+                    dateAdded: "2025-03-23T00:00:00.000Z",
                     assignor: "max123",
                     assignees: ["max123"]
                 },
                 {
-                    id:"2",
+                    id:"5",
                     done:false,
                     choreName: 'Test',
                     dueDate: null,
@@ -79,7 +94,7 @@ const initialState = {
                     points:0,
                     realLifeItem:"snack",
                     splitReward:{everyoneGetsReward:false,fcfs:false},
-                    dateAdded: new Date("2021-03-23"),
+                    dateAdded: "2025-03-23T00:00:00.000Z",
                     assignor: "max123",
                     assignees: ["max123"]
                 }]
@@ -96,30 +111,60 @@ const initialState = {
                 id:"1",
                 done:false,
                 choreName: 'Pick dad up from the airport',
-                dueDate: new Date("2021-03-23"),
+                dueDate: "2025-03-23T00:00:00.000Z",
                 repeatChore: "Never",
                 choreInstructions: "flight lands at 5pm, be at airport by 4:45pm and DON'T BE LATE",
                 rewards:{points:true,realLifeItem:false},
                 points:20,
                 realLifeItem:"",
                 splitReward:{everyoneGetsReward:true,fcfs:false},
-                dateAdded: new Date("2021-03-23"),
+                dateAdded: "2025-03-23T00:00:00.000Z",
                 assignor: "Steve",
                 assignees: ["max123"]
             },
-
             {
                 id:"2",
                 done:false,
                 choreName: 'Wash the dishes',
-                dueDate: new Date("2021-03-22"),
+                dueDate: "2025-03-23T00:00:00.000Z",
                 repeatChore: "Weekly",
                 choreInstructions: "",
                 rewards:{points:false,realLifeItem:false},
                 points:5,
                 realLifeItem:"",
                 splitReward:{everyoneGetsReward:false,fcfs:false},
-                dateAdded: new Date("2021-03-23"),
+                dateAdded: "2025-03-23T00:00:00.000Z",
+                assignor: "Steve",
+                assignees: ['test1']
+            },
+            {
+                id:"3",
+                done:false,
+                choreName: 'test1',
+                dueDate: "2025-03-23T00:00:00.000Z",
+                repeatChore: "Never",
+                choreInstructions: "flight lands at 5pm, be at airport by 4:45pm and DON'T BE LATE",
+                rewards:{points:true,realLifeItem:false},
+                points:20,
+                realLifeItem:"",
+                splitReward:{everyoneGetsReward:true,fcfs:false},
+                dateAdded: "2025-03-23T00:00:00.000Z",
+                assignor: "Steve",
+                assignees: ["max123"]
+            },
+
+            {
+                id:"4",
+                done:false,
+                choreName: 'test2',
+                dueDate: "2025-03-23T00:00:00.000Z",
+                repeatChore: "Weekly",
+                choreInstructions: "",
+                rewards:{points:false,realLifeItem:false},
+                points:5,
+                realLifeItem:"",
+                splitReward:{everyoneGetsReward:false,fcfs:false},
+                dateAdded: "2025-03-23T00:00:00.000Z",
                 assignor: "Steve",
                 assignees: ['test1']
             }
@@ -133,26 +178,26 @@ const initialState = {
             chores: [
                 //TODO: required fields- id, done, chorename, rewards,splitrewards, assignor, assignees
                 {
-                    id:"1",
+                    id:"3",
                     done:false,
                     choreName: 'Pick dad up from the airport',
-                    dueDate: new Date("2021-03-23"),
+                    dueDate: "2025-03-23T00:00:00.000Z",
                     repeatChore: "Never",
                     choreInstructions: "flight lands at 5pm, be at airport by 4:45pm and DON'T BE LATE",
                     rewards:{points:true,realLifeItem:false},
                     points:20,
                     realLifeItem:"",
                     splitReward:{everyoneGetsReward:true,fcfs:false},
-                    dateAdded: new Date("2021-03-23"),
+                    dateAdded: "2025-03-23T00:00:00.000Z",
                     assignor: "Steve",
                     assignees: ["max123"]
                 },
 
                 {
-                    id:"2",
+                    id:"4",
                     done:false,
                     choreName: 'Wash the dishes',
-                    dueDate: new Date("2021-03-22"),
+                    dueDate: "2025-03-23T00:00:00.000Z",
                     repeatChore: "Weekly",
                     choreInstructions: "",
                     rewards:{points:false,realLifeItem:false},
@@ -232,6 +277,7 @@ const applicationReducer = (state = initialState, action) => {
             }
 
         case DELETE_CHORE:
+            console.log("calling delete")
             let modifiedGroup = action.group
             modifiedGroup.chores = modifiedGroup.chores.filter(chore => chore.id !== action.choreId)
 
@@ -240,6 +286,8 @@ const applicationReducer = (state = initialState, action) => {
                 groups: state.groups.map(group => group.id === modifiedGroup.id ? modifiedGroup : group)
 
             }
+
+            console.log(newState)
 
             return JSON.parse(JSON.stringify(newState))
         case EDIT_CHORE:

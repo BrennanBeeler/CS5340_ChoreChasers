@@ -34,8 +34,9 @@ const initialState = {
                     points:20,
                     realLifeItem:"snack",
                     splitReward:{everyoneGetsReward:false,fcfs:false},
-                    dateAdded: new Date("2021-03-23")
-
+                    dateAdded: new Date("2021-03-23"),
+                    assignor: "max123",
+                    assignees: ["max123"]
                 },
                 {
                     id:"3",
@@ -48,11 +49,12 @@ const initialState = {
                     points:20,
                     realLifeItem:"snack",
                     splitReward:{everyoneGetsReward:false,fcfs:false},
-                    dateAdded: new Date("2021-03-23")
-
+                    dateAdded: new Date("2021-03-23"),
+                    assignor: "max123",
+                    assignees: ["max123"]
                 },
                 {
-                    id:"3",
+                    id:"4",
                     done:false,
                     choreName: 'Overduetest',
                     dueDate: new Date(2019, 3, 3),
@@ -62,8 +64,9 @@ const initialState = {
                     points:20,
                     realLifeItem:"snack",
                     splitReward:{everyoneGetsReward:false,fcfs:false},
-                    dateAdded: new Date("2021-03-23")
-
+                    dateAdded: new Date("2021-03-23"),
+                    assignor: "max123",
+                    assignees: ["max123"]
                 },
                 {
                     id:"2",
@@ -76,8 +79,9 @@ const initialState = {
                     points:0,
                     realLifeItem:"snack",
                     splitReward:{everyoneGetsReward:false,fcfs:false},
-                    dateAdded: new Date("2021-03-23")
-
+                    dateAdded: new Date("2021-03-23"),
+                    assignor: "max123",
+                    assignees: ["max123"]
                 }]
     },
     activeGroupId : "Personal Chores",
@@ -101,8 +105,7 @@ const initialState = {
                 splitReward:{everyoneGetsReward:true,fcfs:false},
                 dateAdded: new Date("2021-03-23"),
                 assignor: "Steve",
-                //TODO:
-                assignees: ["max123"],
+                assignees: ["max123"]
             },
 
             {
@@ -116,6 +119,8 @@ const initialState = {
                 points:5,
                 realLifeItem:"",
                 splitReward:{everyoneGetsReward:false,fcfs:false},
+                dateAdded: new Date("2021-03-23"),
+                assignor: "Steve",
                 assignees: ['test1']
             }
         ]
@@ -140,7 +145,6 @@ const initialState = {
                     splitReward:{everyoneGetsReward:true,fcfs:false},
                     dateAdded: new Date("2021-03-23"),
                     assignor: "Steve",
-                    //TODO:
                     assignees: ["max123"]
                 },
 

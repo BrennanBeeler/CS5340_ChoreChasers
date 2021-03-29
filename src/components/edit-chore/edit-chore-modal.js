@@ -45,8 +45,8 @@ const EditChoreModal = ({onHide, show, currentGroup, profileUsername, chore, edi
             assignees: []
         }
 
-        editChore(newChore, choreGroup);
-        onHide()
+        editChore(newChore, choreGroup.id);
+        onHide();
     }
 
 
@@ -98,7 +98,7 @@ const EditChoreModal = ({onHide, show, currentGroup, profileUsername, chore, edi
                         </Form.Control>
                     </Form.Group>
 
-                    {console.log(choreGroup)}{
+                    {
                         //TODO: find better solution for users
                         choreGroup.name !== "Personal Chores" &&
 

@@ -91,15 +91,16 @@ const Home = () => {
 
                 </div>
 
+
                 <div className="col-4">
                     <div>
                     {/*TODO: figure out if want login/signup to disappear when logged in*/}
-                    <Link to="/login" className="btn btn-lg btn-primary float-right">
+                    <Link to="/login" className="btn btn-lg btn-primary floated-register-buttons">
                         Login
                     </Link>
                     </div>
 
-                    <Link to="/signUp" className="btn btn-lg btn-info float-right">
+                    <Link to="/signUp" className="btn btn-lg btn-info floated-register-buttons">
                         Sign Up
                     </Link>
                 </div>

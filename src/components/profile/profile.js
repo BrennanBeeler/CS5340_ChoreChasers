@@ -6,9 +6,11 @@ import Tooltip from "react-bootstrap/Tooltip";
 //import "./background-preview.css";
 import "./profile.css";
 import {ProgressBar} from "react-bootstrap";
+import applicationActions from "../../actions/actions";
 
 const Profile = ({
                         profile,
+                        setBackground,
                       }) => {
   const defaultName = "Username";
   const {points} = profile;
@@ -103,7 +105,7 @@ const Profile = ({
                         (<div className="row justify-content-center align-items-center">
                           <p>Level {index + 1}</p>
                           <img src={value} style={{height: "50px", width: "120px", padding: '4px'}}/>
-                          <button className="btn btn-info">
+                          <button className="btn btn-info" onClick={() => setBackground(value)}>
                             Set Background
                             </button>
                         </div>)
@@ -126,7 +128,7 @@ const stpm = (state) => ({
 })
 
 const dtpm = (dispatch) => ({
-
+    setBackground : (url) => applicationActions.setBackground(dispatch, url)
 })
 
 export default connect(stpm, dtpm)(Profile);

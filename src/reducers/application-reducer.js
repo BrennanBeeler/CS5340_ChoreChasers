@@ -1,6 +1,7 @@
 import {LOG_IN,
     LOG_OUT,
     SET_ACTIVE_GROUP,
+    SET_BACKGROUND,
     CREATE_GROUP,
     GET_GROUP_DATA,
     EDIT_GROUP,
@@ -17,6 +18,7 @@ const initialState = {
     activeProfile : "test",
     profile : {
             id : "test",
+            background: "'https://placekitten.com/1200/800'",
             emailId: 'test@email.com',
             points: 5,
             groupIds: [],
@@ -159,6 +161,11 @@ const applicationReducer = (state = initialState, action) => {
             return {
                 ...state,
                 activeGroupId: action.activeGroupId
+            }
+        case SET_BACKGROUND:
+            state.profile.background = action.url;
+            return {
+                ...state,
             }
         //    TODO: redo
         case CREATE_GROUP:

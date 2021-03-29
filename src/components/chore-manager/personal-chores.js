@@ -58,6 +58,10 @@ class PersonalChores extends React.Component {
             Create Chore
           </Button>
 
+        <h1>
+              Personal Chores
+          </h1>
+
 
         <ChoreDisplay key={new Date().getTime()}
                       chores={this.props.chores}

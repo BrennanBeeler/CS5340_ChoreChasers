@@ -1,6 +1,11 @@
 .body-background {
     background-color: #daf8f1;
     padding-top: 30px;
+    height: 750px;
+    background: linear-gradient(rgba(0,0,0,-2.0),
+    rgba(0,0,0,-1.0)),
+    url("/src/css-images/hangingclothes2.jpg");
+    background-size: cover;
 }
 
 
@@ -40,7 +45,7 @@
     font-family: Tahoma, Geneva, sans-serif;
     text-align: center;
     font-size: 50px;
-    color: #555552;
+    color: #efefe6;
     text-transform: none;
     margin: 0 20px;
     opacity: 1.0;
@@ -52,6 +57,7 @@
     font-family: Tahoma, Geneva, sans-serif;
     text-align: center;
     font-size: 25px;
+    color: #efefe6;
     text-transform: none;
     margin: 0 20px;
     opacity: 1.0;

@@ -1,10 +1,19 @@
 import {Button, Col, Modal, Row} from "react-bootstrap";
 import React from "react";
+import applicationActions from "../../actions/actions";
+import {connect} from "react-redux";
 
-const LeaveGroupModal = (props) => {
+const LeaveGroupModal = (props,
+                         group,
+                         profileUsername,
+                         editGroup,
+                         activeGroupId,
+                         state) => {
   const handleLeave = (event) => {
     event.preventDefault();
-    // edit group and remove member
+    console.log(state)
+    group.members.pop(profileUsername)
+    editGroup(group);
   }
 
   return(
@@ -27,7 +36,7 @@ const LeaveGroupModal = (props) => {
                     </Col>
                     <Col xs={6}>
                         {/*TODO: nee to make creat chore validate and submit data*/}
-                        <Button variant="danger">
+                        <Button variant="danger" onClick={handleLeave}>
                             Yes, delete
                         </Button>
                     </Col>
@@ -37,4 +46,20 @@ const LeaveGroupModal = (props) => {
   )
 };
 
-export default LeaveGroupModal;
+const stpm = (state) => ({
+    activeGroupId: state.activeGroupId,
+    activeProfile: state.activeProfile,
+    // TODO: eventually groups will be actually populated
+    group : state.groups.filter(group => group.id === state.activeGroupId)[0],
+    profileUsername : state.profile.username,
+    state: state
+})
+
+const dtpm = (dispatch) => ({
+    getGroupData : (profile, groupId) => applicationActions.getGroupData(dispatch, profile, groupId),
+    deleteChore : (group, choreId) => applicationActions.deleteChore(dispatch, group, choreId),
+    createChore : (groupId, chore) => applicationActions.createChore(dispatch, groupId, chore),
+    editGroup: (group) => applicationActions.editGroup(dispatch, group)
+})
+
+export default connect(stpm, dtpm)(LeaveGroupModal);

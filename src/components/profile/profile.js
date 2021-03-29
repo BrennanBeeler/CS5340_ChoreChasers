@@ -4,12 +4,29 @@ import {Link, Redirect} from "react-router-dom";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import "./background-preview.css";
+import {ProgressBar} from "react-bootstrap";
 
 const Profile = ({
                         profile,
                       }) => {
   const defaultName = "Username";
-  const level = parseInt(profile.level) || 1;
+  const {points} = profile;
+    let level = 1;
+    let maxPoints = 10;
+    const updateLevel = () => {
+      if (points < 10) {
+        level = 1;
+        maxPoints = 10;
+      } else if (points < 100) {
+        level = 2;
+        maxPoints = 100;
+      } else if (points < 1000000) {
+        level = 3;
+        maxPoints = 1000000;
+      }
+    };
+    // TODO: It doesn't affect performance but this is pretty bad practice, change later
+    updateLevel();
   const unlockableBackgrounds = ["https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Animated_Wallpaper_Windows_" +
   "10_-_Wallpaper_Engine.gif/440px-Animated_Wallpaper_Windows_10_-_Wallpaper_Engine.gif", "https://img.freepik.com/free-" +
   "photo/hand-painted-watercolor-background-with-sky-clouds-shape_24972-1095.jpg?size=626&ext=jpg", "https://images." +
@@ -30,7 +47,7 @@ const Profile = ({
           <div className="mx-auto text-center">
             <span className="btn fa fa-user-circle fa-4x"/>
             <h2 className="text-center">
-              {profile || defaultName}'s Profile
+              {profile.username || defaultName}'s Profile
             </h2>
             <Link to="/profileSettings" className="btn fa fa-cog"/>
             <Link to="/profileSettings" className="nav-link-center">
@@ -45,18 +62,17 @@ const Profile = ({
             <text style={{padding: 4}}>
               Level {level}
             </text>
-            <div className="progress hci-personal-progress-div">
-                <div className="progress-bar hci-personal-progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0"
-                     aria-valuemax="100">
-                    0/1
-                </div>
+            <div >
+                <ProgressBar>
+                  <ProgressBar  variant="info" now={profile.points/maxPoints * 100} key={9} />
+                </ProgressBar>
+              {profile.points}/{maxPoints} points
             </div>
              <text style={{padding: 4}}>
-              0/50 points
             </text>
           </div>
             <h5 style={{padding:5}}>
-              You're doing great, {profile || defaultName}! Keep up the good work.
+              You're doing great, {profile.username || defaultName}! Keep up the good work.
             </h5>
             <div style={{padding: 10}} />
             <div className="row justify-content-center " style={{height: "0px", margin: "0px"}}>
@@ -105,7 +121,7 @@ const Profile = ({
 }
 
 const stpm = (state) => ({
-    profile: state.profile.username,
+    profile: state.profile,
 })
 
 const dtpm = (dispatch) => ({

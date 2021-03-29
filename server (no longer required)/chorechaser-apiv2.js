@@ -27,12 +27,40 @@ async function getDB() {
 * Takes JSON of user input from Add New Chore and group ID.
 * Chore is added to respective group list of chores.
 * */
+async function addChore(newChore) {
+    const db = await getDB();
+    // TODO not sure if it's a bad thing for program to keep running when this function is run
+    if (db != null) {
+        // const groupCollection = db.collection("groups");
+        const choreCollection = db.collection("chores");
+
+        try {
+            //add to chore collection
+            // await choreCollection.insertOne(newChore,function(err) {
+            //    if (err) return;
+            //    var choreId = newChore._id;
+            //    console.log(choreId.toString());
+            //    return choreId;
+            // });
+            const resultId = await choreCollection.insertOne(newChore);
+            console.log(resultId._id);
+            return resultId._id;
+        } catch (err) {
+            console.log(err);
+        }
+    }
+    else {
+        return null;
+    }
+}
+
 async function addGroupChore(newChore, groupId) {
-    //TODO make sure newChore's id field is auto-incremented
     const db = await getDB();
     // TODO not sure if it's a bad thing for program to keep running when this function is run
     if (db != null) {
         const groupCollection = db.collection("groups");
+        const choreCollection = db.collection("chores");
+
         try {
             groupId = new ObjectId(groupId);
             await groupCollection.updateOne(
@@ -40,14 +68,18 @@ async function addGroupChore(newChore, groupId) {
                 {
                     $addToSet: {
                         // TODO does each chore need to be checked for uniqueness in some way?
-                        chores: newChore
+                        chores: addChore(newChore) //this will be inserted chore ID
                     }
                 }
             );
             console.log('Added group chore');
+            return await choreCollection.find(addChore(newChore)); //return findById chore object
         } catch (err) {
             console.log(err);
         }
+    }
+    else {
+        return {};
     }
 }
 
@@ -62,19 +94,31 @@ async function addPersonalChore(newChore, userEmailID) {
     // TODO not sure if it's a bad thing for program to keep running when this function is run
     if (db != null) {
         const userCollection = db.collection("users");
+        const choreCollection = db.collection("chores");
+        let choreId = new ObjectId();
         try {
+            //add to chore collection
+            await choreCollection.insertOne(newChore,function(err) {
+                if (err) return;
+                choreId = newChore._id;
+            });
+
             await userCollection.updateOne(
                 {"emailId": userEmailID},
                 {
                     $addToSet: {
-                        chores: newChore
+                        chores: choreId
                     }
                 }
             );
             console.log('Added user personal chore');
+            return await choreCollection.find(choreId); //return findById chore object
         } catch (err) {
             console.log(err);
         }
+    }
+    else {
+        return {}
     }
 }
 
@@ -84,22 +128,30 @@ async function addPersonalChore(newChore, userEmailID) {
 * Takes edited JSON of user input from Edit Chore, group ID, and selected chore ID.
 * Chore is edited onto the selected group chore.
 * */
-async function editGroupChore(newChore, groupId, choreId) {
+async function editChore(newChore, choreId) {
     const db = await getDB();
     // TODO not sure if it's a bad thing for program to keep running when this function is run
     if (db != null) {
-        const groupCollection = db.collection("groups");
+        const choreCollection = db.collection("chores");
         try {
-            groupId = new ObjectId(groupId);
-            await groupCollection.updateOne(
-                { "_id": groupId, "chores.id": choreId },
-                { $set: { 'chores.$' : {newChore } } }
+            choreId = new ObjectId(choreId);
+            // await groupCollection.updateOne(
+            //     { "_id": groupId, "chores.id": choreId },
+            //     { $set: { 'chores.$' : {newChore } } }
+            // );
+            await choreCollection.updateOne(
+                { "_id": choreId },
+                { $set:  newChore }
             );
 
             console.log('Updated group chore');
+            return await choreCollection.find(choreId); //return findById chore object
         } catch (err) {
             console.log(err);
         }
+    }
+    else {
+        return {}
     }
 }
 
@@ -243,7 +295,7 @@ async function getAllPersonalChores(userEmailID) {
 * Toggle is assumed to be true and chores is assumed to be empty, by default.
 * Group is added to chore chasers (adding groupId to users will be done later).
 * */
-async function addNewGroup(newGroup) {
+async function addNewGroup(newGroup) { //pass in an array of members, person who created the group
     const db = await getDB();
     // TODO not sure if it's a bad thing for program to keep running when this function is run
     if (db != null) {
@@ -341,6 +393,8 @@ const newGroupChore = {
     dueDate: new Date("2021-03-22"),
     repeatChore: "Daily",
     choreInstructions: "",
+    assignees:[],
+    assignor:"",
     rewards:{points:false,realLifeItem:false},
     points:0,
     realLifeItem:"",
@@ -355,6 +409,8 @@ const newPersonalChore = {
     dueDate: new Date("2021-03-22"),
     repeatChore: "Weekly",
     choreInstructions: "",
+    assignees:[],
+    assignor:"",
     rewards:{points:false,realLifeItem:false},
     points:0,
     realLifeItem:"",
@@ -369,6 +425,8 @@ const editedUserChore = {
     dueDate: new Date("2021-03-22"),
     repeatChore: "Weekly",
     choreInstructions: "",
+    assignees:[],
+    assignor:"",
     rewards:{points:false,realLifeItem:false},
     points:0,
     realLifeItem:"",
@@ -414,18 +472,18 @@ const userVinnie = {
     chores: []
 };
 
-// addGroupChore(newGroupChore,"605bed229cd089604954ed1b");
+addGroupChore(newGroupChore,"605d95d59437dc81405239a5");
 // addPersonalChore(newPersonalChore,'max123@gmail.com');
 // editPersonalChore(editedUserChore,'max123@gmail.com',1);
 // editGroupChore(editedGroupChore,"605bed229cd089604954ed1b",2);
 // deleteGroupChore("605bed229cd089604954ed1b",3);
 // deletePersonalChore('max123@gmail.com',2);
 // getAllPersonalChores('max123@gmail.com');
-// getAllGroupChores("605bed229cd089604954ed1b"); //gives result as [Object], must fix
+// getAllGroupChores("605ccd1c5307f06df7bfef7d"); //gives result as [Object], must fix
 // addNewGroup(roomiesGroup);
 // addNewGroup(friendsGroup);
 // deleteGroup("605bed229cd089604954ed1b");
 // addNewUser(userVinnie);
 // deleteUser('vinnie00@gmail.com');
 
-//605bed229cd089604954ed1b
+// editChore(editedUserChore,"605d89a21b98e57f262547c0");

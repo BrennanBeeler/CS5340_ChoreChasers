@@ -3,6 +3,7 @@ import {Link, Redirect} from "react-router-dom";
 import LeaveGroupModal from "./leave-group-modal";
 import applicationActions from "../../actions/actions";
 import {connect} from "react-redux";
+import "./group-settings.css";
 
 const GroupSettings = ({
                    profile,
@@ -26,7 +27,7 @@ const GroupSettings = ({
             </h1>
           <br/>
 
-            <h4 className="text-left">
+            <h4>
                 Disable 'Weekly Progress Points' bar
             </h4>
             <div className="custom-control custom-switch row">

@@ -65,15 +65,11 @@ const SignUp = ({
                            onChange={(event) => setPassword(event.target.value)}/>
                 </div>
 
-
-                <button className="btn btn-success btn-block" onClick={(event => handleSubmit(event))}>
-                    Start Chores
-                </button>
-
-                {
-                    loggedIn &&
-                        <Redirect to="/choreManager"/>
+                {// TODO: Sign up user
                 }
+                <Link to="/choreManager" className="btn btn-success btn-block">
+                    Start Chores
+                </Link>
 
 
                 <br/>

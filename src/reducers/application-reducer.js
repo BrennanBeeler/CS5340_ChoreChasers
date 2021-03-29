@@ -200,6 +200,8 @@ const applicationReducer = (state = initialState, action) => {
                 groups: state.groups.map(group => group.id === modifiedGroup.id ? modifiedGroup : group)
 
             }
+
+            return JSON.parse(JSON.stringify(newState))
         case EDIT_CHORE:
             if (action.groupId === "Personal Chores") {
               state.profile.chores = state.profile.chores.map(chore => {
@@ -234,7 +236,6 @@ const applicationReducer = (state = initialState, action) => {
                 ...state
             }
 
-            return JSON.parse(JSON.stringify(newState))
         case DELETE_PERSONAL_CHORE:
             let initialProfile = state.profile
             initialProfile.chores = initialProfile.chores.filter(chore => chore.id !== action.choreId)

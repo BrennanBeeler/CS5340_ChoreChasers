@@ -1,9 +1,11 @@
 import {LOG_IN,
     LOG_OUT,
     SET_ACTIVE_GROUP,
+    SET_BACKGROUND,
     CREATE_GROUP,
     GET_GROUP_DATA,
     EDIT_GROUP,
+    DELETE_GROUP,
     CREATE_CHORE,
     EDIT_CHORE,
     ADD_POINT_VALUE,
@@ -17,6 +19,7 @@ const initialState = {
     activeProfile : "test",
     profile : {
             id : "test",
+            background: "https://coolbackgrounds.io/images/backgrounds/white/pure-white-background-85a2a7fd.jpg",
             emailId: 'test@email.com',
             points: 0,
             groupIds: [],
@@ -27,7 +30,7 @@ const initialState = {
                     id:"1",
                     done:false,
                     choreName: 'Call Anne about the party',
-                    dueDate: "2025-03-23T00:00:00.000Z",
+                    dueDate: "2020-03-23T00:00:00.000Z",
                     repeatChore: "Never",
                     choreInstructions: "Call before 6PM",
                     rewards:{points:true,realLifeItem:false},
@@ -41,7 +44,7 @@ const initialState = {
                 {
                     id:"2",
                     done:false,
-                    choreName: 'Drive somewhere',
+                    choreName: 'Stop smoking for 5 days in a row',
                     dueDate: "2025-03-23T00:00:00.000Z",
                     repeatChore: "Never",
                     choreInstructions: "Call before 6PM",
@@ -71,7 +74,7 @@ const initialState = {
                 {
                     id:"4",
                     done:false,
-                    choreName: 'Overduetest2',
+                    choreName: 'Practice piano',
                     dueDate: "2025-03-23T00:00:00.000Z",
                     repeatChore: "Never",
                     choreInstructions: "Call before 6PM",
@@ -86,7 +89,7 @@ const initialState = {
                 {
                     id:"5",
                     done:false,
-                    choreName: 'Test',
+                    choreName: 'Successfully bench 100lbs',
                     dueDate: null,
                     repeatChore: "Never",
                     choreInstructions: "Call before 6PM",
@@ -104,7 +107,7 @@ const initialState = {
         id: "1",
         name: 'Family',
         progressBar: false,
-        members: ["test1", "test2", "test3", "max123"],
+        members: ["Marie", "Abby", "Vinnie", "Alan", "max123"],
         chores: [
             //TODO: required fields- id, done, chorename, rewards,splitrewards, assignor, assignees
             {
@@ -119,28 +122,27 @@ const initialState = {
                 realLifeItem:"",
                 splitReward:{everyoneGetsReward:true,fcfs:false},
                 dateAdded: "2025-03-23T00:00:00.000Z",
-                assignor: "Steve",
+                assignor: "Alan",
                 assignees: ["max123"]
             },
             {
                 id:"2",
                 done:false,
-                choreName: 'Wash the dishes',
-                dueDate: "2025-03-23T00:00:00.000Z",
+                choreName: 'Vacuum',
                 repeatChore: "Weekly",
                 choreInstructions: "",
-                rewards:{points:false,realLifeItem:false},
+                rewards:{points:true,realLifeItem:false},
                 points:5,
                 realLifeItem:"",
                 splitReward:{everyoneGetsReward:false,fcfs:false},
                 dateAdded: "2025-03-23T00:00:00.000Z",
-                assignor: "Steve",
-                assignees: ['test1']
+                assignor: "Marie",
+                assignees: []
             },
             {
                 id:"3",
                 done:false,
-                choreName: 'test1',
+                choreName: 'Finish laundry',
                 dueDate: "2025-03-23T00:00:00.000Z",
                 repeatChore: "Never",
                 choreInstructions: "flight lands at 5pm, be at airport by 4:45pm and DON'T BE LATE",
@@ -149,64 +151,64 @@ const initialState = {
                 realLifeItem:"",
                 splitReward:{everyoneGetsReward:true,fcfs:false},
                 dateAdded: "2025-03-23T00:00:00.000Z",
-                assignor: "Steve",
+                assignor: "Vinnie",
                 assignees: ["max123"]
             },
 
             {
                 id:"4",
                 done:false,
-                choreName: 'test2',
+                choreName: 'Take out the trash',
                 dueDate: "2025-03-23T00:00:00.000Z",
                 repeatChore: "Weekly",
                 choreInstructions: "",
-                rewards:{points:false,realLifeItem:false},
+                rewards:{points:true,realLifeItem:false},
                 points:5,
                 realLifeItem:"",
                 splitReward:{everyoneGetsReward:false,fcfs:false},
                 dateAdded: "2025-03-23T00:00:00.000Z",
-                assignor: "Steve",
-                assignees: ['test1']
+                assignor: "max123",
+                assignees: ['Vinnie']
             }
         ]
     },
         {
             id: "2",
-            name: 'Roomies',
+            name: 'Group Project',
             progressBar: true,
-            members: [],
+            members: ['Chad', 'Brian'],
             chores: [
                 //TODO: required fields- id, done, chorename, rewards,splitrewards, assignor, assignees
                 {
                     id:"3",
                     done:false,
-                    choreName: 'Pick dad up from the airport',
+                    choreName: 'Write documentation',
                     dueDate: "2025-03-23T00:00:00.000Z",
                     repeatChore: "Never",
-                    choreInstructions: "flight lands at 5pm, be at airport by 4:45pm and DON'T BE LATE",
+                    choreInstructions: "",
                     rewards:{points:true,realLifeItem:false},
                     points:20,
                     realLifeItem:"",
                     splitReward:{everyoneGetsReward:true,fcfs:false},
                     dateAdded: "2025-03-23T00:00:00.000Z",
-                    assignor: "Steve",
+                    assignor: "Chad",
                     assignees: ["max123"]
                 },
 
                 {
                     id:"4",
                     done:false,
-                    choreName: 'Wash the dishes',
+                    choreName: 'Test section 3',
                     dueDate: "2025-03-23T00:00:00.000Z",
                     repeatChore: "Weekly",
                     choreInstructions: "",
-                    rewards:{points:false,realLifeItem:false},
+                    rewards:{points:true,realLifeItem:false},
                     points:5,
                     realLifeItem:"",
                     splitReward:{everyoneGetsReward:false,fcfs:false},
                     dateAdded: null,
-                    assignor: "Steve",
-                    assignees: ["max123, Steve, Frank"]
+                    assignor: "Brian",
+                    assignees: ["max123"]
                 }]
         }
     ]
@@ -214,21 +216,21 @@ const initialState = {
 
 const applicationReducer = (state = initialState, action) => {
     switch (action.type) {
-        //TODO: figure out where log out buttons will go
+      //TODO: figure out where log out buttons will go
         case LOG_OUT:
             return {
                 ...state,
                 loggedIn: false,
                 activeProfile: null
             }
-        //   TODO: redo
+      //   TODO: redo
         case LOG_IN:
             // TODO: redo once db connected
             if (action.id === state.profile.id) {
                 return {
                     ...state,
                     loggedIn: true,
-                    activeProfile : action.id
+                    activeProfile: action.id
                 }
             }
             return state
@@ -237,21 +239,29 @@ const applicationReducer = (state = initialState, action) => {
                 ...state,
                 activeGroupId: action.activeGroupId
             }
-        //    TODO: redo
+        case SET_BACKGROUND:
+            const newProfile = state.profile;
+            newProfile.background = action.url;
+
+            return {
+                ...state,
+                profile: newProfile,
+            }
+      //    TODO: redo
         case CREATE_GROUP:
             return {
                 ...state,
-                groups : [
+                groups: [
                     ...state.groups,
                     action.group
                 ]
             }
-        //    TODO: check once db connected
-        // case GET_GROUP_DATA:
-        //     return {
-        //         ...state,
-        //         groups : state.groups.filter(group => group.id === state.activeGroupId)
-        //     }
+      //    TODO: check once db connected
+      // case GET_GROUP_DATA:
+      //     return {
+      //         ...state,
+      //         groups : state.groups.filter(group => group.id === state.activeGroupId)
+      //     }
         case CREATE_CHORE:
             if (action.groupName === "Personal Chores") {
                 state.profile.chores.push(action.chore);
@@ -259,8 +269,7 @@ const applicationReducer = (state = initialState, action) => {
                 return {
                     ...state
                 }
-            }
-            else {
+            } else {
                 let tempGroups = state.groups;
                 tempGroups.forEach(group => group.name === action.groupName ? group.chores = [...group.chores, action.chore] : group)
 
@@ -276,8 +285,29 @@ const applicationReducer = (state = initialState, action) => {
 
             }
 
+        // TODO: Remove once connected to db, this is only for Leave Group
+        case DELETE_GROUP:
+            if (action.group) {
+                const newGroups = state.groups;
+                const temp = []
+                newGroups.forEach(group => {
+                    if (group.id !== action.group.id) {
+                        temp.push(group);
+                    }
+                })
+
+                return {
+                    ...state,
+                    activeGroupId: "Personal Chores",
+                    groups: temp
+                }
+            }
+            else {
+                return {
+                    ...state,
+                }
+            }
         case DELETE_CHORE:
-            console.log("calling delete")
             let modifiedGroup = action.group
             modifiedGroup.chores = modifiedGroup.chores.filter(chore => chore.id !== action.choreId)
 
@@ -287,36 +317,36 @@ const applicationReducer = (state = initialState, action) => {
 
             }
 
-            console.log(newState)
-
             return JSON.parse(JSON.stringify(newState))
         case EDIT_CHORE:
             if (action.groupId === "Personal Chores") {
-              state.profile.chores = state.profile.chores.map(chore => {
-                if (action.chore.id === chore.id) {
-                  return action.chore
-                } else {
-                  return chore
-                }
-              })
+                state.profile.chores = state.profile.chores.map(chore => {
+                    if (action.chore.id === chore.id) {
+                        return action.chore
+                    }
+                    else {
+                        return chore
+                    }
+                })
 
-              return {
-                ...state,
-              }
-            } else {
-              const groups = state.groups;
-              state.groups = groups.map(group => {
-                if (group.id === action.groupId) {
-                  const chores = group.chores.map(chore => action.chore.id === chore.id ? action.chore : chore);
-                  group.chores = chores;
-                  return group;
-                } else {
-                  return group;
+                return {
+                    ...state,
                 }
-              })
-              return {
-                ...state,
-              }
+            }
+            else {
+                const groups = state.groups;
+                state.groups = groups.map(group => {
+                    if (group.id === action.groupId) {
+                        const chores = group.chores.map(chore =>
+                            action.chore.id === chore.id ? action.chore : chore);
+                        group.chores = chores;
+                        return group;
+                    } else {
+                        return group;
+                    }
+                })
+
+                return JSON.parse(JSON.stringify(state))
             }
         case ADD_POINT_VALUE:
             state.profile.points += action.points;

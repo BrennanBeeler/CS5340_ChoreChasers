@@ -2,7 +2,9 @@ export const LOG_IN = "LOG_IN";
 export const LOG_OUT = "LOG_OUT";
 export const SIGN_UP = "SIGN_UP";
 export const SET_ACTIVE_GROUP = "SET_ACTIVE_GROUP";
+export const SET_BACKGROUND = "SET_BACKGROUND";
 export const CREATE_GROUP = "CREATE_GROUP";
+export const DELETE_GROUP = "DELETE_GROUP";
 export const EDIT_GROUP = "EDIT_GROUP";
 export const GET_GROUP_DATA = "GET_GROUP_DATA";
 export const CREATE_CHORE = "CREATE_CHORE";
@@ -48,10 +50,24 @@ const setActiveGroup = (dispatch, activeGroupId) => {
     })
 }
 
+const setBackground = (dispatch, url) => {
+    dispatch({
+        type : SET_BACKGROUND,
+        url
+    })
+}
+
 //TODO: figure out how to deal with group addition once database is ready- other members in particular
 const createGroup = (dispatch, profile, group) => {
     dispatch({
         type : CREATE_GROUP,
+        group
+    })
+}
+
+const deleteGroup = (dispatch, group) => {
+    dispatch({
+        type : DELETE_GROUP,
         group
     })
 }
@@ -111,7 +127,7 @@ const deletePersonalChore = (dispatch, choreId) => {
 }
 
 const applicationActions = {
-    logIn, logOut,signUp, setActiveGroup, createGroup, editGroup, editChore, getGroupData, addPoints,
+    logIn, logOut,signUp, setActiveGroup, setBackground, createGroup, deleteGroup, editGroup, editChore, getGroupData, addPoints,
     deleteChore, deletePersonalChore, createChore
 }
 

@@ -5,10 +5,10 @@ import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import GroupChores from "./group-chores";
 import CreateGroupModal from "../create-group/create-group-modal";
-import PendingGroup from "./pending-group";
+import "./chore-manager.css"
 
 const ChoreManager = ({
-                        profile,
+                        profileUsername,
                         points,
                         setActiveGroup,
                         activeGroupId = "Personal Chores",
@@ -36,40 +36,43 @@ const ChoreManager = ({
     return (
         <div className="hci-full-height row">
             {/*TODO: figure out how to keep separator between groups and chores moving*/}
-            <div className="col-3 border-right hci-full-height">
-                <div className="row-12 border-bottom border-dark pb-2">
-                    Level {level}
-                    <br/>
-                    <Link to="/profile" className="btn fa fa-user-circle fa-2x"/>
-                      {points}/{maxPoints} points
-                    <br/>
+            <div className="col-2 border-right hci-full-height">
+                <div className="row-12 border-bottom border-dark pb-4">
+                    <div className="level-header">
+                        Level {level}
+                    </div>
+                    <div class="profile-points">
+                        <Link to="/profile" className="btn fa fa-user-circle fa-3x"/>
+                        {points}/{maxPoints} points
+                    </div>
+                    <div class="profile-link">
 
                     <Link to="/profile">
-                        View {profile}'s Account
+                        View {profileUsername}'s Account
                     </Link>
+                    </div>
                 </div>
 
-                <button className="btn btn-info btn-block mt-4" onClick={() => setCreateGroupModal(true)}>
+                <button className="btn btn-info btn-block mt-4 pt-3 pb-3" onClick={() => setCreateGroupModal(true)}>
                     Create Group
                     <i className="fa fa-plus" style={{paddingLeft: "10px"}}/>
                 </button>
 
                 <CreateGroupModal key={new Date().getTime()} show={showCreateGroupModal}
-                                  onHide={()=> setCreateGroupModal(false)}
-                                  profile={profile}/>
+                                  onHide={()=> setCreateGroupModal(false)}/>
 
                 <br/>
 
                 <ul className="nav flex-column nav-pills mt-4" role="navigation">
 
-                    <li className={`nav-link nav-item mb-4 border border-dark ${activeGroupId === "Personal Chores" ? 'active':''}`}
+                    <li className={`nav-link nav-item mb-4 pt-4 pb-4 border border-dark group-button ${activeGroupId === "Personal Chores" ? 'active':''}`}
                         onClick={() => setActiveGroup("Personal Chores")}>
                         {activeGroupId === "Personal Chores" ? "Personal Chores" : "View Personal Chores"}
                     </li>
 
                     {
                         groups.map(group =>
-                            <li className={`nav-link nav-item mb-4 border border-dark ${activeGroupId === group.id ? 'active':''}`}
+                            <li className={`nav-link nav-item mb-4 pt-4 pb-4 border border-dark group-button ${activeGroupId === group.id ? 'active':''}`}
                                 key={group.id}
                                 onClick={() => setActiveGroup(group.id)}>
                                 {activeGroupId === group.id ? group.name : "View " + group.name}
@@ -99,7 +102,7 @@ const ChoreManager = ({
 }
 
 const stpm = (state) => ({
-    profile: state.profile.username,
+    profileUsername: state.profile.username,
     points: state.profile.points,
     activeGroupId: state.activeGroupId,
     groups : state.groups,

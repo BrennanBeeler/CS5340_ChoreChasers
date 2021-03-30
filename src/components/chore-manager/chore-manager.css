@@ -5,3 +5,42 @@
 .hci-progress {
     width: 50%;
 }
+
+.level-header {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 35px;
+    text-shadow: 4px 4px 5px #6892ff;
+    text-align: center;
+}
+
+.profile-points {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 18px;
+}
+
+.profile-link {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 16px;
+    text-align: center;
+}
+
+.group-button {
+    padding: 15px 32px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    max-height: 80px;
+    -webkit-transition-duration: 0.1s; /* Safari */
+    transition-duration: 0.1s;
+    font-family: Verdana, Geneva, sans-serif;
+
+}
+
+.group-button:hover {
+    box-shadow: 0 4px 4px 0 rgba(0,0,0,0.15), 0 17px 50px 0 rgba(0,0,0,0.19);
+}

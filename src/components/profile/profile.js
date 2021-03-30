@@ -3,11 +3,14 @@ import {connect} from "react-redux";
 import {Link, Redirect} from "react-router-dom";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
-import "./background-preview.css";
+//import "./background-preview.css";
+import "./profile.css";
 import {ProgressBar} from "react-bootstrap";
+import applicationActions from "../../actions/actions";
 
 const Profile = ({
                         profile,
+                        setBackground,
                       }) => {
   const defaultName = "Username";
   const {points} = profile;
@@ -27,14 +30,12 @@ const Profile = ({
     };
     // TODO: It doesn't affect performance but this is pretty bad practice, change later
     updateLevel();
-  const unlockableBackgrounds = ["https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Animated_Wallpaper_Windows_" +
-  "10_-_Wallpaper_Engine.gif/440px-Animated_Wallpaper_Windows_10_-_Wallpaper_Engine.gif", "https://img.freepik.com/free-" +
-  "photo/hand-painted-watercolor-background-with-sky-clouds-shape_24972-1095.jpg?size=626&ext=jpg", "https://images." +
-  "unsplash.com/photo-1579546929662-711aa81148cf?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHw%3D&w=1000&q=80",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Animated_Wallpaper_Windows_" +
-  "10_-_Wallpaper_Engine.gif/440px-Animated_Wallpaper_Windows_10_-_Wallpaper_Engine.gif", "https://img.freepik.com/free-" +
-  "photo/hand-painted-watercolor-background-with-sky-clouds-shape_24972-1095.jpg?size=626&ext=jpg", "https://images." +
-  "unsplash.com/photo-1579546929662-711aa81148cf?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHw%3D&w=1000&q=80"];
+  const unlockableBackgrounds = ["https://coolbackgrounds.io/images/backgrounds/white/pure-white-background-85a2a7fd.jpg",
+    "https://globetrender.com/wp-content/uploads/2020/05/Caribbean-beach.jpg",
+    "https://images.pexels.com/photos/1054289/pexels-photo-1054289.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+    "https://i.pinimg.com/originals/48/e4/cc/48e4cccf453801f8af4cc28b701a52ee.jpg",
+    "https://www.fau.edu/publicaffairs/branding/images/backgrounds/fau-background-2.jpg",
+    "https://cdn.shopify.com/s/files/1/0235/8415/files/ZoomBackground_ResizedPPMCD12-008_00-FRONT_Cover_OL.jpg?v=1597779554&format=jpg"];
 
   const renderTooltip = (props) => (
   <Tooltip id="button-tooltip" {...props}>
@@ -53,8 +54,8 @@ const Profile = ({
             <Link to="/profileSettings" className="nav-link-center">
                 View Account Settings
             </Link>
-            <div style={{padding: 20}} />
-
+            <br/>
+            <br/>
             <h4 className="text-center">
               CURRENT LEVEL
             </h4>
@@ -74,7 +75,6 @@ const Profile = ({
             <h5 style={{padding:5}}>
               You're doing great, {profile.username || defaultName}! Keep up the good work.
             </h5>
-            <div style={{padding: 10}} />
             <div className="row justify-content-center " style={{height: "0px", margin: "0px"}}>
             <h4>
               UNLOCKED LEVELS
@@ -103,7 +103,7 @@ const Profile = ({
                         (<div className="row justify-content-center align-items-center">
                           <p>Level {index + 1}</p>
                           <img src={value} style={{height: "50px", width: "120px", padding: '4px'}}/>
-                          <button className="btn btn-info">
+                          <button className="btn btn-info" onClick={(event) => setBackground(value)}>
                             Set Background
                             </button>
                         </div>)
@@ -111,10 +111,11 @@ const Profile = ({
                     </div>
                 )})}
               </div>
-              <Link to="/choreManager" className="btn btn-info">
+
+            </div>
+            <Link to="/choreManager" className="btn btn-info">
                Return to Chores
               </Link>
-            </div>
           </div>
         </div>
     )
@@ -125,7 +126,7 @@ const stpm = (state) => ({
 })
 
 const dtpm = (dispatch) => ({
-
+    setBackground : (url) => applicationActions.setBackground(dispatch, url)
 })
 
 export default connect(stpm, dtpm)(Profile);

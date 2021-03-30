@@ -29,7 +29,7 @@ const GroupSettings = ({
           <br/>
 
             <h4>
-                Disable 'Weekly Progress Points' bar
+                'Weekly Progress Points' bar
             </h4>
             <div className="custom-control custom-switch d-flex justify-content-around">
               <p/><p/>

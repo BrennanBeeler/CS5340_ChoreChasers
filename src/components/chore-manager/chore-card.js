@@ -26,6 +26,7 @@ const ChoreCard = ({props, chore, group, updateProgress, addPoints, editChore, d
         timeOut()
     }
 
+    //TODO: figure out hiding completed chores
     async function timeOut() {
         await new Promise(res => setTimeout(() => setCountDown(countDown - 1), 10000))
         //setVisibility(false);
@@ -41,6 +42,7 @@ const ChoreCard = ({props, chore, group, updateProgress, addPoints, editChore, d
         editChore(chore, group);
     }
 
+    // TODO: probably want to handle visibility as the chore display level
     return(visibility &&
       <>
 
@@ -84,9 +86,7 @@ const ChoreCard = ({props, chore, group, updateProgress, addPoints, editChore, d
             <DeleteChoreModal key={new Date().getTime()} show={showDeleteModal}
                               hide={()=> setShowDeleteModal(false)} deleteChore={deleteChore} choreId={chore.id}/>
 
-            {/*<Navbar.Toggle style={{position: "absolute", bottom: "10px", right: "10px"}}>Details</Navbar.Toggle>*/}
-            <Navbar.Toggle
-              style={{position: "absolute", bottom: "10px", right: "10px"}}
+            <Navbar.Toggle style={{position: "absolute", bottom: "10px", right: "10px"}}
               onClick={() => setToggleText(1 - toggleText)}>
                 {toggleTextStr[toggleText]}
             </Navbar.Toggle>
@@ -115,6 +115,12 @@ const ChoreCard = ({props, chore, group, updateProgress, addPoints, editChore, d
                     }
 
                     <div>
+                        Repeat Chore: {chore.repeatChore}
+                    </div>
+
+                    <br/>
+
+                    <div>
                         Assignor: {chore.assignor}
                     </div>
 
@@ -131,7 +137,8 @@ const ChoreCard = ({props, chore, group, updateProgress, addPoints, editChore, d
                             </>
                     }
 
-                    Assignees: {chore.assignees}
+                    Assignees: {chore.assignees.join(", ")}
+
 
                 </Navbar.Text>
 
@@ -147,7 +154,8 @@ const ChoreCard = ({props, chore, group, updateProgress, addPoints, editChore, d
                 </div>
             </Navbar.Collapse>
         </Navbar>
-      <EditChoreModal key={new Date().getTime()} show={editModal} onHide={()=> setEditModal(false)} group={group} chore={chore}/>
+      <EditChoreModal key={new Date().getTime()} show={editModal} onHide={()=> setEditModal(false)}
+                      group={group} chore={chore}/>
       </>
     )
 }

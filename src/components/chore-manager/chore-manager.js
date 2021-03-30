@@ -5,10 +5,9 @@ import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import GroupChores from "./group-chores";
 import CreateGroupModal from "../create-group/create-group-modal";
-import PendingGroup from "./pending-group";
 
 const ChoreManager = ({
-                        profile,
+                        profileUsername,
                         points,
                         setActiveGroup,
                         activeGroupId = "Personal Chores",
@@ -45,7 +44,7 @@ const ChoreManager = ({
                     <br/>
 
                     <Link to="/profile">
-                        View {profile}'s Account
+                        View {profileUsername}'s Account
                     </Link>
                 </div>
 
@@ -55,8 +54,7 @@ const ChoreManager = ({
                 </button>
 
                 <CreateGroupModal key={new Date().getTime()} show={showCreateGroupModal}
-                                  onHide={()=> setCreateGroupModal(false)}
-                                  profile={profile}/>
+                                  onHide={()=> setCreateGroupModal(false)}/>
 
                 <br/>
 
@@ -99,7 +97,7 @@ const ChoreManager = ({
 }
 
 const stpm = (state) => ({
-    profile: state.profile.username,
+    profileUsername: state.profile.username,
     points: state.profile.points,
     activeGroupId: state.activeGroupId,
     groups : state.groups,

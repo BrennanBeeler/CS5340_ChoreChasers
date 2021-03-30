@@ -3,20 +3,30 @@ import {Modal, Button, Form, Tooltip, OverlayTrigger, Row, Col} from "react-boot
 import applicationActions from "../../actions/actions";
 import {connect} from "react-redux";
 import {Typeahead} from "react-bootstrap-typeahead";
+import 'react-bootstrap-typeahead/css/Typeahead.css';
 
 const EditChoreModal = ({onHide, show, currentGroup, profileUsername, chore, editChore}) => {
+
+    const getInitialDate = () => {
+        if(chore.dueDate === null) {
+            return undefined
+        }
+        else {
+            let tempDate = new Date(chore.dueDate)
+            return tempDate.toISOString().substring(0, 10)
+        }
+    }
+
     const [choreName, setChoreName] = useState(chore.choreName);
-    const [dueDate, setDueDate] = useState(chore.dueDate);
+    const [dueDate, setDueDate] = useState(getInitialDate());
     const [repeatChore, setRepeatChore] = useState(chore.repeatChore);
     const [choreInstructions, setChoreInstructions] = useState(chore.choreInstructions);
-    // TODO: currently can only make chores from group you are in - fix
-    const [rewardMode, setRewardMode] = useState(chore.rewardMode);
-    const [pointsChecked, setPointsChecked] = useState(chore.pointsChecked)
-    const [prizeChecked, setPrizeChecked] = useState(chore.prizeChecked)
+    const [rewardMode, setRewardMode] = useState(chore.rewards.points === true || chore.rewards.realLifeItem === true);
     const [assignees, setAssignees] = useState(chore.assignees)
-    const [prizeText, setPrizeText] = useState(chore.prizeText)
-    const [pointNumber, setPointNumber] = useState(chore.pointNumber)
-
+    const [pointsChecked, setPointsChecked] = useState(chore.rewards.points)
+    const [prizeChecked, setPrizeChecked] = useState(chore.rewards.realLifeItem)
+    const [prizeText, setPrizeText] = useState(chore.realLifeItem)
+    const [pointNumber, setPointNumber] = useState(chore.points)
 
     const validateChore = () => {
         if(choreName === "") {
@@ -30,19 +40,20 @@ const EditChoreModal = ({onHide, show, currentGroup, profileUsername, chore, edi
             id: chore.id,
             done:false,
             choreName: choreName,
-            //TODO: Figure out no date
-            dueDate: dueDate,
+            //TODO: Currently date is one day behind because of date conversions- https://stackoverflow.com/questions/24312296/add-one-day-to-date-in-javascript
+            dueDate: dueDate === undefined ? null : new Date(dueDate).toISOString(),
             repeatChore: repeatChore,
             choreInstructions: choreInstructions,
             rewards:{points:pointsChecked,realLifeItem:prizeChecked},
             points: pointNumber,
             realLifeItem: prizeText,
             splitReward:{everyoneGetsReward:rewardMode,fcfs:!rewardMode},
-            dateAdded: new Date(),
-            assignor: profileUsername,
-            //TODO: need to figure out assignees for create
-            assignees: []
+            dateAdded: chore.dateAdded,
+            assignor: chore.assignor,
+            assignees: (currentGroup.name === "Personal Chores" ? [profileUsername] : assignees)
         }
+
+        console.log(newChore)
 
         editChore(newChore, currentGroup.id);
         onHide();
@@ -81,7 +92,7 @@ const EditChoreModal = ({onHide, show, currentGroup, profileUsername, chore, edi
                         </Form.Control>
                     </Form.Group>
 
-                    {/*TODO: time a bad placeholder?*/}
+                    {/*TODO: time a bad placeholder since we don't want to focus on time?*/}
                     <Form.Group>
                         <Form.Label>Have any chore instructions?</Form.Label>
                         <Form.Control as="textarea" placeholder="eg: finish before 5pm" value={choreInstructions}
@@ -90,7 +101,6 @@ const EditChoreModal = ({onHide, show, currentGroup, profileUsername, chore, edi
                     {
                         //TODO: find better solution for users
                         currentGroup.name !== "Personal Chores" &&
-
                         <Form.Group>
                             <Form.Label>Assignees</Form.Label>
                             <Typeahead
@@ -127,6 +137,7 @@ const EditChoreModal = ({onHide, show, currentGroup, profileUsername, chore, edi
                             {
                                 pointsChecked &&
                                     <Col>
+                                        {/*TODO: decide on bar visuals*/}
                                         {/*0 20*/} {pointNumber}
                                         <Form.Group controlId="formBasicRange">
                                             <Form.Control type="range" value={pointNumber} min="0" max="20"
@@ -231,7 +242,8 @@ const stpm = (state,ownProps) => ({
     currentGroup: state.activeGroupId === "Personal Chores" ? {name: "Personal Chores", id: "Personal Chores"} :
         state.groups.filter(group => group.id === state.activeGroupId)[0],
     groupOptions: [{name: "Personal Chores", id : "Personal Chores", members: []}]
-        .concat(state.groups.map(group => ({name: group.name, id: group.id, members: group.members})))
+        .concat(state.groups.map(group => ({name: group.name, id: group.id, members: group.members}))),
+    profileUsername : state.profile.username
 })
 
 const dtpm = (dispatch) => ({

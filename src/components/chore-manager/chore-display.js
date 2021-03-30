@@ -11,13 +11,6 @@ const ChoreDisplay = ({chores, deleteChore, updateProgress}) => {
             <div className="border-top border-dark hero">
                 <Row>
                     <Col xs={6} style={{paddingLeft: "30px", paddingRight : "30px"}}>
-                        {/*TODO: break up chores by date*/}
-
-                        {
-                            console.log(chores)
-                        }
-
-
                         <>
                             {/*TODO: decide if we want to have overdue disappear*/}
                             <h3>
@@ -25,7 +18,7 @@ const ChoreDisplay = ({chores, deleteChore, updateProgress}) => {
                             </h3>
                             <br/>
                             {
-                                chores.filter(chore => (chore.dueDate !== null && chore.dueDate < new Date().toDateString()))
+                                chores.filter(chore => chore.dueDate !== null && new Date(chore.dueDate).getTime() < new Date().getTime())
                                     .sort((a, b) => {
                                         if (a.dueDate < b.dueDate) {
                                             return -1
@@ -33,7 +26,6 @@ const ChoreDisplay = ({chores, deleteChore, updateProgress}) => {
                                             return 1
                                         }
                                     }).map(chore => {
-
                                         return( <div key={chore.id}>
                                             <ChoreCard chore={chore} deleteChore={deleteChore}
                                                        updateProgress={updateProgress}/>
@@ -43,8 +35,6 @@ const ChoreDisplay = ({chores, deleteChore, updateProgress}) => {
                                    )
                             }
                         </>
-
-
                         <h3>
                             Due Today
                         </h3>
@@ -52,7 +42,7 @@ const ChoreDisplay = ({chores, deleteChore, updateProgress}) => {
                         <br/>
 
                         {
-                            chores.filter(chore => chore.dueDate !== null && chore.dueDate > new Date().toDateString())
+                            chores.filter(chore => chore.dueDate !== null && new Date(chore.dueDate).getTime() >= new Date().getTime())
                                 .sort((a, b) => {
                                     if(a.dueDate < b.dueDate) {
                                         return -1

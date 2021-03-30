@@ -1,6 +1,7 @@
 import {LOG_IN,
     LOG_OUT,
     SET_ACTIVE_GROUP,
+    SET_BACKGROUND,
     CREATE_GROUP,
     GET_GROUP_DATA,
     EDIT_GROUP,
@@ -17,46 +18,94 @@ const initialState = {
     activeProfile : "test",
     profile : {
             id : "test",
+            background: "'https://placekitten.com/1200/800'",
             emailId: 'test@email.com',
-            points: 5,
+            points: 0,
             groupIds: [],
             username: 'max123',
             password:'password',
             chores: [
                 {
                     id:"1",
-                    done:true,
+                    done:false,
                     choreName: 'Call Anne about the party',
-                    dueDate: new Date(),
+                    dueDate: "2025-03-23T00:00:00.000Z",
                     repeatChore: "Never",
                     choreInstructions: "Call before 6PM",
                     rewards:{points:true,realLifeItem:false},
                     points:20,
                     realLifeItem:"snack",
                     splitReward:{everyoneGetsReward:false,fcfs:false},
-                    dateAdded: new Date("2021-03-23")
-
+                    dateAdded: "2025-03-23T00:00:00.000Z",
+                    assignor: "max123",
+                    assignees: ["max123"]
                 },
                 {
                     id:"2",
-                    done:true,
-                    choreName: 'Test',
-                    dueDate: new Date(),
+                    done:false,
+                    choreName: 'Drive somewhere',
+                    dueDate: "2025-03-23T00:00:00.000Z",
                     repeatChore: "Never",
                     choreInstructions: "Call before 6PM",
                     rewards:{points:true,realLifeItem:false},
+                    points:20,
+                    realLifeItem:"snack",
+                    splitReward:{everyoneGetsReward:false,fcfs:false},
+                    dateAdded: "2025-03-23T00:00:00.000Z",
+                    assignor: "max123",
+                    assignees: ["max123"]
+                },
+                {
+                    id:"3",
+                    done:false,
+                    choreName: 'Overduetest',
+                    dueDate: "2025-03-23T00:00:00.000Z",
+                    repeatChore: "Never",
+                    choreInstructions: "Call before 6PM",
+                    rewards:{points:true,realLifeItem:false},
+                    points:20,
+                    realLifeItem:"snack",
+                    splitReward:{everyoneGetsReward:false,fcfs:false},
+                    dateAdded: "2025-03-23T00:00:00.000Z",
+                    assignor: "max123",
+                    assignees: ["max123"]
+                },
+                {
+                    id:"4",
+                    done:false,
+                    choreName: 'Overduetest2',
+                    dueDate: "2025-03-23T00:00:00.000Z",
+                    repeatChore: "Never",
+                    choreInstructions: "Call before 6PM",
+                    rewards:{points:true,realLifeItem:false},
+                    points:20,
+                    realLifeItem:"snack",
+                    splitReward:{everyoneGetsReward:false,fcfs:false},
+                    dateAdded: "2025-03-23T00:00:00.000Z",
+                    assignor: "max123",
+                    assignees: ["max123"]
+                },
+                {
+                    id:"5",
+                    done:false,
+                    choreName: 'Test',
+                    dueDate: null,
+                    repeatChore: "Never",
+                    choreInstructions: "Call before 6PM",
+                    rewards:{points:false,realLifeItem:true},
                     points:0,
                     realLifeItem:"snack",
                     splitReward:{everyoneGetsReward:false,fcfs:false},
-                    dateAdded: new Date("2021-03-23")
-
+                    dateAdded: "2025-03-23T00:00:00.000Z",
+                    assignor: "max123",
+                    assignees: ["max123"]
                 }]
     },
     activeGroupId : "Personal Chores",
     groups : [{
         id: "1",
         name: 'Family',
-        progressBar: true,
+        progressBar: false,
         members: ["test1", "test2", "test3", "max123"],
         chores: [
             //TODO: required fields- id, done, chorename, rewards,splitrewards, assignor, assignees
@@ -64,30 +113,61 @@ const initialState = {
                 id:"1",
                 done:false,
                 choreName: 'Pick dad up from the airport',
-                dueDate: new Date("2021-03-23"),
+                dueDate: "2025-03-23T00:00:00.000Z",
                 repeatChore: "Never",
                 choreInstructions: "flight lands at 5pm, be at airport by 4:45pm and DON'T BE LATE",
                 rewards:{points:true,realLifeItem:false},
                 points:20,
                 realLifeItem:"",
                 splitReward:{everyoneGetsReward:true,fcfs:false},
-                dateAdded: new Date("2021-03-23"),
+                dateAdded: "2025-03-23T00:00:00.000Z",
                 assignor: "Steve",
-                //TODO:
-                assignees: ["max123"],
+                assignees: ["max123"]
             },
-
             {
                 id:"2",
-                done:true,
+                done:false,
                 choreName: 'Wash the dishes',
-                dueDate: new Date("2021-03-22"),
+                dueDate: "2025-03-23T00:00:00.000Z",
                 repeatChore: "Weekly",
                 choreInstructions: "",
                 rewards:{points:false,realLifeItem:false},
                 points:5,
                 realLifeItem:"",
                 splitReward:{everyoneGetsReward:false,fcfs:false},
+                dateAdded: "2025-03-23T00:00:00.000Z",
+                assignor: "Steve",
+                assignees: ['test1']
+            },
+            {
+                id:"3",
+                done:false,
+                choreName: 'test1',
+                dueDate: "2025-03-23T00:00:00.000Z",
+                repeatChore: "Never",
+                choreInstructions: "flight lands at 5pm, be at airport by 4:45pm and DON'T BE LATE",
+                rewards:{points:true,realLifeItem:false},
+                points:20,
+                realLifeItem:"",
+                splitReward:{everyoneGetsReward:true,fcfs:false},
+                dateAdded: "2025-03-23T00:00:00.000Z",
+                assignor: "Steve",
+                assignees: ["max123"]
+            },
+
+            {
+                id:"4",
+                done:false,
+                choreName: 'test2',
+                dueDate: "2025-03-23T00:00:00.000Z",
+                repeatChore: "Weekly",
+                choreInstructions: "",
+                rewards:{points:false,realLifeItem:false},
+                points:5,
+                realLifeItem:"",
+                splitReward:{everyoneGetsReward:false,fcfs:false},
+                dateAdded: "2025-03-23T00:00:00.000Z",
+                assignor: "Steve",
                 assignees: ['test1']
             }
         ]
@@ -100,27 +180,26 @@ const initialState = {
             chores: [
                 //TODO: required fields- id, done, chorename, rewards,splitrewards, assignor, assignees
                 {
-                    id:"1",
+                    id:"3",
                     done:false,
                     choreName: 'Pick dad up from the airport',
-                    dueDate: new Date("2021-03-23"),
+                    dueDate: "2025-03-23T00:00:00.000Z",
                     repeatChore: "Never",
                     choreInstructions: "flight lands at 5pm, be at airport by 4:45pm and DON'T BE LATE",
                     rewards:{points:true,realLifeItem:false},
                     points:20,
                     realLifeItem:"",
                     splitReward:{everyoneGetsReward:true,fcfs:false},
-                    dateAdded: new Date("2021-03-23"),
+                    dateAdded: "2025-03-23T00:00:00.000Z",
                     assignor: "Steve",
-                    //TODO:
                     assignees: ["max123"]
                 },
 
                 {
-                    id:"2",
+                    id:"4",
                     done:false,
                     choreName: 'Wash the dishes',
-                    dueDate: new Date("2021-03-22"),
+                    dueDate: "2025-03-23T00:00:00.000Z",
                     repeatChore: "Weekly",
                     choreInstructions: "",
                     rewards:{points:false,realLifeItem:false},
@@ -159,6 +238,14 @@ const applicationReducer = (state = initialState, action) => {
             return {
                 ...state,
                 activeGroupId: action.activeGroupId
+            }
+        case SET_BACKGROUND:
+            const newProfile = state.profile;
+            newProfile.background = action.url;
+
+            return {
+                ...state,
+                profile: newProfile,
             }
         //    TODO: redo
         case CREATE_GROUP:
@@ -200,6 +287,7 @@ const applicationReducer = (state = initialState, action) => {
             }
 
         case DELETE_CHORE:
+            console.log("calling delete")
             let modifiedGroup = action.group
             modifiedGroup.chores = modifiedGroup.chores.filter(chore => chore.id !== action.choreId)
 
@@ -208,6 +296,8 @@ const applicationReducer = (state = initialState, action) => {
                 groups: state.groups.map(group => group.id === modifiedGroup.id ? modifiedGroup : group)
 
             }
+
+            console.log(newState)
 
             return JSON.parse(JSON.stringify(newState))
         case EDIT_CHORE:

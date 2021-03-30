@@ -12,6 +12,7 @@ class PersonalChores extends React.Component {
       let completedPoints = 0;
       let totalPoints = 0;
 
+      //TODO: remove map- map needs return value
       this.props.chores.map(chore => {
         totalPoints += chore.points;
         if (chore.done) {
@@ -40,29 +41,27 @@ class PersonalChores extends React.Component {
     render() {
       return (
       <div className="container-fluid">
-        <div className="row">
-          Today's Progress
-
-          <Button variant="primary" onClick={() => this.setState({choreModal: true})}>
-            Create Chore
-          </Button>
-        </div>
-
         {/*TODO: evaluate temp fix for duplicate keys- +15*/}
         <CreateChoreModal key={new Date().getTime() + 15}
                           show={this.state.choreModal}
                           hide={() => this.setState({choreModal: false})}
                           profileUsername={this.state.profileUsername}
                           />
-
+        <h4>
+            Today's Progress
+          </h4>
         <ProgressBar>
           <ProgressBar variant="success" now={this.state.completedPoints/this.state.totalPoints *100} key={1}/>
         </ProgressBar>
         <br/>
+        <Button variant="info" onClick={() => this.setState({choreModal: true})}>
+            Create Chore
+          </Button>
 
         <h1>
-          Personal Chores
-        </h1>
+              Personal Chores
+          </h1>
+
 
         <ChoreDisplay key={new Date().getTime()}
                       chores={this.props.chores}

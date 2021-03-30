@@ -40,32 +40,27 @@ class PersonalChores extends React.Component {
 
     render() {
       return (
-      <div className="container-fluid" style={{paddingLeft: 0, paddingRight: 0}}>
-          <div style={{paddingLeft: "12px", paddingRight: "12px", paddingTop: "10px"}}>
-              <div>
-                  Today's Progress
+      <div className="container-fluid">
+        {/*TODO: evaluate temp fix for duplicate keys- +15*/}
+        <CreateChoreModal key={new Date().getTime() + 15}
+                          show={this.state.choreModal}
+                          hide={() => this.setState({choreModal: false})}
+                          profileUsername={this.state.profileUsername}
+                          />
+        <h4>
+            Today's Progress
+          </h4>
+        <ProgressBar>
+          <ProgressBar variant="success" now={this.state.completedPoints/this.state.totalPoints *100} key={1}/>
+        </ProgressBar>
+        <br/>
+        <Button variant="info" onClick={() => this.setState({choreModal: true})}>
+            Create Chore
+          </Button>
 
-                  <Button variant="primary" onClick={() => this.setState({choreModal: true})}>
-                      Create Chore
-                  </Button>
-              </div>
-
-              {/*TODO: evaluate temp fix for duplicate keys- +15*/}
-              <CreateChoreModal key={new Date().getTime() + 15}
-                                show={this.state.choreModal}
-                                hide={() => this.setState({choreModal: false})}
-                                profileUsername={this.state.profileUsername}
-              />
-
-              <ProgressBar>
-                  <ProgressBar variant="success" now={this.state.completedPoints/this.state.totalPoints *100} key={1}/>
-              </ProgressBar>
-              <br/>
-
-              <h1>
-                  Personal Chores
-              </h1>
-          </div>
+        <h1>
+              Personal Chores
+          </h1>
 
 
         <ChoreDisplay key={new Date().getTime()}

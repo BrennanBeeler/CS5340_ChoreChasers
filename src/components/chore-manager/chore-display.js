@@ -2,13 +2,14 @@ import React from "react";
 import {Col, Row} from "react-bootstrap";
 import ChoreCard from "./chore-card";
 import "./chore-display.css"
+import applicationActions from "../../actions/actions";
+import {connect} from "react-redux";
 
 
-const ChoreDisplay = ({chores, deleteChore, updateProgress}) => {
-
+const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
     return(
         <div>
-            <div className="border-top border-dark hero">
+            <div className="border-top border-dark hero" style={{backgroundImage: "url("+background+")"}}>
                 <Row>
                     <Col xs={6} style={{paddingLeft: "30px", paddingRight : "30px"}}>
                         <>
@@ -84,4 +85,13 @@ const ChoreDisplay = ({chores, deleteChore, updateProgress}) => {
     )
 }
 
-export default ChoreDisplay;
+const stpm = (state, ownProps) => ({
+    background: state.profile.background,
+    props: ownProps
+})
+
+const dtpm = (dispatch) => ({
+    setBackground : (url) => applicationActions.setBackground(dispatch, url)
+})
+
+export default connect(stpm, dtpm)(ChoreDisplay);

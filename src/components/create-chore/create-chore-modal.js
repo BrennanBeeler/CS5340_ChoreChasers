@@ -16,10 +16,9 @@ const CreateChoreModal = ({
 
 
     const [choreName, setChoreName] = useState("");
-    const [dueDate, setDueDate] = useState();
-    const [repeatChore, setRepeatChore] = useState("");
+    const [dueDate, setDueDate] = useState(undefined);
+    const [repeatChore, setRepeatChore] = useState("Never");
     const [choreInstructions, setChoreInstructions] = useState("");
-    // TODO: currently can only make chores from group you are in - fix
     const [choreGroup, setChoreGroup] = useState(currentGroup);
     const [rewardMode, setRewardMode] = useState(true);
     const [assignees, setAssignees] = useState([]);
@@ -29,8 +28,9 @@ const CreateChoreModal = ({
     const [pointNumber, setPointNumber] = useState(0);
 
     const validateChore = () => {
+        //TODO: actually validate chores
         if(choreName === "") {
-            alert("issue")
+            alert("Please make sure to include a name for your chore")
             return;
         }
 
@@ -40,32 +40,22 @@ const CreateChoreModal = ({
             id: Date.now(),
             done:false,
             choreName: choreName,
-            //TODO: Figure out no date
-            dueDate: dueDate,
+            dueDate: dueDate === undefined ? null : dueDate,
             repeatChore: repeatChore,
             choreInstructions: choreInstructions,
             rewards:{points:pointsChecked,realLifeItem:prizeChecked},
             points: pointNumber,
             realLifeItem: prizeText,
             splitReward:{everyoneGetsReward:rewardMode,fcfs:!rewardMode},
-            dateAdded: new Date(),
+            dateAdded: new Date().toISOString(),
             assignor: profileUsername,
-            //TODO: need to figure out assignees for create
-            assignees: (choreGroup === ("Personal Chores" ? profileUsername : assignees))
+            assignees: (choreGroup.name === "Personal Chores" ? [profileUsername] : assignees)
         }
 
+        //TODO: fix this use of name as identifier
         createChore(choreGroup.name, newChore)
         hide()
     }
-
-    // const handleMemberAdd = () => {
-    //     if(assignees !== "" && !(assignees in memberList)) {
-    //         setMemberList(memberList => [...memberList, assignees])
-    //     }
-    //
-    //     console.log(memberList)
-    // }
-
 
     return (
         <Modal onHide={hide} animation={false} show={show} backdrop="static">
@@ -263,7 +253,8 @@ const stpm = (state,ownProps) => ({
     currentGroup: state.activeGroupId === "Personal Chores" ? {name: "Personal Chores", id: "Personal Chores"} :
         state.groups.filter(group => group.id === state.activeGroupId)[0],
     groupOptions: [{name: "Personal Chores", id : "Personal Chores", members: []}]
-        .concat(state.groups.map(group => ({name: group.name, id: group.id, members: group.members})))
+        .concat(state.groups.map(group => ({name: group.name, id: group.id, members: group.members}))),
+    profileUsername : state.profile.username
 })
 
 const dtpm = (dispatch) => ({

@@ -124,28 +124,28 @@ const Home = () => {
 
 
                 {/*TODO: look into jumbotron from boostrap*/}
-                <div className=" jumbotron col-4 text-center offset-4 mx-auto align-self-center pb-5">
+                <div className=" jumbotron col-4 text-center offset-4 mx-auto align-self-center pb-4 pt-4">
                 {/*<div className="jumbotron col-lg-3 col-md-6 col-sm-6 col-xs-6 offset-8 float-md-right ">*/}
-                    <div className="font-weight-bold">
+                    <div className="font-weight-bolder about-header">
                         So what do we do?
                     </div>
+                    <div class="about">
                         We help you keep track of your chores and make sure you have fun doing them!
-                        Earn rewards and compete with group members to become the best Chore Chaser
-                    <br/>
-                    <br/>
-
-                    <div class="sign-up-jumbotron">
-                        So what do you say - ready to become a Chore Chaser?
-                    <br/>
+                        Earn rewards and compete with group members to ultimately become the best Chore Chaser.
+                    </div>
                     <br/>
 
-                    <Link to="/signUp" className="btn btn-lg btn-info">
+                    <div>
+                        Ready to become a Chore Chaser?
+                    </div>
+
+                    <Link to="/signUp" className="btn-lg about-signup">
                         Sign Up!
                     </Link>
 
                     <br/>
-                    <br/>
 
+                    <div>
                     It'll just take a minute!
                     </div>
 

@@ -5,6 +5,7 @@ import {LOG_IN,
     CREATE_GROUP,
     GET_GROUP_DATA,
     EDIT_GROUP,
+    DELETE_GROUP,
     CREATE_CHORE,
     EDIT_CHORE,
     ADD_POINT_VALUE,
@@ -215,21 +216,21 @@ const initialState = {
 
 const applicationReducer = (state = initialState, action) => {
     switch (action.type) {
-        //TODO: figure out where log out buttons will go
+      //TODO: figure out where log out buttons will go
         case LOG_OUT:
             return {
                 ...state,
                 loggedIn: false,
                 activeProfile: null
             }
-        //   TODO: redo
+      //   TODO: redo
         case LOG_IN:
             // TODO: redo once db connected
             if (action.id === state.profile.id) {
                 return {
                     ...state,
                     loggedIn: true,
-                    activeProfile : action.id
+                    activeProfile: action.id
                 }
             }
             return state
@@ -246,21 +247,21 @@ const applicationReducer = (state = initialState, action) => {
                 ...state,
                 profile: newProfile,
             }
-        //    TODO: redo
+      //    TODO: redo
         case CREATE_GROUP:
             return {
                 ...state,
-                groups : [
+                groups: [
                     ...state.groups,
                     action.group
                 ]
             }
-        //    TODO: check once db connected
-        // case GET_GROUP_DATA:
-        //     return {
-        //         ...state,
-        //         groups : state.groups.filter(group => group.id === state.activeGroupId)
-        //     }
+      //    TODO: check once db connected
+      // case GET_GROUP_DATA:
+      //     return {
+      //         ...state,
+      //         groups : state.groups.filter(group => group.id === state.activeGroupId)
+      //     }
         case CREATE_CHORE:
             if (action.groupName === "Personal Chores") {
                 state.profile.chores.push(action.chore);
@@ -268,8 +269,7 @@ const applicationReducer = (state = initialState, action) => {
                 return {
                     ...state
                 }
-            }
-            else {
+            } else {
                 let tempGroups = state.groups;
                 tempGroups.forEach(group => group.name === action.groupName ? group.chores = [...group.chores, action.chore] : group)
 
@@ -285,6 +285,28 @@ const applicationReducer = (state = initialState, action) => {
 
             }
 
+        // TODO: Remove once connected to db, this is only for Leave Group
+        case DELETE_GROUP:
+            if (action.group) {
+                const newGroups = state.groups;
+                const temp = []
+                newGroups.forEach(group => {
+                    if (group.id !== action.group.id) {
+                        temp.push(group);
+                    }
+                })
+
+                return {
+                    ...state,
+                    activeGroupId: "Personal Chores",
+                    groups: temp
+                }
+            }
+            else {
+                return {
+                    ...state,
+                }
+            }
         case DELETE_CHORE:
             let modifiedGroup = action.group
             modifiedGroup.chores = modifiedGroup.chores.filter(chore => chore.id !== action.choreId)

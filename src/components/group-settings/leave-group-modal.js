@@ -1,20 +1,26 @@
 import {Button, Col, Modal, Row} from "react-bootstrap";
-import React from "react";
+import React,{useState} from "react";
 import applicationActions from "../../actions/actions";
+import {Link, Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 
-const LeaveGroupModal = (props,
+const LeaveGroupModal = ({props,
                          group,
                          profileUsername,
                          editGroup,
+                          deleteGroup,
                          activeGroupId,
-                         state) => {
+                         state}) => {
   const handleLeave = (event) => {
     event.preventDefault();
-    console.log(state)
     group.members.pop(profileUsername)
     editGroup(group);
+    //TODO: remove after T4
+    deleteGroup(group);
+    setLeave(true);
   }
+
+  const [leave, setLeave] = useState(false);
 
   return(
         <Modal {...props} animation={false} backdrop="static">
@@ -36,9 +42,14 @@ const LeaveGroupModal = (props,
                     </Col>
                     <Col xs={6}>
                         {/*TODO: nee to make creat chore validate and submit data*/}
-                        <Button variant="danger" onClick={handleLeave}>
+                        <button to="/choreManager" className="btn btn-danger" onClick={handleLeave}>
                             Yes, delete
-                        </Button>
+                        </button>
+                      {
+                        leave &&
+                          <Redirect to="/choreManager"/>}
+                      {leave && deleteGroup(group)
+                      }
                     </Col>
                 </Row>
             </Modal.Footer>
@@ -46,20 +57,19 @@ const LeaveGroupModal = (props,
   )
 };
 
-const stpm = (state) => ({
+const stpm = (state, ownProps) => ({
     activeGroupId: state.activeGroupId,
     activeProfile: state.activeProfile,
     // TODO: eventually groups will be actually populated
     group : state.groups.filter(group => group.id === state.activeGroupId)[0],
     profileUsername : state.profile.username,
-    state: state
+    state: state,
+    props: ownProps
 })
 
 const dtpm = (dispatch) => ({
-    getGroupData : (profile, groupId) => applicationActions.getGroupData(dispatch, profile, groupId),
-    deleteChore : (group, choreId) => applicationActions.deleteChore(dispatch, group, choreId),
-    createChore : (groupId, chore) => applicationActions.createChore(dispatch, groupId, chore),
-    editGroup: (group) => applicationActions.editGroup(dispatch, group)
+    editGroup: (group) => applicationActions.editGroup(dispatch, group),
+    deleteGroup: (group) => applicationActions.deleteGroup(dispatch, group)
 })
 
 export default connect(stpm, dtpm)(LeaveGroupModal);

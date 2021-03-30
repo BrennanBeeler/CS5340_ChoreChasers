@@ -1,0 +1,172 @@
+.body-background {
+    background-color: #daf8f1;
+    padding-top: 30px;
+    background: linear-gradient(rgba(0,0,0,-0.1),
+    rgba(0,0,0,0.2)),
+    url("/src/css-images/hangingclothes2.jpg");
+    background-size: cover;
+
+}
+
+.extra-body-space {
+    padding-bottom: 35px;
+ }
+
+
+.header {
+    font-size: 30px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    font-family: Verdana, Geneva, sans-serif;
+    margin-left: 30px;
+    /*font-family: Arial, Helvetica, sans-serif;*/
+    /*font-family: Tahoma, Geneva, sans-serif;*/
+    /*font-family: Trebuchet MS, Arial, Helvetica, sans-serif;*/
+    /*font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;*/
+}
+
+/*.register-buttons-container {*/
+/*    text-align: right;*/
+/*    margin-right: 30px;*/
+/*}*/
+
+.floated-register-buttons {
+    float:right;
+    width: 400px;
+    height: 50px;
+    max-width:33.333333%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 25px;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.5s;
+    cursor: pointer;
+}
+
+.top-login {
+    background-color: white;
+    color: black;
+    font-family: Verdana, Geneva, sans-serif;
+    border: 2px solid #265ce3;
+    /*border: 2px solid #4965af;*/
+}
+
+.top-login:hover {
+    /*background-color: #4965af;*/
+    background-color: #265ce3;
+    color: #ffffff;
+}
+
+.top-sign-up {
+    background-color: white;
+    color: black;
+    font-family: Verdana, Geneva, sans-serif;
+    border: 2px solid #0993a8;
+}
+
+.top-sign-up:hover {
+    background-color: #0993a8;
+    color: #ffffff;
+}
+
+#intro1 {
+    font-family: Verdana, Geneva, sans-serif;
+    text-align: center;
+    font-size: 50px;
+    color: #efefe6;
+    text-transform: none;
+    margin: 0 20px;
+    opacity: 1.0;
+    animation: fadeIn ease 3s;
+    -webkit-animation: fadeIn ease 2s;
+}
+
+#intro2 {
+    font-family: Verdana, Geneva, sans-serif;
+    text-align: center;
+    font-size: 30px;
+    color: #efefe6;
+    text-transform: none;
+    margin: 0 20px;
+    opacity: 1.0;
+    animation: fadeIn ease 3s;
+    -webkit-animation: fadeIn ease 4s;
+    margin-bottom: 70px;
+}
+
+@keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+@-moz-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+@-webkit-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+@-o-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+@-ms-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+/*.sign-up-jumbotron-ready {*/
+/*    !*float: right;*!*/
+/*    font-size: 18px;*/
+/*}*/
+
+.about-header {
+    font-family: Trebuchet MS, Arial, Helvetica, sans-serif;
+    font-size: 22px;
+}
+
+.about {
+    /*font-size: 15px;*/
+    text-align: justify;
+}
+
+.about-signup {
+    width: 400px;
+    height: 50px;
+    max-width:33.333333%;
+    background-color: #0993a8;
+    border: none;
+    color: white;
+    text-align: center;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    /*margin: 4px 2px;*/
+    cursor: pointer;
+}
+/*.about-signup-button {*/
+/*    color: white;*/
+
+/*}*/
+
+.about-signup:hover {
+    background-color: #0993a8;
+    color: #ffffff;
+}
+
+
+/*.container {*/
+/*    display: flex;*/
+/*}*/

@@ -120,38 +120,50 @@ const Home = () => {
 
             <div className="row">
                 {/*TODO: need to figure out image*/}
-                {/*<img src="https://via.placeholder.com/500" alt="Home page" width="500" height="400" className="mx-auto"/>*/}
+                <img src="https://via.placeholder.com/500" alt="Home page" width="500" height="400" className="mx-auto"/>
 
 
                 {/*TODO: look into jumbotron from boostrap*/}
-                {/*<div className="col-3 font-weight-bold text-center mx-auto align-self-center pb-5">*/}
-                <div className="jumbotron col-lg-4 col-md-6 col-sm-6 col-xs-6 offset-7 float-md-right ">
-                    <div class="sign-up-jumbotron">
-                Ready to finish some chores?
-
+                <div className=" jumbotron col-4 text-center offset-4 mx-auto align-self-center pb-5">
+                {/*<div className="jumbotron col-lg-3 col-md-6 col-sm-6 col-xs-6 offset-8 float-md-right ">*/}
+                    <div className="font-weight-bold">
+                        So what do we do?
+                    </div>
+                        We help you keep track of your chores and make sure you have fun doing them!
+                        Earn rewards and compete with group members to become the best Chore Chaser
+                    <br/>
                     <br/>
 
-                    <Link to="/signUp" className="btn btn-lg btn-info float-right">
-                        Sign Up
+                    <div class="sign-up-jumbotron">
+                        So what do you say - ready to become a Chore Chaser?
+                    <br/>
+                    <br/>
+
+                    <Link to="/signUp" className="btn btn-lg btn-info">
+                        Sign Up!
                     </Link>
 
+                    <br/>
                     <br/>
 
                     It'll just take a minute!
                     </div>
+
                 </div>
+
             </div>
 
             <br/>
             <br/>
+            <br/>
 
-            <blockquote className="text-center">
-                <div className="font-weight-bold">
-                    So what do we do?
-                </div>
-                We help you keep track of your chores and make sure you have fun doing them!
-                Earn rewards and compete with group members to become the best ChoreChaser
-            </blockquote>
+            {/*<blockquote className="text-center col-lg-4 col-md-6 col-sm-6 col-xs-6 offset-4">*/}
+            {/*    <div className="font-weight-bold">*/}
+            {/*        So what do we do?*/}
+            {/*    </div>*/}
+            {/*    We help you keep track of your chores and make sure you have fun doing them!*/}
+            {/*    Earn rewards and compete with group members to become the best ChoreChaser*/}
+            {/*</blockquote>*/}
 
         </div>
         </div>

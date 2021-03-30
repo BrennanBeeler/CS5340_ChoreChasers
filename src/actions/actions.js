@@ -4,6 +4,7 @@ export const SIGN_UP = "SIGN_UP";
 export const SET_ACTIVE_GROUP = "SET_ACTIVE_GROUP";
 export const SET_BACKGROUND = "SET_BACKGROUND";
 export const CREATE_GROUP = "CREATE_GROUP";
+export const DELETE_GROUP = "DELETE_GROUP";
 export const EDIT_GROUP = "EDIT_GROUP";
 export const GET_GROUP_DATA = "GET_GROUP_DATA";
 export const CREATE_CHORE = "CREATE_CHORE";
@@ -64,6 +65,13 @@ const createGroup = (dispatch, profile, group) => {
     })
 }
 
+const deleteGroup = (dispatch, group) => {
+    dispatch({
+        type : DELETE_GROUP,
+        group
+    })
+}
+
 const editGroup = (dispatch, group) => {
     dispatch({
         type : EDIT_GROUP,
@@ -119,7 +127,7 @@ const deletePersonalChore = (dispatch, choreId) => {
 }
 
 const applicationActions = {
-    logIn, logOut,signUp, setActiveGroup, setBackground, createGroup, editGroup, editChore, getGroupData, addPoints,
+    logIn, logOut,signUp, setActiveGroup, setBackground, createGroup, deleteGroup, editGroup, editChore, getGroupData, addPoints,
     deleteChore, deletePersonalChore, createChore
 }
 

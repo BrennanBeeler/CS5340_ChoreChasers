@@ -13,10 +13,11 @@ const GroupSettings = ({
 }) => {
 
     const [confirmationModal, setConfirmationModal] = useState(false);
+    const [checked, setChecked] = useState(group?.progressBar || true);
 
     const toggleProgressBar = () => {
-        group.progressBar = !group.progressBar;
-        console.log(group)
+        group.progressBar = !group?.progressBar;
+        setChecked(!checked);
         editGroup(group);
     };
 
@@ -28,11 +29,15 @@ const GroupSettings = ({
           <br/>
 
             <h4>
-                Disable 'Weekly Progress Points' bar
+                'Weekly Progress Points' bar
             </h4>
-            <div className="custom-control custom-switch row">
-              <input type="checkbox" className="custom-control-input" id="toggleProgressBar" onClick={toggleProgressBar}/>
+            <div className="custom-control custom-switch d-flex justify-content-around">
+              <p/><p/>
+              Enabled
+              <input checked={!group?.progressBar} value={checked} type="checkbox" className="custom-control-input" id="toggleProgressBar" onChange={toggleProgressBar}/>
               <label className="custom-control-label" htmlFor="toggleProgressBar"></label>
+              Disabled
+              <p/><p/>
             </div>
 
         <br/>

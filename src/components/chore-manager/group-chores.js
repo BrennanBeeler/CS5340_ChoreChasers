@@ -79,6 +79,7 @@ class GroupChores extends React.Component {
             <div className="d-flex justify-content-between">
               <Button variant="info" onClick={() => this.setState({choreModal: true})}>
                   Create Chore
+                  <i className="fa fa-plus" style={{paddingLeft: "10px"}}/>
               </Button>
 
               <Link to="/groupSettings" className="btn btn-info -align-right">

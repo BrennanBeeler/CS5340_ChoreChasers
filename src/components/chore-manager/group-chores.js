@@ -27,8 +27,6 @@ class GroupChores extends React.Component {
         }
       });
 
-      console.log(members)
-
       const colors = ['success', 'danger', 'warning', 'info'];
       this.state = {
         choreModal: false,
@@ -67,22 +65,26 @@ class GroupChores extends React.Component {
             <CreateChoreModal key={new Date().getTime() + 15} show={this.state.choreModal}
                               hide={() => this.setState({choreModal: false})}
                               profileUsername={this.props.profileUsername} createChore={this.props.createChore}/>
-
+          <h4>
+            Group Progress
+          </h4>
           {this.props.group.progressBar ? <ProgressBar>
               {Object.keys(members).map((member, index) => {
                 return (<ProgressBar animated={true} variant={this.state.colors[index % 4]} label={member} now={members[member]/this.state.totalPoints*100} key={index}/>)
               })
               }
             </ProgressBar> : <div/>}
-
-            <Button variant="primary" onClick={() => this.setState({choreModal: true})}>
-                Create Chore
-            </Button>
-
             <br/>
-            <Link to="/groupSettings" className="btn btn-info">
-              Group Settings
-            </Link>
+
+            <div className="d-flex justify-content-between">
+              <Button variant="info" onClick={() => this.setState({choreModal: true})}>
+                  Create Chore
+              </Button>
+
+              <Link to="/groupSettings" className="btn btn-info -align-right">
+                Group Settings
+              </Link>
+            </div>
 
             <h1>
                 {this.props.group.name}

@@ -1,11 +1,10 @@
 .hero {
   position: relative;
-  height: 100vh;
+  height: 100%;
   }
 
 .hero::before {
   content: "";
-  background-image: url('https://placekitten.com/1200/800');
   background-size: cover;
   position: absolute;
   top: 0;
@@ -14,4 +13,8 @@
   left: 0;
   opacity: 0.5;
 
+}
+
+.container {
+    height: 100%
 }

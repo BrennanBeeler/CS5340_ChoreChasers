@@ -2,6 +2,7 @@ export const LOG_IN = "LOG_IN";
 export const LOG_OUT = "LOG_OUT";
 export const SIGN_UP = "SIGN_UP";
 export const SET_ACTIVE_GROUP = "SET_ACTIVE_GROUP";
+export const SET_BACKGROUND = "SET_BACKGROUND";
 export const CREATE_GROUP = "CREATE_GROUP";
 export const EDIT_GROUP = "EDIT_GROUP";
 export const GET_GROUP_DATA = "GET_GROUP_DATA";
@@ -45,6 +46,13 @@ const setActiveGroup = (dispatch, activeGroupId) => {
     dispatch({
         type : SET_ACTIVE_GROUP,
         activeGroupId
+    })
+}
+
+const setBackground = (dispatch, url) => {
+    dispatch({
+        type : SET_BACKGROUND,
+        url
     })
 }
 
@@ -111,7 +119,7 @@ const deletePersonalChore = (dispatch, choreId) => {
 }
 
 const applicationActions = {
-    logIn, logOut,signUp, setActiveGroup, createGroup, editGroup, editChore, getGroupData, addPoints,
+    logIn, logOut,signUp, setActiveGroup, setBackground, createGroup, editGroup, editChore, getGroupData, addPoints,
     deleteChore, deletePersonalChore, createChore
 }
 

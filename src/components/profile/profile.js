@@ -3,11 +3,14 @@ import {connect} from "react-redux";
 import {Link, Redirect} from "react-router-dom";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
-import "./background-preview.css";
+//import "./background-preview.css";
+import "./profile.css";
 import {ProgressBar} from "react-bootstrap";
+import applicationActions from "../../actions/actions";
 
 const Profile = ({
                         profile,
+                        setBackground,
                       }) => {
   const defaultName = "Username";
   const {points} = profile;
@@ -53,8 +56,8 @@ const Profile = ({
             <Link to="/profileSettings" className="nav-link-center">
                 View Account Settings
             </Link>
-            <div style={{padding: 20}} />
-
+            <br/>
+            <br/>
             <h4 className="text-center">
               CURRENT LEVEL
             </h4>
@@ -74,7 +77,6 @@ const Profile = ({
             <h5 style={{padding:5}}>
               You're doing great, {profile.username || defaultName}! Keep up the good work.
             </h5>
-            <div style={{padding: 10}} />
             <div className="row justify-content-center " style={{height: "0px", margin: "0px"}}>
             <h4>
               UNLOCKED LEVELS
@@ -103,7 +105,7 @@ const Profile = ({
                         (<div className="row justify-content-center align-items-center">
                           <p>Level {index + 1}</p>
                           <img src={value} style={{height: "50px", width: "120px", padding: '4px'}}/>
-                          <button className="btn btn-info">
+                          <button className="btn btn-info" onClick={(event) => setBackground(value)}>
                             Set Background
                             </button>
                         </div>)
@@ -111,10 +113,11 @@ const Profile = ({
                     </div>
                 )})}
               </div>
-              <Link to="/choreManager" className="btn btn-info">
+
+            </div>
+            <Link to="/choreManager" className="btn btn-info">
                Return to Chores
               </Link>
-            </div>
           </div>
         </div>
     )
@@ -125,7 +128,7 @@ const stpm = (state) => ({
 })
 
 const dtpm = (dispatch) => ({
-
+    setBackground : (url) => applicationActions.setBackground(dispatch, url)
 })
 
 export default connect(stpm, dtpm)(Profile);

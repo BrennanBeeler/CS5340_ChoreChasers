@@ -97,6 +97,7 @@
     opacity: 1.0;
     animation: fadeIn ease 3s;
     -webkit-animation: fadeIn ease 4s;
+    margin-bottom: 70px;
 }
 
 @keyframes fadeIn {
@@ -124,3 +125,6 @@
     100% {opacity:1;}
 }
 
+.sign-up-jumbotron {
+    float: right;
+}

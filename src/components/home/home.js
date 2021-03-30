@@ -106,7 +106,7 @@ const Home = () => {
                 </div>
             </div>
 
-            <div class="body-background">
+            <div class="body-background position-relative">
             <blockquote id="intro1">
                 Manage those pesky chores with ease... <br/>
             </blockquote>
@@ -124,8 +124,10 @@ const Home = () => {
 
 
                 {/*TODO: look into jumbotron from boostrap*/}
-                <div className="col-3 font-weight-bold text-center mx-auto align-self-center pb-5">
-                    Ready to finish some chores?
+                {/*<div className="col-3 font-weight-bold text-center mx-auto align-self-center pb-5">*/}
+                <div className="jumbotron col-lg-4 col-md-6 col-sm-6 col-xs-6 offset-7 float-md-right ">
+                    <div class="sign-up-jumbotron">
+                Ready to finish some chores?
 
                     <br/>
 
@@ -136,6 +138,7 @@ const Home = () => {
                     <br/>
 
                     It'll just take a minute!
+                    </div>
                 </div>
             </div>
 

@@ -30,9 +30,13 @@ const GroupSettings = ({
             <h4>
                 Disable 'Weekly Progress Points' bar
             </h4>
-            <div className="custom-control custom-switch row">
-              <input type="checkbox" className="custom-control-input" id="toggleProgressBar" onClick={toggleProgressBar}/>
+            <div className="custom-control custom-switch d-flex justify-content-around">
+              <p/><p/>
+              Enabled
+              <input checked={!group.progressBar} type="checkbox" className="custom-control-input" id="toggleProgressBar" onClick={toggleProgressBar}/>
               <label className="custom-control-label" htmlFor="toggleProgressBar"></label>
+              Disabled
+              <p/><p/>
             </div>
 
         <br/>

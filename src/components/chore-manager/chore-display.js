@@ -7,9 +7,14 @@ import {connect} from "react-redux";
 
 
 const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
+    const style = {
+        backgroundImage: "url("+background+")",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+    }
     return(
         <div>
-            <div className="border-top border-dark hero" style={{backgroundImage: "url("+background+")"}}>
+            <div className="border-top border-dark hero" style={style}>
                 <Row>
                     <Col xs={6} style={{paddingLeft: "30px", paddingRight : "30px"}}>
                         <>

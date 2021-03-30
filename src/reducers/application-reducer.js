@@ -18,7 +18,7 @@ const initialState = {
     activeProfile : "test",
     profile : {
             id : "test",
-            background: "'https://placekitten.com/1200/800'",
+            background: "https://coolbackgrounds.io/images/backgrounds/white/pure-white-background-85a2a7fd.jpg",
             emailId: 'test@email.com',
             points: 0,
             groupIds: [],

@@ -78,8 +78,8 @@ const Home = () => {
             </div>
 
             <br/>
-            <br/>
-            <br/>
+            <div class="extra-body-space">
+            </div>
 
             {/*<blockquote className="text-center col-lg-4 col-md-6 col-sm-6 col-xs-6 offset-4">*/}
             {/*    <div className="font-weight-bold">*/}
@@ -89,7 +89,7 @@ const Home = () => {
             {/*    Earn rewards and compete with group members to become the best ChoreChaser*/}
             {/*</blockquote>*/}
 
-        </div>
+            </div>
         </div>
     )
 };

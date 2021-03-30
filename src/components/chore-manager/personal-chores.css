@@ -5,3 +5,16 @@
 .hci-personal-progress-div {
     width: 25%;
 }
+
+.h4-style {
+    font-family: Verdana, Geneva, sans-serif;
+}
+
+
+.h1-style {
+    display: inline-block;
+    margin-right: 60px;
+}
+.create-chore-btn {
+    margin-left: 20px;
+}

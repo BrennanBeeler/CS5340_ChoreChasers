@@ -62,7 +62,7 @@ const GroupSettings = ({
           <br/>
                 <Link to="/choreManager" className="back-button btn">
                     <i className="fa fa-caret-left" style={{paddingLeft: "10px", paddingRight:"15px"}}/>
-                    Save and Go Back
+                    Go Back
                 </Link>
             </div>
         </div>

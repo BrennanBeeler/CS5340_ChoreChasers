@@ -137,23 +137,25 @@ class PersonalChores extends React.Component {
                 <h4 className="h4-style">
                     Today's Progress
                 </h4>
+                <p/>
                 <ProgressBar>
                     <ProgressBar variant="success" now={this.state.completedPoints/this.state.totalPoints *100} key={1}/>
                 </ProgressBar>
 
                 <p></p>
 
-                <div class="group-name-style">
-                    <h1 className="h1-style">
-                        Personal Chores
-                    </h1>
-                </div>
-                <div class="create-chore-btn-div">
-                    <button class=" create-chore-btn btn btn-info mt-2 mb-1 pt-2 pb-2"  onClick={() => this.setState({choreModal: true})}>
-                        Add a New Chore
-                        <i className="fa fa-plus" style={{paddingLeft: "10px"}}/>
-                    </button>
-                </div>
+              <div className="group-name-style">
+                <h1 className="h1-style">
+                  Personal Chores
+                </h1>
+              </div>
+              <div className="create-chore-btn-div">
+                <button className=" create-chore-btn btn btn-info mt-2 mb-1 pt-2 pb-2"
+                        onClick={() => this.setState({choreModal: true})}>
+                  Add a New Chore
+                  <i className="fa fa-plus" style={{paddingLeft: "10px"}}/>
+                </button>
+              </div>
 
                 <br/>
                 <br/>

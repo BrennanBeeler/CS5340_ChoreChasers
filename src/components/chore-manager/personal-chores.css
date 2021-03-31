@@ -9,7 +9,6 @@
 .h4-style {
     font-family: Verdana, Geneva, sans-serif;
     color: #1d1d1d;
-    margin-top: 2px;
 }
 
 
@@ -17,11 +16,9 @@
 .create-chore-btn-div {
     /*margin-left: 20px;*/
     /*margin-bottom: 10px;*/
-    float: left;
-    margin-left: 100px;
+    float: right;
+    margin-right: 400px;
     /*margin-top: 8px;*/
-
-
 }
 
 .create-chore-btn {

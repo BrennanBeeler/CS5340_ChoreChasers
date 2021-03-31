@@ -175,31 +175,6 @@ class GroupChores extends React.Component {
         const {members} = this.state;
         return(
             <div className="container-fluid">
-
-                {/*TODO: evaluate temp fix for duplicate keys- +15*/}
-                <CreateChoreModal key={new Date().getTime() + 15} show={this.state.choreModal}
-                                  hide={() => this.setState({choreModal: false})}
-                                  profileUsername={this.props.profileUsername} createChore={this.props.createChore}/>
-
-                <div class="group-settings-header-div">
-                    <h4 class="h4-style">
-                        Group Progress
-                    </h4>
-                </div>
-                <div class="group-settings-btn">
-                    <Link to="/groupSettings" className="">
-                        Group Settings
-                    </Link>
-                </div>
-                <p></p>
-                {this.props.group.progressBar ? <ProgressBar>
-                    {Object.keys(members).map((member, index) => {
-                        return (<ProgressBar animated={true} variant={this.state.colors[index % 4]} label={member} now={members[member]/this.state.totalPoints*100} key={index}/>)
-                    })
-                    }
-                </ProgressBar> : <div/>}
-                <p></p>
-
                 {/*<div className="d-flex justify-content-between">*/}
                 {/*    <Button variant="info" onClick={() => this.setState({choreModal: true})}>*/}
                 {/*        Create Chore*/}
@@ -214,6 +189,30 @@ class GroupChores extends React.Component {
                 {/*<h1>*/}
                 {/*    {this.props.group.name}*/}
                 {/*</h1>*/}
+
+                {/*TODO: evaluate temp fix for duplicate keys- +15*/}
+                <CreateChoreModal key={new Date().getTime() + 15} show={this.state.choreModal}
+                                  hide={() => this.setState({choreModal: false})}
+                                  profileUsername={this.props.profileUsername} createChore={this.props.createChore}/>
+
+                <div class="group-settings-header-div">
+                    <h4 class="h4-style">
+                        Group Progress
+                    </h4>
+                </div>
+                <div class="group-settings-btn">
+                    <Link to="/groupSettings" className="">
+                        View Group Settings
+                    </Link>
+                </div>
+                <p></p>
+                {this.props.group.progressBar ? <ProgressBar>
+                    {Object.keys(members).map((member, index) => {
+                        return (<ProgressBar animated={true} variant={this.state.colors[index % 4]} label={member} now={members[member]/this.state.totalPoints*100} key={index}/>)
+                    })
+                    }
+                </ProgressBar> : <div/>}
+                <p></p>
 
                 <div className="group-name-style">
                     <h1 class="h1-style">

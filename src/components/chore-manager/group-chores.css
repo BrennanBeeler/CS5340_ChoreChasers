@@ -34,9 +34,10 @@
 }
 
 .group-settings-btn {
-    margin-left: 90%;
+    margin-left: 87%;
     /*float:right;*/
     position:relative;
+    white-space: nowrap;
     top:5px;
     right: 5px;
 }

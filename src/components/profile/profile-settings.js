@@ -19,33 +19,31 @@ const ProfileSettings = ({
                 Account Settings
             </h1>
             <br/>
-            <h4 className="text-left h4-settings-headers" style={{paddingLeft:"200px", marginTop:"50px"}}>
+            <h4 className="text-left h4-settings-headers" style={{paddingLeft:"200px", marginTop:"20px",marginBottom:"30px"}}>
                 Change Password
             </h4>
-                <p></p>
+
 
             <form>
                 <div className="form-group">
                     <label htmlFor="oldPasswordFld" className="label form-headers">
                         Enter Old Password
                     </label>
-                    <input id="emailFld" placeholder="example@domain.com" className="form-text-field form-control "
+                    <input type="text" id="emailFld" placeholder="example@domain.com" className=" form-control "
                            value={oldPassword} onChange={(event => setOldPassword(event.target.value))}/>
                 </div>
-                <br/>
                 <div className="form-group">
                     <label htmlFor="passwordFld" className="label form-headers">
                         Enter New Password
                     </label>
-                    <input id="passwordFld" placeholder="Enter your password" className="form-text-field form-control"
+                    <input type="text" id="passwordFld" placeholder="Enter your password" className=" form-control"
                            value={newPassword} onChange={(event => setNewPassword(event.target.value))}/>
                 </div>
-                <br/>
                 <div className="form-group">
                     <label htmlFor="passwordFld" className="label form-headers">
                         Confirm Password
                     </label>
-                    <input id="passwordFld" placeholder="Enter your password" className="form-control form-text-field"
+                    <input type="text" id="passwordFld" placeholder="Re-enter your password" className="form-control form-text-field"
                            value={confirmPassword} onChange={(event => setConfirmPassword(event.target.value))}/>
                 </div>
 
@@ -62,7 +60,7 @@ const ProfileSettings = ({
 
                 <div className="mx-auto">
 
-                    <h4 className="text-left h4-settings-headers" style={{paddingLeft:"200px", marginTop:"70px"}}>
+                    <h4 className="text-left h4-settings-headers" style={{paddingLeft:"200px", marginTop:"40px"}}>
                         Delete Account
                     </h4>
 

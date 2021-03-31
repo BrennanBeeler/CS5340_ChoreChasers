@@ -38,7 +38,12 @@
     float:left;
 }
 
-.form-text-field {
-    padding-left:30px;
-    width:200px;
+input[type=text] {
+    width: 500px;
+    /*padding: 12px 20px;*/
+    /*margin: 8px 0;*/
+    /*display: inline-block;*/
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
 }

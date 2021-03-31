@@ -16,6 +16,7 @@ const ChoreCard = ({props, chore, group, updateProgress, addPoints, editChore, d
     const successSound = new Audio("/success.wav");
 
     const markCompleted = (event) => {
+        //TODO: handle promise
         successSound.play();
         addPoints(parseInt(chore.points));
         updateProgress(parseInt(chore.points));
@@ -23,14 +24,15 @@ const ChoreCard = ({props, chore, group, updateProgress, addPoints, editChore, d
         chore.done = !chore.done;
         editChore(chore, group);
 
-        timeOut()
+        // timeOut()
     }
 
     //TODO: figure out hiding completed chores
-    async function timeOut() {
-        await new Promise(res => setTimeout(() => setCountDown(countDown - 1), 10000))
-        //setVisibility(false);
-    }
+    //TODO: this is causing a memory leak- need to investigate more thoroughly - needs to be cleared
+    // async function timeOut() {
+    //     await new Promise(res => setTimeout(() => setCountDown(countDown - 1), 10000))
+    //     //setVisibility(false);
+    // }
 
     const [showDeleteModal, setShowDeleteModal] = useState(false);
 
@@ -78,10 +80,6 @@ const ChoreCard = ({props, chore, group, updateProgress, addPoints, editChore, d
                 }
 
             </Navbar.Text>
-
-            {
-                console.log(chore)
-            }
 
             <DeleteChoreModal key={new Date().getTime()} show={showDeleteModal}
                               hide={()=> setShowDeleteModal(false)} deleteChore={deleteChore} choreId={chore.id}/>

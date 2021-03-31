@@ -41,11 +41,11 @@ const ChoreManager = ({
                     <div className="level-header">
                         Level {level}
                     </div>
-                    <div class="profile-points">
+                    <div className="profile-points">
                         <Link to="/profile" className="btn fa fa-user-circle fa-3x"/>
                         {points}/{maxPoints} points
                     </div>
-                    <div class="profile-link">
+                    <div className="profile-link">
 
                     <Link to="/profile">
                         View {profileUsername}'s Account

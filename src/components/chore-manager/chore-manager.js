@@ -65,7 +65,7 @@ const ChoreManager = ({
 
                 <ul className="nav flex-column nav-pills mt-4" role="navigation">
 
-                    <li className={`nav-link nav-item mb-4 pt-4 pb-4 border border-dark group-button ${activeGroupId === "Personal Chores" ? 'active':''}`}
+                    <li className={`nav-link nav-item mb-4 pt-3 pb-4 border border-dark group-button ${activeGroupId === "Personal Chores" ? 'active':''}`}
                         onClick={() => setActiveGroup("Personal Chores")}>
                         {activeGroupId === "Personal Chores" ? "Personal Chores" : "View Personal Chores"}
                     </li>

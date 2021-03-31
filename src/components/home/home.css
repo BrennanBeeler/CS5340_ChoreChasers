@@ -153,13 +153,8 @@
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    /*margin: 4px 2px;*/
     cursor: pointer;
 }
-/*.about-signup-button {*/
-/*    color: white;*/
-
-/*}*/
 
 .about-signup:hover {
     background-color: #0993a8;
@@ -180,8 +175,3 @@
     width: 100%;
     color: #666666;
 }
-
-
-/*.container {*/
-/*    display: flex;*/
-/*}*/

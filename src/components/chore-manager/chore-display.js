@@ -16,11 +16,13 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
     return(
         <div>
             <div className="border-top border-dark hero" style={style}>
+                {/* use <p> tag to add smaller space than that of a <br> tag between border and chores*/}
+                <p></p>
                 <Row>
                     <Col xs={6} style={{paddingLeft: "30px", paddingRight : "30px"}}>
                         <>
                             {/*TODO: decide if we want to have overdue disappear*/}
-                            <h3>
+                            <h3 class="font-weight-normal">
                                 Overdue
                             </h3>
                             <br/>
@@ -42,7 +44,7 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
                                    )
                             }
                         </>
-                        <h3>
+                        <h3 class="font-weight-normal">
                             Due Today
                         </h3>
 
@@ -67,7 +69,7 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
                                 })
                         }
 
-                        <h3>
+                        <h3 class="font-weight-normal">
                             Due Next Week
                         </h3>
 
@@ -95,7 +97,7 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
                             })
                         }
 
-                        <h3>
+                        <h3 class="font-weight-normal">
                             Due In The Future
                         </h3>
 
@@ -123,7 +125,7 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
                     </Col>
 
                     <Col xs={6} style={{paddingRight: "30px", paddingLeft: "30px"}}>
-                        <h3>
+                        <h3 class="font-weight-normal">
                             Undated Chores
                         </h3>
 

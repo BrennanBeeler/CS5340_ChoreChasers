@@ -43,8 +43,11 @@ const Home = () => {
 
             <div className="row">
                 {/*TODO: need to figure out image*/}
-                <img src="https://via.placeholder.com/500" alt="Home page" width="500" height="400" className="mx-auto"/>
-                {/*<img src="https://unsplash.com/photos/D1aHq2D42UQ" alt="Home page" width="500" height="400" className="mx-auto"/>*/}
+                {/*<img src="https://via.placeholder.com/500" alt="Home page" width="500" height="400" className="mx-auto"/>*/}
+                {/*<img src="/public/hangingclothes2.jpg" alt="Home page" width="4608" height="2088" className="mx-auto"/>*/}
+                <div className="image-placeholder mx-auto">
+                    <h4>TBD (Slideshow)</h4>
+                </div>
 
 
                 {/*TODO: look into jumbotron from boostrap*/}

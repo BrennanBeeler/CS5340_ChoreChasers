@@ -41,11 +41,11 @@ const ChoreManager = ({
                     <div className="level-header">
                         Level {level}
                     </div>
-                    <div class="profile-points">
+                    <div className="profile-points">
                         <Link to="/profile" className="btn fa fa-user-circle fa-3x"/>
                         {points}/{maxPoints} points
                     </div>
-                    <div class="profile-link">
+                    <div className="profile-link">
 
                     <Link to="/profile">
                         View {profileUsername}'s Account
@@ -65,7 +65,7 @@ const ChoreManager = ({
 
                 <ul className="nav flex-column nav-pills mt-4" role="navigation">
 
-                    <li className={`nav-link nav-item mb-4 pt-4 pb-4 border border-dark group-button ${activeGroupId === "Personal Chores" ? 'active':''}`}
+                    <li className={`nav-link nav-item mb-4 pt-3 pb-4 border border-dark group-button ${activeGroupId === "Personal Chores" ? 'active':''}`}
                         onClick={() => setActiveGroup("Personal Chores")}>
                         {activeGroupId === "Personal Chores" ? "Personal Chores" : "View Personal Chores"}
                     </li>
@@ -82,7 +82,7 @@ const ChoreManager = ({
                 </ul>
             </div>
 
-            <div className="col-9" style={{paddingLeft: 0, paddingRight: 0}}>
+            <div className="col-10" style={{paddingLeft: 0, paddingRight: 0}}>
                 {
                     activeGroupId === "Personal Chores" &&
                     <PersonalChores/>

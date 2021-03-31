@@ -1,8 +1,14 @@
-.body {
-  background-color: coral;
+/*.body {*/
+/*  background-color: coral;*/
+/*}*/
+
+.center-full-profile {
+  margin-top: 10px;
 }
+
 .container {
   width: 400px;
+  height: 90%;
   margin: 0;
   position: absolute;
   top: 50%;
@@ -32,9 +38,20 @@ h4 {
   letter-spacing: 1px;
   margin-bottom: 25px
 }
+
+.h4-profile-headers {
+  color: #00baff;
+}
+
+.back-button {
+  position: absolute;
+  top:20px;
+  left:20px;
+}
+
 p {
   font-size: 16px;
   line-height: 26px;
   margin-bottom: 20px;
-  color: #666;
+  color: #262626;
 }

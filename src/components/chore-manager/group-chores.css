@@ -33,6 +33,15 @@
     float: left;
 }
 
+.group-settings-btn {
+    margin-left: 87%;
+    /*float:right;*/
+    position:relative;
+    white-space: nowrap;
+    top:5px;
+    right: 5px;
+}
+
 .group-settings-header-div {
     float: left;
 }

@@ -23,40 +23,48 @@ const GroupSettings = ({
 
     return (
         <div className="container">
+            <div class="center-group-settings">
             <h1 className="text-center">
                 Group Settings
             </h1>
           <br/>
 
-            <h4>
+            <h4 class=" text-left h4-settings-headers" style={{paddingLeft:"200px", marginTop:"50px"}}>
                 'Weekly Progress Points' bar
             </h4>
             <div className="custom-control custom-switch d-flex justify-content-around">
               <p/><p/>
-              Enabled
+
+                <p class="toggle-headers-enable ">Enabled</p>
+                <div>
               <input checked={!group?.progressBar} value={checked} type="checkbox" className="custom-control-input" id="toggleProgressBar" onChange={toggleProgressBar}/>
               <label className="custom-control-label" htmlFor="toggleProgressBar"></label>
-              Disabled
+                </div>
+                <p class="toggle-headers-disable">Disabled</p>
+
               <p/><p/>
             </div>
 
         <br/>
 
-        <h4>
+        <h4 class="text-left h4-settings-headers" style={{paddingLeft:"200px", marginTop:"20px"}}>
           Leave Group
         </h4>
-          <p>You will be removed from this group. All progress will be lost.</p>
-          <button className="btn btn-danger" onClick={() => setConfirmationModal(true)}>
+          <p style={{paddingRight:"270px"}}>You will be removed from this group. All progress will be lost.</p>
+                <div style={{paddingLeft:"200px", float:"left"}}>
+          <button className="btn btn-danger" style={{paddingRight:"50px",paddingLeft:"50px", float:"left"}} onClick={() => setConfirmationModal(true)}>
             Leave Group
           </button>
-
+                </div>
           <LeaveGroupModal show={confirmationModal} onHide={() => setConfirmationModal(false)}/>
 
           <br/>
           <br/>
-          <Link to="/choreManager" className="btn btn-info">
-            Return to Chores
-          </Link>
+                <Link to="/choreManager" className="back-button btn">
+                    <i className="fa fa-caret-left" style={{paddingLeft: "10px", paddingRight:"15px"}}/>
+                    Go Back
+                </Link>
+            </div>
         </div>
     )
 }

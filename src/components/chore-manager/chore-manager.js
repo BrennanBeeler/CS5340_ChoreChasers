@@ -82,7 +82,7 @@ const ChoreManager = ({
                 </ul>
             </div>
 
-            <div className="col-9" style={{paddingLeft: 0, paddingRight: 0}}>
+            <div className="col-10" style={{paddingLeft: 0, paddingRight: 0}}>
                 {
                     activeGroupId === "Personal Chores" &&
                     <PersonalChores/>

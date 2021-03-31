@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {Col, Row} from "react-bootstrap";
 import ChoreCard from "./chore-card";
 import "./chore-display.css"
@@ -13,6 +13,57 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
         backgroundSize: "cover",
     }
 
+    const [overdueChores, setOverdueChores] = useState([]);
+    const [todayChores, setTodayChores] = useState([]);
+    const [weeksChores, setWeeksChores] = useState([]);
+    const [futureChores, setFutureChores] = useState([]);
+    const [undatedChores, setUndatedChores] = useState([]);
+
+
+    useEffect(() => {
+        sortChore(chores)
+    }, [chores])
+
+    const sortChore = () => {
+        let overdueTemp = [];
+        let todayTemp = [];
+        let weeksTemp = [];
+        let futureTemp = [];
+        let undatedTemp = [];
+
+        chores.forEach(chore => {
+            if(chore.dueDate === null) {
+                undatedTemp.push(chore)
+            }
+            else if (new Date(chore.dueDate).getTime() < new Date().getTime()) {
+                overdueTemp.push(chore)
+            }
+            //TODO: fix this
+            else if (new Date(chore.dueDate).getTime() < new Date().getTime() + 604800000) {
+                todayTemp.push(chore)
+            }
+            else if (new Date(chore.dueDate).getTime() < new Date().getTime() + 7257600000) {
+                weeksTemp.push(chore)
+            }
+            else {
+                futureTemp.push(chore)
+            }
+        })
+
+        setUndatedChores(undatedTemp.sort((a, b) => {
+            if(a.dueDate < b.dueDate) {
+                return -1
+            }
+            else {
+                return 1
+            }
+        }))
+        setOverdueChores(overdueTemp)
+        setFutureChores(futureTemp)
+        setTodayChores(todayTemp)
+        setWeeksChores(weeksTemp)
+    }
+
     return(
         <div>
             <div className="border-top border-dark hero" style={style}>
@@ -20,44 +71,38 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
                     <Col xs={6} style={{paddingLeft: "30px", paddingRight : "30px"}}>
                         <>
                             {/*TODO: decide if we want to have overdue disappear*/}
-                            <h3>
-                                Overdue
-                            </h3>
-                            <br/>
                             {
-                                chores.filter(chore => chore.dueDate !== null && new Date(chore.dueDate).getTime() < new Date().getTime())
-                                    .sort((a, b) => {
-                                        if (a.dueDate < b.dueDate) {
-                                            return -1
-                                        } else {
-                                            return 1
-                                        }
-                                    }).map(chore => {
+                                overdueChores.length !== 0 &&
+                                    <>
+                                        <h3>
+                                            Overdue
+                                        </h3>
+                                        <br/>
+                                    </>
+                            }
+
+                            {
+                                overdueChores.map(chore => {
                                         return( <div key={chore.id}>
                                             <ChoreCard chore={chore} deleteChore={deleteChore}
                                                        updateProgress={updateProgress}/>
                                             <br/>
                                         </div>)
-                                    }
-                                   )
+                                    })
                             }
                         </>
-                        <h3>
-                            Due Today
-                        </h3>
-
-                        <br/>
                         {
-                            chores.filter(chore => chore.dueDate !== null && new Date(chore.dueDate).getTime() >= new Date().getTime()
-                                && new Date(chore.dueDate).getTime() < new Date().getTime() + 604800000)
-                                .sort((a, b) => {
-                                    if(a.dueDate < b.dueDate) {
-                                        return -1
-                                    }
-                                    else {
-                                        return 1
-                                    }
-                                }).map(chore => {
+                            todayChores.length !== 0 &&
+                                <>
+                                    <h3>
+                                        Due Today
+                                    </h3>
+                                    <br/>
+                                </>
+                        }
+
+                        {
+                            todayChores.map(chore => {
                                     return (
                                         <div key={chore.id}>
                                             <ChoreCard chore={chore} deleteChore={deleteChore}
@@ -67,25 +112,20 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
                                 })
                         }
 
-                        <h3>
-                            Due Next Week
-                        </h3>
+                        {
+                            weeksChores.length !== 0 &&
+                                <>
+                                    <h3>
+                                        Due Next Week
+                                    </h3>
 
-                        <br/>
+                                    <br/>
+                                </>
+                        }
 
 
                         {
-                            chores.filter(chore => chore.dueDate !== null
-                                && new Date(chore.dueDate).getTime() >= new Date().getTime() + 604800000
-                                && new Date(chore.dueDate).getTime() < new Date().getTime() + 7257600000)
-                                .sort((a, b) => {
-                                    if(a.dueDate < b.dueDate) {
-                                        return -1
-                                    }
-                                    else {
-                                        return 1
-                                    }
-                                }).map(chore => {
+                            weeksChores.map(chore => {
                                 return (
                                     <div key={chore.id}>
                                         <ChoreCard chore={chore} deleteChore={deleteChore}
@@ -95,23 +135,19 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
                             })
                         }
 
-                        <h3>
-                            Due In The Future
-                        </h3>
+                        {
+                            futureChores.length !== 0 &&
+                                <>
+                                    <h3>
+                                        Due In The Future
+                                    </h3>
 
-                        <br/>
+                                    <br/>
+                                </>
+                        }
 
                         {
-                            chores.filter(chore => chore.dueDate !== null && new Date(chore.dueDate).getTime() >= new Date().getTime()
-                                && new Date(chore.dueDate).getTime() >= new Date().getTime() + 7257600000)
-                                .sort((a, b) => {
-                                    if(a.dueDate < b.dueDate) {
-                                        return -1
-                                    }
-                                    else {
-                                        return 1
-                                    }
-                                }).map(chore => {
+                            futureChores.map(chore => {
                                 return (
                                     <div key={chore.id}>
                                         <ChoreCard chore={chore} deleteChore={deleteChore}

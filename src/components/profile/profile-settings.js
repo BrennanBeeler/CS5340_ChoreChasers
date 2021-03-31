@@ -27,21 +27,21 @@ const ProfileSettings = ({
             <form>
                 <div className="form-group">
                     <label htmlFor="oldPasswordFld" className="label form-headers">
-                        Enter Old Password
+                        <div class="form-text-field-group">Enter Old Password</div>
                     </label>
                     <input type="text" id="emailFld" placeholder="example@domain.com" className=" form-control "
                            value={oldPassword} onChange={(event => setOldPassword(event.target.value))}/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="passwordFld" className="label form-headers">
-                        Enter New Password
+                        <div class="form-text-field-group">Enter New Password</div>
                     </label>
                     <input type="text" id="passwordFld" placeholder="Enter your password" className=" form-control"
                            value={newPassword} onChange={(event => setNewPassword(event.target.value))}/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="passwordFld" className="label form-headers">
-                        Confirm Password
+                        <div class="form-text-field-group">Confirm Password</div>
                     </label>
                     <input type="text" id="passwordFld" placeholder="Re-enter your password" className="form-control form-text-field"
                            value={confirmPassword} onChange={(event => setConfirmPassword(event.target.value))}/>

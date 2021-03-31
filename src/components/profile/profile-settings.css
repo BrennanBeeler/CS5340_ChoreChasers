@@ -34,11 +34,11 @@
 
 .form-headers {
     padding-left:200px;
+    padding-right: 20px;
     float:left;
 }
 
 .form-text-field {
     padding-left:30px;
     width:200px;
-    /*float:left;*/
 }

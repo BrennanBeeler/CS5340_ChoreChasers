@@ -19,7 +19,7 @@ const ProfileSettings = ({
                 Account Settings
             </h1>
             <br/>
-            <h4 className="text-left h4-settings-headers" style={{paddingLeft:"200px"}}>
+            <h4 className="text-left h4-settings-headers" style={{paddingLeft:"200px", marginTop:"50px"}}>
                 Change Password
             </h4>
                 <p></p>
@@ -50,15 +50,19 @@ const ProfileSettings = ({
                 </div>
 
                 {/*TODO: figure out why this is clearing fields*/}
-                <button className="btn btn-success" onClick={(event) =>  handleSubmit(event)}>
+
+                <div style={{paddingLeft:"200px", float:"left",marginTop:"20px"}}>
+                <button className="btn btn-success" style={{paddingRight:"50px",paddingLeft:"50px"}} onClick={(event) =>  handleSubmit(event)}>
                     Confirm Changes
                 </button>
+                </div>
 
                 <br/>
                 <br/>
 
                 <div className="mx-auto">
-                    <h4 className="text-left h4-settings-headers" style={{paddingLeft:"200px"}}>
+
+                    <h4 className="text-left h4-settings-headers" style={{paddingLeft:"200px", marginTop:"70px"}}>
                         Delete Account
                     </h4>
 
@@ -66,9 +70,11 @@ const ProfileSettings = ({
                       This will permanently delete your Chore Chasers account.
                     </p>
 
-                    <Link to="/" className="btn btn-danger mt-2">
+                    <div style={{paddingLeft:"200px", float:"left"}}>
+                    <Link to="/" className="btn btn-danger mt-2" style={{paddingRight:"50px",paddingLeft:"50px"}}>
                         Delete Account
                     </Link>
+                    </div>
                 </div>
             </form>
             <br/>

@@ -180,9 +180,18 @@ class GroupChores extends React.Component {
                 <CreateChoreModal key={new Date().getTime() + 15} show={this.state.choreModal}
                                   hide={() => this.setState({choreModal: false})}
                                   profileUsername={this.props.profileUsername} createChore={this.props.createChore}/>
-                <h4 class="h4-style">
-                    Group Progress
-                </h4>
+
+                <div class="group-settings-header-div">
+                    <h4 class="h4-style">
+                        Group Progress
+                    </h4>
+                </div>
+                <div class="group-settings-btn">
+                    <Link to="/groupSettings" className="">
+                        Group Settings
+                    </Link>
+                </div>
+                <p></p>
                 {this.props.group.progressBar ? <ProgressBar>
                     {Object.keys(members).map((member, index) => {
                         return (<ProgressBar animated={true} variant={this.state.colors[index % 4]} label={member} now={members[member]/this.state.totalPoints*100} key={index}/>)
@@ -191,20 +200,37 @@ class GroupChores extends React.Component {
                 </ProgressBar> : <div/>}
                 <p></p>
 
-                <div className="d-flex justify-content-between">
-                    <Button variant="info" onClick={() => this.setState({choreModal: true})}>
-                        Create Chore
-                        <i className="fa fa-plus" style={{paddingLeft: "10px"}}/>
-                    </Button>
+                {/*<div className="d-flex justify-content-between">*/}
+                {/*    <Button variant="info" onClick={() => this.setState({choreModal: true})}>*/}
+                {/*        Create Chore*/}
+                {/*        <i className="fa fa-plus" style={{paddingLeft: "10px"}}/>*/}
+                {/*    </Button>*/}
 
-                    <Link to="/groupSettings" className="btn btn-info -align-right">
-                        Group Settings
-                    </Link>
+                    {/*<Link to="/groupSettings" className="btn btn-info -align-right">*/}
+                    {/*    Group Settings*/}
+                    {/*</Link>*/}
+                {/*</div>*/}
+
+                {/*<h1>*/}
+                {/*    {this.props.group.name}*/}
+                {/*</h1>*/}
+
+                <div className="group-name-style">
+                    <h1 class="h1-style">
+                        {this.props.group.name}
+                    </h1>
+                </div>
+                <div className="create-chore-btn-div">
+                    <button className=" create-chore-btn btn btn-info mt-2 mb-1 pt-2 pb-2"
+                            onClick={() => this.setState({choreModal: true})}>
+                        Add a New Chore
+                        <i className="fa fa-plus" style={{paddingLeft: "10px"}}/>
+                    </button>
                 </div>
 
-                <h1>
-                    {this.props.group.name}
-                </h1>
+                <br/>
+                <br/>
+                <br/>
 
                 <ChoreDisplay key={new Date().getTime()} chores={this.props.group.chores} deleteChore={this.handleDelete} updateProgress={this.updateProgress}/>
             </div>

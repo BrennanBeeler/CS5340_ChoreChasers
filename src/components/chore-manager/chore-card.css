@@ -1,0 +1,11 @@
+input:checked {
+    height: 20px;
+    width: 20px;
+    background-color: green;
+}
+
+
+input:not(:checked) {
+    height: 20px;
+    width: 20px;
+}

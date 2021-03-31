@@ -9,13 +9,10 @@
 .h4-style {
     font-family: Verdana, Geneva, sans-serif;
     color: #1d1d1d;
+    margin-top: 2px;
 }
 
 
-.h1-style {
-    /*display: inline-block;*/
-    /*margin-right: 80px;*/
-}
 
 .create-chore-btn-div {
     /*margin-left: 20px;*/

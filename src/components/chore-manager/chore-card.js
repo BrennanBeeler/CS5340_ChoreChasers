@@ -173,6 +173,7 @@
 
 
 import React, {useState} from "react";
+import "./chore-card.css"
 import {Button, FormCheck, Navbar} from "react-bootstrap";
 import DeleteChoreModal from "../delete-chore/delete-chore-modal";
 import applicationActions from "../../actions/actions";
@@ -229,15 +230,26 @@ const ChoreCard = ({props, chore, group, updateProgress, addPoints, editChore, d
                     {chore.choreName}
                 </h3>
 
-                {completed ? <button className="btn" style={{position: "absolute", top: "3px", right: "5px"}} onClick={undoCompleted}>
-                      Undo?</button>
-                  : <FormCheck style={{position: "absolute", top: "10px", right: "10px"}} onClick={markCompleted}/>}
+                {/*{completed ? <button className="btn" style={{position: "absolute", top: "3px", right: "5px"}} onClick={undoCompleted}>*/}
+                {/*      Undo?</button>*/}
+                {/*  : <FormCheck style={{position: "absolute", top: "10px", right: "10px"}} onClick={markCompleted}/>}*/}
+
+                {completed ?
+                 <div>
+                     <input id="undo" type="checkbox" checked="checked" className="btn" style={{position: "absolute", top: "10px", right: "10px"}} onClick={undoCompleted} />
+                     <label htmlFor="undo" style={{position: "absolute", top: "8px", right: "40px"}}> Undo </label>
+                 </div>
+                           :
+                 <div>
+                 <input id="done" type="checkbox" style={{position: "absolute", top: "10px", right: "10px"}} onClick={markCompleted}/>
+                     <label htmlFor="undo" style={{position: "absolute", top: "8px", right: "40px"}}> Done </label>
+                 </div>
+                }
 
                 {
                     (chore.rewards.points === true || chore.rewards.realLifeItem === true) &&
                         <div>
                             Reward:
-
                         </div>
                 }
                 {

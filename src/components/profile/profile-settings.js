@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {Link, Redirect} from "react-router-dom";
+import "./profile-settings.css"
 
 const ProfileSettings = ({
                    profile}) => {
@@ -13,62 +14,73 @@ const ProfileSettings = ({
   const [confirmPassword, setConfirmPassword] = useState("");
     return (
         <div className="container">
+            <div class="center-profile-settings">
             <h1 className="text-center">
                 Account Settings
             </h1>
-
-            <h3 className="text-left">
+            <br/>
+            <h4 className="text-left h4-settings-headers" style={{paddingLeft:"200px", marginTop:"20px",marginBottom:"30px"}}>
                 Change Password
-            </h3>
+            </h4>
+
 
             <form>
                 <div className="form-group">
-                    <label htmlFor="oldPasswordFld" className="label ">
+                    <label htmlFor="oldPasswordFld" className="label form-headers">
                         Enter Old Password
                     </label>
-                    <input id="emailFld" placeholder="example@domain.com" className="form-control"
+                    <input type="text" id="emailFld" placeholder="example@domain.com" className=" form-control "
                            value={oldPassword} onChange={(event => setOldPassword(event.target.value))}/>
-
                 </div>
-
                 <div className="form-group">
-                    <label htmlFor="passwordFld" className="label">
+                    <label htmlFor="passwordFld" className="label form-headers">
                         Enter New Password
                     </label>
-                    <input id="passwordFld" placeholder="Enter your password" className="form-control"
+                    <input type="text" id="passwordFld" placeholder="Enter your password" className=" form-control"
                            value={newPassword} onChange={(event => setNewPassword(event.target.value))}/>
                 </div>
-
                 <div className="form-group">
-                    <label htmlFor="passwordFld" className="label">
-                        Enter New Password Again to Confirm
+                    <label htmlFor="passwordFld" className="label form-headers">
+                        Confirm Password
                     </label>
-                    <input id="passwordFld" placeholder="Enter your password" className="form-control"
+                    <input type="text" id="passwordFld" placeholder="Re-enter your password" className="form-control form-text-field"
                            value={confirmPassword} onChange={(event => setConfirmPassword(event.target.value))}/>
                 </div>
 
                 {/*TODO: figure out why this is clearing fields*/}
-                <button className="btn btn-success" onClick={(event) =>  handleSubmit(event)}>
+
+                <div style={{paddingLeft:"200px", float:"left",marginTop:"20px"}}>
+                <button className="btn btn-success" style={{paddingRight:"50px",paddingLeft:"50px"}} onClick={(event) =>  handleSubmit(event)}>
                     Confirm Changes
                 </button>
+                </div>
 
                 <br/>
                 <br/>
 
                 <div className="mx-auto">
-                    <h3 className="text-left">
-                        Delete Account
-                    </h3>
 
-                    <p>
+                    <h4 className="text-left h4-settings-headers" style={{paddingLeft:"200px", marginTop:"40px"}}>
+                        Delete Account
+                    </h4>
+
+                    <p style={{paddingRight:"290px"}}>
                       This will permanently delete your Chore Chasers account.
                     </p>
 
-                    <Link to="/" className="btn btn-danger mt-2">
+                    <div style={{paddingLeft:"200px", float:"left"}}>
+                    <Link to="/" className="btn btn-danger mt-2" style={{paddingRight:"50px",paddingLeft:"50px"}}>
                         Delete Account
                     </Link>
+                    </div>
                 </div>
             </form>
+            <br/>
+            <Link to="/profile" className="back-button btn">
+                <i className="fa fa-caret-left" style={{paddingLeft: "10px", paddingRight:"15px"}}/>
+                Return to Profile
+            </Link>
+        </div>
         </div>
     )
 }

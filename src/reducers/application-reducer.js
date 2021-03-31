@@ -134,6 +134,7 @@ const initialState = {
                 rewards:{points:true,realLifeItem:false},
                 points:5,
                 realLifeItem:"",
+                dueDate: "2025-03-23T00:00:00.000Z",
                 splitReward:{everyoneGetsReward:false,fcfs:false},
                 dateAdded: "2025-03-23T00:00:00.000Z",
                 assignor: "Marie",

@@ -7,13 +7,14 @@ import 'react-bootstrap-typeahead/css/Typeahead.css';
 
 const EditChoreModal = ({onHide, show, currentGroup, profileUsername, chore, editChore}) => {
 
+    //TODO: remember why i did this
     const getInitialDate = () => {
         if(chore.dueDate === null) {
             return undefined
         }
         else {
             let tempDate = new Date(chore.dueDate)
-            return tempDate.toISOString().substring(0, 10)
+            return tempDate.toISOString()
         }
     }
 

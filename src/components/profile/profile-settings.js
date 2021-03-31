@@ -69,6 +69,11 @@ const ProfileSettings = ({
                     </Link>
                 </div>
             </form>
+            <br/>
+            <Link to="/profile" className="btn btn-info">
+                <i className="fa fa-caret-left" style={{paddingLeft: "10px", color:"white", paddingRight:"15px"}}/>
+                Return to Profile
+            </Link>
         </div>
     )
 }

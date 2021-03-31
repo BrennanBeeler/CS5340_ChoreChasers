@@ -39,10 +39,10 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
                 overdueTemp.push(chore)
             }
             //TODO: fix this
-            else if (new Date(chore.dueDate).getTime() < new Date().getTime() + 604800000) {
+            else if (new Date(chore.dueDate).getTime() < new Date().getTime() + 86400000) {
                 todayTemp.push(chore)
             }
-            else if (new Date(chore.dueDate).getTime() < new Date().getTime() + 7257600000) {
+            else if (new Date(chore.dueDate).getTime() < new Date().getTime() + 604800000) {
                 weeksTemp.push(chore)
             }
             else {

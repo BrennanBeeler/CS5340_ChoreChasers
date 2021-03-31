@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {Link, Redirect} from "react-router-dom";
+import "./profile-settings.css"
 
 const ProfileSettings = ({
                    profile}) => {
@@ -13,37 +14,38 @@ const ProfileSettings = ({
   const [confirmPassword, setConfirmPassword] = useState("");
     return (
         <div className="container">
+            <div class="center-profile-settings">
             <h1 className="text-center">
                 Account Settings
             </h1>
-
-            <h3 className="text-left">
+            <br/>
+            <h4 className="text-left h4-settings-headers" style={{paddingLeft:"200px"}}>
                 Change Password
-            </h3>
+            </h4>
+                <p></p>
 
             <form>
                 <div className="form-group">
-                    <label htmlFor="oldPasswordFld" className="label ">
+                    <label htmlFor="oldPasswordFld" className="label form-headers">
                         Enter Old Password
                     </label>
-                    <input id="emailFld" placeholder="example@domain.com" className="form-control"
+                    <input id="emailFld" placeholder="example@domain.com" className="form-text-field form-control "
                            value={oldPassword} onChange={(event => setOldPassword(event.target.value))}/>
-
                 </div>
-
+                <br/>
                 <div className="form-group">
-                    <label htmlFor="passwordFld" className="label">
+                    <label htmlFor="passwordFld" className="label form-headers">
                         Enter New Password
                     </label>
-                    <input id="passwordFld" placeholder="Enter your password" className="form-control"
+                    <input id="passwordFld" placeholder="Enter your password" className="form-text-field form-control"
                            value={newPassword} onChange={(event => setNewPassword(event.target.value))}/>
                 </div>
-
+                <br/>
                 <div className="form-group">
-                    <label htmlFor="passwordFld" className="label">
-                        Enter New Password Again to Confirm
+                    <label htmlFor="passwordFld" className="label form-headers">
+                        Confirm Password
                     </label>
-                    <input id="passwordFld" placeholder="Enter your password" className="form-control"
+                    <input id="passwordFld" placeholder="Enter your password" className="form-control form-text-field"
                            value={confirmPassword} onChange={(event => setConfirmPassword(event.target.value))}/>
                 </div>
 
@@ -56,11 +58,11 @@ const ProfileSettings = ({
                 <br/>
 
                 <div className="mx-auto">
-                    <h3 className="text-left">
+                    <h4 className="text-left h4-settings-headers" style={{paddingLeft:"200px"}}>
                         Delete Account
-                    </h3>
+                    </h4>
 
-                    <p>
+                    <p style={{paddingRight:"290px"}}>
                       This will permanently delete your Chore Chasers account.
                     </p>
 
@@ -70,10 +72,11 @@ const ProfileSettings = ({
                 </div>
             </form>
             <br/>
-            <Link to="/profile" className="btn btn-info">
-                <i className="fa fa-caret-left" style={{paddingLeft: "10px", color:"white", paddingRight:"15px"}}/>
+            <Link to="/profile" className="back-button btn">
+                <i className="fa fa-caret-left" style={{paddingLeft: "10px", paddingRight:"15px"}}/>
                 Return to Profile
             </Link>
+        </div>
         </div>
     )
 }

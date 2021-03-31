@@ -53,14 +53,15 @@ const Profile = ({
             <h2 className="text-center">
               {profile.username || defaultName}'s Profile
             </h2>
+              <div style={{paddingRight:"25px"}}>
             <Link to="/profileSettings" className="btn fa fa-cog"/>
             <Link to="/profileSettings" className="nav-link-center">
                 View Account Settings
             </Link>
-            <br/>
+              </div>
             <br/>
               <p></p>
-            <h4 className="text-center h4-headers">
+            <h4 className="text-center h4-profile-headers">
               CURRENT LEVEL
             </h4>
           <div className="row justify-content-center">

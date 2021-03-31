@@ -24,7 +24,7 @@ const CreateGroupModal = ({props, createGroup, profile, groups}) => {
                 progressBar: true,
                 chores: [],
                 //TODO: REMOVE!
-                members: memberList.concat(["Jules", "Mikey", "Max"]),
+                members: ["Jules", "Mikey", "Max"],
             };
             createGroup(profile, group);
 

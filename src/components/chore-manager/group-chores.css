@@ -34,3 +34,15 @@
 .group-name-style {
     float: left;
 }
+
+.group-settings-btn {
+    margin-left: 90%;
+    /*float:right;*/
+    position:relative;
+    top:5px;
+    right: 5px;
+}
+
+.group-settings-header-div {
+    float: left;
+}

@@ -30,6 +30,7 @@ const Profile = ({
     };
     // TODO: It doesn't affect performance but this is pretty bad practice, change later
     updateLevel();
+
   const unlockableBackgrounds = ["https://coolbackgrounds.io/images/backgrounds/white/pure-white-background-85a2a7fd.jpg",
     "https://globetrender.com/wp-content/uploads/2020/05/Caribbean-beach.jpg",
     "https://images.pexels.com/photos/1054289/pexels-photo-1054289.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",

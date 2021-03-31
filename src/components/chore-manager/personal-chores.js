@@ -140,17 +140,24 @@ class PersonalChores extends React.Component {
                 <ProgressBar>
                     <ProgressBar variant="success" now={this.state.completedPoints/this.state.totalPoints *100} key={1}/>
                 </ProgressBar>
-                <br/>
-                <Button className="create-chore-btn" variant="info" onClick={() => this.setState({choreModal: true})}>
-                    Create Chore
-                    <i className="fa fa-plus" style={{paddingLeft: "10px"}}/>
-                </Button>
-                <div>
+
+                <p></p>
+
+                <div class="group-name-style">
                     <h1 className="h1-style">
                         Personal Chores
                     </h1>
                 </div>
+                <div class="create-chore-btn-div">
+                    <button class=" create-chore-btn btn btn-info mt-2 mb-1 pt-2 pb-2"  onClick={() => this.setState({choreModal: true})}>
+                        Add a New Chore
+                        <i className="fa fa-plus" style={{paddingLeft: "10px"}}/>
+                    </button>
+                </div>
 
+                <br/>
+                <br/>
+                <br/>
 
                 <ChoreDisplay key={new Date().getTime()}
                               chores={this.props.chores}

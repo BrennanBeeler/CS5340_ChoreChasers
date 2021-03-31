@@ -13,8 +13,9 @@
 
 .h1-style {
     display: inline-block;
-    margin-right: 60px;
+    margin-right: 80px;
 }
 .create-chore-btn {
     margin-left: 20px;
+    margin-bottom: 10px;
 }

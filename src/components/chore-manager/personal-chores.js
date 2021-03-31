@@ -145,12 +145,12 @@ class PersonalChores extends React.Component {
                     <h1 class="h1-style">
                         Personal Chores
                     </h1>
-                    <Button class="create-chore-btn" variant="info" onClick={() => this.setState({choreModal: true})}>
+                    <div>
+                    <Button variant="info" onClick={() => this.setState({choreModal: true})}>
                     Create Chore
                     <i className="fa fa-plus" style={{paddingLeft: "10px"}}/>
-                </Button>
-
-
+                    </Button>
+                    </div>
                 </div>
 
 

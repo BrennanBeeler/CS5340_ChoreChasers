@@ -137,7 +137,7 @@ const CreateChoreModal = ({
                                 delay={{ show: 250, hide: 400 }}
                                 overlay={
                                     <Tooltip>
-                                        Points from 10-100 can be appended to your total points
+                                        Points from 0-20 can be appended to your total points
                                     </Tooltip>
                                 }>
                             <span className="btn fa fa-question-circle"/>

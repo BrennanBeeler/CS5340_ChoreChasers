@@ -11,6 +11,8 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
         backgroundImage: "url("+background+")",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
+        width: "100%",
+        minHeight: "100vh"
     }
 
     const [overdueChores, setOverdueChores] = useState([]);

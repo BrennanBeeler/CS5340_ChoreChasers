@@ -191,6 +191,10 @@ const ChoreCard = ({props, chore, group, updateProgress, addPoints, editChore, d
 
     const successSound = new Audio("/success.wav");
 
+    const cardStyle = {
+        boxShadow: "0 15px 15px 0 rgba(0, 0, 0, 0.05), 0 15px 15px 0 rgba(0, 0, 0, 0.05)"
+    };
+
     const markCompleted = (event) => {
         //TODO: handle promise
         successSound.play();
@@ -220,11 +224,12 @@ const ChoreCard = ({props, chore, group, updateProgress, addPoints, editChore, d
         editChore(chore, group);
     }
 
+
     // TODO: probably want to handle visibility as the chore display level
     return(visibility &&
       <>
 
-        <Navbar bg="light" expand="xs">
+        <Navbar style={cardStyle} bg="light" expand="xs" >
             <Navbar.Text>
                 <h3>
                     {chore.choreName}

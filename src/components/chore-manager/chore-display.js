@@ -76,7 +76,7 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
                             {
                                 overdueChores.length !== 0 &&
                                     <>
-                                        <h3 style={{color:"#a53561"}}>
+                                        <h3 style={{color:"#be4782"}}>
                                             Overdue
                                         </h3>
                                         <br/>

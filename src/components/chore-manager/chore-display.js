@@ -76,13 +76,12 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
                             {
                                 overdueChores.length !== 0 &&
                                     <>
-                                        <h3>
+                                        <h3 style={{color:"#a53561"}}>
                                             Overdue
                                         </h3>
                                         <br/>
                                     </>
                             }
-
                             {
                                 overdueChores.map(chore => {
                                         return( <div key={chore.id}>
@@ -93,6 +92,7 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
                                     })
                             }
                         </>
+                        <hr></hr>
                         {
                             todayChores.length !== 0 &&
                                 <>
@@ -113,7 +113,7 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
                                         </div>)
                                 })
                         }
-
+                        <hr></hr>
                         {
                             weeksChores.length !== 0 &&
                                 <>
@@ -133,9 +133,12 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
                                         <ChoreCard chore={chore} deleteChore={deleteChore}
                                                    updateProgress={updateProgress}/>
                                         <br/>
-                                    </div>)
+                                    </div>
+                                    )
+
                             })
                         }
+                        <hr></hr>
 
                         {
                             futureChores.length !== 0 &&
@@ -176,6 +179,8 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
                                 </div>
                             )
                         }
+                        <hr></hr>
+
                     </Col>
                 </Row>
             </div>

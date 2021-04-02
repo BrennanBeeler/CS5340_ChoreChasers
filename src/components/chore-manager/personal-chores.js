@@ -144,7 +144,7 @@ class PersonalChores extends React.Component {
 
                 <p></p>
 
-              <div className="group-name-style">
+              <div className="personal-chore-name-style">
                 <h1 className="h1-style">
                   Personal Chores
                 </h1>

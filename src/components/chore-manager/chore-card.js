@@ -191,6 +191,13 @@ const ChoreCard = ({props, chore, group, updateProgress, addPoints, editChore, d
 
     const successSound = new Audio("/success.wav");
 
+    const cardStyle = {
+        boxShadow: "0 15px 15px 0 rgba(0, 0, 0, 0.05), 0 15px 15px 0 rgba(0, 0, 0, 0.05)"
+    };
+    const cardText = {
+        color: "#4d4d4d",
+}
+
     const markCompleted = (event) => {
         //TODO: handle promise
         successSound.play();
@@ -220,27 +227,28 @@ const ChoreCard = ({props, chore, group, updateProgress, addPoints, editChore, d
         editChore(chore, group);
     }
 
+
     // TODO: probably want to handle visibility as the chore display level
     return(visibility &&
       <>
 
-        <Navbar bg="light" expand="xs">
+        <Navbar style={cardStyle} bg="light" expand="xs" >
             <Navbar.Text>
-                <h3>
+                <h4 style = {cardText}>
                     {chore.choreName}
-                </h3>
+                </h4>
 
                 {/*{completed ? <button className="btn" style={{position: "absolute", top: "3px", right: "5px"}} onClick={undoCompleted}>*/}
                 {/*      Undo?</button>*/}
                 {/*  : <FormCheck style={{position: "absolute", top: "10px", right: "10px"}} onClick={markCompleted}/>}*/}
 
                 {completed ?
-                 <div>
+                 <div style = {cardText}>
                      <input id="undo" type="checkbox" checked="checked" className="btn" style={{position: "absolute", top: "10px", right: "10px"}} onClick={undoCompleted} />
                      <label htmlFor="undo" style={{position: "absolute", top: "8px", right: "40px"}}> Undo </label>
                  </div>
                            :
-                 <div>
+                 <div style = {cardText}>
                  <input id="done" type="checkbox" style={{position: "absolute", top: "10px", right: "10px"}} onClick={markCompleted}/>
                      <label htmlFor="undo" style={{position: "absolute", top: "8px", right: "40px"}}> Done </label>
                  </div>
@@ -248,13 +256,13 @@ const ChoreCard = ({props, chore, group, updateProgress, addPoints, editChore, d
 
                 {
                     (chore.rewards.points === true || chore.rewards.realLifeItem === true) &&
-                        <div>
+                        <div style = {cardText}>
                             Reward:
                         </div>
                 }
                 {
                     (chore.rewards.points === true) &&
-                    <div>
+                    <div style = {cardText}>
                         {/*<div style={{paddingLeft: "10px"}}>*/}
                         Points: {chore.points}pts
                     </div>
@@ -262,7 +270,7 @@ const ChoreCard = ({props, chore, group, updateProgress, addPoints, editChore, d
 
                 {
                     (chore.rewards.realLifeItem === true) &&
-                    <div>
+                    <div style = {cardText}>
                         {/*<div style={{paddingLeft: "10px"}}>*/}
                         Real Life Reward: {chore.realLifeItem}
                     </div>
@@ -273,7 +281,7 @@ const ChoreCard = ({props, chore, group, updateProgress, addPoints, editChore, d
             <DeleteChoreModal key={new Date().getTime()} show={showDeleteModal}
                               hide={()=> setShowDeleteModal(false)} deleteChore={deleteChore} choreId={chore.id}/>
 
-            <Navbar.Toggle style={{position: "absolute", bottom: "10px", right: "10px"}}
+            <Navbar.Toggle style={{position: "absolute", bottom: "10px", right: "10px", color:"#000"}}
               onClick={() => setToggleText(1 - toggleText)}>
                 {toggleTextStr[toggleText]}
                 <i className= {caret[toggleText]} style={{paddingLeft: "10px"}}/>
@@ -284,7 +292,7 @@ const ChoreCard = ({props, chore, group, updateProgress, addPoints, editChore, d
                     {
                         chore.dueDate !== null &&
                         <>
-                            <div>
+                            <div style = {cardText}>
                                 Due Date: {new Date(chore.dueDate).toDateString()}
                             </div>
 
@@ -295,20 +303,20 @@ const ChoreCard = ({props, chore, group, updateProgress, addPoints, editChore, d
                     {
                         chore.choreInstructions !== "" &&
                         <>
-                            <div>
+                            <div style = {cardText}>
                                 Chore Description: {chore.choreInstructions}
                             </div>
                             <br/>
                         </>
                     }
 
-                    <div>
+                    <div style = {cardText}>
                         Repeat Chore: {chore.repeatChore}
                     </div>
 
                     <br/>
 
-                    <div>
+                    <div style = {cardText}>
                         Assignor: {chore.assignor}
                     </div>
 
@@ -318,14 +326,15 @@ const ChoreCard = ({props, chore, group, updateProgress, addPoints, editChore, d
                     {
                         chore.dateAdded !== null &&
                             <>
-                                <div>
+                                <div style = {cardText}>
                                     Date Added: {new Date(chore.dateAdded).toDateString()}
                                 </div>
                                 <br/>
                             </>
                     }
-
-                    Assignees: {chore.assignees.join(", ")}
+                    <div style = {cardText}>
+                        Assignees: {chore.assignees.join(", ")}
+                    </div>
 
 
                 </Navbar.Text>

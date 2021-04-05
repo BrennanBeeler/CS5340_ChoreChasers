@@ -92,7 +92,7 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
                                     })
                             }
                         </>
-                        <hr></hr>
+                        {/*<hr></hr>*/}
                         {
                             todayChores.length !== 0 &&
                                 <>
@@ -113,7 +113,7 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
                                         </div>)
                                 })
                         }
-                        <hr></hr>
+                        {/*<hr></hr>*/}
                         {
                             weeksChores.length !== 0 &&
                                 <>
@@ -138,7 +138,7 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
 
                             })
                         }
-                        <hr></hr>
+                        {/*<hr></hr>*/}
 
                         {
                             futureChores.length !== 0 &&
@@ -179,7 +179,7 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
                                 </div>
                             )
                         }
-                        <hr></hr>
+                        {/*<hr></hr>*/}
 
                     </Col>
                 </Row>

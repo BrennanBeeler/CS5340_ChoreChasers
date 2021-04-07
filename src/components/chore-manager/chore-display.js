@@ -72,13 +72,12 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
                 <Row>
                     <Col xs={6} style={{paddingLeft: "30px", paddingRight : "30px"}}>
                         <>
-                            {/*TODO: decide if we want to have overdue disappear*/}
                             {
                                 overdueChores.length !== 0 &&
                                     <>
-                                        <h3 style={{color:"#be4782"}}>
+                                        <h2 style={{color:"#ff0404"}}>
                                             Overdue
-                                        </h3>
+                                        </h2>
                                         <br/>
                                     </>
                             }
@@ -96,9 +95,9 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
                         {
                             todayChores.length !== 0 &&
                                 <>
-                                    <h3>
+                                    <h2>
                                         Due Today
-                                    </h3>
+                                    </h2>
                                     <br/>
                                 </>
                         }
@@ -117,9 +116,9 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
                         {
                             weeksChores.length !== 0 &&
                                 <>
-                                    <h3>
+                                    <h2>
                                         Due Next Week
-                                    </h3>
+                                    </h2>
 
                                     <br/>
                                 </>
@@ -143,9 +142,9 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
                         {
                             futureChores.length !== 0 &&
                                 <>
-                                    <h3>
+                                    <h2>
                                         Due In The Future
-                                    </h3>
+                                    </h2>
 
                                     <br/>
                                 </>
@@ -164,9 +163,9 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
                     </Col>
 
                     <Col xs={6} style={{paddingRight: "30px", paddingLeft: "30px"}}>
-                        <h3>
+                        <h2>
                             Undated Chores
-                        </h3>
+                        </h2>
 
                         <br/>
 

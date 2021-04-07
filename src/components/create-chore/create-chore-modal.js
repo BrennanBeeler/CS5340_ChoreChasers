@@ -16,7 +16,7 @@ const CreateChoreModal = ({
 
 
     const [choreName, setChoreName] = useState("");
-    const [dueDate, setDueDate] = useState(undefined);
+    const [dueDate, setDueDate] = useState("");
     const [repeatChore, setRepeatChore] = useState("Never");
     const [choreInstructions, setChoreInstructions] = useState("");
     const [choreGroup, setChoreGroup] = useState(currentGroup);
@@ -26,6 +26,18 @@ const CreateChoreModal = ({
     const [prizeChecked, setPrizeChecked] = useState(false);
     const [prizeText, setPrizeText] = useState("");
     const [pointNumber, setPointNumber] = useState(0);
+
+    const handleDate = () => {
+        let newDate = new Date()
+
+        console.log(dueDate.substring(5, 7))
+
+        // Due date is now around noon on whatever day is selected, all in local time - subtract 1 because of 0 vs 1 indexing
+        newDate.setFullYear(parseInt(dueDate.substring(0, 4)), parseInt(dueDate.substring(5, 7)) - 1, parseInt(dueDate.substring(8, 10)))
+        newDate.setHours(23, 59)
+
+        return newDate.toISOString()
+    }
 
     const validateChore = () => {
         //TODO: actually validate chores
@@ -40,7 +52,7 @@ const CreateChoreModal = ({
             id: Date.now(),
             done:false,
             choreName: choreName,
-            dueDate: dueDate === undefined ? null : dueDate,
+            dueDate: dueDate === "" ? null : handleDate(),
             repeatChore: repeatChore,
             choreInstructions: choreInstructions,
             rewards:{points:pointsChecked,realLifeItem:prizeChecked},
@@ -69,6 +81,10 @@ const CreateChoreModal = ({
                         <Form.Control placeholder="Enter chore name" value={choreName}
                                       onChange={event => setChoreName(event.target.value)}/>
                     </Form.Group>
+
+                    {
+                        console.log(dueDate)
+                    }
 
                     {/*TODO: need way to clear date*/}
                     <Form.Group>

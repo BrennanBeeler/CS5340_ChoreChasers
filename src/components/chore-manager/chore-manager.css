@@ -6,6 +6,14 @@
     width: 50%;
 }
 
+.color-top-manager{
+    background-color: #d1f8ff;
+}
+
+.color-bottom-manager{
+    background-color: #ffdfe4;
+}
+
 /*.manager-fixed-wrapper {*/
 /*    width:550px;*/
 /*}*/

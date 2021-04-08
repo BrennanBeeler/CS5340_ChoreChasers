@@ -36,8 +36,8 @@ const ChoreManager = ({
     return (
         <div className="hci-full-height row" >
             {/*TODO: figure out how to keep separator between groups and chores moving*/}
-                <div className="col-2 border-right hci-full-height">
-                    <div className=" row-12 border-bottom border-dark pb-4">
+                <div className="col-2 border-right hci-full-height ">
+                    <div className="row-12 border-bottom border-dark pb-4 ">
                         <div className="level-header">
                             Level {level}
                         </div>

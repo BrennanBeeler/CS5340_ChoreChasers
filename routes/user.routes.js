@@ -15,7 +15,7 @@ module.exports = app => {
     //Get a specific User with their emailId --still doubtful
     router.get("/email/:email",users.getUserWithEmail);
 
-    //Get a specific User with their emailId
+    //Get a specific User with their username
     router.get("/username/:username",users.getUserWithUsername);
 
     //Check if a User exists before logging them in

@@ -16,8 +16,11 @@ exports.createNewUser =  (req, res) => {
                               emailId: req.body.emailId,
                               username: req.body.username,
                               password: req.body.password,
+                              points:req.body.points,
+                              backgroundImage:req.body.backgroundImage,
+                              successSound:req.body.successSound,
                               chores: req.body.chores
-                          });
+    });
 
     // Save User in the database
     user

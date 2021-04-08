@@ -16,11 +16,14 @@ const userSchema = new Schema({
                                            // min: [8, 'Too few characters. Please enter at least 8 characters'],
                                            // max: 25
                                        },
+                                   points:Number, //what type is this?
+                                   backgroundImage:String,
+                                   successSound:Boolean,
                                    chores: [{
                                        type: Schema.Types.ObjectId,
                                        ref:'Chore'
-                                   }
-                                   ]
+                                   },],
                                });
+//background, points
 
 module.exports = mongoose.model('User', userSchema);

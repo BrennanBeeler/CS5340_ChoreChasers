@@ -52,14 +52,7 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
             }
         })
 
-        setUndatedChores(undatedTemp.sort((a, b) => {
-            if(a.dueDate < b.dueDate) {
-                return -1
-            }
-            else {
-                return 1
-            }
-        }))
+        setUndatedChores(undatedTemp)
         setOverdueChores(overdueTemp)
         setFutureChores(futureTemp)
         setTodayChores(todayTemp)
@@ -91,7 +84,6 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
                                     })
                             }
                         </>
-                        {/*<hr></hr>*/}
                         {
                             todayChores.length !== 0 &&
                                 <>
@@ -112,7 +104,6 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
                                         </div>)
                                 })
                         }
-                        {/*<hr></hr>*/}
                         {
                             weeksChores.length !== 0 &&
                                 <>
@@ -137,7 +128,6 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
 
                             })
                         }
-                        {/*<hr></hr>*/}
 
                         {
                             futureChores.length !== 0 &&
@@ -170,7 +160,7 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
                         <br/>
 
                         {
-                            chores.filter(chore => chore.dueDate === null).map(chore =>
+                            undatedChores.map(chore =>
                                 <div key={chore.id}>
                                     <ChoreCard chore={chore} deleteChore={deleteChore}
                                                updateProgress={updateProgress}/>
@@ -178,7 +168,6 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
                                 </div>
                             )
                         }
-                        {/*<hr></hr>*/}
 
                     </Col>
                 </Row>

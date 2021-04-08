@@ -6,6 +6,7 @@ import {Link} from "react-router-dom";
 import GroupChores from "./group-chores";
 import CreateGroupModal from "../create-group/create-group-modal";
 import "./chore-manager.css"
+import AllMyChores from "./all-my-chores";
 
 const ChoreManager = ({
                         profileUsername,
@@ -70,6 +71,11 @@ const ChoreManager = ({
                         {activeGroupId === "Personal Chores" ? "Personal Chores" : "View Personal Chores"}
                     </li>
 
+                    <li className={`nav-link nav-item mb-4 pt-3 pb-4 border border-dark group-button ${activeGroupId === "All_my_chores" ? 'active':''}`}
+                        onClick={() => setActiveGroup("All_my_chores")}>
+                        {activeGroupId === "All_my_chores" ? "My assigned chores" : "View my assigned chores"}
+                    </li>
+
                     {
                         groups.map(group =>
                             <li className={`nav-link nav-item mb-4 pt-4 pb-4 border border-dark group-button ${activeGroupId === group.id ? 'active':''}`}
@@ -89,8 +95,15 @@ const ChoreManager = ({
 
                 }
 
+                {/*{*/}
+                {/*    activeGroupId === "All_my_chores" &&*/}
+                {/*        <>*/}
+                {/*            <AllMyChores/>*/}
+                {/*        </>*/}
+                {/*}*/}
+
                 {
-                    activeGroupId !== "Personal Chores" &&
+                    (activeGroupId !== "Personal Chores" && activeGroupId !== "All_my_chores") &&
                     <>
                         <GroupChores/>
                     </>

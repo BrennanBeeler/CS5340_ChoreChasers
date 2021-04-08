@@ -30,8 +30,6 @@ const CreateChoreModal = ({
     const handleDate = () => {
         let newDate = new Date()
 
-        console.log(dueDate.substring(5, 7))
-
         // Due date is now around noon on whatever day is selected, all in local time - subtract 1 because of 0 vs 1 indexing
         newDate.setFullYear(parseInt(dueDate.substring(0, 4)), parseInt(dueDate.substring(5, 7)) - 1, parseInt(dueDate.substring(8, 10)))
         newDate.setHours(23, 59)
@@ -81,10 +79,6 @@ const CreateChoreModal = ({
                         <Form.Control placeholder="Enter chore name" value={choreName}
                                       onChange={event => setChoreName(event.target.value)}/>
                     </Form.Group>
-
-                    {
-                        console.log(dueDate)
-                    }
 
                     {/*TODO: need way to clear date*/}
                     <Form.Group>
@@ -265,13 +259,28 @@ const CreateChoreModal = ({
     )
 }
 
-const stpm = (state,ownProps) => ({
-    currentGroup: state.activeGroupId === "Personal Chores" ? {name: "Personal Chores", id: "Personal Chores"} :
-        state.groups.filter(group => group.id === state.activeGroupId)[0],
-    groupOptions: [{name: "Personal Chores", id : "Personal Chores", members: []}]
-        .concat(state.groups.map(group => ({name: group.name, id: group.id, members: group.members}))),
-    profileUsername : state.profile.username
-})
+const stpm = (state,ownProps) => {
+    let temp = {}
+
+    //TODO: better place to do this?
+    if (state.activeGroupId === "Personal Chores"){
+        temp = {name: "Personal Chores", id: "Personal Chores"}
+    }
+    else if (state.activeGroupId === "All_my_chores") {
+        temp = {name: "All_my_chores", id: "All_my_chores"}
+    }
+    else {
+        temp = state.groups.filter(group => group.id === state.activeGroupId)[0]
+    }
+
+    return ({
+        //TODO: remove use of filter, find instead?
+        currentGroup:  temp,
+        groupOptions: [{name: "Personal Chores", id : "Personal Chores", members: []}]
+            .concat(state.groups.map(group => ({name: group.name, id: group.id, members: group.members}))),
+        profileUsername : state.profile.username
+    })
+}
 
 const dtpm = (dispatch) => ({
     createChore : (groupName, chore) => applicationActions.createChore(dispatch, groupName, chore)

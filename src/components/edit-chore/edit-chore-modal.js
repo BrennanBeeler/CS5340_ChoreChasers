@@ -7,14 +7,31 @@ import 'react-bootstrap-typeahead/css/Typeahead.css';
 
 const EditChoreModal = ({onHide, show, currentGroup, profileUsername, chore, editChore}) => {
 
-    //TODO: remember why i did this
     const getInitialDate = () => {
         if(chore.dueDate === null) {
-            return undefined
+            return ""
         }
         else {
             let tempDate = new Date(chore.dueDate)
-            return tempDate.toISOString()
+            let dateString = tempDate.getFullYear().toString() + "-"
+
+            if ((tempDate.getMonth() + 1).toString().length === 1){
+                dateString = dateString.concat("0" + (tempDate.getMonth() + 1).toString())
+            }
+            else {
+                dateString.concat((tempDate.getMonth() + 1).toString())
+            }
+
+            dateString = dateString.concat("-")
+
+            if ((tempDate.getDate() + 1).toString().length === 1){
+                dateString = dateString.concat("0" + tempDate.getDate().toString())
+            }
+            else {
+                dateString = dateString.concat(tempDate.getDate().toString())
+            }
+
+            return dateString
         }
     }
 
@@ -41,7 +58,6 @@ const EditChoreModal = ({onHide, show, currentGroup, profileUsername, chore, edi
             id: chore.id,
             done:false,
             choreName: choreName,
-            //TODO: Currently date is one day behind because of date conversions- https://stackoverflow.com/questions/24312296/add-one-day-to-date-in-javascript
             dueDate: dueDate === undefined ? null : new Date(dueDate).toISOString(),
             repeatChore: repeatChore,
             choreInstructions: choreInstructions,

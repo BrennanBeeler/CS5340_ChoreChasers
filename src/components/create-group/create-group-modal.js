@@ -23,7 +23,8 @@ const CreateGroupModal = ({props, createGroup, profile, groups}) => {
                 id: (groups.length + 1).toString(),
                 progressBar: true,
                 chores: [],
-                members: memberList,
+                //TODO: REMOVE!
+                members: ["Jules", "Mikey", "Max"],
             };
             createGroup(profile, group);
 

@@ -13,7 +13,8 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress, showComp
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         width: "100%",
-        height: "100vh"
+        height: "100vh",
+        paddingBottom: "30px"
     }
 
     const [overdueChores, setOverdueChores] = useState([]);
@@ -201,6 +202,7 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress, showComp
 
                     </Col>
                 </Row>
+                {/*<br/>*/}
             </div>
         </div>
     )

@@ -87,10 +87,9 @@ const ChoreManager = ({
                                 )
                             }
                         </ul>
+                        <p></p>
                     </div>
                 </div>
-
-
             </div>
 
             <div className="col-10 hci-full-height" style={{paddingLeft: 0, paddingRight: 0}}>

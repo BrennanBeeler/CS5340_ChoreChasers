@@ -36,62 +36,60 @@ const ChoreManager = ({
 
     return (
         <div className="hci-full-height row" >
-            {/*TODO: figure out how to keep separator between groups and chores moving*/}
-                <div className="col-2 border-right hci-full-height ">
-                    <div className="row-12 border-bottom border-dark pb-4 ">
-                        <div className="level-header">
-                            Level {level}
-                        </div>
-                        <div className="profile-points">
-                            <Link to="/profile" className="btn fa fa-user-circle fa-3x"/>
-                            {points}/{maxPoints} points
-                        </div>
-                        <div className="profile-link">
-
-                            <Link to="/profile">
-                                View {profileUsername}'s Account
-                            </Link>
-                        </div>
+            <div className="col-2 border-right hci-full-height ">
+                <div className="border-bottom border-dark pb-4 ">
+                    <div className="level-header">
+                        Level {level}
                     </div>
-
-                    <div>
-                        <button className="btn btn-info hci-create-group btn-block mt-4 pt-3 pb-3" onClick={() => setCreateGroupModal(true)}>
-                            Create Group
-                            <i className="fa fa-plus" style={{paddingLeft: "10px"}}/>
-                        </button>
-
-                        <br/>
+                    <div className="profile-points">
+                        <Link to="/profile" className="btn fa fa-user-circle fa-3x"/>
+                        {points}/{maxPoints} points
                     </div>
+                    <div className="profile-link">
 
+                        <Link to="/profile">
+                            View {profileUsername}'s Account
+                        </Link>
+                    </div>
+                </div>
 
+                <div>
+                    <button className="btn btn-info hci-create-group btn-block mt-4 pt-3 pb-3" onClick={() => setCreateGroupModal(true)}>
+                        Create Group
+                        <i className="fa fa-plus" style={{paddingLeft: "10px"}}/>
+                    </button>
+                </div>
 
-                    <CreateGroupModal key={new Date().getTime()} show={showCreateGroupModal}
-                                      onHide={()=> setCreateGroupModal(false)}/>
+                <CreateGroupModal key={new Date().getTime()} show={showCreateGroupModal}
+                                  onHide={()=> setCreateGroupModal(false)}/>
 
-                    <br/>
-
-                    <ul className="nav flex-column nav-pills mt-4" role="navigation">
-
-                        <li className={`nav-link nav-item mb-4 pt-3 pb-4 border border-dark group-button ${activeGroupId === "Personal Chores" ? 'active':''}`}
-                            onClick={() => setActiveGroup("Personal Chores")}>
-                            {activeGroupId === "Personal Chores" ? "Personal Chores" : "View Personal Chores"}
-                        </li>
-
-                    <li className={`nav-link nav-item mb-4 pt-3 pb-4 border border-dark group-button ${activeGroupId === "All_my_chores" ? 'active':''}`}
-                        onClick={() => setActiveGroup("All_my_chores")}>
-                        {activeGroupId === "All_my_chores" ? "My assigned chores" : "View my assigned chores"}
-                    </li>
-
-                    {
-                        groups.map(group =>
-                            <li className={`nav-link nav-item mb-4 pt-4 pb-4 border border-dark group-button ${activeGroupId === group.id ? 'active':''}`}
-                                key={group.id}
-                                onClick={() => setActiveGroup(group.id)}>
-                                {activeGroupId === group.id ? group.name : "View " + group.name}
+                <div style={{paddingTop: "20px"}}>
+                    <div className="vertical-scrollable" style={{height: "600px"}}>
+                        <ul className="nav flex-column nav-pills mt-4" role="navigation">
+                            <li className={`nav-link nav-item mb-4 pt-3 pb-4 border border-dark group-button ${activeGroupId === "Personal Chores" ? 'active':''}`}
+                                onClick={() => setActiveGroup("Personal Chores")}>
+                                {activeGroupId === "Personal Chores" ? "Personal Chores" : "View Personal Chores"}
                             </li>
-                        )
-                    }
-                </ul>
+
+                            <li className={`nav-link nav-item mb-4 pt-3 pb-4 border border-dark group-button ${activeGroupId === "All_my_chores" ? 'active':''}`}
+                                onClick={() => setActiveGroup("All_my_chores")}>
+                                {activeGroupId === "All_my_chores" ? "My assigned chores" : "View my assigned chores"}
+                            </li>
+
+                            {
+                                groups.map(group =>
+                                    <li className={`nav-link nav-item mb-4 pt-4 pb-4 border border-dark group-button ${activeGroupId === group.id ? 'active':''}`}
+                                        key={group.id}
+                                        onClick={() => setActiveGroup(group.id)}>
+                                        {activeGroupId === group.id ? group.name : "View " + group.name}
+                                    </li>
+                                )
+                            }
+                        </ul>
+                    </div>
+                </div>
+
+
             </div>
 
             <div className="col-10 hci-full-height" style={{paddingLeft: 0, paddingRight: 0}}>

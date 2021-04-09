@@ -22,6 +22,12 @@
     height: 100px;
 }
 
+
+.vertical-scrollable {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
 .manager-fixed {
     max-width:30%;
     min-width:10%;

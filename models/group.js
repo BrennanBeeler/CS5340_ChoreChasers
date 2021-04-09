@@ -4,7 +4,12 @@ const mongoose = require('mongoose');
 const groupSchema = new Schema({
                                    name: {type: String, required : true},
                                    progressBar: Boolean,
-                                   members:[], // receive ids from frontend
+                                   members:[
+                                       {
+                                           type: Schema.Types.ObjectId,
+                                           ref:'User'
+                                       }
+                                   ], // receive ids from frontend
                                    chores: [{
                                        type: Schema.Types.ObjectId,
                                        ref:'Chore'

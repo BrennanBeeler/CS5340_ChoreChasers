@@ -7,7 +7,7 @@ const ShowCompletedToggle = ({showCompleted, toggleShowCompleted}) => {
     return (
         <span className="form-check">
             <input className="form-check-input" type="checkbox" id="showCompletedToggle" checked={showCompleted} onClick={() => toggleShowCompleted()}/>
-            <label className="form-check-label" htmlFor="showCompletedToggle">Show Completed Chores</label>
+            <label style = {{paddingLeft: "5px"}} className="form-check-label" htmlFor="showCompletedToggle">Show Completed Chores</label>
         </span>
     )
 }

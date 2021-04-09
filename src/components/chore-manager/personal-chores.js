@@ -70,18 +70,18 @@ class PersonalChores extends React.Component {
                     </div>
 
 
-                    <div className="create-chore-btn-div">
+                    <div className="create-chore-btn-div-personal">
                         <button className=" create-chore-btn btn btn-info mt-2 mb-1 pt-2 pb-2"
                                 onClick={() => this.setState({choreModal: true})}>
                             Add a New Chore
                             <i className="fa fa-plus" style={{paddingLeft: "10px"}}/>
                         </button>
                     </div>
-
-                    <ShowCompletedToggle/>
                 </div>
 
-
+                <div className="show-completed-toggle-personal">
+                <ShowCompletedToggle/>
+                </div>
 
                 <br/>
 

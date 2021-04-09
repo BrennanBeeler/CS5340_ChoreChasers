@@ -10,12 +10,14 @@ class PersonalChores extends React.Component {
     constructor(props) {
         super(props);
         let completedPoints = 0;
+        let completedChores = 0;
         let totalPoints = 0;
 
         //TODO: remove map- map needs return value
         this.props.chores.map(chore => {
             totalPoints += chore.points;
             if (chore.done) {
+                completedChores += 1;
                 completedPoints += chore.points;
             }
         });
@@ -23,6 +25,7 @@ class PersonalChores extends React.Component {
             choreModal: false,
             completedPoints,
             totalPoints,
+            completedChores,
         };
         this.handleDelete = this.handleDelete.bind(this);
         this.updateProgress = this.updateProgress.bind(this);
@@ -55,6 +58,7 @@ class PersonalChores extends React.Component {
                     <ProgressBar variant="success" now={this.state.completedPoints/this.state.totalPoints *100} key={1}/>
                 </ProgressBar>
 
+                {this.state.completedChores}/{this.props.chores.length} Tasks
                 <p></p>
 
               <div className="personal-chore-name-style">

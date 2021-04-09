@@ -6,20 +6,21 @@
     width: 50%;
 }
 
-.color-top-manager{
-    background-color: #d1f8ff;
-}
+/*.color-top-manager{*/
+/*    background-color: #d1f8ff;*/
+/*}*/
 
-.color-bottom-manager{
-    background-color: #ffdfe4;
-}
+/*.color-bottom-manager{*/
+/*    background-color: #ffdfe4;*/
+/*}*/
 
 /*.manager-fixed-wrapper {*/
 /*    width:550px;*/
 /*}*/
 
 .hci-create-group {
-    height: 100px;
+    height: 90px;
+    margin-bottom: 10px;
 }
 
 
@@ -28,23 +29,23 @@
     overflow-x: hidden;
 }
 
-.manager-fixed {
-    max-width:30%;
-    min-width:10%;
-    /*max-width:200px;*/
-    /*min-width:100px;*/
-    /*width:10%;*/
-    padding-right: 20px;
-    padding-left: 20px;
-}
+/*.manager-fixed {*/
+/*    max-width:30%;*/
+/*    min-width:10%;*/
+/*    !*max-width:200px;*!*/
+/*    !*min-width:100px;*!*/
+/*    !*width:10%;*!*/
+/*    padding-right: 20px;*/
+/*    padding-left: 20px;*/
+/*}*/
 
-.display-fixed {
-    /*max-width: 800px;*/
-    min-width: 1200px;
-    /*width:90%;*/
-    /*padding-right: 20px;*/
-    /*padding-left: 20px;*/
-}
+/*.display-fixed {*/
+/*    !*max-width: 800px;*!*/
+/*    min-width: 1200px;*/
+/*    !*width:90%;*!*/
+/*    !*padding-right: 20px;*!*/
+/*    !*padding-left: 20px;*!*/
+/*}*/
 
 .level-header {
     font-family: Verdana, Geneva, sans-serif;

@@ -13,7 +13,8 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress, showComp
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         width: "100%",
-        height: "100vh"
+        height: "100vh",
+        paddingBottom: "30px"
     }
 
     const [overdueChores, setOverdueChores] = useState([]);
@@ -112,7 +113,8 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress, showComp
                         {
                             todayChores.length !== 0 &&
                                 <>
-                                    <h2 style={{backgroundColor: "#FFF1FF"}}>
+                                    {/*FFF1FF*/}
+                                    <h2 style={{backgroundColor: "#e8fcff"}}>
                                         Due Today
                                     </h2>
                                     <br/>
@@ -132,7 +134,7 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress, showComp
                         {
                             weeksChores.length !== 0 &&
                                 <>
-                                    <h2 style={{backgroundColor: "#FFF1FF"}}>
+                                    <h2 style={{backgroundColor: "#e8fcff"}}>
                                         Due Next Week
                                     </h2>
 
@@ -161,7 +163,7 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress, showComp
                         {
                             futureChores.length !== 0 &&
                                 <>
-                                    <h2 style={{backgroundColor: "#FFF1FF"}}>
+                                    <h2 style={{backgroundColor: "#e8fcff"}}>
                                         Due In The Future
                                     </h2>
 
@@ -182,7 +184,7 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress, showComp
                     </Col>
 
                     <Col xs={6} style={{paddingRight: "30px", paddingLeft: "30px"}}>
-                        <h2 style={{backgroundColor: "#FFF1FF"}}>
+                        <h2 style={{backgroundColor: "#e8fcff"}}>
                             Undated Chores
                         </h2>
 
@@ -200,6 +202,7 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress, showComp
 
                     </Col>
                 </Row>
+                {/*<br/>*/}
             </div>
         </div>
     )

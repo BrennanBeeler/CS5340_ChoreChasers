@@ -59,6 +59,7 @@ const ChoreManager = ({
                         <i className="fa fa-plus" style={{paddingLeft: "10px"}}/>
                     </button>
                 </div>
+                {/*<br/>*/}
 
                 <CreateGroupModal key={new Date().getTime()} show={showCreateGroupModal}
                                   onHide={()=> setCreateGroupModal(false)}/>
@@ -73,7 +74,7 @@ const ChoreManager = ({
 
                             <li className={`nav-link nav-item mb-4 pt-3 pb-4 border border-dark group-button ${activeGroupId === "All_my_chores" ? 'active':''}`}
                                 onClick={() => setActiveGroup("All_my_chores")}>
-                                {activeGroupId === "All_my_chores" ? "My assigned chores" : "View my assigned chores"}
+                                {activeGroupId === "All_my_chores" ? "My Assigned chores" : "View My Assigned Chores"}
                             </li>
 
                             {
@@ -86,10 +87,9 @@ const ChoreManager = ({
                                 )
                             }
                         </ul>
+                        <p></p>
                     </div>
                 </div>
-
-
             </div>
 
             <div className="col-10 hci-full-height" style={{paddingLeft: 0, paddingRight: 0}}>

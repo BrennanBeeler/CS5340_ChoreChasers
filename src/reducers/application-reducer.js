@@ -302,7 +302,6 @@ const applicationReducer = (state = initialState, action) => {
                 ...state,
                 profile: newProfilee,
             }
-            console.log(newProfilee.toggleSound)
             return JSON.parse(JSON.stringify(newSound));
       //    TODO: redo
         case CREATE_GROUP:

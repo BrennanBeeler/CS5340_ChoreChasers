@@ -5,12 +5,15 @@
 
 
 
-.create-chore-btn-div {
+.create-chore-btn-div-personal {
     /*margin-left: 20px;*/
     /*margin-bottom: 10px;*/
-    float: right;
-    margin-right: 400px;
+    /*float: right;*/
+    /*margin-right: 500px;*/
     /*margin-top: 8px;*/
+    margin: auto;
+    padding-right: 300px;
+
 }
 
 .create-chore-btn {
@@ -19,4 +22,15 @@
 
 .personal-chore-name-style {
     float: left;
+    padding-left: 10px;
+
+}
+
+.show-completed-toggle-personal {
+    /*margin-left: 83%;*/
+    /*float:right;*/
+    position:absolute;
+    white-space: nowrap;
+    top:120px;
+    right: 20px;
 }

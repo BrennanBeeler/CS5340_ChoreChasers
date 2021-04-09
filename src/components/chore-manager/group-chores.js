@@ -101,25 +101,31 @@ class GroupChores extends React.Component {
                 </ProgressBar> : <div/>}
                 <p></p>
 
-                <div className="group-name-style">
-                    <h1 class="h1-style">
-                        {this.props.group.name}
-                    </h1>
+                <div className="row">
+                    <div className="group-name-style">
+                        <h1 class="h1-style">
+                            {this.props.group.name}
+                        </h1>
+                    </div>
+                    <div className="create-chore-btn-div-group">
+                        <button className=" create-chore-btn btn btn-info mt-2 mb-1 pt-2 pb-2"
+                                onClick={() => this.setState({choreModal: true})}>
+                            Add a New Chore
+                            <i className="fa fa-plus" style={{paddingLeft: "10px"}}/>
+                        </button>
+                    </div>
+
+                    <div className="show-completed-toggle-group">
+                        <ShowCompletedToggle/>
+                    </div>
                 </div>
-                <div className="create-chore-btn-div">
-                    <button className=" create-chore-btn btn btn-info mt-2 mb-1 pt-2 pb-2"
-                            onClick={() => this.setState({choreModal: true})}>
-                        Add a New Chore
-                        <i className="fa fa-plus" style={{paddingLeft: "10px"}}/>
-                    </button>
-                </div>
 
-                <ShowCompletedToggle/>
+
 
 
                 <br/>
-                <br/>
-                <br/>
+                {/*<br/>*/}
+                {/*<br/>*/}
 
                 <ChoreDisplay key={new Date().getTime()} chores={this.props.group.chores} deleteChore={this.handleDelete} updateProgress={this.updateProgress}/>
             </div>

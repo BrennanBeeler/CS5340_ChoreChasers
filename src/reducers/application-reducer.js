@@ -257,6 +257,27 @@ const initialState = {
                     assignor: "Brian",
                     assignees: ["Max"]
                 }]
+        },
+        {
+            id: "3",
+            name: 'test',
+            progressBar: false,
+            members: ["Marie", "Abby", "Vinnie", "Alan", "Max"],
+            chores: []
+        },
+        {
+            id: "4",
+            name: 'test2',
+            progressBar: false,
+            members: ["Marie", "Abby", "Vinnie", "Alan", "Max"],
+            chores: []
+        },
+        {
+            id: "5",
+            name: 'test3',
+            progressBar: false,
+            members: ["Marie", "Abby", "Vinnie", "Alan", "Max"],
+            chores: []
         }
     ]
 }

@@ -22,6 +22,7 @@ const initialState = {
             background: "https://coolbackgrounds.io/images/backgrounds/white/pure-white-background-85a2a7fd.jpg",
             emailId: 'test@email.com',
             points: 0,
+            soundEnabled: true,
             groupIds: [],
             username: 'Max',
             password:'password',

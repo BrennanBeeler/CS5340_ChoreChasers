@@ -35,12 +35,12 @@ const GroupSettings = ({
             <div className="custom-control custom-switch d-flex justify-content-around">
               <p/><p/>
 
-                <p class="toggle-headers-enable ">Enabled</p>
+                <p class="toggle-headers-enable ">Disabled</p>
                 <div>
-              <input checked={!group?.progressBar} value={checked} type="checkbox" className="custom-control-input" id="toggleProgressBar" onChange={toggleProgressBar}/>
+              <input checked={group?.progressBar} value={checked} type="checkbox" className="custom-control-input" id="toggleProgressBar" onChange={toggleProgressBar}/>
               <label className="custom-control-label" htmlFor="toggleProgressBar"></label>
                 </div>
-                <p class="toggle-headers-disable">Disabled</p>
+                <p class="toggle-headers-disable">Enabled</p>
 
               <p/><p/>
             </div>

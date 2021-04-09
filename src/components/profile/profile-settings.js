@@ -1,17 +1,26 @@
 import React, {useState} from "react";
 import {Link, Redirect} from "react-router-dom";
 import "./profile-settings.css"
+import applicationActions from "../../actions/actions";
+import {connect} from "react-redux";
 
 const ProfileSettings = ({
-                   profile}) => {
+                   profile, editProfile}) => {
   const handleSubmit = (event) => {
         event.preventDefault()
         // DELETE account request
     }
 
+  const toggleProgressBar = () => {
+        profile.soundEnabled = !profile.soundEnabled;
+        setChecked(!checked);
+        //editProfile(profile);
+    };
+
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [checked, setChecked] = useState(profile.soundEnabled || true);
     return (
         <div className="container">
             <div class="center-profile-settings">
@@ -58,6 +67,24 @@ const ProfileSettings = ({
                 <br/>
                 <br/>
 
+              <h4 className=" text-left h4-settings-headers" style={{paddingLeft: "200px", marginTop: "50px"}}>
+                Completed Chore Sound
+              </h4>
+              <div className="custom-control custom-switch d-flex justify-content-around">
+                <p/><p/>
+
+                <p className="toggle-headers-enable ">Disabled</p>
+                <div>
+                  <input checked={profile.soundEnabled} value={checked} type="checkbox" className="custom-control-input"
+                         id="toggleProgressBar" onChange={toggleProgressBar}/>
+                  <label className="custom-control-label" htmlFor="toggleProgressBar"></label>
+                </div>
+                <p className="toggle-headers-disable">Enabled</p>
+
+                <p/><p/>
+              </div>
+              <br/>
+
                 <div className="mx-auto">
 
                     <h4 className="text-left h4-settings-headers" style={{paddingLeft:"200px", marginTop:"40px"}}>
@@ -85,4 +112,12 @@ const ProfileSettings = ({
     )
 }
 
-export default ProfileSettings;
+const stpm = (state) => ({
+    profile: state.profile,
+})
+
+const dtpm = (dispatch) => ({
+    editProfile : (profile) => applicationActions.editProfile(dispatch, profile)
+})
+
+export default connect(stpm, dtpm)(ProfileSettings);

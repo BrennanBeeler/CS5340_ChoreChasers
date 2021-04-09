@@ -54,10 +54,16 @@ const ChoreManager = ({
                         </div>
                     </div>
 
-                    <button className="btn btn-info btn-block mt-4 pt-3 pb-3" onClick={() => setCreateGroupModal(true)}>
-                        Create Group
-                        <i className="fa fa-plus" style={{paddingLeft: "10px"}}/>
-                    </button>
+                    <div>
+                        <button className="btn btn-info hci-create-group btn-block mt-4 pt-3 pb-3" onClick={() => setCreateGroupModal(true)}>
+                            Create Group
+                            <i className="fa fa-plus" style={{paddingLeft: "10px"}}/>
+                        </button>
+
+                        <br/>
+                    </div>
+
+
 
                     <CreateGroupModal key={new Date().getTime()} show={showCreateGroupModal}
                                       onHide={()=> setCreateGroupModal(false)}/>
@@ -88,7 +94,7 @@ const ChoreManager = ({
                 </ul>
             </div>
 
-            <div className="col-10" style={{paddingLeft: 0, paddingRight: 0}}>
+            <div className="col-10 hci-full-height" style={{paddingLeft: 0, paddingRight: 0}}>
                 {
                     activeGroupId === "Personal Chores" &&
                     <PersonalChores/>

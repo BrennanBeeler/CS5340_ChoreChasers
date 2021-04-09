@@ -58,7 +58,7 @@ class AllMyChores extends React.Component {
                     <ProgressBar variant="success" now={this.state.completedPoints/this.state.totalPoints *100} key={1}/>
                 </ProgressBar>
 
-                <p></p>
+                <p/>
 
                 <div className="personal-chore-name-style">
                     <h1 className="h1-style">

@@ -99,7 +99,67 @@ const initialState = {
                     dateAdded: "2021-03-23T00:00:00.000Z",
                     assignor: "Max",
                     assignees: ["Max"]
-                }]
+                },
+                {
+                    id:"6",
+                    done:false,
+                    choreName: 'Read Chapter 14',
+                    dueDate: "2021-04-04T00:00:00.000Z",
+                    repeatChore: "Never",
+                    choreInstructions: "Online textbook",
+                    rewards:{points:true,realLifeItem:false},
+                    points:10,
+                    realLifeItem:"",
+                    splitReward:{everyoneGetsReward:true,fcfs:false},
+                    dateAdded: "2021-03-23T00:00:00.000Z",
+                    assignor: "Max",
+                    assignees: ["Max"]
+                },
+                {
+                    id:"7",
+                    done:false,
+                    choreName: 'Read Chapter 14',
+                    dueDate: "2021-04-04T00:00:00.000Z",
+                    repeatChore: "Never",
+                    choreInstructions: "Online textbook",
+                    rewards:{points:true,realLifeItem:false},
+                    points:10,
+                    realLifeItem:"",
+                    splitReward:{everyoneGetsReward:true,fcfs:false},
+                    dateAdded: "2021-03-23T00:00:00.000Z",
+                    assignor: "Max",
+                    assignees: ["Max"]
+                },
+                {
+                    id:"8",
+                    done:false,
+                    choreName: 'Read Chapter 14',
+                    dueDate: "2021-04-04T00:00:00.000Z",
+                    repeatChore: "Never",
+                    choreInstructions: "Online textbook",
+                    rewards:{points:true,realLifeItem:false},
+                    points:10,
+                    realLifeItem:"",
+                    splitReward:{everyoneGetsReward:true,fcfs:false},
+                    dateAdded: "2021-03-23T00:00:00.000Z",
+                    assignor: "Max",
+                    assignees: ["Max"]
+                },
+                {
+                    id:"9",
+                    done:false,
+                    choreName: 'Read Chapter 14',
+                    dueDate: "2021-04-04T00:00:00.000Z",
+                    repeatChore: "Never",
+                    choreInstructions: "Online textbook",
+                    rewards:{points:true,realLifeItem:false},
+                    points:10,
+                    realLifeItem:"",
+                    splitReward:{everyoneGetsReward:true,fcfs:false},
+                    dateAdded: "2021-03-23T00:00:00.000Z",
+                    assignor: "Max",
+                    assignees: ["Max"]
+                }                ]
     },
     activeGroupId : "Personal Chores",
     groups : [{

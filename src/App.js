@@ -13,9 +13,9 @@ import "./App.css"
 
 function App() {
     return (
-        <Provider store={applicationStore} classname="hci-full-height">
+        <Provider store={applicationStore}>
             <BrowserRouter>
-                <div className="container-fluid hci-full-height">
+                <div className="container-fluid" style={{overflow:"hidden"}}>
                     <Route path={["/", "/home"]} exact={true}>
                         <Home/>
                     </Route>

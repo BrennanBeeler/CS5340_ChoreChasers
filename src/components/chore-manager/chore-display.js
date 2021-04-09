@@ -7,12 +7,13 @@ import {connect} from "react-redux";
 
 
 const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
+    //TODO: move this if possible
     const style = {
         backgroundImage: "url("+background+")",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         width: "100%",
-        minHeight: "100vh"
+        height: "100vh"
     }
 
     const [overdueChores, setOverdueChores] = useState([]);
@@ -60,8 +61,8 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
     }
 
     return(
-        <div>
-            <div className="border-top border-dark hero" style={style}>
+        <div style={{height: "100vh"}}>
+            <div className="border-top border-dark hero vertical-scrollable" style={style}>
                 <Row>
                     <Col xs={6} style={{paddingLeft: "30px", paddingRight : "30px"}}>
                         <>

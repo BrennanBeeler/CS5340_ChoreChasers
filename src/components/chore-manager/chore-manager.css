@@ -1,5 +1,5 @@
 .hci-full-height {
-    height: 100%;
+    height: 100vh;
 }
 
 .hci-progress {
@@ -17,6 +17,10 @@
 /*.manager-fixed-wrapper {*/
 /*    width:550px;*/
 /*}*/
+
+.hci-create-group {
+    height: 100px;
+}
 
 .manager-fixed {
     max-width:30%;

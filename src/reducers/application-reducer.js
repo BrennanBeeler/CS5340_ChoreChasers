@@ -1,4 +1,5 @@
-import {LOG_IN,
+import {
+    LOG_IN,
     LOG_OUT,
     SET_ACTIVE_GROUP,
     SET_BACKGROUND,
@@ -10,13 +11,15 @@ import {LOG_IN,
     EDIT_CHORE,
     ADD_POINT_VALUE,
     DELETE_CHORE,
-    DELETE_PERSONAL_CHORE} from "../actions/actions";
+    DELETE_PERSONAL_CHORE, TOGGLE_SHOW_COMPLETED
+} from "../actions/actions";
 
 
 const initialState = {
     loggedIn: false,
     //TODO: populate these
     activeProfile : "test",
+    showCompleted: false,
     profile : {
             id : "test",
             background: "https://coolbackgrounds.io/images/backgrounds/white/pure-white-background-85a2a7fd.jpg",
@@ -406,6 +409,13 @@ const applicationReducer = (state = initialState, action) => {
                 ...state,
                 profile: initialProfile
             }
+        case TOGGLE_SHOW_COMPLETED:
+            let toggleChangedState = {
+                ...state,
+                showCompleted: !state.showCompleted
+            }
+
+            return JSON.parse(JSON.stringify(toggleChangedState))
         default:
             return state
     }

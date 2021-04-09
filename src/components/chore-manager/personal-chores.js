@@ -1,10 +1,11 @@
-import React, {useState} from "react";
+import React from "react";
 import "./personal-chores.css"
-import {Button, ProgressBar} from "react-bootstrap";
+import {ProgressBar} from "react-bootstrap";
 import CreateChoreModal from "../create-chore/create-chore-modal"
 import ChoreDisplay from "./chore-display";
 import applicationActions from "../../actions/actions";
 import {connect} from "react-redux";
+import ShowCompletedToggle from "./show-completed-toggle";
 
 class PersonalChores extends React.Component {
     constructor(props) {
@@ -57,21 +58,27 @@ class PersonalChores extends React.Component {
 
                 <p></p>
 
-              <div className="personal-chore-name-style">
-                <h1 className="h1-style">
-                  Personal Chores
-                </h1>
-              </div>
-              <div className="create-chore-btn-div">
-                <button className=" create-chore-btn btn btn-info mt-2 mb-1 pt-2 pb-2"
-                        onClick={() => this.setState({choreModal: true})}>
-                  Add a New Chore
-                  <i className="fa fa-plus" style={{paddingLeft: "10px"}}/>
-                </button>
-              </div>
+                <div className="row">
+                    <div className="personal-chore-name-style">
+                        <h1 className="h1-style">
+                            Personal Chores
+                        </h1>
+                    </div>
 
-                <br/>
-                <br/>
+
+                    <div className="create-chore-btn-div">
+                        <button className=" create-chore-btn btn btn-info mt-2 mb-1 pt-2 pb-2"
+                                onClick={() => this.setState({choreModal: true})}>
+                            Add a New Chore
+                            <i className="fa fa-plus" style={{paddingLeft: "10px"}}/>
+                        </button>
+                    </div>
+
+                    <ShowCompletedToggle/>
+                </div>
+
+
+
                 <br/>
 
                 <ChoreDisplay key={new Date().getTime()}

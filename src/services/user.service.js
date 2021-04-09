@@ -1,33 +1,54 @@
 import http from "../http-common";
 
-class TutorialDataService {
-  getAll() {
-    return http.get("/tutorials");
+class UsersDataService {
+  // getAll() {
+  //   return http.get("/users");
+  // }
+
+  // Create a new User
+  createNewUser(newUserData) {
+    return http.post(`/users/`, newUserData);
   }
 
-  get(id) {
-    return http.get(`/tutorials/${id}`);
+  //Add a chore to an existing user's personal chores
+  addPersonalChore(id,newChoreData) {
+    return http.post(`/users/chores/id/${id}`, newChoreData);
   }
 
-  create(data) {
-    return http.post("/tutorials", data);
+  //Get a specific User with their id
+  getUserWithId(id) {
+    return http.get(`/users/id/${id}`);
   }
 
-  update(id, data) {
-    return http.put(`/tutorials/${id}`, data);
+  //Get a specific User with their emailId --still doubtful
+  getUserWithEmail(email) {
+    return http.get(`/users/email/${email}`);
   }
 
-  delete(id) {
-    return http.delete(`/tutorials/${id}`);
+  //Get a specific User with their username
+  getUserWithUsername(username) {
+    return http.get(`/users/username/${username}`);
   }
 
-  deleteAll() {
-    return http.delete(`/tutorials`);
+  //Check if a User exists before logging them in
+  checkLoginUser(userData) {
+    return http.post(`/users/login/`, userData);
   }
 
-  findByTitle(title) {
-    return http.get(`/tutorials?title=${title}`);
+  // // Update a User
+  // updateUser(id, newUserData) {
+  //     return http.put(`/users/id/${id}`, newUserData);
+  // }
+
+  //Delete a specific User with its id
+  deleteUser(id) {
+    return http.delete(`/users/id/${id}`);
+  }
+
+  //Delete all Users in the users collection
+  deleteAllUsers() {
+    return http.delete(`/users/`);
   }
 }
 
-export default new TutorialDataService();
+export default new UsersDataService();

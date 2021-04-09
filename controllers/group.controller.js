@@ -1,6 +1,7 @@
 const db = require("../models");
 const Group = db.groups;
 const Chore = db.chores;
+const User = db.users;
 
 // Create and Save a new Group
 exports.createNewGroup =  (req, res) => {
@@ -137,6 +138,28 @@ exports.deleteAllGroups = (req, res) => {
         });
 
 };
+
+
+//find all groups that a given user belongs to
+exports.getGroupWithUserId = (req, res) => {
+    Group.find({ members : req.params.id })
+        .exec(function (err, groups) {
+            if (err){
+                if(err.kind === 'ObjectId') {
+                    return res.status(404).send({
+                                                    message: "Group not found with given User Id " + req.params.id
+                                                });
+                }
+                return res.status(500).send({
+                                                message: "Error retrieving Group with given User Id " + req.params.id
+                                            });
+            }
+
+            res.send(groups);
+        });
+
+};
+
 
 
 // Retrieve all Group from the database.

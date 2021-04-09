@@ -9,6 +9,9 @@ module.exports = app => {
     //Add a chore to an existing Group
     router.post("/chore/:id",groups.addGroupChore);
 
+    //Add existing user as member to existing Group
+    router.get("/user/:id", groups.getGroupWithUserId);
+
     //Get a specific Group with its id
     router.get("/id/:id",groups.getGroupWithId);
 

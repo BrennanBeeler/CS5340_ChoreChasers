@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import './login-settings.css'
 import {Link, Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 import actions from "../../actions/actions";
@@ -18,6 +19,7 @@ const Login = ({
 
     return (
         <div className="container">
+            <div class="center-login">
             <h1 className="text-center">
                 Log In
             </h1>
@@ -25,27 +27,29 @@ const Login = ({
             <h3 className="text-center">
                 Pick up where you left off!
             </h3>
-
+                <br/><p></p>
             <form>
                 <div className="form-group">
-                    <label htmlFor="emailFld" className="label ">
-                        Email *
+                    <label htmlFor="emailFld" className="label form-headers">
+                        <div className="form-text-field-login">Email *</div>
                     </label>
-                    <input id="emailFld" placeholder="example@domain.com" className="form-control"
-                           value={email} onChange={(event => setEmail(event.target.value))}/>
+                    <div>
+                    <input type="text" id="emailFld" placeholder="example@domain.com" className="form-control"
+                           value={email} onChange={(event => setEmail(event.target.value))}/> </div>
 
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="passwordFld" className="label">
-                        Password *
+                    <label htmlFor="passwordFld" className="label form-headers">
+                        <div class="form-text-field-login">Password * </div>
                     </label>
-                    <input id="passwordFld" placeholder="Enter your password" className="form-control"
+                    <input type="password" id="passwordFld" placeholder="Enter your password" className="form-control"
                            value={password} onChange={(event => setPassword(event.target.value))}/>
                 </div>
 
+                <br/>
                 {/*TODO: figure out why this is clearing fields*/}
-                <button className="btn btn-success btn-block" onClick={(event) =>  handleSubmit(event)}>
+                <button className="btn btn-success " onClick={(event) =>  handleSubmit(event)} style={{paddingRight:"100px",paddingLeft:"100px"}}>
                     Start Chores
                 </button>
 
@@ -55,7 +59,7 @@ const Login = ({
                 }
 
                 <br/>
-                <br/>
+                <br/><p></p>
 
                 <div className="mx-auto text-center">
                     New to Chore Chasers?
@@ -67,6 +71,7 @@ const Login = ({
                     </Link>
                 </div>
             </form>
+            </div>
         </div>
     )
 }

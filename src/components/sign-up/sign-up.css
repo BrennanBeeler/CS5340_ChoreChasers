@@ -1,5 +1,5 @@
-.center-profile-settings {
-    margin-top: 60px;
+.center-signup {
+    margin-top: 80px;
 }
 
 .container {
@@ -33,9 +33,20 @@
 }
 
 .form-headers {
-    padding-left:200px;
-    padding-right: 20px;
+    /*padding-left:200px;*/
+    /*padding-right: 20px;*/
     float:left;
+}
+
+.form-text-field-signup {
+    padding-left:20px;
+    width:300px;
+    /*float:left;*/
+}
+.form-pass-field-signup {
+    padding-left:20px;
+    width:300px;
+    /*float:left;*/
 }
 
 input[type=text] {
@@ -46,10 +57,18 @@ input[type=text] {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    align-content: center;
+
 }
 
-.form-text-field-group {
-    padding-right:30px;
-    width:200px;
-    /*float:left;*/
+input[type=password] {
+    width: 300px;
+    /*padding: 12px 20px;*/
+    /*margin: 8px 0;*/
+    /*display: inline-block;*/
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    align-content: center;
+
 }

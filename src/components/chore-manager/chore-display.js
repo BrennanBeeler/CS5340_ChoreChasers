@@ -69,7 +69,7 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
                             {
                                 overdueChores.length !== 0 &&
                                     <>
-                                        <h2 style={{color:"#ff0404"}}>
+                                        <h2 style={{color:"#ff0404", backgroundColor: "#FFFFF5"}}>
                                             Overdue
                                         </h2>
                                         <br/>
@@ -88,7 +88,7 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
                         {
                             todayChores.length !== 0 &&
                                 <>
-                                    <h2>
+                                    <h2 style={{backgroundColor: "#FFF1FF"}}>
                                         Due Today
                                     </h2>
                                     <br/>
@@ -108,7 +108,7 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
                         {
                             weeksChores.length !== 0 &&
                                 <>
-                                    <h2>
+                                    <h2 style={{backgroundColor: "#FFF1FF"}}>
                                         Due Next Week
                                     </h2>
 
@@ -133,7 +133,7 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
                         {
                             futureChores.length !== 0 &&
                                 <>
-                                    <h2>
+                                    <h2 style={{backgroundColor: "#FFF1FF"}}>
                                         Due In The Future
                                     </h2>
 
@@ -154,7 +154,7 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
                     </Col>
 
                     <Col xs={6} style={{paddingRight: "30px", paddingLeft: "30px"}}>
-                        <h2>
+                        <h2 style={{backgroundColor: "#FFF1FF"}}>
                             Undated Chores
                         </h2>
 

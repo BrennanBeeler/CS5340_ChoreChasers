@@ -6,7 +6,7 @@ import applicationActions from "../../actions/actions";
 import {connect} from "react-redux";
 import EditChoreModal from "../edit-chore/edit-chore-modal";
 
-const ChoreCard = ({props, chore, group, updateProgress, addPoints, editChore, deleteChore}) => {
+const ChoreCard = ({props, chore, group, profile, updateProgress, addPoints, editChore, deleteChore}) => {
     const [toggleText, setToggleText] = useState(0);
     const [editModal, setEditModal] = useState(false);
     const [completed, setCompleted] = useState(chore.done);
@@ -26,7 +26,9 @@ const ChoreCard = ({props, chore, group, updateProgress, addPoints, editChore, d
 
     const markCompleted = (event) => {
         //TODO: handle promise
-        successSound.play();
+        if (profile.soundEnabled) {
+            successSound.play();
+        }
         addPoints(parseInt(chore.points));
         updateProgress(parseInt(chore.points));
         setCompleted(!completed);

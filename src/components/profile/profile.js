@@ -111,7 +111,14 @@ const Profile = ({
                             🔒
                          </p></div>
                         </div>) :
-                        (<div className="row" style = {{marginLeft:"370px"}}>
+                        value === profile.background ? (<div className="row" style = {{marginLeft:"370px"}}>
+                          <div ><p>Level {index + 1}</p></div>
+                          <div style = {{paddingRight:"20px",paddingLeft:"20px"}}><img src={value} style={{height: "50px", width: "250px", padding: '4px'}}/></div>
+                          <div ><button className="btn btn-success disabled">
+                            Selected
+                            </button></div>
+                        </div>) :
+                          (<div className="row" style = {{marginLeft:"370px"}}>
                           <div ><p>Level {index + 1}</p></div>
                           <div style = {{paddingRight:"20px",paddingLeft:"20px"}}><img src={value} style={{height: "50px", width: "250px", padding: '4px'}}/></div>
                           <div ><button className="btn btn-info" onClick={(event) => setBackground(value)}>

@@ -2,6 +2,7 @@ export const LOG_IN = "LOG_IN";
 export const LOG_OUT = "LOG_OUT";
 export const SIGN_UP = "SIGN_UP";
 export const SET_ACTIVE_GROUP = "SET_ACTIVE_GROUP";
+export const TOGGLE_SOUND = "TOGGLE_SOUND";
 export const SET_BACKGROUND = "SET_BACKGROUND";
 export const CREATE_GROUP = "CREATE_GROUP";
 export const DELETE_GROUP = "DELETE_GROUP";
@@ -63,6 +64,13 @@ const createGroup = (dispatch, profile, group) => {
     dispatch({
         type : CREATE_GROUP,
         group
+    })
+}
+
+const toggleSound = (dispatch, profile) => {
+    dispatch({
+        type : TOGGLE_SOUND,
+        profile
     })
 }
 
@@ -134,7 +142,7 @@ const toggleShowCompleted = (dispatch) => {
 }
 
 const applicationActions = {
-    logIn, logOut,signUp, setActiveGroup, setBackground, createGroup, deleteGroup, editGroup, editChore, getGroupData, addPoints,
+    logIn, logOut,signUp, setActiveGroup, setBackground, toggleSound, createGroup, deleteGroup, editGroup, editChore, getGroupData, addPoints,
     deleteChore, deletePersonalChore, createChore, toggleShowCompleted
 }
 

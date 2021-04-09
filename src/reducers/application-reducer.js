@@ -3,6 +3,7 @@ import {
     LOG_OUT,
     SET_ACTIVE_GROUP,
     SET_BACKGROUND,
+    TOGGLE_SOUND,
     CREATE_GROUP,
     GET_GROUP_DATA,
     EDIT_GROUP,
@@ -25,6 +26,7 @@ const initialState = {
             background: "https://coolbackgrounds.io/images/backgrounds/white/pure-white-background-85a2a7fd.jpg",
             emailId: 'test@email.com',
             points: 0,
+            soundEnabled: true,
             username: 'Max',
             password:'password',
             chores: [
@@ -290,10 +292,20 @@ const applicationReducer = (state = initialState, action) => {
             const newProfile = state.profile;
             newProfile.background = action.url;
 
-            return {
+            const newBackground = {
                 ...state,
                 profile: newProfile,
             }
+            return JSON.parse(JSON.stringify(newBackground));
+        case TOGGLE_SOUND:
+            const newProfilee = state.profile;
+            newProfilee.soundEnabled = !state.profile.soundEnabled;
+
+            const newSound = {
+                ...state,
+                profile: newProfilee,
+            }
+            return JSON.parse(JSON.stringify(newSound));
       //    TODO: redo
         case CREATE_GROUP:
             return {

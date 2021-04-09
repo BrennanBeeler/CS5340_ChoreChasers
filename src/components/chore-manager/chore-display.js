@@ -6,7 +6,7 @@ import applicationActions from "../../actions/actions";
 import {connect} from "react-redux";
 
 
-const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
+const ChoreDisplay = ({chores, background, deleteChore, updateProgress, showCompleted}) => {
     //TODO: move this if possible
     const style = {
         backgroundImage: "url("+background+")",
@@ -35,22 +35,45 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
         let undatedTemp = [];
 
         chores.forEach(chore => {
-            if(chore.dueDate === null) {
-                undatedTemp.push(chore)
-            }
-            else if (new Date(chore.dueDate).getTime() < new Date().getTime()) {
-                overdueTemp.push(chore)
-            }
-            //TODO: fix this
-            else if (new Date(chore.dueDate).getTime() < new Date().getTime() + 86400000) {
-                todayTemp.push(chore)
-            }
-            else if (new Date(chore.dueDate).getTime() < new Date().getTime() + 604800000) {
-                weeksTemp.push(chore)
+            if (showCompleted) {
+                if(chore.dueDate === null) {
+                    undatedTemp.push(chore)
+                }
+                else if (new Date(chore.dueDate).getTime() < new Date().getTime()) {
+                    overdueTemp.push(chore)
+                }
+                else if (new Date(chore.dueDate).getTime() < new Date().getTime() + 86400000) {
+                    todayTemp.push(chore)
+                }
+                else if (new Date(chore.dueDate).getTime() < new Date().getTime() + 604800000) {
+                    weeksTemp.push(chore)
+                }
+                else {
+                    futureTemp.push(chore)
+                }
             }
             else {
-                futureTemp.push(chore)
+                if (!chore.done) {
+                    if(chore.dueDate === null) {
+                        undatedTemp.push(chore)
+                    }
+                    else if (new Date(chore.dueDate).getTime() < new Date().getTime()) {
+                        overdueTemp.push(chore)
+                    }
+                    else if (new Date(chore.dueDate).getTime() < new Date().getTime() + 86400000) {
+                        todayTemp.push(chore)
+                    }
+                    else if (new Date(chore.dueDate).getTime() < new Date().getTime() + 604800000) {
+                        weeksTemp.push(chore)
+                    }
+                    else {
+                        futureTemp.push(chore)
+                    }
+                }
             }
+
+
+
         })
 
         setUndatedChores(undatedTemp)
@@ -132,6 +155,10 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
                         }
 
                         {
+                            console.log(showCompleted)
+                        }
+
+                        {
                             futureChores.length !== 0 &&
                                 <>
                                     <h2 style={{backgroundColor: "#FFF1FF"}}>
@@ -180,7 +207,8 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
 
 const stpm = (state, ownProps) => ({
     background: state.profile.background,
-    props: ownProps
+    props: ownProps,
+    showCompleted: state.showCompleted
 })
 
 const dtpm = (dispatch) => ({

@@ -5,16 +5,15 @@ import applicationActions from "../../actions/actions";
 import {connect} from "react-redux";
 
 const ProfileSettings = ({
-                   profile, editProfile}) => {
+                   profile, toggleSound}) => {
   const handleSubmit = (event) => {
         event.preventDefault()
         // DELETE account request
     }
 
-  const toggleProgressBar = () => {
-        profile.soundEnabled = !profile.soundEnabled;
+  const toggleSoundOnProfile = () => {
         setChecked(!checked);
-        //editProfile(profile);
+        toggleSound(profile);
     };
 
   const [oldPassword, setOldPassword] = useState("");
@@ -76,8 +75,9 @@ const ProfileSettings = ({
                 <p className="toggle-headers-enable ">Disabled</p>
                 <div>
                   <input checked={profile.soundEnabled} value={checked} type="checkbox" className="custom-control-input"
-                         id="toggleProgressBar" onChange={toggleProgressBar}/>
+                         id="toggleProgressBar" onChange={toggleSoundOnProfile}/>
                   <label className="custom-control-label" htmlFor="toggleProgressBar"></label>
+                  {console.log(profile.soundEnabled)}
                 </div>
                 <p className="toggle-headers-disable">Enabled</p>
 
@@ -117,7 +117,7 @@ const stpm = (state) => ({
 })
 
 const dtpm = (dispatch) => ({
-    editProfile : (profile) => applicationActions.editProfile(dispatch, profile)
+    toggleSound : (profile) => applicationActions.toggleSound(dispatch, profile)
 })
 
 export default connect(stpm, dtpm)(ProfileSettings);

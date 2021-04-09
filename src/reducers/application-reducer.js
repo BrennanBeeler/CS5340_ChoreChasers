@@ -2,6 +2,7 @@ import {LOG_IN,
     LOG_OUT,
     SET_ACTIVE_GROUP,
     SET_BACKGROUND,
+    TOGGLE_SOUND,
     CREATE_GROUP,
     GET_GROUP_DATA,
     EDIT_GROUP,
@@ -288,10 +289,21 @@ const applicationReducer = (state = initialState, action) => {
             const newProfile = state.profile;
             newProfile.background = action.url;
 
-            return {
+            const newBackground = {
                 ...state,
                 profile: newProfile,
             }
+            return JSON.parse(JSON.stringify(newBackground));
+        case TOGGLE_SOUND:
+            const newProfilee = state.profile;
+            newProfilee.soundEnabled = !state.profile.soundEnabled;
+
+            const newSound = {
+                ...state,
+                profile: newProfilee,
+            }
+            console.log(newProfilee.toggleSound)
+            return JSON.parse(JSON.stringify(newSound));
       //    TODO: redo
         case CREATE_GROUP:
             return {

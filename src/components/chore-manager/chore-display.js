@@ -71,6 +71,7 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
                                     <>
                                         <h2 style={{color:"#ff0404", backgroundColor: "#FFFFF5"}}>
                                             Overdue
+                                            <span className="btn fa fa-exclamation-triangle fa"/>
                                         </h2>
                                         <br/>
                                     </>

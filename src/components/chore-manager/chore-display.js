@@ -7,12 +7,13 @@ import {connect} from "react-redux";
 
 
 const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
+    //TODO: move this if possible
     const style = {
         backgroundImage: "url("+background+")",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         width: "100%",
-        minHeight: "100vh"
+        height: "100vh"
     }
 
     const [overdueChores, setOverdueChores] = useState([]);
@@ -52,14 +53,7 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
             }
         })
 
-        setUndatedChores(undatedTemp.sort((a, b) => {
-            if(a.dueDate < b.dueDate) {
-                return -1
-            }
-            else {
-                return 1
-            }
-        }))
+        setUndatedChores(undatedTemp)
         setOverdueChores(overdueTemp)
         setFutureChores(futureTemp)
         setTodayChores(todayTemp)
@@ -67,8 +61,8 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
     }
 
     return(
-        <div>
-            <div className="border-top border-dark hero" style={style}>
+        <div style={{height: "100vh"}}>
+            <div className="border-top border-dark hero vertical-scrollable" style={style}>
                 <Row>
                     <Col xs={6} style={{paddingLeft: "30px", paddingRight : "30px"}}>
                         <>
@@ -91,7 +85,6 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
                                     })
                             }
                         </>
-                        {/*<hr></hr>*/}
                         {
                             todayChores.length !== 0 &&
                                 <>
@@ -112,7 +105,6 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
                                         </div>)
                                 })
                         }
-                        {/*<hr></hr>*/}
                         {
                             weeksChores.length !== 0 &&
                                 <>
@@ -137,7 +129,6 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
 
                             })
                         }
-                        {/*<hr></hr>*/}
 
                         {
                             futureChores.length !== 0 &&
@@ -170,7 +161,7 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
                         <br/>
 
                         {
-                            chores.filter(chore => chore.dueDate === null).map(chore =>
+                            undatedChores.map(chore =>
                                 <div key={chore.id}>
                                     <ChoreCard chore={chore} deleteChore={deleteChore}
                                                updateProgress={updateProgress}/>
@@ -178,7 +169,6 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress}) => {
                                 </div>
                             )
                         }
-                        {/*<hr></hr>*/}
 
                     </Col>
                 </Row>

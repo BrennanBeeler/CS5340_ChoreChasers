@@ -70,8 +70,6 @@ const EditChoreModal = ({onHide, show, currentGroup, profileUsername, chore, edi
             assignees: (currentGroup.name === "Personal Chores" ? [profileUsername] : assignees)
         }
 
-        console.log(newChore)
-
         editChore(newChore, currentGroup.id);
         onHide();
     }

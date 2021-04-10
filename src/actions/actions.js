@@ -13,6 +13,7 @@ export const EDIT_CHORE = "EDIT_CHORE";
 export const ADD_POINT_VALUE = "ADD_POINT_VALUE";
 export const DELETE_CHORE = "DELETE_CHORE";
 export const DELETE_PERSONAL_CHORE = "DELETE_PERSONAL_CHORE";
+export const TOGGLE_SHOW_COMPLETED = "TOGGLE_SHOW_COMPLETED";
 
 const logIn = (dispatch, email, password) => {
     let id = email
@@ -134,9 +135,15 @@ const deletePersonalChore = (dispatch, choreId) => {
     })
 }
 
+const toggleShowCompleted = (dispatch) => {
+    dispatch({
+        type: TOGGLE_SHOW_COMPLETED
+    })
+}
+
 const applicationActions = {
     logIn, logOut,signUp, setActiveGroup, setBackground, toggleSound, createGroup, deleteGroup, editGroup, editChore, getGroupData, addPoints,
-    deleteChore, deletePersonalChore, createChore
+    deleteChore, deletePersonalChore, createChore, toggleShowCompleted
 }
 
 export default applicationActions;

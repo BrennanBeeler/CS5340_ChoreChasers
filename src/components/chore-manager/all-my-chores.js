@@ -5,6 +5,7 @@ import CreateChoreModal from "../create-chore/create-chore-modal"
 import ChoreDisplay from "./chore-display";
 import applicationActions from "../../actions/actions";
 import {connect} from "react-redux";
+import ShowCompletedToggle from "./show-completed-toggle";
 
 class AllMyChores extends React.Component {
     constructor(props) {
@@ -72,6 +73,8 @@ class AllMyChores extends React.Component {
                         <i className="fa fa-plus" style={{paddingLeft: "10px"}}/>
                     </button>
                 </div>
+
+                <ShowCompletedToggle/>
 
                 <br/>
                 <br/>

@@ -72,10 +72,12 @@ const ChoreManager = ({
                                 {activeGroupId === "Personal Chores" ? "Personal Chores" : "View Personal Chores"}
                             </li>
 
-                            <li className={`nav-link nav-item mb-4 pt-3 pb-4 border border-dark group-button ${activeGroupId === "All_my_chores" ? 'active':''}`}
-                                onClick={() => setActiveGroup("All_my_chores")}>
-                                {activeGroupId === "All_my_chores" ? "My Assigned chores" : "View My Assigned Chores"}
-                            </li>
+                            {groups.length > 0 ?
+                                <li className={`nav-link nav-item mb-4 pt-3 pb-4 border border-dark group-button ${activeGroupId === "All_my_chores" ? 'active':''}`}
+                                    onClick={() => setActiveGroup("All_my_chores")}>
+                                    {activeGroupId === "All_my_chores" ? "My assigned chores" : "View my assigned chores"}
+                                </li> : <div/>
+                            }
 
                             {
                                 groups.map(group =>

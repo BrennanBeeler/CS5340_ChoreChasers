@@ -1,5 +1,7 @@
 const db = require("../models");
 const Chore = db.chores;
+const User = db.users;
+const Group = db.groups;
 
 
 // Update a Chore by the id in the request

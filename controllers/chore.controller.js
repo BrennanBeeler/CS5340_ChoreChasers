@@ -16,19 +16,73 @@ exports.updateChore = (req, res) => {
 
     const id = req.params.id;
 
-    Chore.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
-        .then(choreData => {
-            if (!choreData) {
-                res.status(404).send({
-                                         message: `Cannot update Chore with id=${id}. Maybe Chore was not found!`
+    async.waterfall([
+                        function (callback) {
+                            // code a: Remove Chore
+                            Chore.findByIdAndUpdate(
+                                { _id: id},
+                                req.body,
+                                {useFindAndModify:false},
+                                function (err, chore) {
+                                    if(!chore) {
+                                        res.status(404).send({
+                                                                 message: `Cannot update Chore with id=${id}. Maybe Chore was not found!`
+                                                             });
+                                    }
+                                    else {
+                                        if (err) callback(err);
+                                        callback(null, chore);
+                                    }
+                                }
+                            );
+                        },
+
+                        function (doc, callback) {
+                            // code b: Remove associated group chores
+                            Group.updateOne(
+                                { "chores": id },
+                                { "set": { "chores.$": req.body } },
+                                function (err, groupChore) {
+                                    if (err) callback(err);
+                                    callback(null, groupChore);
+                                }
+                            );
+                        },
+
+                        function (doc, callback) {
+                            // code c: Remove associated user chores
+                            User.updateOne(
+                                { "chores": id },
+                                { "set": { "chores.$": req.body } },
+                                function (err, personalChore) {
+                                    if (err) callback(err);
+                                    callback(null, personalChore);
+                                }
+                            );
+                        }
+                    ],
+                    function (err, result) {
+                        if (err) throw err;
+                        if (result) {
+                            res.send({
+                                         message: "Chore was updated/edited successfully!"
                                      });
-            } else res.send({ message: "Chore was updated successfully." });
-        })
-        .catch(err => {
-            res.status(500).send({
-                                     message: err.message || "Error updating Chore with id=" + id
-                                 });
-        });
+                        }
+                    });
+
+    // Chore.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+    //     .then(choreData => {
+    //         if (!choreData) {
+    //             res.status(404).send({
+    //                                      message: `Cannot update Chore with id=${id}. Maybe Chore was not found!`
+    //                                  });
+    //         } else res.send({ message: "Chore was updated successfully." });
+    //     })
+    //     .catch(err => {
+    //         res.status(500).send({
+    //                                  message: err.message || "Error updating Chore with id=" + id
+    //                              });
+    //     });
 
 };
 
@@ -58,7 +112,7 @@ exports.deleteChore = (req, res) => {
     async.waterfall([
                         function (callback) {
                             // code a: Remove Chore
-                            Chore.findOneAndRemove(
+                            Chore.findByIdAndRemove(
                                 { _id: id},
                                 {useFindAndModify:false},
                                 function (err, chore) {
@@ -100,10 +154,16 @@ exports.deleteChore = (req, res) => {
                         }
                     ],
                     function (err, result) {
-        if (err) throw err;
-        // res.json(result);  // OUTPUT OK
+                                if (err) throw err;
+                                if (result) {
+                                    res.send({
+                                              message: "Chore was deleted successfully!"
+                                    });
+                                // res.json(result);  // OUTPUT OK
+                    }
     });
 
+    //only deletes from chore collection
     // Chore.findByIdAndRemove(id)
     //     .then(choreData => {
     //         if (!choreData) {

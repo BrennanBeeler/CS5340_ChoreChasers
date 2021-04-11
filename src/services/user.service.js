@@ -41,8 +41,13 @@ class UsersDataService {
   // }
 
   //Delete a specific User with its id
-  deleteUser(id) {
+  deleteUserAccount(id) {
     return http.delete(`/users/id/${id}`);
+  }
+
+  //Remove a specific User with its id, from Group/Chore
+  removeUserFromGroup(id) {
+    return http.delete(`/users/remove/${id}`);
   }
 
   //Delete all Users in the users collection

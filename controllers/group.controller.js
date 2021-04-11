@@ -1,4 +1,5 @@
 const db = require("../models");
+var async = require('async');
 const Group = db.groups;
 const Chore = db.chores;
 const User = db.users;
@@ -159,6 +160,34 @@ exports.getGroupWithUserId = (req, res) => {
         });
 
 };
+
+//Add an exiting user/member to an existing group
+//Required id is group id
+exports.addGroupMember = (req, res) => {
+
+    // if (!req.body.choreName) {
+    //     res.status(400).send({ message: "Member data can not be empty!" });
+    //     return;
+    // }
+
+    Group.findOneAndUpdate({ _id: req.params.id },
+                                  {$addToSet: {members: req.body._id}}, { new: true, useFindAndModify: false})
+        .then(groupData=> {
+            console.log("Successfully added member!");
+            console.log(groupData);
+            res.send(groupData);
+        })
+        .catch(err => {
+            res.status(500).send({
+                                     message:
+                                         err.message || "Member not added!"
+                                 });
+        });
+
+
+
+};
+
 
 
 

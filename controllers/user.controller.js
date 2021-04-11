@@ -1,7 +1,9 @@
 const db = require("../models");
+var async = require('async');
 const bcrypt = require("bcrypt");
 const User = db.users;
 const Chore = db.chores;
+const Group = db.groups;
 
 // Create and Save a new User
 exports.createNewUser =  (req, res) => {
@@ -152,31 +154,150 @@ exports.checkLoginUser =  (req, res) => {
 
 };
 
-
-// Delete a User with the specified id in the request
-exports.deleteUser = (req, res) => {
+// Delete a User, when they delete their account, with the specified id in the request
+//User reference will get deleted from respective members/assignees lists in Group/Chore, if they exist there as well
+exports.deleteUserAccount = (req, res) => {
 
     const id = req.params.id;
+    async.waterfall([
+                        function (callback) {
+                            // code a: Remove User
+                            User.findByIdAndRemove(
+                                { _id: id},
+                                {useFindAndModify:false},
+                                function (err, user) {
+                                    if(!user) {
+                                        res.status(404).send({
+                                                                 message: `Cannot delete User with id=${id}. Maybe User was not found!`
+                                                             });
+                                    }
+                                    else {
+                                        if (err) callback(err);
+                                        callback(null, user);
+                                    }
+                                }
+                            );
+                        },
 
-    User.findByIdAndRemove(id,{useFindAndModify: false})
-        .then(userData => {
-            if (!userData) {
-                res.status(404).send({
-                                         message: `Cannot delete User with id=${id}. Maybe User was not found!`
+                        function (doc, callback) {
+                            // code b: Remove associated group members
+                            Group.updateOne(
+                                { "members": id },
+                                { "$pull": { "members": id } },
+                                function (err, groupMember) {
+                                    if (err) callback(err);
+                                    callback(null, doc);
+                                }
+                            );
+                        },
+
+                        function (doc, callback) {
+                            // code c: Remove associated chore assignees
+                            Chore.updateOne(
+                                { "assignees": id },
+                                { "$pull": { "assignees": id } },
+                                function (err, choreAssignee) {
+                                    if (err) callback(err);
+                                    callback(null, doc);
+                                }
+                            );
+                        }
+                    ],
+                    function (err, result) {
+                        if (err) throw err;
+                        if (result) {
+                            res.send({
+                                         message: "User account was deleted successfully!"
                                      });
-            } else {
-                res.send({
-                             message: "User was deleted successfully!"
-                         });
-            }
-        })
-        .catch(err => {
-            res.status(500).send({
-                                     message: err.message || "Could not delete User with id=" + id
-                                 });
-        });
+                            // res.json(result);  // OUTPUT OK
+                        }
+                    });
 
 };
+
+// Remove a User, when they leave a group, with the specified id in the request
+//User reference will get deleted from respective members/assignees lists in Group/Chore, if they exist there
+//404 not thrown if deleted user is deleted again - tbd
+exports.removeUserFromGroup = (req, res) => {
+
+    const id = req.params.id;
+    async.waterfall([
+
+                        function (callback) {
+                            // code b: Remove associated group members
+                            Group.updateOne(
+                                { "members": id },
+                                { "$pull": { "members": id } },
+                                function (err, groupMember) {
+                                    if(!groupMember) {
+                                        res.status(404).send({
+                                                                 message: `Cannot remove Group member with id=${id}. Maybe User was not found!`
+                                                             });
+                                    }
+                                    else {
+                                        if (err) callback(err);
+                                        callback(null, groupMember);
+                                    }
+                                }
+                            );
+                        },
+
+                        function (doc, callback) {
+                            // code c: Remove associated chore assignees
+                            Chore.updateOne(
+                                { "assignees": id },
+                                { "$pull": { "assignees": id } },
+                                function (err, choreAssignee) {
+                                    if(!choreAssignee) {
+                                        res.status(404).send({
+                                                                 message: `Cannot remove User assignee with id=${id}. Maybe User was not found!`
+                                                             });
+                                    }
+                                    else {
+                                        if (err) callback(err);
+                                        callback(null, doc);
+                                    }
+                                }
+                            );
+                        }
+                    ],
+                    function (err, result) {
+                        if (err) throw err;
+                        if (result) {
+                            res.send({
+                                         message: "User was removed successfully!"
+                                     });
+                            // res.json(result);  // OUTPUT OK
+                        }
+                    });
+
+};
+
+
+// // Delete a User with the specified id in the request, does not handle references in chore, group
+// exports.deleteUser = (req, res) => {
+//
+//     const id = req.params.id;
+//
+//     User.findByIdAndRemove(id,{useFindAndModify: false})
+//         .then(userData => {
+//             if (!userData) {
+//                 res.status(404).send({
+//                                          message: `Cannot delete User with id=${id}. Maybe User was not found!`
+//                                      });
+//             } else {
+//                 res.send({
+//                              message: "User was deleted successfully!"
+//                          });
+//             }
+//         })
+//         .catch(err => {
+//             res.status(500).send({
+//                                      message: err.message || "Could not delete User with id=" + id
+//                                  });
+//         });
+//
+// };
 
 // Delete all Users from the database.
 exports.deleteAllUsers = (req, res) => {

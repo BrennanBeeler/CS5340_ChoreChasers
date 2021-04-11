@@ -6,6 +6,7 @@ const Group = db.groups;
 
 
 // Update a Chore by the id in the request
+//Chore reference will get updated from respective chores lists in Group/User, if they exist there as well
 exports.updateChore = (req, res) => {
 
     if (!req.body) {
@@ -18,7 +19,7 @@ exports.updateChore = (req, res) => {
 
     async.waterfall([
                         function (callback) {
-                            // code a: Remove Chore
+                            // code a: Update Chore
                             Chore.findByIdAndUpdate(
                                 { _id: id},
                                 req.body,
@@ -38,25 +39,25 @@ exports.updateChore = (req, res) => {
                         },
 
                         function (doc, callback) {
-                            // code b: Remove associated group chores
+                            // code b: Update associated group chores
                             Group.updateOne(
                                 { "chores": id },
                                 { "set": { "chores.$": req.body } },
                                 function (err, groupChore) {
                                     if (err) callback(err);
-                                    callback(null, groupChore);
+                                    callback(null, doc);
                                 }
                             );
                         },
 
                         function (doc, callback) {
-                            // code c: Remove associated user chores
+                            // code c: Update associated user chores
                             User.updateOne(
                                 { "chores": id },
                                 { "set": { "chores.$": req.body } },
                                 function (err, personalChore) {
                                     if (err) callback(err);
-                                    callback(null, personalChore);
+                                    callback(null, doc);
                                 }
                             );
                         }
@@ -105,7 +106,7 @@ exports.getChoreWithId = (req,res) => {
 
 
 // Delete a Chore with the specified id in the request
-//Chore reference will get deleted from chores list in Group/User, if they exist there as well
+//Chore reference will get deleted from respective chores lists in Group/User, if they exist there as well
 exports.deleteChore = (req, res) => {
 
     const id = req.params.id;
@@ -136,7 +137,7 @@ exports.deleteChore = (req, res) => {
                                 { "$pull": { "chores": id } },
                                 function (err, groupChore) {
                                     if (err) callback(err);
-                                    callback(null, groupChore);
+                                    callback(null, doc);
                                 }
                             );
                         },
@@ -148,7 +149,7 @@ exports.deleteChore = (req, res) => {
                                 { "$pull": { "chores": id } },
                                 function (err, personalChore) {
                                     if (err) callback(err);
-                                    callback(null, personalChore);
+                                    callback(null, doc);
                                 }
                             );
                         }

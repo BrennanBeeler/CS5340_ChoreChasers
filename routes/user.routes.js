@@ -21,8 +21,11 @@ module.exports = app => {
     //Check if a User exists before logging them in
     router.post("/login",users.checkLoginUser);
 
-    //Delete a specific User with its id
-    router.delete("/id/:id", users.deleteUser);
+    //Delete a specific User account with its id
+    router.delete("/id/:id", users.deleteUserAccount);
+
+    //Remove a specific User from group/chore with its id
+    router.delete("/remove/:id", users.removeUserFromGroup);
 
     //Delete all Users in the users collection
     router.delete("/",users.deleteAllUsers);

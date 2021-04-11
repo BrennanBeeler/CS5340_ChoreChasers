@@ -1,5 +1,8 @@
 const db = require("../models");
+var async = require('async');
 const Chore = db.chores;
+const User = db.users;
+const Group = db.groups;
 
 
 // Update a Chore by the id in the request
@@ -48,28 +51,76 @@ exports.getChoreWithId = (req,res) => {
 
 
 // Delete a Chore with the specified id in the request
+//Chore reference will get deleted from chores list in Group/User, if they exist there as well
 exports.deleteChore = (req, res) => {
 
     const id = req.params.id;
+    async.waterfall([
+                        function (callback) {
+                            // code a: Remove Chore
+                            Chore.findOneAndRemove(
+                                { _id: id},
+                                {useFindAndModify:false},
+                                function (err, chore) {
+                                    if(!chore) {
+                                        res.status(404).send({
+                                                                 message: `Cannot delete Chore with id=${id}. Maybe Chore was not found!`
+                                                             });
+                                    }
+                                    else {
+                                        if (err) callback(err);
+                                        callback(null, chore);
+                                    }
+                                }
+                            );
+                        },
 
-    Chore.findByIdAndRemove(id)
-        .then(choreData => {
-            if (!choreData) {
-                res.status(404).send({
-                                         message: `Cannot delete Chore with id=${id}. Maybe Chore was not found!`
-                                     });
-            } else {
-                res.send({
-                             message: "Chore was deleted successfully!"
-                         });
-            }
-        })
-        .catch(err => {
-            res.status(500).send({
-                                     message: err.message || "Could not delete Chore with id=" + id
-                                 });
-        });
+                        function (doc, callback) {
+                            // code b: Remove associated group chores
+                            Group.updateOne(
+                                { "chores": id },
+                                { "$pull": { "chores": id } },
+                                function (err, groupChore) {
+                                    if (err) callback(err);
+                                    callback(null, groupChore);
+                                }
+                            );
+                        },
 
+                        function (doc, callback) {
+                            // code c: Remove associated user chores
+                            User.updateOne(
+                                { "chores": id },
+                                { "$pull": { "chores": id } },
+                                function (err, personalChore) {
+                                    if (err) callback(err);
+                                    callback(null, personalChore);
+                                }
+                            );
+                        }
+                    ],
+                    function (err, result) {
+        if (err) throw err;
+        // res.json(result);  // OUTPUT OK
+    });
+
+    // Chore.findByIdAndRemove(id)
+    //     .then(choreData => {
+    //         if (!choreData) {
+    //             res.status(404).send({
+    //                                      message: `Cannot delete Chore with id=${id}. Maybe Chore was not found!`
+    //                                  });
+    //         } else {
+    //             res.send({
+    //                          message: "Chore was deleted successfully!"
+    //                      });
+    //         }
+    //     })
+    //     .catch(err => {
+    //         res.status(500).send({
+    //                                  message: err.message || "Could not delete Chore with id=" + id
+    //                              });
+    //     });
 };
 
 // Delete all Chores from the database.

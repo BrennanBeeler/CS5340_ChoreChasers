@@ -102,7 +102,7 @@ exports.deleteGroup = (req, res) => {
 
     const id = req.params.id;
 
-    Group.findByIdAndRemove(id)
+    Group.findByIdAndRemove(id ,{useFindAndModify: false})
         .then(groupData => {
             if (!groupData) {
                 res.status(404).send({

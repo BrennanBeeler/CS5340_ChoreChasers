@@ -194,7 +194,7 @@ exports.deleteUser = (req, res) => {
 
     const id = req.params.id;
 
-    User.findByIdAndRemove(id)
+    User.findByIdAndRemove(id,{useFindAndModify: false})
         .then(userData => {
             if (!userData) {
                 res.status(404).send({

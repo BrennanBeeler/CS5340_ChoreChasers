@@ -152,42 +152,6 @@ exports.checkLoginUser =  (req, res) => {
 
 };
 
-// exports.checkLoginUser = (req, res) => {
-//     User.findOne({ emailId: req.body.emailId }).then(
-//         (user) => {
-//             if (!user) {
-//                 return res.status(401).json({
-//                                                 error: new Error('User not found!')
-//                                             });
-//             }
-//             bcrypt.compare(req.body.password, user.password).then(
-//                 (valid) => {
-//                     if (!valid) {
-//                         return res.status(401).json({
-//                                                         error: new Error('Incorrect password!')
-//                                                     });
-//                     }
-//                     res.status(200).json({
-//                                              userId: user._id,
-//                                              token: 'token'
-//                                          });
-//                 }
-//             ).catch(
-//                 (error) => {
-//                     res.status(500).json({
-//                                              error: error
-//                                          });
-//                 }
-//             );
-//         }
-//     ).catch(
-//         (error) => {
-//             res.status(500).json({
-//                                      error: error
-//                                  });
-//         }
-//     );
-// };
 
 // Delete a User with the specified id in the request
 exports.deleteUser = (req, res) => {
@@ -232,7 +196,40 @@ exports.deleteAllUsers = (req, res) => {
 };
 
 
-// Retrieve all Users from the database.
-exports.findAllUsers = (req, res) => {
-
-};
+//login code to try out if required
+// exports.checkLoginUser = (req, res) => {
+//     User.findOne({ emailId: req.body.emailId }).then(
+//         (user) => {
+//             if (!user) {
+//                 return res.status(401).json({
+//                                                 error: new Error('User not found!')
+//                                             });
+//             }
+//             bcrypt.compare(req.body.password, user.password).then(
+//                 (valid) => {
+//                     if (!valid) {
+//                         return res.status(401).json({
+//                                                         error: new Error('Incorrect password!')
+//                                                     });
+//                     }
+//                     res.status(200).json({
+//                                              userId: user._id,
+//                                              token: 'token'
+//                                          });
+//                 }
+//             ).catch(
+//                 (error) => {
+//                     res.status(500).json({
+//                                              error: error
+//                                          });
+//                 }
+//             );
+//         }
+//     ).catch(
+//         (error) => {
+//             res.status(500).json({
+//                                      error: error
+//                                  });
+//         }
+//     );
+// };

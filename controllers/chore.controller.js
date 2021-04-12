@@ -104,6 +104,30 @@ exports.getChoreWithId = (req,res) => {
         });
 };
 
+//Add an exiting user/member as a chore assignee
+//Required id is chore id
+//TBD - it will need the chore Id in advance so this method is subject to change
+exports.addChoreAssignee = (req, res) => {
+
+    Chore.findOneAndUpdate({ _id: req.params.id },
+                           {$addToSet: {assignees: req.body._id}}, { new: true, useFindAndModify: false})
+        .then(choreData=> {
+            console.log("Successfully added assignee!");
+            console.log(choreData);
+            res.send(choreData);
+        })
+        .catch(err => {
+            res.status(500).send({
+                                     message:
+                                         err.message || "Assignee not added!"
+                                 });
+        });
+
+
+
+};
+
+
 
 // Delete a Chore with the specified id in the request
 //Chore reference will get deleted from respective chores lists in Group/User, if they exist there as well

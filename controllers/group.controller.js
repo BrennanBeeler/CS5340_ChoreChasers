@@ -163,12 +163,8 @@ exports.getGroupWithUserId = (req, res) => {
 
 //Add an exiting user/member to an existing group
 //Required id is group id
+//TBD - it will need the group Id in advance so this method is subject to change
 exports.addGroupMember = (req, res) => {
-
-    // if (!req.body.choreName) {
-    //     res.status(400).send({ message: "Member data can not be empty!" });
-    //     return;
-    // }
 
     Group.findOneAndUpdate({ _id: req.params.id },
                                   {$addToSet: {members: req.body._id}}, { new: true, useFindAndModify: false})

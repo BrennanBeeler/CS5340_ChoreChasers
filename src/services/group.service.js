@@ -15,6 +15,7 @@ class GroupsDataService {
         return http.post(`/groups/chores/id/${id}`, newChoreData);
     }
 
+    //Add an existing user to an existing group
     addGroupMember(id,userData) {
         return http.post(`/groups/member/id/${id}`, userData)
     }

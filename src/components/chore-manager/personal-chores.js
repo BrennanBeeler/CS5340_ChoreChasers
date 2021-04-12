@@ -38,7 +38,8 @@ class PersonalChores extends React.Component {
 
     updateProgress(points) {
         const newPoints = this.state.completedPoints + points;
-        this.setState({completedPoints: newPoints})
+        const newCompleted = this.state.completedChores + 1;
+        this.setState({completedPoints: newPoints, completedChores: newCompleted})
     }
 
 
@@ -56,7 +57,7 @@ class PersonalChores extends React.Component {
                 </h4>
                 <p/>
                 <ProgressBar>
-                    <ProgressBar variant="success" now={this.state.completedPoints/this.state.totalPoints *100} key={1}/>
+                    <ProgressBar variant="success" now={this.state.completedChores/this.props.chores.length *100} key={1}/>
                 </ProgressBar>
 
                 {this.state.completedChores}/{this.props.chores.length} Tasks

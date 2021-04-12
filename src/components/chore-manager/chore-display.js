@@ -13,8 +13,7 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress, showComp
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         width: "100%",
-        height: "100vh",
-        paddingBottom: "30px"
+        height: "calc(100vh - 190px)",
     }
 
     const [overdueChores, setOverdueChores] = useState([]);
@@ -85,8 +84,8 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress, showComp
     }
 
     return(
-        <div style={{height: "100vh"}}>
-            <div className="border-top border-dark hero vertical-scrollable" style={style}>
+        <div style={{height: "calc(100vh - 190px"}}>
+            <div className="hero vertical-scrollable" style={style}>
                 <Row>
                     <Col xs={6} style={{paddingLeft: "30px", paddingRight : "30px"}}>
                         <>

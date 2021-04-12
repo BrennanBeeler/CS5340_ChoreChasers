@@ -9,6 +9,9 @@ module.exports = app => {
     //Get a specific chore with its id
     router.get("/id/:id",chores.getChoreWithId);
 
+    //Add an existing user as an assignee to a chore
+    router.post("/assignee/:id", chores.addChoreAssignee);
+
     //Delete a specific Chore with its id
     router.delete("/id/:id",chores.deleteChore);
 

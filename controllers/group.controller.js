@@ -1,4 +1,5 @@
 const db = require("../models");
+var async = require('async');
 const Group = db.groups;
 const Chore = db.chores;
 const User = db.users;
@@ -102,7 +103,7 @@ exports.deleteGroup = (req, res) => {
 
     const id = req.params.id;
 
-    Group.findByIdAndRemove(id)
+    Group.findByIdAndRemove(id ,{useFindAndModify: false})
         .then(groupData => {
             if (!groupData) {
                 res.status(404).send({
@@ -159,6 +160,30 @@ exports.getGroupWithUserId = (req, res) => {
         });
 
 };
+
+//Add an exiting user/member to an existing group
+//Required id is group id
+//TBD - it will need the group Id in advance so this method is subject to change
+exports.addGroupMember = (req, res) => {
+
+    Group.findOneAndUpdate({ _id: req.params.id },
+                                  {$addToSet: {members: req.body._id}}, { new: true, useFindAndModify: false})
+        .then(groupData=> {
+            console.log("Successfully added member!");
+            console.log(groupData);
+            res.send(groupData);
+        })
+        .catch(err => {
+            res.status(500).send({
+                                     message:
+                                         err.message || "Member not added!"
+                                 });
+        });
+
+
+
+};
+
 
 
 

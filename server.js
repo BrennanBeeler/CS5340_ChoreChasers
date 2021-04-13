@@ -5,7 +5,7 @@ const cors = require("cors");
 const app = express();
 
 var corsOptions = {
-    origin: "http://localhost:3000",
+    origin: "http://localhost:8080",
     credentials:true,
     optionSuccessStatus:200
 };
@@ -42,5 +42,5 @@ require("./routes/chore.routes.js")(app);
 
 
 // set port, listen for requests
-app.listen(3000, function () {
-    console.log('App started on port 3000');});
+app.listen(8080, function () {
+    console.log('App started on port 8080');});

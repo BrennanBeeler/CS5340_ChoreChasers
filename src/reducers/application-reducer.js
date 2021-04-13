@@ -12,13 +12,13 @@ import {
     EDIT_CHORE,
     ADD_POINT_VALUE,
     DELETE_CHORE,
-    DELETE_PERSONAL_CHORE, TOGGLE_SHOW_COMPLETED
+    DELETE_PERSONAL_CHORE, TOGGLE_SHOW_COMPLETED, SIGN_UP
 } from "../actions/actions";
 
 
 const initialState = {
     loggedIn: false,
-    //TODO: populate these
+    //TODO: maybe remove activeProfile
     activeProfile : "test",
     showCompleted: false,
     profile : {
@@ -293,17 +293,13 @@ const applicationReducer = (state = initialState, action) => {
                 loggedIn: false,
                 activeProfile: null
             }
-      //   TODO: redo
         case LOG_IN:
-            // TODO: redo once db connected
-            if (action.id === state.profile.id) {
-                return {
-                    ...state,
-                    loggedIn: true,
-                    activeProfile: action.id
-                }
+            return {
+                ...state,
+                loggedIn: true,
+                activeProfile: action.profile._id,
+                profile: action.profile
             }
-            return state
         case SET_ACTIVE_GROUP:
             return {
                 ...state,

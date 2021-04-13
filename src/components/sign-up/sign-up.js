@@ -7,15 +7,24 @@ import {connect} from "react-redux";
 
 const SignUp = ({
                     signUp,
-                    logIn,
                     loggedIn
                 }) => {
 
-    const handleSubmit = (event) => {
+    //TODO: figure out async and check if account created
+    async function handleSubmit(event) {
         event.preventDefault()
         // TODO: need to handle user feedback on bad input
-        signUp(email, username, password)
-        logIn(email, password)
+
+        let success = await signUp(email, username, password)
+
+        console.log(success)
+
+        if (success === false) {
+            alert("Account not created")
+        }
+        else {
+            alert("Account created")
+        }
     }
 
     const [email, setEmail] = useState("");
@@ -34,7 +43,7 @@ const SignUp = ({
                 Join Chore Chasers!
             </h3>
                 <br/><p></p>
-            {/*TODO: figure out floating labels*/}
+            {/*TODO: fix appearance of sign up*/}
             <form>
                 <div className="form-group">
                     <label htmlFor="emailFld" className="label form-headers">
@@ -73,9 +82,9 @@ const SignUp = ({
                 {// TODO: Sign up user
                 }
                 <div style={{paddingLeft:"30px",marginTop:"40px"}}>
-                <Link to="/choreManager" className=" btn btn-success" style={{paddingRight:"100px",paddingLeft:"100px"}}>
+                <button className=" btn btn-success" onClick={handleSubmit} style={{paddingRight:"100px",paddingLeft:"100px"}}>
                     Start Chores
-                </Link>
+                </button>
                 </div>
 
 
@@ -102,8 +111,7 @@ const stpm = (state) => ({
 })
 
 const dtpm = (dispatch) => ({
-    signUp : (email, username, password) => applicationActions.signUp(dispatch, email, username, password),
-    logIn : (email, password) => applicationActions.logIn(dispatch, email, password)
+    signUp : (email, username, password) => applicationActions.signUp(dispatch, email, username, password)
 })
 
 export default connect(stpm, dtpm)(SignUp);

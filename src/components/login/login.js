@@ -13,7 +13,7 @@ const Login = ({
         event.preventDefault()
 
         if (!checkLoginCredentials(email, password)) {
-            console.log("failure")
+            alert("Those credentials are incorrect. Please try again.")
         }
     }
 
@@ -22,7 +22,7 @@ const Login = ({
 
     return (
         <div className="container">
-            <div class="center-login">
+            <div className="center-login">
             <h1 className="text-center">
                 Log In
             </h1>
@@ -30,7 +30,7 @@ const Login = ({
             <h3 className="text-center">
                 Pick up where you left off!
             </h3>
-                <br/><p></p>
+                <br/><p/>
             <form>
                 <div className="form-group">
                     <label htmlFor="emailFld" className="label form-headers">
@@ -44,7 +44,7 @@ const Login = ({
 
                 <div className="form-group">
                     <label htmlFor="passwordFld" className="label form-headers">
-                        <div class="form-text-field-login">Password * </div>
+                        <div className="form-text-field-login">Password * </div>
                     </label>
                     <input type="password" id="passwordFld" placeholder="Enter your password" className="form-control"
                            value={password} onChange={(event => setPassword(event.target.value))}/>
@@ -62,7 +62,7 @@ const Login = ({
                 }
 
                 <br/>
-                <br/><p></p>
+                <br/><p/>
 
                 <div className="mx-auto text-center">
                     New to Chore Chasers?

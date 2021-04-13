@@ -17,19 +17,20 @@ export const DELETE_CHORE = "DELETE_CHORE";
 export const DELETE_PERSONAL_CHORE = "DELETE_PERSONAL_CHORE";
 export const TOGGLE_SHOW_COMPLETED = "TOGGLE_SHOW_COMPLETED";
 
-const logIn = (dispatch, email, password) => {
-    UsersDataService.checkLoginUser({emailId: email, password: password})
-        .then(response => {
-            if (response.status !== 200) {
-                return false;
-            }
-            else {
-                return(dispatch({
-                    type: LOG_IN,
-                    profile: response.data
-                }))
-            }
+const logIn = (dispatch, email, password) => async (dispatch) => {
+    try {
+        const res = await UsersDataService.checkLoginUser({emailId: email, password: password})
+
+        dispatch({
+            type: LOG_IN,
+            profile: res.data
         })
+
+        return true
+    }
+    catch (err) {
+        return false
+    }
 }
 
 //TODO: determine log out's affect on db
@@ -39,34 +40,30 @@ const logOut = (dispatch) =>
     })
 
 //TODO: determine if this is needed since sign up won't affect state of application directly.
-const signUp = (dispatch, email, username, password) =>
-    async (dispatch) => {
-        try {
-            const res = await UsersDataService.createNewUser({
-                emailId: email,
-                username: username,
-                password: password,
-                points : 0,
-                backgroundImage: "white",
-                //TODO: determine if want sound on by default
-                successSound: true,
-                chores: []
-            })
+const signUp = (dispatch, email, username, password) => async (dispatch) => {
+    try {
+        const res = await UsersDataService.createNewUser({
+            emailId: email,
+            username: username,
+            password: password,
+            points : 0,
+            backgroundImage: "white",
+            //TODO: determine if want sound on by default
+            successSound: true,
+            chores: []
+        })
 
-            dispatch({
-                type: LOG_IN,
-                profile: res.data
-            })
+        dispatch({
+            type: LOG_IN,
+            profile: res.data
+        })
 
-            console.log("try")
-
-            return Promise.resolve(res.data)
-        }
-        catch (err) {
-            console.log("catch")
-
-            return Promise.reject(err)
-        }}
+        return true
+    }
+    catch (err) {
+        return false
+    }
+}
 
 // TODO: redo with unique group id from database
 const setActiveGroup = (dispatch, activeGroupId) => {

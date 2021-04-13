@@ -1,29 +1,26 @@
 import React, {useState} from "react";
 import "./sign-up.css"
-import {Link, Redirect} from "react-router-dom"
+import {Link, useHistory} from "react-router-dom"
 import applicationActions from "../../actions/actions";
 import {connect} from "react-redux";
 
 
 const SignUp = ({
-                    signUp,
-                    loggedIn
+                    signUp
                 }) => {
 
-    //TODO: figure out async and check if account created
+    const history = useHistory();
+
     async function handleSubmit(event) {
         event.preventDefault()
         // TODO: need to handle user feedback on bad input
 
-        let success = await signUp(email, username, password)
-
-        console.log(success.profile)
-
-        if (success === false) {
-            alert("Account not created")
+        if (await signUp(email, username, password)) {
+            alert("Account created")
+            history.push("/choreManager")
         }
         else {
-            alert("Account created")
+            alert("Account not created")
         }
     }
 
@@ -31,7 +28,6 @@ const SignUp = ({
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
-    //TODO: redo once database is ready
     return (
         <div className="container">
             <div className="center-signup">
@@ -42,7 +38,7 @@ const SignUp = ({
             <h3 className="text-center">
                 Join Chore Chasers!
             </h3>
-                <br/><p></p>
+                <br/><p/>
             {/*TODO: fix appearance of sign up*/}
             <form>
                 <div className="form-group">
@@ -79,16 +75,14 @@ const SignUp = ({
                            onChange={(event) => setPassword(event.target.value)}/></div>
                 </div>
 
-                {// TODO: Sign up user
-                }
                 <div style={{paddingLeft:"30px",marginTop:"40px"}}>
-                <button className=" btn btn-success" onClick={handleSubmit} style={{paddingRight:"100px",paddingLeft:"100px"}}>
-                    Start Chores
-                </button>
+                    <button className=" btn btn-success" onClick={handleSubmit} style={{paddingRight:"100px",paddingLeft:"100px"}}>
+                        Start Chores
+                    </button>
                 </div>
 
 
-                <br/><p></p>
+                <br/><p/>
 
                 <div className="mx-auto text-center">
                     Already have an account?
@@ -107,11 +101,10 @@ const SignUp = ({
 
 
 const stpm = (state) => ({
-    loggedIn: state.loggedIn
 })
 
 const dtpm = (dispatch) => ({
-    signUp : (email, username, password) => applicationActions.signUp(dispatch, email, username, password)
+    signUp : (email, username, password) => applicationActions.signUp(dispatch, email, username, password)(dispatch)
 })
 
 export default connect(stpm, dtpm)(SignUp);

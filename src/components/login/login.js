@@ -9,10 +9,14 @@ const Login = ({
                     loggedIn = false
                }) => {
 
-    const handleSubmit = (event) => {
+    async function handleSubmit(event) {
         event.preventDefault()
 
-        if (!checkLoginCredentials(email, password)) {
+        //TODO: validate locally
+        if (await checkLoginCredentials(email, password)) {
+            alert("Logging in")
+        }
+        else {
             alert("Those credentials are incorrect. Please try again.")
         }
     }
@@ -84,7 +88,7 @@ const stpm = (state) => ({
 })
 
 const dtpm = (dispatch) => ({
-    checkLoginCredentials : (email, password) => actions.logIn(dispatch, email, password)
+    checkLoginCredentials : (email, password) => actions.logIn(dispatch, email, password)(dispatch)
 })
 
 export default connect(stpm, dtpm)(Login);

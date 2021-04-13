@@ -156,10 +156,6 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress, showComp
                         }
 
                         {
-                            console.log(showCompleted)
-                        }
-
-                        {
                             futureChores.length !== 0 &&
                                 <>
                                     <h2 style={{backgroundColor: "#e8fcff"}}>

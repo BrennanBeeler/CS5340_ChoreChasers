@@ -3,9 +3,11 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 
 const app = express();
+const fileServerMiddleware = express.static('public');
+
 
 var corsOptions = {
-    origin: "http://localhost:8080",
+    origin: "http://localhost:3000",
     credentials:true,
     optionSuccessStatus:200
 };
@@ -18,9 +20,12 @@ app.use(bodyParser.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get("/", (req, res) => {
-    res.json({ message: "Initial set up works." });
-});
+app.use('/', fileServerMiddleware);
+
+
+// app.get("/", (req, res) => {
+//     res.json({ message: "Initial set up works." });
+// });
 
 const db = require("./models");
 db.mongoose

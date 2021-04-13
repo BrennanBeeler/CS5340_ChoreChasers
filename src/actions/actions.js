@@ -23,10 +23,11 @@ const logIn = (dispatch, email, password) => {
     UsersDataService.checkLoginUser({emailId: email, password: password})
         .then(response => {
             if (!response.ok) {
-                console.log(response)
+                console.log(response);
                 return false;
             }
             else {
+                console.log("works");
                 return(dispatch({
                     type: LOG_IN,
                     profile: response

@@ -17,7 +17,7 @@ const SignUp = ({
 
         let success = await signUp(email, username, password)
 
-        console.log(success)
+        console.log(success.profile)
 
         if (success === false) {
             alert("Account not created")

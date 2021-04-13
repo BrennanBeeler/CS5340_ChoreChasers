@@ -39,31 +39,34 @@ const logOut = (dispatch) =>
     })
 
 //TODO: determine if this is needed since sign up won't affect state of application directly.
-const signUp = (dispatch, email, username, password) => {
-    return new Promise( () => {
-        UsersDataService.createNewUser({
-            emailId: email,
-            username: username,
-            password: password,
-            points : 0,
-            backgroundImage: "white",
-            //TODO: determine if want sound on by default
-            successSound: true,
-            chores: []
-        })
-            .then(response => {
-                if (response.status !== 200) {
-                    return false;
-                }
-                // else {
-                //     return(dispatch({
-                //         type: LOG_IN,
-                //         profile: response.data
-                //     }))
-                // }
+const signUp = (dispatch, email, username, password) =>
+    async (dispatch) => {
+        try {
+            const res = await UsersDataService.createNewUser({
+                emailId: email,
+                username: username,
+                password: password,
+                points : 0,
+                backgroundImage: "white",
+                //TODO: determine if want sound on by default
+                successSound: true,
+                chores: []
             })
-    })
-}
+
+            dispatch({
+                type: LOG_IN,
+                profile: res.data
+            })
+
+            console.log("try")
+
+            return Promise.resolve(res.data)
+        }
+        catch (err) {
+            console.log("catch")
+
+            return Promise.reject(err)
+        }}
 
 // TODO: redo with unique group id from database
 const setActiveGroup = (dispatch, activeGroupId) => {

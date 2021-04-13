@@ -112,9 +112,15 @@ exports.addChoreAssignee = (req, res) => {
     Chore.findOneAndUpdate({ _id: req.params.id },
                            {$addToSet: {assignees: req.body._id}}, { new: true, useFindAndModify: false})
         .then(choreData=> {
-            console.log("Successfully added assignee!");
-            console.log(choreData);
-            res.send(choreData);
+            if (!choreData) {
+                res.status(404).send({
+                                         message: "Assignee not added!"
+                                     });
+            } else {
+                console.log("Successfully added assignee!");
+                console.log(choreData);
+                res.send(choreData);
+            }
         })
         .catch(err => {
             res.status(500).send({

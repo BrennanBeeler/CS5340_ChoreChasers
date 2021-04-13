@@ -3,6 +3,8 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 
 const app = express();
+const fileServerMiddleware = express.static('public');
+
 
 var corsOptions = {
     origin: "http://localhost:3000",
@@ -18,9 +20,12 @@ app.use(bodyParser.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get("/", (req, res) => {
-    res.json({ message: "Initial set up works." });
-});
+app.use('/', fileServerMiddleware);
+
+
+// app.get("/", (req, res) => {
+//     res.json({ message: "Initial set up works." });
+// });
 
 const db = require("./models");
 db.mongoose
@@ -42,5 +47,5 @@ require("./routes/chore.routes.js")(app);
 
 
 // set port, listen for requests
-app.listen(3000, function () {
-    console.log('App started on port 3000');});
+app.listen(8080, function () {
+    console.log('App started on port 8080');});

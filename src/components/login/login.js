@@ -11,7 +11,10 @@ const Login = ({
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        checkLoginCredentials(email, password)
+
+        if (!checkLoginCredentials(email, password)) {
+            console.log("failure")
+        }
     }
 
     const [password, setPassword] = useState("");

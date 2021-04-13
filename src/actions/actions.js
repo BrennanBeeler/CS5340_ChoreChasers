@@ -1,3 +1,6 @@
+import UsersDataService from "../services/user.service";
+
+
 export const LOG_IN = "LOG_IN";
 export const LOG_OUT = "LOG_OUT";
 export const SIGN_UP = "SIGN_UP";
@@ -16,14 +19,21 @@ export const DELETE_PERSONAL_CHORE = "DELETE_PERSONAL_CHORE";
 export const TOGGLE_SHOW_COMPLETED = "TOGGLE_SHOW_COMPLETED";
 
 const logIn = (dispatch, email, password) => {
-    let id = email
-    //TODO: validate login credentials via database AND IF valid dispatch
-    return(
-        dispatch({
-            type : LOG_IN,
-            id
+
+    UsersDataService.checkLoginUser({emailId: email, password: password})
+        .then(response => {
+            if (!response.ok) {
+                console.log(response);
+                return false;
+            }
+            else {
+                console.log("works");
+                return(dispatch({
+                    type: LOG_IN,
+                    profile: response
+                }))
+            }
         })
-    )
 }
 
 

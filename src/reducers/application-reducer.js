@@ -8,11 +8,13 @@ import {
     GET_GROUP_DATA,
     EDIT_GROUP,
     DELETE_GROUP,
-    CREATE_CHORE,
     EDIT_CHORE,
     ADD_POINT_VALUE,
     DELETE_CHORE,
-    DELETE_PERSONAL_CHORE, TOGGLE_SHOW_COMPLETED, SIGN_UP
+    DELETE_PERSONAL_CHORE,
+    TOGGLE_SHOW_COMPLETED,
+    CREATE_GROUP_CHORE,
+    CREATE_PERSONAL_CHORE
 } from "../actions/actions";
 
 
@@ -286,12 +288,14 @@ const initialState = {
 const applicationReducer = (state = initialState, action) => {
     switch (action.type) {
       //TODO: figure out where log out buttons will go
+      // DONE
         case LOG_OUT:
             return {
                 ...state,
                 loggedIn: false,
                 activeProfile: null
             }
+        //    DONE
         case LOG_IN:
             return {
                 ...state,
@@ -299,11 +303,13 @@ const applicationReducer = (state = initialState, action) => {
                 activeProfile: action.profile._id,
                 profile: action.profile
             }
+        //    DOESNT NEED TO CONNECT TO DB
         case SET_ACTIVE_GROUP:
             return {
                 ...state,
                 activeGroupId: action.activeGroupId
             }
+        //    TODO
         case SET_BACKGROUND:
             const newProfile = state.profile;
             newProfile.background = action.url;
@@ -313,6 +319,7 @@ const applicationReducer = (state = initialState, action) => {
                 profile: newProfile,
             }
             return JSON.parse(JSON.stringify(newBackground));
+        //    TODO
         case TOGGLE_SOUND:
             const newProfilee = state.profile;
             newProfilee.soundEnabled = !state.profile.soundEnabled;
@@ -332,26 +339,30 @@ const applicationReducer = (state = initialState, action) => {
                 ]
             }
       //    TODO: check once db connected
-      // case GET_GROUP_DATA:
-      //     return {
-      //         ...state,
-      //         groups : state.groups.filter(group => group.id === state.activeGroupId)
-      //     }
-        case CREATE_CHORE:
-            if (action.groupName === "Personal Chores") {
-                state.profile.chores.push(action.chore);
-
-                return {
-                    ...state
+        case GET_GROUP_DATA:
+          return {
+              ...state,
+              groups : state.groups.filter(group => group.id === state.activeGroupId)
+          }
+        case CREATE_PERSONAL_CHORE:
+            // state.profile.chores.push(action.chore);
+            return {
+                ...state,
+                profile: {
+                    ...state.profile,
+                    chores: [
+                        ...state.profile.chores,
+                        action.chore
+                    ]
                 }
-            } else {
-                let tempGroups = state.groups;
-                tempGroups.forEach(group => group.name === action.groupName ? group.chores = [...group.chores, action.chore] : group)
+            }
+        case CREATE_GROUP_CHORE:
+            let tempGroups = state.groups;
+            tempGroups.forEach(group => group.id === action.groupName ? group.chores = [...group.chores, action.chore] : group)
 
-                return {
-                    ...state,
-                    groups: tempGroups
-                }
+            return {
+                ...state,
+                groups: tempGroups
             }
         case EDIT_GROUP:
             return {

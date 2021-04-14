@@ -10,9 +10,11 @@ const CreateChoreModal = ({
                               hide,
                               show,
                               profileUsername,
-                              createChore,
+                              createGroupChore,
+                              createPersonalChore,
                               currentGroup,
-                              groupOptions}) => {
+                              groupOptions,
+                              profile}) => {
 
 
     const [choreName, setChoreName] = useState("");
@@ -47,7 +49,6 @@ const CreateChoreModal = ({
         //TODO: if users sets assignees then moves to personal group the chore will have assignees in personal- idk if matters
 
         let newChore = {
-            id: Date.now(),
             done:false,
             choreName: choreName,
             dueDate: dueDate === "" ? null : handleDate(),
@@ -63,7 +64,12 @@ const CreateChoreModal = ({
         }
 
         //TODO: fix this use of name as identifier
-        createChore(choreGroup.name, newChore)
+        if (choreGroup.id === "Personal Chores") {
+            createPersonalChore(profile._id, newChore)
+        }
+        else {
+            createGroupChore(choreGroup._id, newChore)
+        }
         hide()
     }
 
@@ -278,12 +284,15 @@ const stpm = (state,ownProps) => {
         currentGroup:  temp,
         groupOptions: [{name: "Personal Chores", id : "Personal Chores", members: []}]
             .concat(state.groups.map(group => ({name: group.name, id: group.id, members: group.members}))),
-        profileUsername : state.profile.username
+        //TODO: remove profileUsername
+        profileUsername : state.profile.username,
+        profile : state.profile
     })
 }
 
 const dtpm = (dispatch) => ({
-    createChore : (groupName, chore) => applicationActions.createChore(dispatch, groupName, chore)
+    createPersonalChore : (userId, chore) => applicationActions.createPersonalChore(dispatch, userId, chore)(dispatch),
+    createGroupChore : (groupId, chore) => applicationActions.createGroupChore(dispatch, groupId, chore)(dispatch)
 })
 
 export default connect(stpm, dtpm)(CreateChoreModal);

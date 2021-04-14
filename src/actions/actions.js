@@ -1,5 +1,6 @@
 import UsersDataService from "../services/user.service";
-
+import GroupDataService from "../services/group.service";
+import ChoreDataService from "../services/chore.service";
 
 export const LOG_IN = "LOG_IN";
 export const LOG_OUT = "LOG_OUT";
@@ -10,7 +11,8 @@ export const CREATE_GROUP = "CREATE_GROUP";
 export const DELETE_GROUP = "DELETE_GROUP";
 export const EDIT_GROUP = "EDIT_GROUP";
 export const GET_GROUP_DATA = "GET_GROUP_DATA";
-export const CREATE_CHORE = "CREATE_CHORE";
+export const CREATE_GROUP_CHORE = "CREATE_GROUP_CHORE";
+export const CREATE_PERSONAL_CHORE = "CREATE_PERSONAL_CHORE";
 export const EDIT_CHORE = "EDIT_CHORE";
 export const ADD_POINT_VALUE = "ADD_POINT_VALUE";
 export const DELETE_CHORE = "DELETE_CHORE";
@@ -117,12 +119,64 @@ const editChore = (dispatch, chore, groupId) => {
     })
 }
 
-const createChore = (dispatch, groupName, chore) => {
-    dispatch({
-        type: CREATE_CHORE,
-        groupName,
-        chore
-    })
+const createPersonalChore = (dispatch, userId, chore) => async (dispatch) => {
+    try {
+        console.log(userId)
+
+        const res = await UsersDataService.addPersonalChore(userId, {
+            done: chore.done,
+            choreName: chore.choreName,
+            dueDate: chore.dueDate,
+            repeatChore: chore.repeatChore,
+            choreInstructions: chore.choreInstructions,
+            assignees: chore.assignees,
+            assignor: chore.assignor,
+            rewards: chore.rewards,
+            points: chore.points,
+            realLifeItem: chore.realLifeItem,
+            splitReward: chore.splitReward
+        })
+
+        dispatch({
+            type: CREATE_PERSONAL_CHORE,
+            chore: res.data
+        })
+
+        return true
+    }
+    catch (err) {
+        return false
+    }
+}
+
+const createGroupChore= (dispatch, groupId, chore) => async (dispatch) => {
+    try {
+        const res = await GroupDataService.addGroupChore(groupId, {
+            done: chore.done,
+            choreName: chore.choreName,
+            dueDate: chore.dueDate,
+            repeatChore: chore.repeatChore,
+            choreInstructions: chore.choreInstructions,
+            assignees: chore.assignees,
+            assignor: chore.assignor,
+            rewards: chore.rewards,
+            points: chore.points,
+            realLifeItem: chore.realLifeItem,
+            splitReward: chore.splitReward
+        })
+
+        dispatch({
+            type: CREATE_GROUP_CHORE,
+            groupId: groupId,
+            chore: res.data
+        })
+
+        return true
+
+    }
+    catch (err) {
+        return false
+    }
 }
 
 const getGroupData = (dispatch, profile, groupId) => {
@@ -164,7 +218,7 @@ const toggleShowCompleted = (dispatch) => {
 
 const applicationActions = {
     logIn, logOut,signUp, setActiveGroup, setBackground, toggleSound, createGroup, deleteGroup, editGroup, editChore, getGroupData, addPoints,
-    deleteChore, deletePersonalChore, createChore, toggleShowCompleted
+    deleteChore, deletePersonalChore, toggleShowCompleted, createGroupChore, createPersonalChore
 }
 
 export default applicationActions;

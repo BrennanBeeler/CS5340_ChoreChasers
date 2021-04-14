@@ -1,8 +1,6 @@
-import UsersDataService from "../services/user.service";
-
-
 export const LOG_IN = "LOG_IN";
 export const LOG_OUT = "LOG_OUT";
+export const SIGN_UP = "SIGN_UP";
 export const SET_ACTIVE_GROUP = "SET_ACTIVE_GROUP";
 export const TOGGLE_SOUND = "TOGGLE_SOUND";
 export const SET_BACKGROUND = "SET_BACKGROUND";
@@ -17,52 +15,33 @@ export const DELETE_CHORE = "DELETE_CHORE";
 export const DELETE_PERSONAL_CHORE = "DELETE_PERSONAL_CHORE";
 export const TOGGLE_SHOW_COMPLETED = "TOGGLE_SHOW_COMPLETED";
 
-const logIn = (dispatch, email, password) => async (dispatch) => {
-    try {
-        const res = await UsersDataService.checkLoginUser({emailId: email, password: password})
-
+const logIn = (dispatch, email, password) => {
+    let id = email
+    //TODO: validate login credentials via database AND IF valid dispatch
+    return(
         dispatch({
-            type: LOG_IN,
-            profile: res.data
+            type : LOG_IN,
+            id
         })
-
-        return true
-    }
-    catch (err) {
-        return false
-    }
+    )
 }
 
-//TODO: determine log out's affect on db
-const logOut = (dispatch) =>
+
+
+const logOut = (dispatch, email) =>
     dispatch({
-        type : LOG_OUT
+        type : LOG_OUT,
+        email
     })
 
 //TODO: determine if this is needed since sign up won't affect state of application directly.
-const signUp = (dispatch, email, username, password) => async (dispatch) => {
-    try {
-        const res = await UsersDataService.createNewUser({
-            emailId: email,
-            username: username,
-            password: password,
-            points : 0,
-            backgroundImage: "white",
-            //TODO: determine if want sound on by default
-            successSound: true,
-            chores: []
-        })
-
-        dispatch({
-            type: LOG_IN,
-            profile: res.data
-        })
-
-        return true
-    }
-    catch (err) {
-        return false
-    }
+const signUp = (dispatch, email, username, password) => {
+    dispatch({
+        type : SIGN_UP,
+        email,
+        username,
+        password
+    })
 }
 
 // TODO: redo with unique group id from database

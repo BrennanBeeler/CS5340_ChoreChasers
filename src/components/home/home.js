@@ -64,7 +64,7 @@ const Home = () => {
                         <Carousel.Item>
                             <img
                                 className="d-block w-100"
-                                // src="holder.js/800x400?text=Second slide&bg=282c34"
+                                // src="/src/css-images/hangingclothes2.jpg/"
                                 alt="Second slide"
                                 width="500"
                                 height="400"
@@ -95,7 +95,7 @@ const Home = () => {
 
 
                 {/*TODO: look into jumbotron from boostrap*/}
-                <div className=" jumbotron col-4 text-center offset-4 mx-auto align-self-center pb-4 pt-4">
+                <div className=" jumbotron col-lg-4 col-md-6 col-sm-6 col-xs-6 text-center offset-4 mx-auto align-self-center pb-4 pt-4">
                 {/*<div className="jumbotron col-lg-3 col-md-6 col-sm-6 col-xs-6 offset-8 float-md-right ">*/}
                     <div className="font-weight-bolder about-header">
                         So what do we do?

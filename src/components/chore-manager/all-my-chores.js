@@ -63,7 +63,7 @@ class AllMyChores extends React.Component {
 
                 <div className="personal-chore-name-style">
                     <h1 className="h1-style">
-                        Personal Chores
+                        All my assigned chores
                     </h1>
                 </div>
                 <div className="create-chore-btn-div">
@@ -76,8 +76,6 @@ class AllMyChores extends React.Component {
 
                 <ShowCompletedToggle/>
 
-                <br/>
-                <br/>
                 <br/>
 
 
@@ -96,7 +94,10 @@ const sortForAssignee = (groups, targetUser) => {
     groups.forEach(group => {
         group.chores.forEach(chore => {
             if (chore.assignees.includes(targetUser)) {
-                assignedChores.push(chore)
+                assignedChores.push({
+                    ...chore,
+                    members : group.members
+                })
             }
         })
     })
@@ -106,8 +107,8 @@ const sortForAssignee = (groups, targetUser) => {
 const stpm = (state) => ({
     activeGroupId: state.activeGroupId,
     activeProfile: state.activeProfile,
-    chores : (state.profile.chores).concat(sortForAssignee(state.groups, state.profile.username)),
-    profileUsername : state.profile.username
+    chores : (state.activeProfile.chores).concat(sortForAssignee(state.groups, state.activeProfile.username)),
+    profileUsername : state.activeProfile.username
 })
 
 const dtpm = (dispatch) => ({

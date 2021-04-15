@@ -258,7 +258,7 @@ const stpm = (state,ownProps) => ({
         state.groups.filter(group => group.id === state.activeGroupId)[0],
     groupOptions: [{name: "Personal Chores", id : "Personal Chores", members: []}]
         .concat(state.groups.map(group => ({name: group.name, id: group.id, members: group.members}))),
-    profileUsername : state.profile.username
+    profileUsername : state.activeProfile.username
 })
 
 const dtpm = (dispatch) => ({

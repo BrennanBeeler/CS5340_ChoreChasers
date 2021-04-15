@@ -15,18 +15,22 @@ export const DELETE_CHORE = "DELETE_CHORE";
 export const DELETE_PERSONAL_CHORE = "DELETE_PERSONAL_CHORE";
 export const TOGGLE_SHOW_COMPLETED = "TOGGLE_SHOW_COMPLETED";
 
-const logIn = (dispatch, email, password) => {
-    let id = email
-    //TODO: validate login credentials via database AND IF valid dispatch
-    return(
+const logIn = (dispatch, email, password, profiles) => {
+    let validProfile = profiles.filter(profile => {
+        return profile.emailId === email && profile.password === password;
+    })
+
+    if (validProfile.length !== 0) {
         dispatch({
             type : LOG_IN,
-            id
+            email
         })
-    )
+        return true;
+    }
+    else {
+        return false;
+    }
 }
-
-
 
 const logOut = (dispatch, email) =>
     dispatch({
@@ -34,14 +38,22 @@ const logOut = (dispatch, email) =>
         email
     })
 
-//TODO: determine if this is needed since sign up won't affect state of application directly.
-const signUp = (dispatch, email, username, password) => {
-    dispatch({
-        type : SIGN_UP,
-        email,
-        username,
-        password
-    })
+const signUp = (dispatch, email, username, password, profiles) => {
+    let existingProfiles = profiles.filter(profile => profile.emailId === email)
+
+    if (existingProfiles.length !== 0) {
+        return false;
+    }
+    else {
+        dispatch({
+            type : SIGN_UP,
+            email,
+            username,
+            password
+        })
+
+        return true
+    }
 }
 
 // TODO: redo with unique group id from database

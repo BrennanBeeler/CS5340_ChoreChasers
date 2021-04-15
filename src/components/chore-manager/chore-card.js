@@ -179,14 +179,14 @@ const ChoreCard = ({props, chore, group, profile, updateProgress, addPoints, edi
                 </div>
             </Navbar.Collapse>
         </Navbar>
-      <EditChoreModal key={new Date().getTime()} show={editModal} onHide={()=> setEditModal(false)}
-                      group={group} chore={chore}/>
+      {/*<EditChoreModal key={new Date().getTime()} show={editModal} onHide={()=> setEditModal(false)}*/}
+      {/*                group={group} chore={chore}/>*/}
       </>
     )
 }
 
 const stpm = (state, ownProps) => ({
-    profile: state.profile,
+    profile: state.activeProfile,
     group: state.activeGroupId,
     props: ownProps,
 })

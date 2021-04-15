@@ -8,14 +8,20 @@ import {connect} from "react-redux";
 const SignUp = ({
                     signUp,
                     logIn,
+                    profiles,
                     loggedIn
                 }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
         // TODO: need to handle user feedback on bad input
-        signUp(email, username, password)
-        logIn(email, password)
+        if (!signUp(email, username, password, profiles)) {
+            alert("That email address is already associated with an account.")
+        }
+        else {
+            console.log(email, password, profiles)
+            logIn(email, password, profiles)
+        }
     }
 
     const [email, setEmail] = useState("");
@@ -33,7 +39,7 @@ const SignUp = ({
                 <h3 className="text-center">
                     Join Chore Chasers!
                 </h3>
-                <br/><p></p>
+                <br/><p/>
                 {/*TODO: figure out floating labels*/}
                 <form>
                     <div className="form-group">
@@ -73,11 +79,15 @@ const SignUp = ({
                     {// TODO: Sign up user
                     }
                     <div style={{paddingLeft:"30px",marginTop:"40px"}}>
-                        <Link to="/choreManager" className=" btn btn-success" style={{paddingRight:"100px",paddingLeft:"100px"}}>
+                        <button onClick={handleSubmit} className=" btn btn-success" style={{paddingRight:"100px",paddingLeft:"100px"}}>
                             Start Chores
-                        </Link>
+                        </button>
                     </div>
 
+                    {
+                        loggedIn &&
+                        <Redirect to="/choreManager"/>
+                    }
 
                     <br/><p></p>
 
@@ -98,12 +108,13 @@ const SignUp = ({
 
 
 const stpm = (state) => ({
+    profiles: state.profiles,
     loggedIn: state.loggedIn
 })
 
 const dtpm = (dispatch) => ({
-    signUp : (email, username, password) => applicationActions.signUp(dispatch, email, username, password),
-    logIn : (email, password) => applicationActions.logIn(dispatch, email, password)
+    signUp : (email, username, password, profiles) => applicationActions.signUp(dispatch, email, username, password, profiles),
+    logIn : (email, password, profiles) => applicationActions.logIn(dispatch, email, password, profiles)
 })
 
 export default connect(stpm, dtpm)(SignUp);

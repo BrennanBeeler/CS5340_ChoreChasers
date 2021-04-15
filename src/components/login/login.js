@@ -6,12 +6,13 @@ import actions from "../../actions/actions";
 
 const Login = ({
                    checkLoginCredentials,
-                   loggedIn = false
+                   loggedIn,
+                   profiles
                }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        checkLoginCredentials(email, password)
+        checkLoginCredentials(email, password, profiles)
     }
 
     const [password, setPassword] = useState("");
@@ -77,11 +78,12 @@ const Login = ({
 }
 
 const stpm = (state) => ({
-    loggedIn: state.loggedIn
+    loggedIn: state.loggedIn,
+    profiles: state.profiles
 })
 
 const dtpm = (dispatch) => ({
-    checkLoginCredentials : (email, password) => actions.logIn(dispatch, email, password)
+    checkLoginCredentials : (email, password, profiles) => actions.logIn(dispatch, email, password, profiles)
 })
 
 export default connect(stpm, dtpm)(Login);

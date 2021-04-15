@@ -98,8 +98,8 @@ class PersonalChores extends React.Component {
 const stpm = (state) => ({
     activeGroupId: state.activeGroupId,
     activeProfile: state.activeProfile,
-    chores : state.profile.chores,
-    profileUsername : state.profile.username
+    chores : state.activeProfile.chores,
+    profileUsername : state.activeProfile.username
 })
 
 const dtpm = (dispatch) => ({

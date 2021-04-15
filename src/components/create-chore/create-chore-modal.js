@@ -14,6 +14,8 @@ const CreateChoreModal = ({
                               currentGroup,
                               groupOptions}) => {
 
+    console.log(currentGroup)
+
 
     const [choreName, setChoreName] = useState("");
     const [dueDate, setDueDate] = useState("");
@@ -276,9 +278,11 @@ const stpm = (state,ownProps) => {
     return ({
         //TODO: remove use of filter, find instead?
         currentGroup:  temp,
+
+        //TODO: fix groupOptions for all chores
         groupOptions: [{name: "Personal Chores", id : "Personal Chores", members: []}]
             .concat(state.groups.map(group => ({name: group.name, id: group.id, members: group.members}))),
-        profileUsername : state.profile.username
+        profileUsername : state.activeProfile.username
     })
 }
 

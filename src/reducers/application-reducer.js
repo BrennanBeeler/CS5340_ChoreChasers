@@ -22,149 +22,149 @@ const initialState = {
     activeProfile : "test",
     showCompleted: false,
     profile : {
-            id : "test",
-            background: "https://coolbackgrounds.io/images/backgrounds/white/pure-white-background-85a2a7fd.jpg",
-            emailId: 'test@email.com',
-            points: 0,
-            soundEnabled: true,
-            username: 'Max',
-            password:'password',
-            chores: [
-                {
-                    id:"1",
-                    done:false,
-                    choreName: 'Call Anne about the party',
-                    dueDate: "2021-04-07T00:00:00.000Z",
-                    repeatChore: "Never",
-                    choreInstructions: "Call before 6PM",
-                    rewards:{points:true,realLifeItem:false},
-                    points:20,
-                    realLifeItem:"",
-                    splitReward:{everyoneGetsReward:false,fcfs:false},
-                    dateAdded: "2021-03-15T00:00:00.000Z",
-                    assignor: "Max",
-                    assignees: ["Max"]
-                },
-                {
-                    id:"2",
-                    done:false,
-                    choreName: "Don't smoke",
-                    dueDate: "2021-04-07T00:00:00.000Z",
-                    repeatChore: "Daily",
-                    choreInstructions: "Call before 6PM",
-                    rewards:{points:false,realLifeItem:true},
-                    points:0,
-                    realLifeItem:"Cookie per day",
-                    splitReward:{everyoneGetsReward:true,fcfs:false},
-                    dateAdded: "2025-03-23T00:00:00.000Z",
-                    assignor: "Max",
-                    assignees: ["Max"]
-                },
-                {
-                    id:"3",
-                    done:false,
-                    choreName: 'Practice piano',
-                    dueDate: "2021-04-03T00:00:00.000Z",
-                    repeatChore: "Weekly",
-                    choreInstructions: "Call before 6PM",
-                    rewards:{points:true,realLifeItem:false},
-                    points:20,
-                    realLifeItem:"snack",
-                    splitReward:{everyoneGetsReward:false,fcfs:false},
-                    dateAdded: "2021-02-01T00:00:00.000Z",
-                    assignor: "Max",
-                    assignees: ["Max"]
-                },
-                {
-                    id:"4",
-                    done:false,
-                    choreName: 'Successfully bench 100lbs',
-                    dueDate: null,
-                    repeatChore: "Never",
-                    choreInstructions: "Call before 6PM",
-                    rewards:{points:true,realLifeItem:true},
-                    points:20,
-                    realLifeItem:"Pizza night",
-                    splitReward:{everyoneGetsReward:true,fcfs:false},
-                    dateAdded: "2025-03-23T00:00:00.000Z",
-                    assignor: "Max",
-                    assignees: ["Max"]
-                },
-                {
-                    id:"5",
-                    done:false,
-                    choreName: 'Read Chapter 14',
-                    dueDate: "2021-04-04T00:00:00.000Z",
-                    repeatChore: "Never",
-                    choreInstructions: "Online textbook",
-                    rewards:{points:true,realLifeItem:false},
-                    points:10,
-                    realLifeItem:"",
-                    splitReward:{everyoneGetsReward:true,fcfs:false},
-                    dateAdded: "2021-03-23T00:00:00.000Z",
-                    assignor: "Max",
-                    assignees: ["Max"]
-                },
-                {
-                    id:"6",
-                    done:false,
-                    choreName: 'Read Chapter 14',
-                    dueDate: "2021-04-04T00:00:00.000Z",
-                    repeatChore: "Never",
-                    choreInstructions: "Online textbook",
-                    rewards:{points:true,realLifeItem:false},
-                    points:10,
-                    realLifeItem:"",
-                    splitReward:{everyoneGetsReward:true,fcfs:false},
-                    dateAdded: "2021-03-23T00:00:00.000Z",
-                    assignor: "Max",
-                    assignees: ["Max"]
-                },
-                {
-                    id:"7",
-                    done:false,
-                    choreName: 'Read Chapter 14',
-                    dueDate: "2021-04-04T00:00:00.000Z",
-                    repeatChore: "Never",
-                    choreInstructions: "Online textbook",
-                    rewards:{points:true,realLifeItem:false},
-                    points:10,
-                    realLifeItem:"",
-                    splitReward:{everyoneGetsReward:true,fcfs:false},
-                    dateAdded: "2021-03-23T00:00:00.000Z",
-                    assignor: "Max",
-                    assignees: ["Max"]
-                },
-                {
-                    id:"8",
-                    done:false,
-                    choreName: 'Read Chapter 14',
-                    dueDate: "2021-04-04T00:00:00.000Z",
-                    repeatChore: "Never",
-                    choreInstructions: "Online textbook",
-                    rewards:{points:true,realLifeItem:false},
-                    points:10,
-                    realLifeItem:"",
-                    splitReward:{everyoneGetsReward:true,fcfs:false},
-                    dateAdded: "2021-03-23T00:00:00.000Z",
-                    assignor: "Max",
-                    assignees: ["Max"]
-                },
-                {
-                    id:"9",
-                    done:false,
-                    choreName: 'Read Chapter 14',
-                    dueDate: "2021-04-04T00:00:00.000Z",
-                    repeatChore: "Never",
-                    choreInstructions: "Online textbook",
-                    rewards:{points:true,realLifeItem:false},
-                    points:10,
-                    realLifeItem:"",
-                    splitReward:{everyoneGetsReward:true,fcfs:false},
-                    dateAdded: "2021-03-23T00:00:00.000Z",
-                    assignor: "Max",
-                    assignees: ["Max"]
-                }                ]
+        id : "test",
+        background: "https://coolbackgrounds.io/images/backgrounds/white/pure-white-background-85a2a7fd.jpg",
+        emailId: 'test@email.com',
+        points: 0,
+        soundEnabled: true,
+        username: 'Max',
+        password:'password',
+        chores: [
+            {
+                id:"1",
+                done:false,
+                choreName: 'Call Anne about the party',
+                dueDate: "2021-04-07T00:00:00.000Z",
+                repeatChore: "Never",
+                choreInstructions: "Call before 6PM",
+                rewards:{points:true,realLifeItem:false},
+                points:20,
+                realLifeItem:"",
+                splitReward:{everyoneGetsReward:false,fcfs:false},
+                dateAdded: "2021-03-15T00:00:00.000Z",
+                assignor: "Max",
+                assignees: ["Max"]
+            },
+            {
+                id:"2",
+                done:false,
+                choreName: "Don't smoke",
+                dueDate: "2021-04-07T00:00:00.000Z",
+                repeatChore: "Daily",
+                choreInstructions: "Call before 6PM",
+                rewards:{points:false,realLifeItem:true},
+                points:0,
+                realLifeItem:"Cookie per day",
+                splitReward:{everyoneGetsReward:true,fcfs:false},
+                dateAdded: "2025-03-23T00:00:00.000Z",
+                assignor: "Max",
+                assignees: ["Max"]
+            },
+            {
+                id:"3",
+                done:false,
+                choreName: 'Practice piano',
+                dueDate: "2021-04-03T00:00:00.000Z",
+                repeatChore: "Weekly",
+                choreInstructions: "Call before 6PM",
+                rewards:{points:true,realLifeItem:false},
+                points:20,
+                realLifeItem:"snack",
+                splitReward:{everyoneGetsReward:false,fcfs:false},
+                dateAdded: "2021-02-01T00:00:00.000Z",
+                assignor: "Max",
+                assignees: ["Max"]
+            },
+            {
+                id:"4",
+                done:false,
+                choreName: 'Successfully bench 100lbs',
+                dueDate: null,
+                repeatChore: "Never",
+                choreInstructions: "Call before 6PM",
+                rewards:{points:true,realLifeItem:true},
+                points:20,
+                realLifeItem:"Pizza night",
+                splitReward:{everyoneGetsReward:true,fcfs:false},
+                dateAdded: "2025-03-23T00:00:00.000Z",
+                assignor: "Max",
+                assignees: ["Max"]
+            },
+            {
+                id:"5",
+                done:false,
+                choreName: 'Read Chapter 14',
+                dueDate: "2021-04-04T00:00:00.000Z",
+                repeatChore: "Never",
+                choreInstructions: "Online textbook",
+                rewards:{points:true,realLifeItem:false},
+                points:10,
+                realLifeItem:"",
+                splitReward:{everyoneGetsReward:true,fcfs:false},
+                dateAdded: "2021-03-23T00:00:00.000Z",
+                assignor: "Max",
+                assignees: ["Max"]
+            },
+            {
+                id:"6",
+                done:false,
+                choreName: 'Read Chapter 14',
+                dueDate: "2021-04-04T00:00:00.000Z",
+                repeatChore: "Never",
+                choreInstructions: "Online textbook",
+                rewards:{points:true,realLifeItem:false},
+                points:10,
+                realLifeItem:"",
+                splitReward:{everyoneGetsReward:true,fcfs:false},
+                dateAdded: "2021-03-23T00:00:00.000Z",
+                assignor: "Max",
+                assignees: ["Max"]
+            },
+            {
+                id:"7",
+                done:false,
+                choreName: 'Read Chapter 14',
+                dueDate: "2021-04-04T00:00:00.000Z",
+                repeatChore: "Never",
+                choreInstructions: "Online textbook",
+                rewards:{points:true,realLifeItem:false},
+                points:10,
+                realLifeItem:"",
+                splitReward:{everyoneGetsReward:true,fcfs:false},
+                dateAdded: "2021-03-23T00:00:00.000Z",
+                assignor: "Max",
+                assignees: ["Max"]
+            },
+            {
+                id:"8",
+                done:false,
+                choreName: 'Read Chapter 14',
+                dueDate: "2021-04-04T00:00:00.000Z",
+                repeatChore: "Never",
+                choreInstructions: "Online textbook",
+                rewards:{points:true,realLifeItem:false},
+                points:10,
+                realLifeItem:"",
+                splitReward:{everyoneGetsReward:true,fcfs:false},
+                dateAdded: "2021-03-23T00:00:00.000Z",
+                assignor: "Max",
+                assignees: ["Max"]
+            },
+            {
+                id:"9",
+                done:false,
+                choreName: 'Read Chapter 14',
+                dueDate: "2021-04-04T00:00:00.000Z",
+                repeatChore: "Never",
+                choreInstructions: "Online textbook",
+                rewards:{points:true,realLifeItem:false},
+                points:10,
+                realLifeItem:"",
+                splitReward:{everyoneGetsReward:true,fcfs:false},
+                dateAdded: "2021-03-23T00:00:00.000Z",
+                assignor: "Max",
+                assignees: ["Max"]
+            }                ]
     },
     activeGroupId : "Personal Chores",
     groups : [{
@@ -286,14 +286,14 @@ const initialState = {
 
 const applicationReducer = (state = initialState, action) => {
     switch (action.type) {
-      //TODO: figure out where log out buttons will go
+        //TODO: figure out where log out buttons will go
         case LOG_OUT:
             return {
                 ...state,
                 loggedIn: false,
                 activeProfile: null
             }
-      //   TODO: redo
+        //   TODO: redo
         case LOG_IN:
             // TODO: redo once db connected
             if (action.id === state.profile.id) {
@@ -327,7 +327,7 @@ const applicationReducer = (state = initialState, action) => {
                 profile: newProfilee,
             }
             return JSON.parse(JSON.stringify(newSound));
-      //    TODO: redo
+        //    TODO: redo
         case CREATE_GROUP:
             return {
                 ...state,
@@ -336,12 +336,12 @@ const applicationReducer = (state = initialState, action) => {
                     action.group
                 ]
             }
-      //    TODO: check once db connected
-      // case GET_GROUP_DATA:
-      //     return {
-      //         ...state,
-      //         groups : state.groups.filter(group => group.id === state.activeGroupId)
-      //     }
+        //    TODO: check once db connected
+        // case GET_GROUP_DATA:
+        //     return {
+        //         ...state,
+        //         groups : state.groups.filter(group => group.id === state.activeGroupId)
+        //     }
         case CREATE_CHORE:
             if (action.groupName === "Personal Chores") {
                 state.profile.chores.push(action.chore);

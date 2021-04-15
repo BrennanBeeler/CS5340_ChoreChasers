@@ -9,7 +9,7 @@ const Group = db.groups;
 exports.createNewUser =  (req, res) => {
 
     if (!req.body.emailId) {
-        res.status(400).send({ message: "Content can not be empty!" });
+        res.status(400).send({ message: "Email can not be empty!" });
         return;
     }
 
@@ -28,7 +28,13 @@ exports.createNewUser =  (req, res) => {
     user
         .save(user)
         .then(userData => {
-            res.send(userData);
+            if (!userData) {
+                res.status(404).send({
+                                         message: "User not created!"
+                                     });
+            } else {
+                res.send(userData);
+            }
         })
         .catch(err => {
             res.status(500).send({
@@ -69,7 +75,13 @@ exports.addPersonalChore = (req, res) => {
                                           {$push: {chores: personalChoreData._id}}, { new: true, useFindAndModify: false});
         })
         .then(userData=> {
-            res.send(userData);
+            if (!userData) {
+                res.status(404).send({
+                                         message: "Chore not added!"
+                                     });
+            } else {
+                res.send(userData);
+            }
         })
         .catch(err => {
             res.status(500).send({
@@ -88,7 +100,13 @@ exports.getUserWithId =  (req, res) => {
         .findOne({ _id: req.params.id })
         .populate("chores")
         .then(userData=> {
-            res.send(userData);
+            if (!userData) {
+                res.status(404).send({
+                                         message: "User could not be retrieved!"
+                                     });
+            } else {
+                res.send(userData);
+            }
         })
         .catch(err => {
             res.status(500).send({
@@ -106,7 +124,13 @@ exports.getUserWithEmail =  (req, res) => {
     User
         .findOne({ emailId: req.params.email })
         .then(userData=> {
-            res.send(userData);
+            if (!userData) {
+                res.status(404).send({
+                                         message: "User could not be retrieved!"
+                                     });
+            } else {
+                res.send(userData);
+            }
         })
         .catch(err => {
             res.status(500).send({
@@ -125,7 +149,13 @@ exports.getUserWithUsername =  (req, res) => {
     User
         .findOne({ username: req.params.username })
         .then(userData=> {
-            res.send(userData);
+            if (!userData) {
+                res.status(404).send({
+                                         message: "User could not be retrieved!"
+                                     });
+            } else {
+                res.send(userData);
+            }
         })
         .catch(err => {
             res.status(500).send({
@@ -142,12 +172,18 @@ exports.checkLoginUser =  (req, res) => {
     User
         .findOne({ emailId: req.body.emailId, password:req.body.password })
         .then(userData=> {
-            res.send(userData);
+            if (!userData) {
+                res.status(404).send({
+                                         message: "User could not be retrieved. Unsuccessful login."
+                                     });
+            } else {
+                res.send(userData);
+            }
         })
         .catch(err => {
             res.status(500).send({
                                      message:
-                                         err.message || "User could not be retrieved!"
+                                         err.message || "User could not be retrieved. Unsuccessful login."
                                  });
         });
 
@@ -315,42 +351,3 @@ exports.deleteAllUsers = (req, res) => {
         });
 
 };
-
-
-//login code to try out if required
-// exports.checkLoginUser = (req, res) => {
-//     User.findOne({ emailId: req.body.emailId }).then(
-//         (user) => {
-//             if (!user) {
-//                 return res.status(401).json({
-//                                                 error: new Error('User not found!')
-//                                             });
-//             }
-//             bcrypt.compare(req.body.password, user.password).then(
-//                 (valid) => {
-//                     if (!valid) {
-//                         return res.status(401).json({
-//                                                         error: new Error('Incorrect password!')
-//                                                     });
-//                     }
-//                     res.status(200).json({
-//                                              userId: user._id,
-//                                              token: 'token'
-//                                          });
-//                 }
-//             ).catch(
-//                 (error) => {
-//                     res.status(500).json({
-//                                              error: error
-//                                          });
-//                 }
-//             );
-//         }
-//     ).catch(
-//         (error) => {
-//             res.status(500).json({
-//                                      error: error
-//                                  });
-//         }
-//     );
-// };

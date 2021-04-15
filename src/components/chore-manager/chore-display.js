@@ -13,8 +13,7 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress, showComp
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         width: "100%",
-        height: "100vh",
-        paddingBottom: "30px"
+        height: "calc(100vh - 190px)",
     }
 
     const [overdueChores, setOverdueChores] = useState([]);
@@ -85,61 +84,61 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress, showComp
     }
 
     return(
-        <div style={{height: "100vh"}}>
-            <div className="border-top border-dark hero vertical-scrollable" style={style}>
+        <div style={{height: "calc(100vh - 190px"}}>
+            <div className="hero vertical-scrollable" style={style}>
                 <Row>
                     <Col xs={6} style={{paddingLeft: "30px", paddingRight : "30px"}}>
                         <>
                             {
                                 overdueChores.length !== 0 &&
-                                    <>
-                                        <h2 style={{color:"#ff0404", backgroundColor: "#FFFFF5"}}>
-                                            Overdue
-                                            <span className="btn fa fa-exclamation-triangle fa"/>
-                                        </h2>
-                                        <br/>
-                                    </>
+                                <>
+                                    <h2 style={{color:"#ff0404", backgroundColor: "#FFFFF5"}}>
+                                        Overdue
+                                        <span className="btn fa fa-exclamation-triangle fa"/>
+                                    </h2>
+                                    <br/>
+                                </>
                             }
                             {
                                 overdueChores.map(chore => {
-                                        return( <div key={chore.id}>
-                                            <ChoreCard chore={chore} deleteChore={deleteChore}
-                                                       updateProgress={updateProgress}/>
-                                            <br/>
-                                        </div>)
-                                    })
+                                    return( <div key={chore.id}>
+                                        <ChoreCard chore={chore} deleteChore={deleteChore}
+                                                   updateProgress={updateProgress}/>
+                                        <br/>
+                                    </div>)
+                                })
                             }
                         </>
                         {
                             todayChores.length !== 0 &&
-                                <>
-                                    {/*FFF1FF*/}
-                                    <h2 style={{backgroundColor: "#e8fcff"}}>
-                                        Due Today
-                                    </h2>
-                                    <br/>
-                                </>
+                            <>
+                                {/*FFF1FF*/}
+                                <h2 style={{backgroundColor: "#e8fcff"}}>
+                                    Due Today
+                                </h2>
+                                <br/>
+                            </>
                         }
 
                         {
                             todayChores.map(chore => {
-                                    return (
-                                        <div key={chore.id}>
-                                            <ChoreCard chore={chore} deleteChore={deleteChore}
-                                                       updateProgress={updateProgress}/>
-                                            <br/>
-                                        </div>)
-                                })
+                                return (
+                                    <div key={chore.id}>
+                                        <ChoreCard chore={chore} deleteChore={deleteChore}
+                                                   updateProgress={updateProgress}/>
+                                        <br/>
+                                    </div>)
+                            })
                         }
                         {
                             weeksChores.length !== 0 &&
-                                <>
-                                    <h2 style={{backgroundColor: "#e8fcff"}}>
-                                        Due Next Week
-                                    </h2>
+                            <>
+                                <h2 style={{backgroundColor: "#e8fcff"}}>
+                                    Due Next Week
+                                </h2>
 
-                                    <br/>
-                                </>
+                                <br/>
+                            </>
                         }
 
 
@@ -151,19 +150,19 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress, showComp
                                                    updateProgress={updateProgress}/>
                                         <br/>
                                     </div>
-                                    )
+                                )
 
                             })
                         }
                         {
                             futureChores.length !== 0 &&
-                                <>
-                                    <h2 style={{backgroundColor: "#e8fcff"}}>
-                                        Due In The Future
-                                    </h2>
+                            <>
+                                <h2 style={{backgroundColor: "#e8fcff"}}>
+                                    Due In The Future
+                                </h2>
 
-                                    <br/>
-                                </>
+                                <br/>
+                            </>
                         }
 
                         {

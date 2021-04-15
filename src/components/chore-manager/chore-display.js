@@ -154,6 +154,7 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress, showComp
 
                             })
                         }
+
                         {
                             futureChores.length !== 0 &&
                             <>
@@ -203,7 +204,7 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress, showComp
 }
 
 const stpm = (state, ownProps) => ({
-    background: state.profile.background,
+    background: state.activeProfile.background,
     props: ownProps,
     showCompleted: state.showCompleted
 })

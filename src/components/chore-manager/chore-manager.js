@@ -13,7 +13,7 @@ const ChoreManager = ({
                           points,
                           setActiveGroup,
                           activeGroupId = "Personal Chores",
-                          groups,
+                          groups
                       }) => {
 
     const [showCreateGroupModal, setCreateGroupModal] = useState(false);
@@ -106,12 +106,12 @@ const ChoreManager = ({
                         </div>
                 }
 
-                {/*{*/}
-                {/*    activeGroupId === "All_my_chores" &&*/}
-                {/*        <>*/}
-                {/*            <AllMyChores/>*/}
-                {/*        </>*/}
-                {/*}*/}
+                {
+                    activeGroupId === "All_my_chores" &&
+                        <>
+                            <AllMyChores/>
+                        </>
+                }
 
                 {
                     (activeGroupId !== "Personal Chores" && activeGroupId !== "All_my_chores") &&
@@ -119,17 +119,16 @@ const ChoreManager = ({
                         <GroupChores/>
                     </div>
                 }
-
             </div>
         </div>
     )
 }
 
 const stpm = (state) => ({
-    profileUsername: state.profile.username,
-    points: state.profile.points,
+    profileUsername: state.activeProfile.username,
+    points: state.activeProfile.points,
     activeGroupId: state.activeGroupId,
-    groups : state.groups,
+    groups : state.groups.filter(group => group.members.includes(state.activeProfile.username))
 })
 
 const dtpm = (dispatch) => ({

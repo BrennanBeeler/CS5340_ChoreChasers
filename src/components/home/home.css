@@ -144,6 +144,7 @@
     width: 400px;
     height: 50px;
     max-width:33.333333%;
+    min-width: 150px;
     background-color: #0993a8;
     border: none;
     color: white;

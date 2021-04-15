@@ -23,9 +23,7 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress, showComp
     const [undatedChores, setUndatedChores] = useState([]);
 
 
-    useEffect(() => {
-        sortChore(chores)
-    }, [chores])
+
 
     const sortChore = () => {
         let overdueTemp = [];
@@ -71,9 +69,6 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress, showComp
                     }
                 }
             }
-
-
-
         })
 
         setUndatedChores(undatedTemp)
@@ -82,6 +77,10 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress, showComp
         setTodayChores(todayTemp)
         setWeeksChores(weeksTemp)
     }
+
+    useEffect(() => {
+        sortChore(chores)
+    }, [chores])
 
     return(
         <div style={{height: "calc(100vh - 190px"}}>

@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Link, Redirect} from "react-router-dom";
+import {Link} from "react-router-dom";
 import LeaveGroupModal from "./leave-group-modal";
 import applicationActions from "../../actions/actions";
 import {connect} from "react-redux";
@@ -74,7 +74,7 @@ const stpm = (state) => ({
     activeProfile: state.activeProfile,
     // TODO: eventually groups will be actually populated
     group : state.groups.filter(group => group.id === state.activeGroupId)[0],
-    profileUsername : state.profile.username
+    profileUsername : state.activeProfile.username
 })
 
 const dtpm = (dispatch) => ({

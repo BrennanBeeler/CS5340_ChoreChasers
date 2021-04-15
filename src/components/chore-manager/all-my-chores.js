@@ -1,6 +1,6 @@
 import React from "react";
 import "./personal-chores.css";
-import {Button, ProgressBar} from "react-bootstrap";
+import {ProgressBar} from "react-bootstrap";
 import CreateChoreModal from "../create-chore/create-chore-modal"
 import ChoreDisplay from "./chore-display";
 import applicationActions from "../../actions/actions";

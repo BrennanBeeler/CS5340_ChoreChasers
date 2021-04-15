@@ -1,7 +1,7 @@
 import {Button, Col, Modal, Row} from "react-bootstrap";
 import React,{useState} from "react";
 import applicationActions from "../../actions/actions";
-import {Link, Redirect} from "react-router-dom";
+import {Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 
 const LeaveGroupModal = ({props,
@@ -62,7 +62,7 @@ const stpm = (state, ownProps) => ({
     activeProfile: state.activeProfile,
     // TODO: eventually groups will be actually populated
     group : state.groups.filter(group => group.id === state.activeGroupId)[0],
-    profileUsername : state.profile.username,
+    profileUsername : state.activeProfile.username,
     state: state,
     props: ownProps
 })

@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import "./chore-card.css"
-import {Button, FormCheck, Navbar} from "react-bootstrap";
+import {Button, Navbar} from "react-bootstrap";
 import DeleteChoreModal from "../delete-chore/delete-chore-modal";
 import applicationActions from "../../actions/actions";
 import {connect} from "react-redux";

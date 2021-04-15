@@ -30,7 +30,7 @@ const ChoreCard = ({props, chore, group, profile, updateProgress, addPoints, edi
             successSound.play();
         }
         addPoints(parseInt(chore.points));
-        updateProgress(parseInt(chore.points));
+        updateProgress(parseInt(chore.points), completed);
         setCompleted(!completed);
         chore.done = !chore.done;
         editChore(chore, group);
@@ -49,7 +49,7 @@ const ChoreCard = ({props, chore, group, profile, updateProgress, addPoints, edi
 
     const undoCompleted = () => {
         addPoints(-parseInt(chore.points));
-        updateProgress(-parseInt(chore.points));
+        updateProgress(-parseInt(chore.points), completed);
         setCompleted(!completed);
         chore.done = !chore.done;
         editChore(chore, group);

@@ -36,9 +36,10 @@ class PersonalChores extends React.Component {
         this.props.deletePersonalChore(choreId)
     }
 
-    updateProgress(points) {
+    updateProgress(points, undo) {
         const newPoints = this.state.completedPoints + points;
-        const newCompleted = this.state.completedChores + 1;
+        const magnitude = undo ? -1 : 1;
+        const newCompleted = this.state.completedChores + 1 * magnitude;
         this.setState({completedPoints: newPoints, completedChores: newCompleted})
     }
 

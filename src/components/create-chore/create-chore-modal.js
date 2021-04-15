@@ -14,7 +14,6 @@ const CreateChoreModal = ({
                               currentGroup,
                               groupOptions}) => {
 
-
     const [choreName, setChoreName] = useState("");
     const [dueDate, setDueDate] = useState("");
     const [repeatChore, setRepeatChore] = useState("Never");
@@ -59,7 +58,8 @@ const CreateChoreModal = ({
             splitReward:{everyoneGetsReward:rewardMode,fcfs:!rewardMode},
             dateAdded: new Date().toISOString(),
             assignor: profileUsername,
-            assignees: (choreGroup.name === "Personal Chores" ? [profileUsername] : assignees)
+            assignees: (choreGroup.name === "Personal Chores" ? [profileUsername] : assignees),
+            group: choreGroup.id
         }
 
         //TODO: fix this use of name as identifier
@@ -159,6 +159,7 @@ const CreateChoreModal = ({
                             {
                                 pointsChecked &&
                                     <Col>
+                                        {/*TODO: fix appearance*/}
                                         {/*0 20*/} {pointNumber}
                                         <Form.Group controlId="formBasicRange">
                                             <Form.Control type="range" value={pointNumber} min="0" max="20"
@@ -259,26 +260,24 @@ const CreateChoreModal = ({
     )
 }
 
-const stpm = (state,ownProps) => {
+const stpm = (state) => {
     let temp = {}
 
-    //TODO: better place to do this?
-    if (state.activeGroupId === "Personal Chores"){
+    if (state.activeGroupId === "Personal Chores" || state.activeGroupId === "All_my_chores"){
         temp = {name: "Personal Chores", id: "Personal Chores"}
-    }
-    else if (state.activeGroupId === "All_my_chores") {
-        temp = {name: "All_my_chores", id: "All_my_chores"}
     }
     else {
         temp = state.groups.filter(group => group.id === state.activeGroupId)[0]
     }
 
     return ({
-        //TODO: remove use of filter, find instead?
         currentGroup:  temp,
+        //TODO: fix groupOptions for all chores
         groupOptions: [{name: "Personal Chores", id : "Personal Chores", members: []}]
-            .concat(state.groups.map(group => ({name: group.name, id: group.id, members: group.members}))),
-        profileUsername : state.profile.username
+            .concat(state.groups.filter(group =>
+                group.members.includes(state.activeProfile.username)).map(group =>
+                    ({name: group.name, id: group.id, members: group.members}))),
+        profileUsername : state.activeProfile.username
     })
 }
 

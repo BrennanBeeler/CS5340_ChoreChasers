@@ -5,7 +5,11 @@ import {connect} from "react-redux";
 import {Typeahead} from "react-bootstrap-typeahead";
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 
-const EditChoreModal = ({onHide, show, currentGroup, profileUsername, chore, editChore}) => {
+const EditChoreModal = ({onHide, show, activeGroupId, profileUsername, chore, editChore, groups}) => {
+
+    const getMembers = (groups) => {
+        return groups.filter(group => group.id === chore.group)[0].members
+    }
 
     const getInitialDate = () => {
         if(chore.dueDate === null) {
@@ -34,6 +38,9 @@ const EditChoreModal = ({onHide, show, currentGroup, profileUsername, chore, edi
             return dateString
         }
     }
+
+    // state.activeGroupId === "Personal Chores" ? {name: "Personal Chores", id: "Personal Chores"} :
+    //     state.groups.filter(group => group.id === state.activeGroupId)[0]
 
     const [choreName, setChoreName] = useState(chore.choreName);
     const [dueDate, setDueDate] = useState(getInitialDate());
@@ -67,10 +74,11 @@ const EditChoreModal = ({onHide, show, currentGroup, profileUsername, chore, edi
             splitReward:{everyoneGetsReward:rewardMode,fcfs:!rewardMode},
             dateAdded: chore.dateAdded,
             assignor: chore.assignor,
-            assignees: (currentGroup.name === "Personal Chores" ? [profileUsername] : assignees)
+            assignees: (chore.group === "Personal Chores" ? [profileUsername] : assignees),
+            group: chore.group
         }
 
-        editChore(newChore, currentGroup.id);
+        editChore(newChore);
         onHide();
     }
 
@@ -115,13 +123,13 @@ const EditChoreModal = ({onHide, show, currentGroup, profileUsername, chore, edi
                     </Form.Group>
                     {
                         //TODO: find better solution for users
-                        currentGroup.name !== "Personal Chores" &&
+                        chore.group !== "Personal Chores" &&
                         <Form.Group>
                             <Form.Label>Assignees</Form.Label>
                             <Typeahead
                                 id="assignees"
                                 onChange={setAssignees}
-                                options={currentGroup.members}
+                                options={getMembers(groups)}
                                 placeholder="Type the name of the person this chore is assigned to..."
                                 selected={assignees}
                                 multiple
@@ -253,16 +261,16 @@ const EditChoreModal = ({onHide, show, currentGroup, profileUsername, chore, edi
     )
 }
 
-const stpm = (state,ownProps) => ({
-    currentGroup: state.activeGroupId === "Personal Chores" ? {name: "Personal Chores", id: "Personal Chores"} :
-        state.groups.filter(group => group.id === state.activeGroupId)[0],
+const stpm = (state) => ({
+    activeGroupId: state.activeGroupId,
     groupOptions: [{name: "Personal Chores", id : "Personal Chores", members: []}]
         .concat(state.groups.map(group => ({name: group.name, id: group.id, members: group.members}))),
-    profileUsername : state.profile.username
+    profileUsername : state.activeProfile.username,
+    groups: state.groups
 })
 
 const dtpm = (dispatch) => ({
-    editChore : (groupName, chore) => applicationActions.editChore(dispatch, groupName, chore)
+    editChore : (chore) => applicationActions.editChore(dispatch, chore)
 })
 
 export default connect(stpm, dtpm)(EditChoreModal);

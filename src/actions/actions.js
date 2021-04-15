@@ -1,8 +1,6 @@
-import UsersDataService from "../services/user.service";
-
-
 export const LOG_IN = "LOG_IN";
 export const LOG_OUT = "LOG_OUT";
+export const SIGN_UP = "SIGN_UP";
 export const SET_ACTIVE_GROUP = "SET_ACTIVE_GROUP";
 export const TOGGLE_SOUND = "TOGGLE_SOUND";
 export const SET_BACKGROUND = "SET_BACKGROUND";
@@ -17,51 +15,44 @@ export const DELETE_CHORE = "DELETE_CHORE";
 export const DELETE_PERSONAL_CHORE = "DELETE_PERSONAL_CHORE";
 export const TOGGLE_SHOW_COMPLETED = "TOGGLE_SHOW_COMPLETED";
 
-const logIn = (dispatch, email, password) => async (dispatch) => {
-    try {
-        const res = await UsersDataService.checkLoginUser({emailId: email, password: password})
+const logIn = (dispatch, email, password, profiles) => {
+    let validProfile = profiles.filter(profile => {
+        return profile.emailId === email && profile.password === password;
+    })
 
+    if (validProfile.length !== 0) {
         dispatch({
-            type: LOG_IN,
-            profile: res.data
+            type : LOG_IN,
+            email
         })
-
-        return true
+        return true;
     }
-    catch (err) {
-        return false
+    else {
+        return false;
     }
 }
 
-//TODO: determine log out's affect on db
-const logOut = (dispatch) =>
+const logOut = (dispatch, email) =>
     dispatch({
-        type : LOG_OUT
+        type : LOG_OUT,
+        email
     })
 
-//TODO: determine if this is needed since sign up won't affect state of application directly.
-const signUp = (dispatch, email, username, password) => async (dispatch) => {
-    try {
-        const res = await UsersDataService.createNewUser({
-            emailId: email,
-            username: username,
-            password: password,
-            points : 0,
-            backgroundImage: "white",
-            //TODO: determine if want sound on by default
-            successSound: true,
-            chores: []
-        })
+const signUp = (dispatch, email, username, password, profiles) => {
+    let existingProfiles = profiles.filter(profile => profile.emailId === email)
 
+    if (existingProfiles.length !== 0) {
+        return false;
+    }
+    else {
         dispatch({
-            type: LOG_IN,
-            profile: res.data
+            type : SIGN_UP,
+            email,
+            username,
+            password
         })
 
         return true
-    }
-    catch (err) {
-        return false
     }
 }
 
@@ -109,11 +100,10 @@ const editGroup = (dispatch, group) => {
     })
 }
 
-const editChore = (dispatch, chore, groupId) => {
+const editChore = (dispatch, chore) => {
     dispatch({
         type: EDIT_CHORE,
-        chore,
-        groupId
+        chore
     })
 }
 
@@ -141,18 +131,17 @@ const addPoints = (dispatch, points) => {
     })
 }
 
-const deleteChore = (dispatch, group, choreId) => {
+const deleteChore = (dispatch, chore) => {
     dispatch({
         type : DELETE_CHORE,
-        group,
-        choreId
+        chore
     })
 }
 
-const deletePersonalChore = (dispatch, choreId) => {
+const deletePersonalChore = (dispatch, chore) => {
     dispatch({
         type: DELETE_PERSONAL_CHORE,
-        choreId
+        chore
     })
 }
 

@@ -32,13 +32,14 @@ class PersonalChores extends React.Component {
         this.updateProgress = this.updateProgress.bind(this);
     }
 
-    handleDelete(choreId) {
-        this.props.deletePersonalChore(choreId)
+    handleDelete(chore) {
+        this.props.deletePersonalChore(chore)
     }
 
-    updateProgress(points) {
+    updateProgress(points, undo) {
         const newPoints = this.state.completedPoints + points;
-        const newCompleted = this.state.completedChores + 1;
+        const magnitude = undo ? -1 : 1;
+        const newCompleted = this.state.completedChores + 1 * magnitude;
         this.setState({completedPoints: newPoints, completedChores: newCompleted})
     }
 
@@ -98,12 +99,12 @@ class PersonalChores extends React.Component {
 const stpm = (state) => ({
     activeGroupId: state.activeGroupId,
     activeProfile: state.activeProfile,
-    chores : state.profile.chores,
-    profileUsername : state.profile.username
+    chores : state.activeProfile.chores,
+    profileUsername : state.activeProfile.username
 })
 
 const dtpm = (dispatch) => ({
-    deletePersonalChore : (choreId) => applicationActions.deletePersonalChore(dispatch, choreId)
+    deletePersonalChore : (chore) => applicationActions.deletePersonalChore(dispatch, chore)
 })
 
 export default connect(stpm, dtpm)(PersonalChores);

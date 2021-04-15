@@ -91,54 +91,54 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress, showComp
                         <>
                             {
                                 overdueChores.length !== 0 &&
-                                    <>
-                                        <h2 style={{color:"#ff0404", backgroundColor: "#FFFFF5"}}>
-                                            Overdue
-                                            <span className="btn fa fa-exclamation-triangle fa"/>
-                                        </h2>
-                                        <br/>
-                                    </>
+                                <>
+                                    <h2 style={{color:"#ff0404", backgroundColor: "#FFFFF5"}}>
+                                        Overdue
+                                        <span className="btn fa fa-exclamation-triangle fa"/>
+                                    </h2>
+                                    <br/>
+                                </>
                             }
                             {
                                 overdueChores.map(chore => {
-                                        return( <div key={chore.id}>
-                                            <ChoreCard chore={chore} deleteChore={deleteChore}
-                                                       updateProgress={updateProgress}/>
-                                            <br/>
-                                        </div>)
-                                    })
+                                    return( <div key={chore.id}>
+                                        <ChoreCard chore={chore} deleteChore={deleteChore}
+                                                   updateProgress={updateProgress}/>
+                                        <br/>
+                                    </div>)
+                                })
                             }
                         </>
                         {
                             todayChores.length !== 0 &&
-                                <>
-                                    {/*FFF1FF*/}
-                                    <h2 style={{backgroundColor: "#e8fcff"}}>
-                                        Due Today
-                                    </h2>
-                                    <br/>
-                                </>
+                            <>
+                                {/*FFF1FF*/}
+                                <h2 style={{backgroundColor: "#e8fcff"}}>
+                                    Due Today
+                                </h2>
+                                <br/>
+                            </>
                         }
 
                         {
                             todayChores.map(chore => {
-                                    return (
-                                        <div key={chore.id}>
-                                            <ChoreCard chore={chore} deleteChore={deleteChore}
-                                                       updateProgress={updateProgress}/>
-                                            <br/>
-                                        </div>)
-                                })
+                                return (
+                                    <div key={chore.id}>
+                                        <ChoreCard chore={chore} deleteChore={deleteChore}
+                                                   updateProgress={updateProgress}/>
+                                        <br/>
+                                    </div>)
+                            })
                         }
                         {
                             weeksChores.length !== 0 &&
-                                <>
-                                    <h2 style={{backgroundColor: "#e8fcff"}}>
-                                        Due Next Week
-                                    </h2>
+                            <>
+                                <h2 style={{backgroundColor: "#e8fcff"}}>
+                                    Due Next Week
+                                </h2>
 
-                                    <br/>
-                                </>
+                                <br/>
+                            </>
                         }
 
 
@@ -150,20 +150,20 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress, showComp
                                                    updateProgress={updateProgress}/>
                                         <br/>
                                     </div>
-                                    )
+                                )
 
                             })
                         }
 
                         {
                             futureChores.length !== 0 &&
-                                <>
-                                    <h2 style={{backgroundColor: "#e8fcff"}}>
-                                        Due In The Future
-                                    </h2>
+                            <>
+                                <h2 style={{backgroundColor: "#e8fcff"}}>
+                                    Due In The Future
+                                </h2>
 
-                                    <br/>
-                                </>
+                                <br/>
+                            </>
                         }
 
                         {
@@ -204,7 +204,7 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress, showComp
 }
 
 const stpm = (state, ownProps) => ({
-    background: state.profile.background,
+    background: state.activeProfile.background,
     props: ownProps,
     showCompleted: state.showCompleted
 })

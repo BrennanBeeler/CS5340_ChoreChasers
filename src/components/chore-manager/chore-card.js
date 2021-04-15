@@ -30,7 +30,7 @@ const ChoreCard = ({props, chore, group, profile, updateProgress, addPoints, edi
             successSound.play();
         }
         addPoints(parseInt(chore.points));
-        updateProgress(parseInt(chore.points));
+        updateProgress(parseInt(chore.points), completed);
         setCompleted(!completed);
         chore.done = !chore.done;
         editChore(chore, group);
@@ -49,7 +49,7 @@ const ChoreCard = ({props, chore, group, profile, updateProgress, addPoints, edi
 
     const undoCompleted = () => {
         addPoints(-parseInt(chore.points));
-        updateProgress(-parseInt(chore.points));
+        updateProgress(-parseInt(chore.points), completed);
         setCompleted(!completed);
         chore.done = !chore.done;
         editChore(chore, group);
@@ -107,7 +107,7 @@ const ChoreCard = ({props, chore, group, profile, updateProgress, addPoints, edi
             </Navbar.Text>
 
             <DeleteChoreModal key={new Date().getTime()} show={showDeleteModal}
-                              hide={()=> setShowDeleteModal(false)} deleteChore={deleteChore} choreId={chore.id}/>
+                              hide={()=> setShowDeleteModal(false)} deleteChore={deleteChore} chore={chore}/>
 
             <Navbar.Toggle style={{position: "absolute", bottom: "10px", right: "10px", color:"#000"}}
               onClick={() => setToggleText(1 - toggleText)}>
@@ -186,7 +186,7 @@ const ChoreCard = ({props, chore, group, profile, updateProgress, addPoints, edi
 }
 
 const stpm = (state, ownProps) => ({
-    profile: state.profile,
+    profile: state.activeProfile,
     group: state.activeGroupId,
     props: ownProps,
 })

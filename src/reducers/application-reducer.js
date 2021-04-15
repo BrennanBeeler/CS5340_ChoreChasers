@@ -89,13 +89,16 @@ const applicationReducer = (state = {}, action) => {
                 ]
             }
         case CREATE_CHORE:
+            console.log(action)
+
             if (action.groupName === "Personal Chores") {
                 state.activeProfile.chores.push(action.chore);
 
                 return {
                     ...state
                 }
-            } else {
+            }
+            else {
                 let tempGroups = state.groups;
                 tempGroups.forEach(group => group.name === action.groupName ? group.chores = [...group.chores, action.chore] : group)
 
@@ -134,13 +137,15 @@ const applicationReducer = (state = {}, action) => {
                 }
             }
         case DELETE_CHORE:
-            let modifiedGroup = action.group
-            modifiedGroup.chores = modifiedGroup.chores.filter(chore => chore.id !== action.choreId)
+            let modifiedGroup = state.groups.filter(group => {
+                return group.id === action.chore.group
+            })[0]
+
+            modifiedGroup.chores = modifiedGroup.chores.filter(chore => chore.id !== action.chore.id)
 
             let newState = {
                 ...state,
                 groups: state.groups.map(group => group.id === modifiedGroup.id ? modifiedGroup : group)
-
             }
 
             return JSON.parse(JSON.stringify(newState))
@@ -181,7 +186,7 @@ const applicationReducer = (state = {}, action) => {
 
         case DELETE_PERSONAL_CHORE:
             let initialProfile = state.activeProfile
-            initialProfile.chores = initialProfile.chores.filter(chore => chore.id !== action.choreId)
+            initialProfile.chores = initialProfile.chores.filter(chore => chore.id !== action.chore.id)
 
             return {
                 ...state,

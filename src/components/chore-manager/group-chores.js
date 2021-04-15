@@ -54,8 +54,8 @@ class GroupChores extends React.Component {
     // }, [activeGroupId])
 
 
-    handleDelete(choreId) {
-        this.props.deleteChore(this.props.group, choreId)
+    handleDelete(chore) {
+        this.props.deleteChore(chore)
     }
 
     render() {
@@ -142,7 +142,7 @@ const stpm = (state) => ({
 
 const dtpm = (dispatch) => ({
     getGroupData : (profile, groupId) => applicationActions.getGroupData(dispatch, profile, groupId),
-    deleteChore : (group, choreId) => applicationActions.deleteChore(dispatch, group, choreId),
+    deleteChore : (chore) => applicationActions.deleteChore(dispatch, chore),
     createChore : (groupId, chore) => applicationActions.createChore(dispatch, groupId, chore)
 })
 

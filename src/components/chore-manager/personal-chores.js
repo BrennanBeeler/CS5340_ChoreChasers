@@ -32,8 +32,8 @@ class PersonalChores extends React.Component {
         this.updateProgress = this.updateProgress.bind(this);
     }
 
-    handleDelete(choreId) {
-        this.props.deletePersonalChore(choreId)
+    handleDelete(chore) {
+        this.props.deletePersonalChore(chore)
     }
 
     updateProgress(points) {
@@ -103,7 +103,7 @@ const stpm = (state) => ({
 })
 
 const dtpm = (dispatch) => ({
-    deletePersonalChore : (choreId) => applicationActions.deletePersonalChore(dispatch, choreId)
+    deletePersonalChore : (chore) => applicationActions.deletePersonalChore(dispatch, chore)
 })
 
 export default connect(stpm, dtpm)(PersonalChores);

@@ -25,7 +25,8 @@ const initialState = {
                 splitReward: {everyoneGetsReward: false, fcfs: false},
                 dateAdded: "2021-03-15T00:00:00.000Z",
                 assignor: "Max",
-                assignees: ["Max"]
+                assignees: ["Max"],
+                group: "Personal Chores"
             },
             {
                 id: "2",
@@ -40,7 +41,8 @@ const initialState = {
                 splitReward: {everyoneGetsReward: true, fcfs: false},
                 dateAdded: "2025-03-23T00:00:00.000Z",
                 assignor: "Max",
-                assignees: ["Max"]
+                assignees: ["Max"],
+                group: "Personal Chores"
             },
             {
                 id: "3",
@@ -55,7 +57,8 @@ const initialState = {
                 splitReward: {everyoneGetsReward: false, fcfs: false},
                 dateAdded: "2021-02-01T00:00:00.000Z",
                 assignor: "Max",
-                assignees: ["Max"]
+                assignees: ["Max"],
+                group: "Personal Chores"
             },
             {
                 id: "4",
@@ -70,7 +73,8 @@ const initialState = {
                 splitReward: {everyoneGetsReward: true, fcfs: false},
                 dateAdded: "2025-03-23T00:00:00.000Z",
                 assignor: "Max",
-                assignees: ["Max"]
+                assignees: ["Max"],
+                group: "Personal Chores"
             },
             {
                 id: "5",
@@ -85,7 +89,8 @@ const initialState = {
                 splitReward: {everyoneGetsReward: true, fcfs: false},
                 dateAdded: "2021-03-23T00:00:00.000Z",
                 assignor: "Max",
-                assignees: ["Max"]
+                assignees: ["Max"],
+                group: "Personal Chores"
             },
             {
                 id: "6",
@@ -100,7 +105,8 @@ const initialState = {
                 splitReward: {everyoneGetsReward: true, fcfs: false},
                 dateAdded: "2021-03-23T00:00:00.000Z",
                 assignor: "Max",
-                assignees: ["Max"]
+                assignees: ["Max"],
+                group: "Personal Chores"
             },
             {
                 id: "7",
@@ -115,7 +121,8 @@ const initialState = {
                 splitReward: {everyoneGetsReward: true, fcfs: false},
                 dateAdded: "2021-03-23T00:00:00.000Z",
                 assignor: "Max",
-                assignees: ["Max"]
+                assignees: ["Max"],
+                group: "Personal Chores"
             },
             {
                 id: "8",
@@ -130,7 +137,8 @@ const initialState = {
                 splitReward: {everyoneGetsReward: true, fcfs: false},
                 dateAdded: "2021-03-23T00:00:00.000Z",
                 assignor: "Max",
-                assignees: ["Max"]
+                assignees: ["Max"],
+                group: "Personal Chores"
             },
             {
                 id: "9",
@@ -145,7 +153,8 @@ const initialState = {
                 splitReward: {everyoneGetsReward: true, fcfs: false},
                 dateAdded: "2021-03-23T00:00:00.000Z",
                 assignor: "Max",
-                assignees: ["Max"]
+                assignees: ["Max"],
+                group: "Personal Chores"
             }]
     },
     showCompleted: false,
@@ -171,7 +180,8 @@ const initialState = {
                 splitReward: {everyoneGetsReward: false, fcfs: false},
                 dateAdded: "2021-03-15T00:00:00.000Z",
                 assignor: "Max",
-                assignees: ["Max"]
+                assignees: ["Max"],
+                group: "Personal Chores"
             },
             {
                 id: "2",
@@ -186,7 +196,8 @@ const initialState = {
                 splitReward: {everyoneGetsReward: true, fcfs: false},
                 dateAdded: "2025-03-23T00:00:00.000Z",
                 assignor: "Max",
-                assignees: ["Max"]
+                assignees: ["Max"],
+                group: "Personal Chores"
             },
             {
                 id: "3",
@@ -201,7 +212,8 @@ const initialState = {
                 splitReward: {everyoneGetsReward: false, fcfs: false},
                 dateAdded: "2021-02-01T00:00:00.000Z",
                 assignor: "Max",
-                assignees: ["Max"]
+                assignees: ["Max"],
+                group: "Personal Chores"
             },
             {
                 id: "4",
@@ -216,7 +228,8 @@ const initialState = {
                 splitReward: {everyoneGetsReward: true, fcfs: false},
                 dateAdded: "2025-03-23T00:00:00.000Z",
                 assignor: "Max",
-                assignees: ["Max"]
+                assignees: ["Max"],
+                group: "Personal Chores"
             },
             {
                 id: "5",
@@ -231,7 +244,8 @@ const initialState = {
                 splitReward: {everyoneGetsReward: true, fcfs: false},
                 dateAdded: "2021-03-23T00:00:00.000Z",
                 assignor: "Max",
-                assignees: ["Max"]
+                assignees: ["Max"],
+                group: "Personal Chores"
             },
             {
                 id: "6",
@@ -246,7 +260,8 @@ const initialState = {
                 splitReward: {everyoneGetsReward: true, fcfs: false},
                 dateAdded: "2021-03-23T00:00:00.000Z",
                 assignor: "Max",
-                assignees: ["Max"]
+                assignees: ["Max"],
+                group: "Personal Chores"
             },
             {
                 id: "7",
@@ -261,7 +276,8 @@ const initialState = {
                 splitReward: {everyoneGetsReward: true, fcfs: false},
                 dateAdded: "2021-03-23T00:00:00.000Z",
                 assignor: "Max",
-                assignees: ["Max"]
+                assignees: ["Max"],
+                group: "Personal Chores"
             },
             {
                 id: "8",
@@ -276,7 +292,8 @@ const initialState = {
                 splitReward: {everyoneGetsReward: true, fcfs: false},
                 dateAdded: "2021-03-23T00:00:00.000Z",
                 assignor: "Max",
-                assignees: ["Max"]
+                assignees: ["Max"],
+                group: "Personal Chores"
             },
             {
                 id: "9",
@@ -291,7 +308,8 @@ const initialState = {
                 splitReward: {everyoneGetsReward: true, fcfs: false},
                 dateAdded: "2021-03-23T00:00:00.000Z",
                 assignor: "Max",
-                assignees: ["Max"]
+                assignees: ["Max"],
+                group: "Personal Chores"
             }]
     },
         {
@@ -316,7 +334,8 @@ const initialState = {
                     splitReward: {everyoneGetsReward: false, fcfs: false},
                     dateAdded: "2021-03-15T00:00:00.000Z",
                     assignor: "Jessie",
-                    assignees: ["Jessie"]
+                    assignees: ["Jessie"],
+                    group: "Personal Chores"
                 },
                 {
                     id: "2",
@@ -331,7 +350,8 @@ const initialState = {
                     splitReward: {everyoneGetsReward: true, fcfs: false},
                     dateAdded: "2025-03-23T00:00:00.000Z",
                     assignor: "Jessie",
-                    assignees: ["Jessie"]
+                    assignees: ["Jessie"],
+                    group: "Personal Chores"
                 },
                 {
                     id: "3",
@@ -346,7 +366,8 @@ const initialState = {
                     splitReward: {everyoneGetsReward: false, fcfs: false},
                     dateAdded: "2021-02-01T00:00:00.000Z",
                     assignor: "Jessie",
-                    assignees: ["Jessie"]
+                    assignees: ["Jessie"],
+                    group: "Personal Chores"
                 }]
         }],
     activeGroupId : "Personal Chores",
@@ -369,7 +390,8 @@ const initialState = {
                 splitReward:{everyoneGetsReward:true,fcfs:false},
                 dateAdded: "2021-03-23T00:00:00.000Z",
                 assignor: "Marie",
-                assignees: ["Marie"]
+                assignees: ["Marie"],
+                group: "1"
             },
             {
                 id:"2",
@@ -384,7 +406,8 @@ const initialState = {
                 splitReward:{everyoneGetsReward:true,fcfs:false},
                 dateAdded: "2021-03-30T00:00:00.000Z",
                 assignor: "Vinnie",
-                assignees: ["Max"]
+                assignees: ["Max"],
+                group: "1"
             },
 
             {
@@ -400,7 +423,8 @@ const initialState = {
                 splitReward:{everyoneGetsReward:false,fcfs:false},
                 dateAdded: "2025-03-23T00:00:00.000Z",
                 assignor: "Max",
-                assignees: ['Vinnie']
+                assignees: ['Vinnie'],
+                group: "1"
             }
         ]
     },
@@ -424,7 +448,8 @@ const initialState = {
                     splitReward:{everyoneGetsReward:false,fcfs:true},
                     dateAdded: "2025-04-01T00:00:00.000Z",
                     assignor: "Chad",
-                    assignees: ["Max"]
+                    assignees: ["Max"],
+                    group: "2"
                 },
 
                 {
@@ -440,7 +465,8 @@ const initialState = {
                     splitReward:{everyoneGetsReward:false,fcfs:true},
                     dateAdded: "2021-04-02T00:00:00.000Z",
                     assignor: "Brian",
-                    assignees: ["Max"]
+                    assignees: ["Max"],
+                    group: "2"
                 }]
         },
         {

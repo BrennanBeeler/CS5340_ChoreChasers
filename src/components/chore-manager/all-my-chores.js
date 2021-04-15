@@ -29,10 +29,16 @@ class AllMyChores extends React.Component {
         this.updateProgress = this.updateProgress.bind(this);
     }
 
-    handleDelete(choreId) {
+    handleDelete(chore) {
         //TODO: implement deleting - currently uses id which isn't unique and because of nested nature of app.
         // reducer it can't function without database hook up
         console.log("Deleting Chores")
+        if (chore.group === "Personal Chores") {
+            this.props.deletePersonalChore(chore)
+        }
+        else {
+            this.props.deleteChore(chore)
+        }
     }
 
     updateProgress(points) {
@@ -112,7 +118,8 @@ const stpm = (state) => ({
 })
 
 const dtpm = (dispatch) => ({
-    deletePersonalChore : (choreId) => applicationActions.deletePersonalChore(dispatch, choreId)
+    deletePersonalChore : (chore) => applicationActions.deletePersonalChore(dispatch, chore),
+    deleteChore : (chore) => applicationActions.deleteChore(dispatch, chore)
 })
 
 export default connect(stpm, dtpm)(AllMyChores);

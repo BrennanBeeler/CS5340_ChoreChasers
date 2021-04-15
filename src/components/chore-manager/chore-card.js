@@ -107,7 +107,7 @@ const ChoreCard = ({props, chore, group, profile, updateProgress, addPoints, edi
             </Navbar.Text>
 
             <DeleteChoreModal key={new Date().getTime()} show={showDeleteModal}
-                              hide={()=> setShowDeleteModal(false)} deleteChore={deleteChore} choreId={chore.id}/>
+                              hide={()=> setShowDeleteModal(false)} deleteChore={deleteChore} chore={chore}/>
 
             <Navbar.Toggle style={{position: "absolute", bottom: "10px", right: "10px", color:"#000"}}
               onClick={() => setToggleText(1 - toggleText)}>

@@ -132,18 +132,17 @@ const addPoints = (dispatch, points) => {
     })
 }
 
-const deleteChore = (dispatch, group, choreId) => {
+const deleteChore = (dispatch, chore) => {
     dispatch({
         type : DELETE_CHORE,
-        group,
-        choreId
+        chore
     })
 }
 
-const deletePersonalChore = (dispatch, choreId) => {
+const deletePersonalChore = (dispatch, chore) => {
     dispatch({
         type: DELETE_PERSONAL_CHORE,
-        choreId
+        chore
     })
 }
 

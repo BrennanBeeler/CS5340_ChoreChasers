@@ -9,11 +9,134 @@ input[type=checkbox]:not(:checked) {
     width: 20px;
 }
 
-/*.card-style {*/
-/*    box-shadow: 0 15px 15px 0 rgba(0, 0, 0, 0.05), 0 15px 15px 0 rgba(0, 0, 0, 0.05);*/
-/*    background-color: #f1f8fd;*/
-/*}*/
+.hide-details-toggle {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 30%;
+}
 
-/*.navbar-header {*/
-/*    background-color: #F16E10;*/
-/*}*/
+@media screen and (max-width: 1200px) {
+    input[type=checkbox]:checked {
+        height: 20px;
+        width: 20px;
+    }
+
+    input[type=checkbox]:not(:checked) {
+        height: 20px;
+        width: 20px;
+    }
+    .chore-name {
+        margin-top: 20px;
+        font-size: 2.5vh;
+        font-weight: bolder;
+    }
+    .done-resize {
+        font-size: 13px;
+    }
+    .undo-resize {
+        font-size: 13px;
+    }
+    .hide-details-toggle-div {
+        margin-top: 50px;
+        max-width: 30px;
+    }
+    /*.hide-details-toggle{*/
+    /*    width: %;*/
+    /*    !*max-height: 60%;*!*/
+    /*}*/
+    .edit-chore-detail-btn {
+        margin-bottom: 5px;
+        padding-bottom: 30px;
+    }
+
+    .edit-delete-detail-div{
+        width: 100%;
+        max-width: 100%;
+        margin: 5px;
+    }
+}
+
+
+@media screen and (max-width: 850px) {
+    input[type=checkbox]:checked {
+        height: 20px;
+        width: 20px;
+    }
+
+    input[type=checkbox]:not(:checked) {
+        height: 20px;
+        width: 20px;
+    }
+    .chore-name {
+        margin-top: 20px;
+        font-size: 2.2vh;
+        font-weight: bolder;
+    }
+    .done-resize {
+        font-size: 13px;
+    }
+    .undo-resize {
+        font-size: 13px;
+    }
+    .hide-details-toggle-div {
+        margin-top: 50px;
+        max-width: 30px;
+    }
+    .hide-details-toggle{
+        width: 85%;
+        /*max-height: 60%;*/
+    }
+    .edit-chore-detail-btn {
+        margin-bottom: 5px;
+        padding-bottom: 30px;
+    }
+
+    .edit-delete-detail-div{
+        width: 100%;
+        max-width: 100%;
+        margin: 5px;
+    }
+}
+
+
+@media screen and (max-width: 650px) {
+    input[type=checkbox]:checked {
+        height: 15px;
+        width: 15px;
+    }
+
+    input[type=checkbox]:not(:checked) {
+        height: 15px;
+        width: 15px;
+    }
+    .chore-name {
+        margin-top: 20px;
+        font-size: 2.2vh;
+        font-weight: bolder;
+    }
+    .done-resize {
+        font-size: 13px;
+    }
+    .undo-resize {
+        font-size: 13px;
+    }
+    .hide-details-toggle-div {
+        margin-top: 50px;
+        max-width: 30px;
+    }
+    .hide-details-toggle{
+        width: 85%;
+        /*max-height: 60%;*/
+    }
+    .edit-chore-detail-btn {
+        margin-bottom: 5px;
+        padding-bottom: 30px;
+    }
+
+    .edit-delete-detail-div{
+        width: 100%;
+        max-width: 100%;
+        margin: 5px;
+    }
+}

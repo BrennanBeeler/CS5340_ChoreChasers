@@ -10,6 +10,17 @@ hr {
     padding: 0;
 }
 
+/*.card-padding-dated {*/
+/*    padding-left: 30px;*/
+/*    padding-right: 30px;*/
+/*}*/
+
+/*.card-padding-undated {*/
+/*    padding-left: 30px;*/
+/*    padding-right: 30px;*/
+/*}*/
+
+
 .vertical-scrollable {
     overflow-y: auto;
     overflow-x: hidden;
@@ -23,4 +34,27 @@ hr {
     border-radius: 4px;
     background-color: rgba(0, 0, 0, .5);
     -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+}
+
+@media screen and (max-width: 650px) {
+    .h2-undated {
+        font-size: 25px;
+        text-align: center;
+    }
+    .h2-dated {
+        font-size: 25px;
+        text-align: center;
+    }
+    .h2-due-today {
+        font-size: 25px;
+        text-align: center;
+    }
+    .h2-due-next-week {
+         font-size: 25px;
+         text-align: center;
+    }
+    .h2-due-future {
+          font-size: 25px;
+          text-align: center;
+    }
 }

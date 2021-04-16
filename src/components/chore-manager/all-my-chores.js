@@ -1,5 +1,5 @@
 import React from "react";
-import "./personal-chores.css";
+import "./all-my-chores.css";
 import {ProgressBar} from "react-bootstrap";
 import CreateChoreModal from "../create-chore/create-chore-modal"
 import ChoreDisplay from "./chore-display";
@@ -67,22 +67,43 @@ class AllMyChores extends React.Component {
 
                 <p/>
 
-                <div className="personal-chore-name-style">
-                    <h1 className="h1-style">
-                        All my assigned chores
-                    </h1>
-                </div>
-                <div className="create-chore-btn-div">
-                    <button className=" create-chore-btn btn btn-info mt-2 mb-1 pt-2 pb-2"
-                            onClick={() => this.setState({choreModal: true})}>
-                        Add a New Chore
-                        <i className="fa fa-plus" style={{paddingLeft: "10px"}}/>
-                    </button>
+                <div className="row">
+                    <div className="col-xl-auto ">
+                        <h1 className="h1-style">
+                            All My Assigned Chores
+                        </h1>
+                    </div>
+
+
+                    <div className="col col-xl-auto create-chore-btn-div-all-chores">
+                        <button className=" create-chore-btn btn btn-info mt-2 mb-1 pt-2 pb-2"
+                                onClick={() => this.setState({choreModal: true})}>
+                            Add a New Chore
+                            <i className="fa fa-plus" style={{paddingLeft: "10px"}}/>
+                        </button>
+                    </div>
+
+                    <div className="col col-xl-auto show-completed-toggle-all-chores">
+                        <ShowCompletedToggle/>
+                    </div>
                 </div>
 
-                <ShowCompletedToggle/>
+                {/*<div className="personal-chore-name-style">*/}
+                {/*    <h1 className="h1-style">*/}
+                {/*        All my assigned chores*/}
+                {/*    </h1>*/}
+                {/*</div>*/}
+                {/*<div className="create-chore-btn-div">*/}
+                {/*    <button className=" create-chore-btn btn btn-info mt-2 mb-1 pt-2 pb-2"*/}
+                {/*            onClick={() => this.setState({choreModal: true})}>*/}
+                {/*        Add a New Chore*/}
+                {/*        <i className="fa fa-plus" style={{paddingLeft: "10px"}}/>*/}
+                {/*    </button>*/}
+                {/*</div>*/}
 
-                <br/>
+                {/*<ShowCompletedToggle/>*/}
+
+                <br/><br/>
 
 
                 <ChoreDisplay key={new Date().getTime()}

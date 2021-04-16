@@ -22,9 +22,11 @@
     /*margin-bottom: 10px;*/
     /*float: right;*/
     /*margin:auto;*/
-    position: absolute;
-    left: 400px;
-    white-space: nowrap;
+    /*position: absolute;*/
+    /*left: 400px;*/
+    /*white-space: nowrap;*/
+    margin: auto;
+    padding-right: 300px;
 
 
     /*margin-right: 400px;*/
@@ -36,27 +38,11 @@
     width:350px;
 }
 
-.group-name-style {
-    float: left;
-    padding-left: 10px;
-}
+/*.group-name-style {*/
+/*    float: left;*/
+/*    padding-left: 10px;*/
+/*}*/
 
-.group-settings-btn {
-    margin-left: 87%;
-    /*float:right;*/
-    position:relative;
-    white-space: nowrap;
-    top:5px;
-    right: 20px;
-
-    /*try this later to make easier for window resize*/
-    /*margin-left: 87%;*/
-    /*float:right;*/
-    /*position:absolute;*/
-    /*white-space: nowrap;*/
-    /*top:5px;*/
-    /*right: 20px;*/
-}
 
 .group-settings-header-div {
     float: left;
@@ -65,7 +51,5 @@
 .show-completed-toggle-group {
     position:absolute;
     white-space: nowrap;
-    /*top:10px;*/
-    margin-top: 15px;
-    right: 20px;
-    }
+    top:15px;
+}

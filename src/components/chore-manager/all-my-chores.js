@@ -11,18 +11,20 @@ class AllMyChores extends React.Component {
     constructor(props) {
         super(props);
         let completedPoints = 0;
+        let completedChores = 0;
         let totalPoints = 0;
 
-        //TODO: remove map- map needs return value
-        // this.props.chores.map(chore => {
-        //     totalPoints += chore.points;
-        //     if (chore.done) {
-        //         completedPoints += chore.points;
-        //     }
-        // });
+        this.props.chores.forEach(chore => {
+            totalPoints += chore.points;
+            if (chore.done) {
+                completedChores += 1;
+                completedPoints += chore.points;
+            }
+        });
         this.state = {
             choreModal: false,
             completedPoints,
+            completedChores,
             totalPoints,
         };
         this.handleDelete = this.handleDelete.bind(this);
@@ -41,9 +43,11 @@ class AllMyChores extends React.Component {
         }
     }
 
-    updateProgress(points) {
+    updateProgress(points, undo) {
         const newPoints = this.state.completedPoints + points;
-        this.setState({completedPoints: newPoints})
+        const magnitude = undo ? -1 : 1;
+        const newCompleted = this.state.completedChores + 1 * magnitude;
+        this.setState({completedPoints: newPoints, completedChores: newCompleted})
     }
 
 
@@ -58,13 +62,13 @@ class AllMyChores extends React.Component {
                 />
                 {/*TODO: decide what to do with all chores and bar*/}
                 <h4 className="h4-style">
-                    Today's Progress - FIGURE OUT IF I STAY HERE
+                    Today's Progress
                 </h4>
                 <p/>
                 <ProgressBar>
-                    <ProgressBar variant="success" now={this.state.completedPoints/this.state.totalPoints *100} key={1}/>
+                    <ProgressBar variant="success" now={this.state.completedChores/this.props.chores.length *100} key={1}/>
                 </ProgressBar>
-
+                {this.state.completedChores}/{this.props.chores.length} Tasks
                 <p/>
 
                 <div className="row">

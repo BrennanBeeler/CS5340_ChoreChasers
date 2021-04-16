@@ -153,7 +153,6 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress, showComp
 
                             })
                         }
-
                         {
                             futureChores.length !== 0 &&
                             <>

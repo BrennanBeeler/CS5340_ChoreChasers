@@ -19,16 +19,8 @@
     padding-top: 10px;
     font-family: Verdana, Geneva, sans-serif;
     margin-left: 30px;
-    /*font-family: Arial, Helvetica, sans-serif;*/
-    /*font-family: Tahoma, Geneva, sans-serif;*/
-    /*font-family: Trebuchet MS, Arial, Helvetica, sans-serif;*/
-    /*font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;*/
-}
 
-/*.register-buttons-container {*/
-/*    text-align: right;*/
-/*    margin-right: 30px;*/
-/*}*/
+}
 
 .floated-register-buttons {
     float:right;
@@ -144,6 +136,7 @@
     width: 400px;
     height: 50px;
     max-width:33.333333%;
+    min-width: 150px;
     background-color: #0993a8;
     border: none;
     color: white;
@@ -169,9 +162,43 @@
     margin: 5px;
 }
 
-.image-placeholder > h4 {
-    align-self: center;
-    text-align: center;
-    width: 100%;
-    color: #666666;
+/*.image-placeholder > h4 {*/
+/*    align-self: center;*/
+/*    text-align: center;*/
+/*    width: 100%;*/
+/*    color: #666666;*/
+/*}*/
+
+@media screen and (max-width: 600px) {
+    .image-placeholder {
+        max-width: 90%;
+        width: 90%;
+        justify-content: center;
+        margin-bottom: 30px;
+    }
+    .jumbotron {
+        max-width: 90%;
+        width: 90%;
+    }
+    .header {
+        white-space: nowrap;
+    }
+    .body-background {
+        background-size: auto;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    /*.image-placeholder {*/
+    /*    max-width: 90%;*/
+    /*    width: 90%;*/
+    /*    margin-bottom: 30px;*/
+    /*}*/
+    /*.jumbotron {*/
+    /*    max-width: 90%;*/
+    /*    width: 90%;*/
+    /*}*/
+    .header {
+        white-space: nowrap;
+    }
 }

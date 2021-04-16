@@ -24,7 +24,13 @@ exports.createNewGroup =  (req, res) => {
     group
         .save(group)
         .then(groupData => {
-            res.send(groupData);
+            if (!groupData) {
+                res.status(404).send({
+                                         message: "Group not created!"
+                                     });
+            } else {
+                res.send(groupData);
+            }
         })
         .catch(err => {
             res.status(500).send({
@@ -39,7 +45,7 @@ exports.createNewGroup =  (req, res) => {
 // Add a chore to Group after adding it to Chore collection.
 exports.addGroupChore = (req, res) => {
     if (!req.body.choreName) {
-        res.status(400).send({ message: "Content can not be empty!" });
+        res.status(400).send({ message: "Chore title/name can not be empty!" });
         return;
     }
 
@@ -65,9 +71,13 @@ exports.addGroupChore = (req, res) => {
                                           {$push: {chores: groupChoreData._id}}, { new: true, useFindAndModify: false});
         })
         .then(groupData=> {
-            console.log("Success!");
-            console.log(groupData);
-            res.send(groupData);
+            if (!groupData) {
+                res.status(404).send({
+                                         message: "Chore not created!"
+                                     });
+            } else {
+                res.send(groupData);
+            }
         })
         .catch(err => {
             res.status(500).send({
@@ -86,7 +96,13 @@ exports.getGroupWithId =  (req, res) => {
         .findOne({ _id: req.params.id })
         .populate("chores")
         .then(groupData=> {
-            res.send(groupData);
+            if (!groupData) {
+                res.status(404).send({
+                                         message: "Group could not be retrieved!"
+                                     });
+            } else {
+                res.send(groupData);
+            }
         })
         .catch(err => {
             res.status(500).send({
@@ -169,9 +185,15 @@ exports.addGroupMember = (req, res) => {
     Group.findOneAndUpdate({ _id: req.params.id },
                                   {$addToSet: {members: req.body._id}}, { new: true, useFindAndModify: false})
         .then(groupData=> {
-            console.log("Successfully added member!");
-            console.log(groupData);
-            res.send(groupData);
+            if (!groupData) {
+                res.status(404).send({
+                                         message: "Member not added!"
+                                     });
+            } else {
+                console.log("Successfully added member!");
+                console.log(groupData);
+                res.send(groupData);
+            }
         })
         .catch(err => {
             res.status(500).send({
@@ -181,13 +203,5 @@ exports.addGroupMember = (req, res) => {
         });
 
 
-
-};
-
-
-
-
-// Retrieve all Group from the database.
-exports.findAllGroups = (req, res) => {
 
 };

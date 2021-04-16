@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Link, Redirect} from "react-router-dom";
+import {Link} from "react-router-dom";
 import "./profile-settings.css"
 import applicationActions from "../../actions/actions";
 import {connect} from "react-redux";
@@ -96,6 +96,7 @@ const ProfileSettings = ({
                     </p>
 
                     <div style={{paddingLeft:"200px", float:"left"}}>
+                    {/*    TODO: actually handle delete account and triple check they want to*/}
                     <Link to="/" className="btn btn-danger mt-2" style={{paddingRight:"50px",paddingLeft:"50px"}}>
                         Delete Account
                     </Link>
@@ -113,7 +114,7 @@ const ProfileSettings = ({
 }
 
 const stpm = (state) => ({
-    profile: state.profile,
+    profile: state.activeProfile,
 })
 
 const dtpm = (dispatch) => ({

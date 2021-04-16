@@ -1,333 +1,85 @@
 import {
+    ADD_POINT_VALUE,
+    CREATE_CHORE,
+    CREATE_GROUP,
+    DELETE_CHORE,
+    DELETE_GROUP,
+    DELETE_PERSONAL_CHORE,
+    EDIT_CHORE,
+    EDIT_GROUP,
     LOG_IN,
     LOG_OUT,
     SET_ACTIVE_GROUP,
-    SET_BACKGROUND,
-    TOGGLE_SOUND,
-    CREATE_GROUP,
-    GET_GROUP_DATA,
-    EDIT_GROUP,
-    DELETE_GROUP,
-    CREATE_CHORE,
-    EDIT_CHORE,
-    ADD_POINT_VALUE,
-    DELETE_CHORE,
-    DELETE_PERSONAL_CHORE, TOGGLE_SHOW_COMPLETED
+    SET_BACKGROUND, SIGN_UP,
+    TOGGLE_SHOW_COMPLETED,
+    TOGGLE_SOUND
 } from "../actions/actions";
 
-
-const initialState = {
-    loggedIn: false,
-    //TODO: populate these
-    activeProfile : "test",
-    showCompleted: false,
-    profile : {
-            id : "test",
-            background: "https://coolbackgrounds.io/images/backgrounds/white/pure-white-background-85a2a7fd.jpg",
-            emailId: 'test@email.com',
-            points: 0,
-            soundEnabled: true,
-            username: 'Max',
-            password:'password',
-            chores: [
-                {
-                    id:"1",
-                    done:false,
-                    choreName: 'Call Anne about the party',
-                    dueDate: "2021-04-07T00:00:00.000Z",
-                    repeatChore: "Never",
-                    choreInstructions: "Call before 6PM",
-                    rewards:{points:true,realLifeItem:false},
-                    points:20,
-                    realLifeItem:"",
-                    splitReward:{everyoneGetsReward:false,fcfs:false},
-                    dateAdded: "2021-03-15T00:00:00.000Z",
-                    assignor: "Max",
-                    assignees: ["Max"]
-                },
-                {
-                    id:"2",
-                    done:false,
-                    choreName: "Don't smoke",
-                    dueDate: "2021-04-07T00:00:00.000Z",
-                    repeatChore: "Daily",
-                    choreInstructions: "Call before 6PM",
-                    rewards:{points:false,realLifeItem:true},
-                    points:0,
-                    realLifeItem:"Cookie per day",
-                    splitReward:{everyoneGetsReward:true,fcfs:false},
-                    dateAdded: "2025-03-23T00:00:00.000Z",
-                    assignor: "Max",
-                    assignees: ["Max"]
-                },
-                {
-                    id:"3",
-                    done:false,
-                    choreName: 'Practice piano',
-                    dueDate: "2021-04-03T00:00:00.000Z",
-                    repeatChore: "Weekly",
-                    choreInstructions: "Call before 6PM",
-                    rewards:{points:true,realLifeItem:false},
-                    points:20,
-                    realLifeItem:"snack",
-                    splitReward:{everyoneGetsReward:false,fcfs:false},
-                    dateAdded: "2021-02-01T00:00:00.000Z",
-                    assignor: "Max",
-                    assignees: ["Max"]
-                },
-                {
-                    id:"4",
-                    done:false,
-                    choreName: 'Successfully bench 100lbs',
-                    dueDate: null,
-                    repeatChore: "Never",
-                    choreInstructions: "Call before 6PM",
-                    rewards:{points:true,realLifeItem:true},
-                    points:20,
-                    realLifeItem:"Pizza night",
-                    splitReward:{everyoneGetsReward:true,fcfs:false},
-                    dateAdded: "2025-03-23T00:00:00.000Z",
-                    assignor: "Max",
-                    assignees: ["Max"]
-                },
-                {
-                    id:"5",
-                    done:false,
-                    choreName: 'Read Chapter 14',
-                    dueDate: "2021-04-04T00:00:00.000Z",
-                    repeatChore: "Never",
-                    choreInstructions: "Online textbook",
-                    rewards:{points:true,realLifeItem:false},
-                    points:10,
-                    realLifeItem:"",
-                    splitReward:{everyoneGetsReward:true,fcfs:false},
-                    dateAdded: "2021-03-23T00:00:00.000Z",
-                    assignor: "Max",
-                    assignees: ["Max"]
-                },
-                {
-                    id:"6",
-                    done:false,
-                    choreName: 'Read Chapter 14',
-                    dueDate: "2021-04-04T00:00:00.000Z",
-                    repeatChore: "Never",
-                    choreInstructions: "Online textbook",
-                    rewards:{points:true,realLifeItem:false},
-                    points:10,
-                    realLifeItem:"",
-                    splitReward:{everyoneGetsReward:true,fcfs:false},
-                    dateAdded: "2021-03-23T00:00:00.000Z",
-                    assignor: "Max",
-                    assignees: ["Max"]
-                },
-                {
-                    id:"7",
-                    done:false,
-                    choreName: 'Read Chapter 14',
-                    dueDate: "2021-04-04T00:00:00.000Z",
-                    repeatChore: "Never",
-                    choreInstructions: "Online textbook",
-                    rewards:{points:true,realLifeItem:false},
-                    points:10,
-                    realLifeItem:"",
-                    splitReward:{everyoneGetsReward:true,fcfs:false},
-                    dateAdded: "2021-03-23T00:00:00.000Z",
-                    assignor: "Max",
-                    assignees: ["Max"]
-                },
-                {
-                    id:"8",
-                    done:false,
-                    choreName: 'Read Chapter 14',
-                    dueDate: "2021-04-04T00:00:00.000Z",
-                    repeatChore: "Never",
-                    choreInstructions: "Online textbook",
-                    rewards:{points:true,realLifeItem:false},
-                    points:10,
-                    realLifeItem:"",
-                    splitReward:{everyoneGetsReward:true,fcfs:false},
-                    dateAdded: "2021-03-23T00:00:00.000Z",
-                    assignor: "Max",
-                    assignees: ["Max"]
-                },
-                {
-                    id:"9",
-                    done:false,
-                    choreName: 'Read Chapter 14',
-                    dueDate: "2021-04-04T00:00:00.000Z",
-                    repeatChore: "Never",
-                    choreInstructions: "Online textbook",
-                    rewards:{points:true,realLifeItem:false},
-                    points:10,
-                    realLifeItem:"",
-                    splitReward:{everyoneGetsReward:true,fcfs:false},
-                    dateAdded: "2021-03-23T00:00:00.000Z",
-                    assignor: "Max",
-                    assignees: ["Max"]
-                }                ]
-    },
-    activeGroupId : "Personal Chores",
-    groups : [{
-        id: "1",
-        name: 'Family',
-        progressBar: false,
-        members: ["Marie", "Abby", "Vinnie", "Alan", "Max"],
-        chores: [
-            {
-                id:"1",
-                done:false,
-                choreName: 'Vacuum',
-                repeatChore: "Weekly",
-                choreInstructions: "",
-                rewards:{points:true,realLifeItem:false},
-                points:5,
-                realLifeItem:"",
-                dueDate: "2021-04-05T00:00:00.000Z",
-                splitReward:{everyoneGetsReward:true,fcfs:false},
-                dateAdded: "2021-03-23T00:00:00.000Z",
-                assignor: "Marie",
-                assignees: ["Marie"]
-            },
-            {
-                id:"2",
-                done:false,
-                choreName: 'Finish laundry',
-                dueDate: null,
-                repeatChore: "Never",
-                choreInstructions: "",
-                rewards:{points:true,realLifeItem:false},
-                points:20,
-                realLifeItem:"",
-                splitReward:{everyoneGetsReward:true,fcfs:false},
-                dateAdded: "2021-03-30T00:00:00.000Z",
-                assignor: "Vinnie",
-                assignees: ["Max"]
-            },
-
-            {
-                id:"3",
-                done:false,
-                choreName: 'Take out the trash',
-                dueDate: "2025-03-23T00:00:00.000Z",
-                repeatChore: "Weekly",
-                choreInstructions: "",
-                rewards:{points:true,realLifeItem:false},
-                points:5,
-                realLifeItem:"",
-                splitReward:{everyoneGetsReward:false,fcfs:false},
-                dateAdded: "2025-03-23T00:00:00.000Z",
-                assignor: "Max",
-                assignees: ['Vinnie']
-            }
-        ]
-    },
-        {
-            id: "2",
-            name: 'Group Project',
-            progressBar: true,
-            members: ['Chad', 'Brian', "Max"],
-            chores: [
-                //TODO: required fields- id, done, chorename, rewards,splitrewards, assignor, assignees
-                {
-                    id:"1",
-                    done:false,
-                    choreName: 'Write documentation',
-                    dueDate: "2021-04-23T00:00:00.000Z",
-                    repeatChore: "Never",
-                    choreInstructions: "",
-                    rewards:{points:true,realLifeItem:false},
-                    points:20,
-                    realLifeItem:"",
-                    splitReward:{everyoneGetsReward:false,fcfs:true},
-                    dateAdded: "2025-04-01T00:00:00.000Z",
-                    assignor: "Chad",
-                    assignees: ["Max"]
-                },
-
-                {
-                    id:"2",
-                    done:false,
-                    choreName: 'Test section 3',
-                    dueDate: "2021-04-12T00:00:00.000Z",
-                    repeatChore: "Never",
-                    choreInstructions: "",
-                    rewards:{points:true,realLifeItem:false},
-                    points:5,
-                    realLifeItem:"",
-                    splitReward:{everyoneGetsReward:false,fcfs:true},
-                    dateAdded: "2021-04-02T00:00:00.000Z",
-                    assignor: "Brian",
-                    assignees: ["Max"]
-                }]
-        },
-        {
-            id: "3",
-            name: 'test',
-            progressBar: false,
-            members: ["Marie", "Abby", "Vinnie", "Alan", "Max"],
-            chores: []
-        },
-        {
-            id: "4",
-            name: 'test2',
-            progressBar: false,
-            members: ["Marie", "Abby", "Vinnie", "Alan", "Max"],
-            chores: []
-        },
-        {
-            id: "5",
-            name: 'test3',
-            progressBar: false,
-            members: ["Marie", "Abby", "Vinnie", "Alan", "Max"],
-            chores: []
-        }
-    ]
-}
-
-const applicationReducer = (state = initialState, action) => {
+const applicationReducer = (state = {}, action) => {
     switch (action.type) {
-      //TODO: figure out where log out buttons will go
+        //TODO: figure out where log out buttons will go
         case LOG_OUT:
             return {
                 ...state,
                 loggedIn: false,
                 activeProfile: null
             }
-      //   TODO: redo
         case LOG_IN:
-            // TODO: redo once db connected
-            if (action.id === state.profile.id) {
-                return {
-                    ...state,
-                    loggedIn: true,
-                    activeProfile: action.id
-                }
+            //TODO: test
+            return {
+                ...state,
+                loggedIn: true,
+                activeProfile: state.profiles.filter((profile) => {
+                    return profile.emailId === action.email;
+                })[0]
             }
-            return state
+        case SIGN_UP:
+            let createdProfile = {
+                //TODO: make sure this works to get unique ids
+                id: new Date().getTime(),
+                background: "https://coolbackgrounds.io/images/backgrounds/white/pure-white-background-85a2a7fd.jpg",
+                emailId: action.email,
+                points: 0,
+                soundEnabled: true,
+                username: action.username,
+                password: action.password,
+                chores: []
+            }
+
+            return {
+                ...state,
+                profiles: [
+                    ...state.profiles,
+                    createdProfile
+                ],
+                activeProfile: createdProfile,
+                loggedIn: true
+            }
+
         case SET_ACTIVE_GROUP:
             return {
                 ...state,
                 activeGroupId: action.activeGroupId
             }
         case SET_BACKGROUND:
-            const newProfile = state.profile;
+            const newProfile = state.activeProfile;
             newProfile.background = action.url;
 
             const newBackground = {
                 ...state,
-                profile: newProfile,
+                activeProfile: newProfile,
             }
             return JSON.parse(JSON.stringify(newBackground));
         case TOGGLE_SOUND:
-            const newProfilee = state.profile;
-            newProfilee.soundEnabled = !state.profile.soundEnabled;
+            const newProfilee = state.activeProfile;
+            newProfilee.soundEnabled = !state.activeProfile.soundEnabled;
 
             const newSound = {
                 ...state,
-                profile: newProfilee,
+                activeProfile: newProfilee,
             }
             return JSON.parse(JSON.stringify(newSound));
-      //    TODO: redo
+        //    TODO: redo
         case CREATE_GROUP:
             return {
                 ...state,
@@ -336,20 +88,17 @@ const applicationReducer = (state = initialState, action) => {
                     action.group
                 ]
             }
-      //    TODO: check once db connected
-      // case GET_GROUP_DATA:
-      //     return {
-      //         ...state,
-      //         groups : state.groups.filter(group => group.id === state.activeGroupId)
-      //     }
         case CREATE_CHORE:
+            console.log(action)
+
             if (action.groupName === "Personal Chores") {
-                state.profile.chores.push(action.chore);
+                state.activeProfile.chores.push(action.chore);
 
                 return {
                     ...state
                 }
-            } else {
+            }
+            else {
                 let tempGroups = state.groups;
                 tempGroups.forEach(group => group.name === action.groupName ? group.chores = [...group.chores, action.chore] : group)
 
@@ -388,19 +137,21 @@ const applicationReducer = (state = initialState, action) => {
                 }
             }
         case DELETE_CHORE:
-            let modifiedGroup = action.group
-            modifiedGroup.chores = modifiedGroup.chores.filter(chore => chore.id !== action.choreId)
+            let modifiedGroup = state.groups.filter(group => {
+                return group.id === action.chore.group
+            })[0]
+
+            modifiedGroup.chores = modifiedGroup.chores.filter(chore => chore.id !== action.chore.id)
 
             let newState = {
                 ...state,
                 groups: state.groups.map(group => group.id === modifiedGroup.id ? modifiedGroup : group)
-
             }
 
             return JSON.parse(JSON.stringify(newState))
         case EDIT_CHORE:
-            if (action.groupId === "Personal Chores") {
-                state.profile.chores = state.profile.chores.map(chore => {
+            if (action.chore.group === "Personal Chores") {
+                state.activeProfile.chores = state.activeProfile.chores.map(chore => {
                     if (action.chore.id === chore.id) {
                         return action.chore
                     }
@@ -416,10 +167,9 @@ const applicationReducer = (state = initialState, action) => {
             else {
                 const groups = state.groups;
                 state.groups = groups.map(group => {
-                    if (group.id === action.groupId) {
-                        const chores = group.chores.map(chore =>
+                    if (group.id === action.chore.group) {
+                        group.chores = group.chores.map(chore =>
                             action.chore.id === chore.id ? action.chore : chore);
-                        group.chores = chores;
                         return group;
                     } else {
                         return group;
@@ -429,18 +179,18 @@ const applicationReducer = (state = initialState, action) => {
                 return JSON.parse(JSON.stringify(state))
             }
         case ADD_POINT_VALUE:
-            state.profile.points += action.points;
+            state.activeProfile.points += action.points;
             return {
                 ...state
             }
 
         case DELETE_PERSONAL_CHORE:
-            let initialProfile = state.profile
-            initialProfile.chores = initialProfile.chores.filter(chore => chore.id !== action.choreId)
+            let initialProfile = state.activeProfile
+            initialProfile.chores = initialProfile.chores.filter(chore => chore.id !== action.chore.id)
 
             return {
                 ...state,
-                profile: initialProfile
+                activeProfile: initialProfile
             }
         case TOGGLE_SHOW_COMPLETED:
             let toggleChangedState = {

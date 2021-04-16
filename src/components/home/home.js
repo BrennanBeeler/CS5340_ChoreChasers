@@ -1,5 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import Carousel from 'react-bootstrap/Carousel'
 import './home.css';
 
 const Home = () => {
@@ -46,12 +47,55 @@ const Home = () => {
                 {/*<img src="https://via.placeholder.com/500" alt="Home page" width="500" height="400" className="mx-auto"/>*/}
                 {/*<img src="/public/hangingclothes2.jpg" alt="Home page" width="4608" height="2088" className="mx-auto"/>*/}
                 <div className="image-placeholder mx-auto">
-                    <h4>TBD (Slideshow)</h4>
+                    <Carousel>
+                        <Carousel.Item>
+                            <img
+                                className="d-block w-100"
+                                // src="holder.js/800x400?text=First slide&bg=373940"
+                                alt="First slide"
+                                width="500"
+                                height="400"
+                            />
+                            <Carousel.Caption>
+                                <h3>First slide label</h3>
+                                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                            </Carousel.Caption>
+                        </Carousel.Item>
+                        <Carousel.Item>
+                            <img
+                                className="d-block w-100"
+                                // src="/src/css-images/hangingclothes2.jpg/"
+                                alt="Second slide"
+                                width="500"
+                                height="400"
+                            />
+
+                            <Carousel.Caption>
+                                <h3>Second slide label</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            </Carousel.Caption>
+                        </Carousel.Item>
+                        <Carousel.Item>
+                            <img
+                                className="d-block w-100"
+                                // src="holder.js/800x400?text=Third slide&bg=20232a"
+                                alt="Third slide"
+                                width="500"
+                                height="400"
+                            />
+
+                            <Carousel.Caption>
+                                <h3>Third slide label</h3>
+                                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                            </Carousel.Caption>
+                        </Carousel.Item>
+                    </Carousel>
+                    {/*<h4>TBD (Slideshow)</h4>*/}
                 </div>
 
 
                 {/*TODO: look into jumbotron from boostrap*/}
-                <div className=" jumbotron col-4 text-center offset-4 mx-auto align-self-center pb-4 pt-4">
+                <div className=" jumbotron col-lg-4 col-md-6 col-sm-6 col-xs-6 text-center offset-4 mx-auto align-self-center pb-4 pt-4">
                 {/*<div className="jumbotron col-lg-3 col-md-6 col-sm-6 col-xs-6 offset-8 float-md-right ">*/}
                     <div className="font-weight-bolder about-header">
                         So what do we do?

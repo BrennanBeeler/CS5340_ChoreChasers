@@ -13,7 +13,7 @@ const ChoreManager = ({
                           points,
                           setActiveGroup,
                           activeGroupId = "Personal Chores",
-                          groups,
+                          groups
                       }) => {
 
     const [showCreateGroupModal, setCreateGroupModal] = useState(false);
@@ -35,9 +35,11 @@ const ChoreManager = ({
     updateLevel();
 
     return (
-        <div className="hci-full-height row" >
-            <div className="col-2 border-right hci-full-height ">
-                <div className="border-bottom border-dark pb-4 ">
+        <div className="hci-full-height row">
+            {/*LEFT COLUMN*/}
+            <div className="col-2 border-right hci-full-height">
+                {/*PROFILE AREA*/}
+                <div className="row border-bottom border-dark pb-4" style={{height : "160px"}}>
                     <div className="level-header">
                         Level {level}
                     </div>
@@ -53,19 +55,20 @@ const ChoreManager = ({
                     </div>
                 </div>
 
-                <div>
+                {/*CREATE GROUP BUTTON*/}
+                <div className="row" style={{height: "100px"}}>
                     <button className="btn btn-info hci-create-group btn-block mt-4 pt-3 pb-3" onClick={() => setCreateGroupModal(true)}>
                         Create Group
                         <i className="fa fa-plus" style={{paddingLeft: "10px"}}/>
                     </button>
                 </div>
-                {/*<br/>*/}
 
                 <CreateGroupModal key={new Date().getTime()} show={showCreateGroupModal}
                                   onHide={()=> setCreateGroupModal(false)}/>
 
-                <div style={{paddingTop: "20px"}}>
-                    <div className="vertical-scrollable" style={{height: "600px"}}>
+                {/* GROUP SELECT*/}
+                <div className="row">
+                    <div className="vertical-scrollable" style={{height: "calc(100vh - 260px)"}}>
                         <ul className="nav flex-column nav-pills mt-4" role="navigation">
                             <li className={`nav-link nav-item mb-4 pt-3 pb-4 border border-dark group-button ${activeGroupId === "Personal Chores" ? 'active':''}`}
                                 onClick={() => setActiveGroup("Personal Chores")}>
@@ -94,37 +97,38 @@ const ChoreManager = ({
                 </div>
             </div>
 
-            <div className="col-10 hci-full-height" style={{paddingLeft: 0, paddingRight: 0}}>
+            {/*RIGHT COLUMN*/}
+            <div className="col-10 hci-full-height">
                 {
                     activeGroupId === "Personal Chores" &&
-                    <PersonalChores/>
-
+                        <div className="row border-bottom border-dark" style={{height: "160px"}}>
+                            <PersonalChores/>
+                        </div>
                 }
 
-                {/*{*/}
-                {/*    activeGroupId === "All_my_chores" &&*/}
-                {/*        <>*/}
-                {/*            <AllMyChores/>*/}
-                {/*        </>*/}
-                {/*}*/}
+                {
+                    activeGroupId === "All_my_chores" &&
+                        <>
+                            <AllMyChores/>
+                        </>
+                }
 
                 {
                     (activeGroupId !== "Personal Chores" && activeGroupId !== "All_my_chores") &&
-                    <>
+                    <div className="row border-bottom border-dark" style={{height: "160px"}}>
                         <GroupChores/>
-                    </>
+                    </div>
                 }
-
             </div>
         </div>
     )
 }
 
 const stpm = (state) => ({
-    profileUsername: state.profile.username,
-    points: state.profile.points,
+    profileUsername: state.activeProfile.username,
+    points: state.activeProfile.points,
     activeGroupId: state.activeGroupId,
-    groups : state.groups,
+    groups : state.groups.filter(group => group.members.includes(state.activeProfile.username))
 })
 
 const dtpm = (dispatch) => ({

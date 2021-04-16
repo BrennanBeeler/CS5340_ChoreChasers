@@ -1,0 +1,17 @@
+.show-completed-toggle-all-chores {
+    position:absolute;
+    white-space: nowrap;
+    top:15px;
+}
+
+.h4-style {
+    font-family: Verdana, Geneva, sans-serif;
+    white-space: nowrap;
+    color: #1d1d1d;
+}
+
+.create-chore-btn-div-all-chores {
+    margin: auto;
+    padding-right: 300px;
+
+}

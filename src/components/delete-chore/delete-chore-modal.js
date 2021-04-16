@@ -1,10 +1,9 @@
 import React from "react";
 import {Modal, Button, Row, Col} from "react-bootstrap";
 
-const DeleteChoreModal = ({deleteChore, hide, show, choreId}) => {
+const DeleteChoreModal = ({deleteChore, hide, show, chore}) => {
 
     return (
-        // TODO: had to set animation to false because of issue with react-bootstrap https://github.com/react-bootstrap/react-bootstrap/issues/5075
         <Modal onHide={hide} animation={false} show={show} backdrop="static">
             <Modal.Header closeButton>
                 <Modal.Title className="text-center">Delete Chore?</Modal.Title>
@@ -17,7 +16,8 @@ const DeleteChoreModal = ({deleteChore, hide, show, choreId}) => {
                         </Button>
                     </Col>
                     <Col xs={6}>
-                        <Button variant="danger" onClick={() => deleteChore(choreId)}>
+                        {/*TODO: added groupId here*/}
+                        <Button variant="danger" onClick={() => deleteChore(chore)}>
                             Yes, delete this chore!
                         </Button>
                     </Col>

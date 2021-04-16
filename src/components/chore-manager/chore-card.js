@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import "./chore-card.css"
-import {Button, FormCheck, Navbar} from "react-bootstrap";
+import {Button, Navbar} from "react-bootstrap";
 import DeleteChoreModal from "../delete-chore/delete-chore-modal";
 import applicationActions from "../../actions/actions";
 import {connect} from "react-redux";
@@ -107,7 +107,7 @@ const ChoreCard = ({props, chore, group, profile, updateProgress, addPoints, edi
             </Navbar.Text>
 
             <DeleteChoreModal key={new Date().getTime()} show={showDeleteModal}
-                              hide={()=> setShowDeleteModal(false)} deleteChore={deleteChore} choreId={chore.id}/>
+                              hide={()=> setShowDeleteModal(false)} deleteChore={deleteChore} chore={chore}/>
 
             <Navbar.Toggle style={{position: "absolute", bottom: "10px", right: "10px", color:"#000"}}
               onClick={() => setToggleText(1 - toggleText)}>
@@ -186,7 +186,7 @@ const ChoreCard = ({props, chore, group, profile, updateProgress, addPoints, edi
 }
 
 const stpm = (state, ownProps) => ({
-    profile: state.profile,
+    profile: state.activeProfile,
     group: state.activeGroupId,
     props: ownProps,
 })

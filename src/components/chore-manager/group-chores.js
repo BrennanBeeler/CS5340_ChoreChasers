@@ -54,8 +54,8 @@ class GroupChores extends React.Component {
     // }, [activeGroupId])
 
 
-    handleDelete(choreId) {
-        this.props.deleteChore(this.props.group, choreId)
+    handleDelete(chore) {
+        this.props.deleteChore(chore)
     }
 
     render() {
@@ -77,20 +77,23 @@ class GroupChores extends React.Component {
                 {/*    {this.props.group.name}*/}
                 {/*</h1>*/}
 
+                <div className="row">
+
                 {/*TODO: evaluate temp fix for duplicate keys- +15*/}
                 <CreateChoreModal key={new Date().getTime() + 15} show={this.state.choreModal}
                                   hide={() => this.setState({choreModal: false})}
                                   profileUsername={this.props.profileUsername} createChore={this.props.createChore}/>
 
-                <div class="group-settings-header-div">
+                <div class="col col-xxl-10 group-settings-header-div">
                     <h4 class="h4-style">
                         Group Progress
                     </h4>
                 </div>
-                <div class="group-settings-btn">
+                <div class="col col-auto">
                     <Link to="/groupSettings" className="">
                         View Group Settings
                     </Link>
+                </div>
                 </div>
                 <p></p>
                 {this.props.group.progressBar ? <ProgressBar>
@@ -102,12 +105,12 @@ class GroupChores extends React.Component {
                 <p></p>
 
                 <div className="row">
-                    <div className="group-name-style">
+                    <div className="col-xl-4 group-name-style">
                         <h1 class="h1-style">
                             {this.props.group.name}
                         </h1>
                     </div>
-                    <div className="create-chore-btn-div-group">
+                    <div className="col col-xl-5 create-chore-btn-div-group">
                         <button className=" create-chore-btn btn btn-info mt-2 mb-1 pt-2 pb-2"
                                 onClick={() => this.setState({choreModal: true})}>
                             Add a New Chore
@@ -115,7 +118,7 @@ class GroupChores extends React.Component {
                         </button>
                     </div>
 
-                    <div className="show-completed-toggle-group">
+                    <div className=" col col-auto show-completed-toggle-group">
                         <ShowCompletedToggle/>
                     </div>
                 </div>
@@ -124,8 +127,6 @@ class GroupChores extends React.Component {
 
 
                 <br/>
-                {/*<br/>*/}
-                {/*<br/>*/}
 
                 <ChoreDisplay key={new Date().getTime()} chores={this.props.group.chores} deleteChore={this.handleDelete} updateProgress={this.updateProgress}/>
             </div>
@@ -137,12 +138,12 @@ const stpm = (state) => ({
     activeProfile: state.activeProfile,
     // TODO: eventually groups will be actually populated
     group : state.groups.filter(group => group.id === state.activeGroupId)[0],
-    profileUsername : state.profile.username
+    profileUsername : state.activeProfile.username
 })
 
 const dtpm = (dispatch) => ({
     getGroupData : (profile, groupId) => applicationActions.getGroupData(dispatch, profile, groupId),
-    deleteChore : (group, choreId) => applicationActions.deleteChore(dispatch, group, choreId),
+    deleteChore : (chore) => applicationActions.deleteChore(dispatch, chore),
     createChore : (groupId, chore) => applicationActions.createChore(dispatch, groupId, chore)
 })
 

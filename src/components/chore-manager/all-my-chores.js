@@ -1,6 +1,6 @@
 import React from "react";
-import "./personal-chores.css";
-import {Button, ProgressBar} from "react-bootstrap";
+import "./all-my-chores.css";
+import {ProgressBar} from "react-bootstrap";
 import CreateChoreModal from "../create-chore/create-chore-modal"
 import ChoreDisplay from "./chore-display";
 import applicationActions from "../../actions/actions";
@@ -29,10 +29,16 @@ class AllMyChores extends React.Component {
         this.updateProgress = this.updateProgress.bind(this);
     }
 
-    handleDelete(choreId) {
+    handleDelete(chore) {
         //TODO: implement deleting - currently uses id which isn't unique and because of nested nature of app.
         // reducer it can't function without database hook up
         console.log("Deleting Chores")
+        if (chore.group === "Personal Chores") {
+            this.props.deletePersonalChore(chore)
+        }
+        else {
+            this.props.deleteChore(chore)
+        }
     }
 
     updateProgress(points) {
@@ -61,24 +67,43 @@ class AllMyChores extends React.Component {
 
                 <p/>
 
-                <div className="personal-chore-name-style">
-                    <h1 className="h1-style">
-                        Personal Chores
-                    </h1>
-                </div>
-                <div className="create-chore-btn-div">
-                    <button className=" create-chore-btn btn btn-info mt-2 mb-1 pt-2 pb-2"
-                            onClick={() => this.setState({choreModal: true})}>
-                        Add a New Chore
-                        <i className="fa fa-plus" style={{paddingLeft: "10px"}}/>
-                    </button>
+                <div className="row">
+                    <div className="col-xl-auto ">
+                        <h1 className="h1-style">
+                            All My Assigned Chores
+                        </h1>
+                    </div>
+
+
+                    <div className="col col-xl-auto create-chore-btn-div-all-chores">
+                        <button className=" create-chore-btn btn btn-info mt-2 mb-1 pt-2 pb-2"
+                                onClick={() => this.setState({choreModal: true})}>
+                            Add a New Chore
+                            <i className="fa fa-plus" style={{paddingLeft: "10px"}}/>
+                        </button>
+                    </div>
+
+                    <div className="col col-xl-auto show-completed-toggle-all-chores">
+                        <ShowCompletedToggle/>
+                    </div>
                 </div>
 
-                <ShowCompletedToggle/>
+                {/*<div className="personal-chore-name-style">*/}
+                {/*    <h1 className="h1-style">*/}
+                {/*        All my assigned chores*/}
+                {/*    </h1>*/}
+                {/*</div>*/}
+                {/*<div className="create-chore-btn-div">*/}
+                {/*    <button className=" create-chore-btn btn btn-info mt-2 mb-1 pt-2 pb-2"*/}
+                {/*            onClick={() => this.setState({choreModal: true})}>*/}
+                {/*        Add a New Chore*/}
+                {/*        <i className="fa fa-plus" style={{paddingLeft: "10px"}}/>*/}
+                {/*    </button>*/}
+                {/*</div>*/}
 
-                <br/>
-                <br/>
-                <br/>
+                {/*<ShowCompletedToggle/>*/}
+
+                <br/><br/>
 
 
                 <ChoreDisplay key={new Date().getTime()}
@@ -96,7 +121,10 @@ const sortForAssignee = (groups, targetUser) => {
     groups.forEach(group => {
         group.chores.forEach(chore => {
             if (chore.assignees.includes(targetUser)) {
-                assignedChores.push(chore)
+                assignedChores.push({
+                    ...chore,
+                    members : group.members
+                })
             }
         })
     })
@@ -106,12 +134,13 @@ const sortForAssignee = (groups, targetUser) => {
 const stpm = (state) => ({
     activeGroupId: state.activeGroupId,
     activeProfile: state.activeProfile,
-    chores : (state.profile.chores).concat(sortForAssignee(state.groups, state.profile.username)),
-    profileUsername : state.profile.username
+    chores : (state.activeProfile.chores).concat(sortForAssignee(state.groups, state.activeProfile.username)),
+    profileUsername : state.activeProfile.username
 })
 
 const dtpm = (dispatch) => ({
-    deletePersonalChore : (choreId) => applicationActions.deletePersonalChore(dispatch, choreId)
+    deletePersonalChore : (chore) => applicationActions.deletePersonalChore(dispatch, chore),
+    deleteChore : (chore) => applicationActions.deleteChore(dispatch, chore)
 })
 
 export default connect(stpm, dtpm)(AllMyChores);

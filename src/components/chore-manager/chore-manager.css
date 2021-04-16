@@ -6,50 +6,24 @@
     width: 50%;
 }
 
-/*.color-top-manager{*/
-/*    background-color: #d1f8ff;*/
-/*}*/
-
-/*.color-bottom-manager{*/
-/*    background-color: #ffdfe4;*/
-/*}*/
-
-/*.manager-fixed-wrapper {*/
-/*    width:550px;*/
-/*}*/
-
 .hci-create-group {
-    height: 90px;
-    margin-bottom: 10px;
+    /*height: 90px;*/
+    margin-bottom: 30px;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 
 .vertical-scrollable {
+    /*margin-left: 2px;*/
+    padding-right: 15px;
     overflow-y: auto;
     overflow-x: hidden;
 }
 
-/*.manager-fixed {*/
-/*    max-width:30%;*/
-/*    min-width:10%;*/
-/*    !*max-width:200px;*!*/
-/*    !*min-width:100px;*!*/
-/*    !*width:10%;*!*/
-/*    padding-right: 20px;*/
-/*    padding-left: 20px;*/
-/*}*/
-
-/*.display-fixed {*/
-/*    !*max-width: 800px;*!*/
-/*    min-width: 1200px;*/
-/*    !*width:90%;*!*/
-/*    !*padding-right: 20px;*!*/
-/*    !*padding-left: 20px;*!*/
-/*}*/
-
 .level-header {
     font-family: Verdana, Geneva, sans-serif;
-    font-size: 35px;
+    font-size: 37px;
     text-shadow: 4px 4px 5px #6892ff;
     text-align: center;
 }
@@ -57,6 +31,7 @@
 .profile-points {
     font-family: Verdana, Geneva, sans-serif;
     font-size: 18px;
+    margin-left: 20px;
 }
 
 .profile-link {
@@ -66,14 +41,16 @@
 }
 
 .group-button {
-    padding: 15px 32px;
+    /*padding: 15px 32px;*/
     text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
     text-decoration: none;
     font-size: 16px;
-    margin: 4px 2px;
+    /*margin: 4px 2px;*/
+    margin-left: 2px;
+    margin-right: 1px;
     cursor: pointer;
     max-height: 80px;
     -webkit-transition-duration: 0.1s; /* Safari */
@@ -84,4 +61,54 @@
 
 .group-button:hover {
     box-shadow: 0 4px 4px 0 rgba(0,0,0,0.15), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+
+
+@media screen and (max-width: 1300px) {
+    .level-header {
+        font-size: 30px;
+        margin-bottom: 5px;
+    }
+    .profile-points {
+        font-size: 12px;
+        margin-bottom: 10px;
+    }
+    .profile-link {
+        font-size: 1.6vh;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .level-header {
+        font-size: 20px;
+        margin-bottom: 5px;
+    }
+    .profile-points {
+        font-size: 9px;
+        margin-bottom: 10px;
+    }
+    .profile-link {
+        font-size: 1.5vh;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .group-button {
+        width: 115%;
+        max-width: 115%;
+        text-align: justify;
+        font-size: 1.3vh;
+    }
+    .level-header {
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+    .profile-points {
+        font-size: 1.3vh;
+        margin-bottom: 10px;
+    }
+    .profile-link {
+        font-size: 1.6vh;
+    }
 }

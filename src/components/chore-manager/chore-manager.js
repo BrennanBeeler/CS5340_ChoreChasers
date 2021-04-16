@@ -40,15 +40,14 @@ const ChoreManager = ({
             <div className="col-2 border-right hci-full-height">
                 {/*PROFILE AREA*/}
                 <div className="row border-bottom border-dark pb-4" style={{height : "160px"}}>
-                    <div className="level-header">
+                    <div className="col level-header">
                         Level {level}
                     </div>
                     <div className="profile-points">
-                        <Link to="/profile" className="btn fa fa-user-circle fa-3x"/>
+                        <Link to="/profile" className="btn fa fa-user-circle fa-2x"/>
                         {points}/{maxPoints} points
                     </div>
-                    <div className="profile-link">
-
+                    <div className="col profile-link">
                         <Link to="/profile">
                             View {profileUsername}'s Account
                         </Link>
@@ -57,7 +56,7 @@ const ChoreManager = ({
 
                 {/*CREATE GROUP BUTTON*/}
                 <div className="row" style={{height: "100px"}}>
-                    <button className="btn btn-info hci-create-group btn-block mt-4 pt-3 pb-3" onClick={() => setCreateGroupModal(true)}>
+                    <button className="btn btn-info hci-create-group btn-block mt-2 pt-2 pb-2" onClick={() => setCreateGroupModal(true)}>
                         Create Group
                         <i className="fa fa-plus" style={{paddingLeft: "10px"}}/>
                     </button>
@@ -78,19 +77,20 @@ const ChoreManager = ({
                             {groups.length > 0 ?
                                 <li className={`nav-link nav-item mb-4 pt-3 pb-4 border border-dark group-button ${activeGroupId === "All_my_chores" ? 'active':''}`}
                                     onClick={() => setActiveGroup("All_my_chores")}>
-                                    {activeGroupId === "All_my_chores" ? "My assigned chores" : "View my assigned chores"}
+                                    {activeGroupId === "All_my_chores" ? "My Assigned Chores" : "View Assigned Chores"}
                                 </li> : <div/>
                             }
 
                             {
                                 groups.map(group =>
-                                    <li className={`nav-link nav-item mb-4 pt-4 pb-4 border border-dark group-button ${activeGroupId === group.id ? 'active':''}`}
+                                    <li className={`nav-link nav-item mb-4 pt-3 pb-4 border border-dark group-button ${activeGroupId === group.id ? 'active':''}`}
                                         key={group.id}
                                         onClick={() => setActiveGroup(group.id)}>
                                         {activeGroupId === group.id ? group.name : "View " + group.name}
                                     </li>
                                 )
                             }
+
                         </ul>
                         <p></p>
                     </div>
@@ -98,7 +98,7 @@ const ChoreManager = ({
             </div>
 
             {/*RIGHT COLUMN*/}
-            <div className="col-10 hci-full-height">
+            <div className="col col-10 hci-full-height">
                 {
                     activeGroupId === "Personal Chores" &&
                         <div className="row border-bottom border-dark" style={{height: "160px"}}>

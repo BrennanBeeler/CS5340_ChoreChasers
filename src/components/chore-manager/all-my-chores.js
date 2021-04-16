@@ -107,7 +107,7 @@ class AllMyChores extends React.Component {
 
                 {/*<ShowCompletedToggle/>*/}
 
-                <br/><br/>
+                <br/>
 
 
                 <ChoreDisplay key={new Date().getTime()}

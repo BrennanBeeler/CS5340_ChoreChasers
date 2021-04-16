@@ -61,8 +61,9 @@ const ChoreCard = ({props, chore, group, profile, updateProgress, addPoints, edi
       <>
 
         <Navbar style={cardStyle} bg="light" expand="xs" >
+            <div className="row">
             <Navbar.Text>
-                <h4 style = {cardText}>
+                <h4 className="col chore-name" style = {cardText}>
                     {chore.choreName}
                 </h4>
 
@@ -73,24 +74,24 @@ const ChoreCard = ({props, chore, group, profile, updateProgress, addPoints, edi
                 {completed ?
                  <div style = {cardText}>
                      <input id="undo" type="checkbox" checked="checked" className="btn" style={{position: "absolute", top: "10px", right: "10px"}} onClick={undoCompleted} />
-                     <label htmlFor="undo" style={{position: "absolute", top: "8px", right: "40px"}}> Undo </label>
+                     <label htmlFor="undo" className="undo-resize" style={{position: "absolute", top: "8px", right: "40px"}}> Undo </label>
                  </div>
                            :
                  <div style = {cardText}>
                  <input id="done" type="checkbox" style={{position: "absolute", top: "10px", right: "10px"}} onClick={markCompleted}/>
-                     <label htmlFor="undo" style={{position: "absolute", top: "8px", right: "40px"}}> Done </label>
+                     <label htmlFor="undo" className="done-resize" style={{position: "absolute", top: "8px", right: "40px"}}> Done </label>
                  </div>
                 }
 
                 {
                     (chore.rewards.points === true || chore.rewards.realLifeItem === true) &&
-                        <div style = {cardText}>
+                        <div className="col" style = {cardText}>
                             Reward:
                         </div>
                 }
                 {
                     (chore.rewards.points === true) &&
-                    <div style = {cardText}>
+                    <div className="col" style = {cardText}>
                         {/*<div style={{paddingLeft: "10px"}}>*/}
                         Points: {chore.points}pts
                     </div>
@@ -98,7 +99,7 @@ const ChoreCard = ({props, chore, group, profile, updateProgress, addPoints, edi
 
                 {
                     (chore.rewards.realLifeItem === true) &&
-                    <div style = {cardText}>
+                    <div className="col" style = {cardText}>
                         {/*<div style={{paddingLeft: "10px"}}>*/}
                         Real Life Reward: {chore.realLifeItem}
                     </div>
@@ -109,11 +110,15 @@ const ChoreCard = ({props, chore, group, profile, updateProgress, addPoints, edi
             <DeleteChoreModal key={new Date().getTime()} show={showDeleteModal}
                               hide={()=> setShowDeleteModal(false)} deleteChore={deleteChore} chore={chore}/>
 
-            <Navbar.Toggle style={{position: "absolute", bottom: "10px", right: "10px", color:"#000"}}
-              onClick={() => setToggleText(1 - toggleText)}>
-                {toggleTextStr[toggleText]}
-                <i className= {caret[toggleText]} style={{paddingLeft: "10px"}}/>
-            </Navbar.Toggle>
+            <div className="hide-details-toggle-div">
+                <Navbar.Toggle className="hide-details-toggle" style={{color:"#000"}}
+                  onClick={() => setToggleText(1 - toggleText)}>
+                    {toggleTextStr[toggleText]}
+                    <i className= {caret[toggleText]} style={{paddingLeft: "10px"}}/>
+                    <div className="col"/>
+                </Navbar.Toggle>
+            </div>
+            </div>
 
             <Navbar.Collapse id="basic-navbar-nav">
                 <Navbar.Text>
@@ -169,13 +174,13 @@ const ChoreCard = ({props, chore, group, profile, updateProgress, addPoints, edi
 
                 <br/>
               {!completed ?
-                <div style={{paddingTop: "15px"}}>
-                    <Button style={{marginRight: "15px"}} onClick={() => {setEditModal(true)}}>
-                        Edit Chore
-                    </Button>
-                    <Button variant="danger" onClick={() => setShowDeleteModal(true)}>
-                        Delete Chore
-                    </Button>
+                <div className="edit-delete-detail-btns" style={{paddingTop: "15px"}}>
+                        <Button className="edit-chore-detail-btn" style={{marginRight: "15px"}} onClick={() => {setEditModal(true)}}>
+                            Edit Chore
+                        </Button>
+                        <Button variant="danger" onClick={() => setShowDeleteModal(true)}>
+                            Delete Chore
+                        </Button>
                 </div> : <div/>}
             </Navbar.Collapse>
         </Navbar>

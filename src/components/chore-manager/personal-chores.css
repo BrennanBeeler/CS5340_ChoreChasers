@@ -16,21 +16,18 @@
 
 }
 
-.create-chore-btn {
-    width:350px;
-}
+/*.create-chore-btn {*/
+/*    width:350px;*/
+/*}*/
 
-.personal-chore-name-style {
-    float: left;
-    padding-left: 10px;
+/*.personal-chore-name-style {*/
+/*    float: left;*/
+/*    padding-left: 10px;*/
 
-}
+/*}*/
 
 .show-completed-toggle-personal {
-    /*margin-left: 83%;*/
-    /*float:right;*/
     position:absolute;
     white-space: nowrap;
-    top:120px;
-    right: 20px;
+    top:15px;
 }

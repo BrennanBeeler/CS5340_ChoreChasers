@@ -65,25 +65,27 @@ class PersonalChores extends React.Component {
                 <p></p>
 
                 <div className="row">
-                    <div className="personal-chore-name-style">
+                    <div className="col-xl-4 personal-chore-name-style">
                         <h1 className="h1-style">
                             Personal Chores
                         </h1>
                     </div>
 
 
-                    <div className="create-chore-btn-div-personal">
+                    <div className="col col-xl-5 create-chore-btn-div-personal">
                         <button className=" create-chore-btn btn btn-info mt-2 mb-1 pt-2 pb-2"
                                 onClick={() => this.setState({choreModal: true})}>
                             Add a New Chore
                             <i className="fa fa-plus" style={{paddingLeft: "10px"}}/>
                         </button>
                     </div>
+
+                    <div className="col col-auto show-completed-toggle-personal">
+                        <ShowCompletedToggle/>
+                    </div>
                 </div>
 
-                <div className="show-completed-toggle-personal">
-                <ShowCompletedToggle/>
-                </div>
+
 
                 <br/>
 

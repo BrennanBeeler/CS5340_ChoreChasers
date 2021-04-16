@@ -168,7 +168,7 @@ const ChoreCard = ({props, chore, group, profile, updateProgress, addPoints, edi
                 </Navbar.Text>
 
                 <br/>
-
+              {!completed ?
                 <div style={{paddingTop: "15px"}}>
                     <Button style={{marginRight: "15px"}} onClick={() => {setEditModal(true)}}>
                         Edit Chore
@@ -176,7 +176,7 @@ const ChoreCard = ({props, chore, group, profile, updateProgress, addPoints, edi
                     <Button variant="danger" onClick={() => setShowDeleteModal(true)}>
                         Delete Chore
                     </Button>
-                </div>
+                </div> : <div/>}
             </Navbar.Collapse>
         </Navbar>
       <EditChoreModal key={new Date().getTime()} show={editModal} onHide={()=> setEditModal(false)}

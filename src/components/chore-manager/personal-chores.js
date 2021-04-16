@@ -14,8 +14,7 @@ class PersonalChores extends React.Component {
         let completedChores = 0;
         let totalPoints = 0;
 
-        //TODO: remove map- map needs return value
-        this.props.chores.map(chore => {
+        this.props.chores.forEach(chore => {
             totalPoints += chore.points;
             if (chore.done) {
                 completedChores += 1;
@@ -54,7 +53,7 @@ class PersonalChores extends React.Component {
                                   profileUsername={this.state.profileUsername}
                 />
                 <h4 className="h4-style">
-                    Today's Progress
+                    Today's Personal Progress
                 </h4>
                 <p/>
                 <ProgressBar>

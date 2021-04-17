@@ -97,20 +97,20 @@ const Profile = ({
                         </OverlayTrigger>
                     </div>
                     <div className="scrollbar scrollbar-primary mt-5 mx-auto" style={{height: "250px", maxHeight: "250px"}}>
-                        <div style={{"overflowY": "scroll", "overflowX": "hidden", maxHeight: "250px", margin: "4px"}}>
+                        <div className="unlocked-levels-div">
                             {unlockableBackgrounds.map((value, index) => {
                                 return (
                                     <div key={value}>
                                         {
                                             index >= level ?
                                             (<div className="row" style = {{marginLeft:"370px"}}>
-                                                <div>
+                                                <div className="col">
                                                     <p>Level {index + 1}</p>
                                                 </div>
-                                                <div style = {{paddingRight:"20px",paddingLeft:"20px"}}>
+                                                <div className="col" style = {{paddingRight:"20px",paddingLeft:"20px"}}>
                                                     <img src={value} style={{height: "50px", width: "250px", filter: "blur(2px)", padding: '4px'}}/>
                                                 </div>
-                                                <div>
+                                                <div className="col">
                                                     <p>
                                                     🔒
                                                     </p>
@@ -118,27 +118,27 @@ const Profile = ({
                                             </div>) :
                                             value === profile.background ?
                                                 (<div className="row" style = {{marginLeft:"370px"}}>
-                                                    <div>
+                                                    <div className="col">
                                                         <p>Level {index + 1}</p>
                                                     </div>
-                                                    <div style = {{paddingRight:"20px",paddingLeft:"20px"}}>
+                                                    <div className="col" style = {{paddingRight:"20px",paddingLeft:"20px"}}>
                                                         <img src={value} style={{height: "50px", width: "250px", padding: '4px'}}/>
                                                     </div>
-                                                    <div>
-                                                        <button className="btn btn-success disabled">
+                                                    <div className="col">
+                                                        <button className="  btn btn-success disabled">
                                                             Selected
                                                         </button>
                                                     </div>
                                                 </div>) :
                                                 (<div className="row" style = {{marginLeft:"370px"}}>
-                                                    <div>
+                                                    <div className="col">
                                                         <p>Level {index + 1}</p>
                                                     </div>
-                                                    <div style = {{paddingRight:"20px",paddingLeft:"20px"}}>
+                                                    <div className="col" style = {{paddingRight:"20px",paddingLeft:"20px"}}>
                                                         <img src={value} style={{height: "50px", width: "250px", padding: '4px'}}/>
                                                     </div>
-                                                    <div >
-                                                        <button className="btn btn-info" onClick={(event) => setBackground(value)}>
+                                                    <div className="col">
+                                                        <button className=" set-background-btn btn-info" onClick={(event) => setBackground(value)}>
                                                             Set Background
                                                         </button>
                                                     </div>

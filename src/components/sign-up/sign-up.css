@@ -93,7 +93,7 @@ input[type=password] {
 }
 
 @media screen and (max-width: 1000px) {
-    .label-box-pair {
+    .label-box-pair-signup {
         margin-left: 210px;
     }
 }

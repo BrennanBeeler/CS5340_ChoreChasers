@@ -21,15 +21,15 @@ const ProfileSettings = ({
   const [confirmPassword, setConfirmPassword] = useState("");
   const [checked, setChecked] = useState(profile.soundEnabled || true);
     return (
-        <div className="container">
+        <div className="container-account">
             <div class="center-profile-settings">
-            <h1 className="text-center">
-                Account Settings
-            </h1>
-            <br/>
-            <h4 className="text-left h4-settings-headers" style={{paddingLeft:"200px", marginTop:"20px",marginBottom:"30px"}}>
-                Change Password
-            </h4>
+                <h1 className="text-center">
+                    Account Settings
+                </h1>
+
+                <h4 className="text-left h4-settings-headers" style={{paddingLeft:"200px", marginTop:"20px",marginBottom:"30px"}}>
+                    Change Password
+                </h4>
 
 
             <form>
@@ -66,10 +66,10 @@ const ProfileSettings = ({
                 <br/>
                 <br/>
 
-              <h4 className=" text-left h4-settings-headers" style={{paddingLeft: "200px", marginTop: "50px"}}>
+              <h4 className=" text-left h4-settings-complete-chores" >
                 Completed Chore Sound
               </h4>
-              <div className="custom-control custom-switch d-flex justify-content-around">
+              <div className="custom-control custom-switch d-flex toggle-div-profile">
                 <p/><p/>
 
                 <p className="toggle-headers-enable ">Disabled</p>
@@ -83,21 +83,18 @@ const ProfileSettings = ({
 
                 <p/><p/>
               </div>
-              <br/>
-
-                <div className="mx-auto">
-
-                    <h4 className="text-left h4-settings-headers" style={{paddingLeft:"200px", marginTop:"40px"}}>
+                <div className="">
+                    <h4 className="text-left h4-settings-delete-account" >
                         Delete Account
                     </h4>
 
-                    <p style={{paddingRight:"290px"}}>
+                    <p className="delete-account-description">
                       This will permanently delete your Chore Chasers account.
                     </p>
 
-                    <div style={{paddingLeft:"200px", float:"left"}}>
+                    <div className="delete-account-btn-div">
                     {/*    TODO: actually handle delete account and triple check they want to*/}
-                    <Link to="/" className="btn btn-danger mt-2" style={{paddingRight:"50px",paddingLeft:"50px"}}>
+                    <Link to="/" className="delete-account-btn btn-danger mt-2">
                         Delete Account
                     </Link>
                     </div>

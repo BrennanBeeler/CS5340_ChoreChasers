@@ -41,6 +41,7 @@
 .form-text-field-signup {
     padding-left:20px;
     width:300px;
+    white-space: nowrap;
     /*float:left;*/
 }
 .form-pass-field-signup {
@@ -70,5 +71,20 @@ input[type=password] {
     border-radius: 4px;
     box-sizing: border-box;
     align-content: center;
+}
 
+.label-box-pair {
+    margin-left: 420px;
+}
+
+@media screen and (max-width: 1000px) {
+    .label-box-pair {
+        margin-left: 210px;
+    }
+}
+
+@media screen and (max-width: 770px) {
+    .label-box-pair {
+        margin-left: 100px;
+    }
 }

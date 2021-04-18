@@ -28,7 +28,6 @@ const SignUp = ({
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
-    //TODO: redo once database is ready
     return (
         <div className="container">
             <div className="center-signup">
@@ -43,9 +42,6 @@ const SignUp = ({
                 {/*TODO: figure out floating labels*/}
                 <form>
                     <div className=" label-box-pair-signup form-group">
-                        {/*<label htmlFor="emailFld" className="label form-headers">*/}
-                        {/*    /!*<div className="form-text-field-signup">What's your email?*</div>*!/*/}
-                        {/*</label>*/}
                         <div className="form-email-field-signup">What's your email?*</div>
                         <div>
                             <input type= "text" id="emailFld" placeholder="example@domain.com"
@@ -57,9 +53,6 @@ const SignUp = ({
                     </div>
 
                     <div className="label-box-pair-signup form-group">
-                        {/*<label htmlFor="usernameFld" className="label form-headers">*/}
-                        {/*    <div className="form-text-field-signup">What would you like to be called?*</div>*/}
-                        {/*</label>*/}
                         <div className="form-username-field-signup">What would you like to be called?*</div>
 
                         <div>
@@ -70,9 +63,6 @@ const SignUp = ({
                     </div>
 
                     <div className="label-box-pair-signup form-group">
-                        {/*<label htmlFor="passwordFld" className="label form-headers">*/}
-                        {/*    <div className="form-pass-field-signup">Set up a secure password to access your choice in the future.*</div>*/}
-                        {/*</label>*/}
                         {/*TODO: figure out if want to have confirm password and hidden type*/}
                         <div className="form-pass-field-signup">Set up a secure password to access your choice in the future.*</div>
                         <div>

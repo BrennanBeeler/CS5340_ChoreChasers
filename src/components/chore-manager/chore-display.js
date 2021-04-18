@@ -7,7 +7,6 @@ import {connect} from "react-redux";
 
 
 const ChoreDisplay = ({chores, background, deleteChore, updateProgress, showCompleted}) => {
-    //TODO: move this if possible
     const style = {
         backgroundImage: "url("+background+")",
         backgroundRepeat: "no-repeat",

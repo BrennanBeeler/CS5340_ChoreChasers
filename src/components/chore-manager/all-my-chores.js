@@ -32,9 +32,6 @@ class AllMyChores extends React.Component {
     }
 
     handleDelete(chore) {
-        //TODO: implement deleting - currently uses id which isn't unique and because of nested nature of app.
-        // reducer it can't function without database hook up
-        console.log("Deleting Chores")
         if (chore.group === "Personal Chores") {
             this.props.deletePersonalChore(chore)
         }
@@ -54,7 +51,6 @@ class AllMyChores extends React.Component {
     render() {
         return (
             <div className="container-fluid">
-                {/*TODO: evaluate temp fix for duplicate keys- +15*/}
                 <CreateChoreModal key={new Date().getTime() + 15}
                                   show={this.state.choreModal}
                                   hide={() => this.setState({choreModal: false})}

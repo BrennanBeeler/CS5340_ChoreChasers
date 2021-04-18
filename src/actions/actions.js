@@ -56,7 +56,6 @@ const signUp = (dispatch, email, username, password, profiles) => {
     }
 }
 
-// TODO: redo with unique group id from database
 const setActiveGroup = (dispatch, activeGroupId) => {
     dispatch({
         type : SET_ACTIVE_GROUP,
@@ -71,7 +70,7 @@ const setBackground = (dispatch, url) => {
     })
 }
 
-//TODO: figure out how to deal with group addition once database is ready- other members in particular
+//TODO: figure out how to deal with adding people to group
 const createGroup = (dispatch, profile, group) => {
     dispatch({
         type : CREATE_GROUP,
@@ -116,7 +115,6 @@ const createChore = (dispatch, groupName, chore) => {
 }
 
 const getGroupData = (dispatch, profile, groupId) => {
-    //TODO: call to server here for group info
     dispatch({
         type : GET_GROUP_DATA,
         profile,

@@ -43,8 +43,6 @@ const CreateChoreModal = ({
             return;
         }
 
-        //TODO: if users sets assignees then moves to personal group the chore will have assignees in personal- idk if matters
-
         let newChore = {
             id: Date.now(),
             done:false,
@@ -86,7 +84,6 @@ const CreateChoreModal = ({
                         <Form.Control type="date" value={dueDate} onChange={event => setDueDate(event.target.value)}/>
                     </Form.Group>
 
-                    {/*TODO: decide how no-repeat looks*/}
                     <Form.Group>
                         <Form.Label>Does the chore need to repeat itself?</Form.Label>
                         <Form.Control as="select" value={repeatChore}
@@ -99,10 +96,9 @@ const CreateChoreModal = ({
                         </Form.Control>
                     </Form.Group>
 
-                    {/*TODO: time a bad placeholder?*/}
                     <Form.Group>
                         <Form.Label>Have any chore instructions?</Form.Label>
-                        <Form.Control as="textarea" placeholder="eg: finish before 5pm" value={choreInstructions}
+                        <Form.Control as="textarea" placeholder="eg: Get a receipt" value={choreInstructions}
                                       onChange={event => setChoreInstructions(event.target.value)}/>
                     </Form.Group>
 
@@ -122,7 +118,6 @@ const CreateChoreModal = ({
                     </Form.Group>
 
                     {
-                        //TODO: find better solution for users
                         choreGroup.name !== "Personal Chores" &&
 
                         <Form.Group>
@@ -272,7 +267,6 @@ const stpm = (state) => {
 
     return ({
         currentGroup:  temp,
-        //TODO: fix groupOptions for all chores
         groupOptions: [{name: "Personal Chores", id : "Personal Chores", members: []}]
             .concat(state.groups.filter(group =>
                 group.members.includes(state.activeProfile.username)).map(group =>

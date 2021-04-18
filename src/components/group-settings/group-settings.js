@@ -73,7 +73,6 @@ const GroupSettings = ({
 const stpm = (state) => ({
     activeGroupId: state.activeGroupId,
     activeProfile: state.activeProfile,
-    // TODO: eventually groups will be actually populated
     group : state.groups.filter(group => group.id === state.activeGroupId)[0],
     profileUsername : state.activeProfile.username
 })

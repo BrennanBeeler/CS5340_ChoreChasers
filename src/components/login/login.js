@@ -51,7 +51,6 @@ const Login = ({
                     </div>
 
                     <br/>
-                    {/*TODO: figure out why this is clearing fields*/}
                     <button className="btn btn-success " onClick={(event) =>  handleSubmit(event)} style={{paddingRight:"100px",paddingLeft:"100px"}}>
                         Start Chores
                     </button>

@@ -16,7 +16,6 @@ const DeleteChoreModal = ({deleteChore, hide, show, chore}) => {
                         </Button>
                     </Col>
                     <Col xs={6}>
-                        {/*TODO: added groupId here*/}
                         <Button variant="danger" onClick={() => deleteChore(chore)}>
                             Yes, delete this chore!
                         </Button>

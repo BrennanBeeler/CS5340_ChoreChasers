@@ -55,7 +55,6 @@ const ProfileSettings = ({
                            value={confirmPassword} onChange={(event => setConfirmPassword(event.target.value))}/>
                 </div>
 
-                {/*TODO: figure out why this is clearing fields*/}
 
                 <div style={{paddingLeft:"200px", float:"left",marginTop:"20px"}}>
                 <button className="btn btn-success" style={{paddingRight:"50px",paddingLeft:"50px"}} onClick={(event) =>  handleSubmit(event)}>

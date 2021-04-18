@@ -41,7 +41,7 @@ const LeaveGroupModal = ({props,
                         </Button>
                     </Col>
                     <Col xs={6}>
-                        {/*TODO: nee to make creat chore validate and submit data*/}
+                        {/*TODO: need to make creat chore validate and submit data*/}
                         <button to="/choreManager" className="btn btn-danger" onClick={handleLeave}>
                             Yes, delete
                         </button>
@@ -60,7 +60,6 @@ const LeaveGroupModal = ({props,
 const stpm = (state, ownProps) => ({
     activeGroupId: state.activeGroupId,
     activeProfile: state.activeProfile,
-    // TODO: eventually groups will be actually populated
     group : state.groups.filter(group => group.id === state.activeGroupId)[0],
     profileUsername : state.activeProfile.username,
     state: state,

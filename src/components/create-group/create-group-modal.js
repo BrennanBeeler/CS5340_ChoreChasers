@@ -34,13 +34,11 @@ const CreateGroupModal = ({props, createGroup, profile, groups}) => {
 
 
     return(
-        // TODO: had to set animation to false because of issue with react-bootstrap https://github.com/react-bootstrap/react-bootstrap/issues/5075
         <Modal {...props} animation={false} backdrop="static">
             <Modal.Header closeButton>
                 <Modal.Title className="text-center">Add a New Group</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                {/*TODO: find findDOMNode issue*/}
                 <Form>
                     <Form.Group>
                         <Form.Label>Group Name *</Form.Label>
@@ -99,7 +97,7 @@ const CreateGroupModal = ({props, createGroup, profile, groups}) => {
                         </Button>
                     </Col>
                     <Col xs={6}>
-                        {/*TODO: need to make creat group validate and submit data*/}
+                        {/*TODO: need to make create group validate and submit data*/}
                         <Button variant="primary" onClick={handleCreateGroup}>
                             Create Group
                         </Button>

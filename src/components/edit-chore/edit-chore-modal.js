@@ -59,8 +59,6 @@ const EditChoreModal = ({onHide, show, activeGroupId, profileUsername, chore, ed
             return;
         }
 
-        //TODO: if users sets assignees then moves to personal group the chore will have assignees in personal- idk if matters
-
         let newChore = {
             id: chore.id,
             done:false,

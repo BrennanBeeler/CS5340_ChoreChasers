@@ -47,13 +47,6 @@ class GroupChores extends React.Component {
         this.setState({members: temp});
     }
 
-    // useEffect(() => {
-    //     //    TODO: get chores from database and populate each column based on if has a due date
-    //     getGroupData(activeProfile, activeGroupId)
-    //
-    // }, [activeGroupId])
-
-
     handleDelete(chore) {
         this.props.deleteChore(chore)
     }
@@ -62,25 +55,9 @@ class GroupChores extends React.Component {
         const {members} = this.state;
         return(
             <div className="container-fluid">
-                {/*<div className="d-flex justify-content-between">*/}
-                {/*    <Button variant="info" onClick={() => this.setState({choreModal: true})}>*/}
-                {/*        Create Chore*/}
-                {/*        <i className="fa fa-plus" style={{paddingLeft: "10px"}}/>*/}
-                {/*    </Button>*/}
-
-                    {/*<Link to="/groupSettings" className="btn btn-info -align-right">*/}
-                    {/*    Group Settings*/}
-                    {/*</Link>*/}
-                {/*</div>*/}
-
-                {/*<h1>*/}
-                {/*    {this.props.group.name}*/}
-                {/*</h1>*/}
-
                 <div style={{height: "160px"}}>
                     <div className="row">
 
-                        {/*TODO: evaluate temp fix for duplicate keys- +15*/}
                         <CreateChoreModal key={new Date().getTime() + 15} show={this.state.choreModal}
                                           hide={() => this.setState({choreModal: false})}
                                           profileUsername={this.props.profileUsername}
@@ -143,7 +120,6 @@ class GroupChores extends React.Component {
 const stpm = (state) => ({
     activeGroupId: state.activeGroupId,
     activeProfile: state.activeProfile,
-    // TODO: eventually groups will be actually populated
     group : state.groups.filter(group => group.id === state.activeGroupId)[0],
     profileUsername : state.activeProfile.username
 })

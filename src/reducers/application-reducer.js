@@ -25,7 +25,6 @@ const applicationReducer = (state = {}, action) => {
                 activeProfile: null
             }
         case LOG_IN:
-            //TODO: test
             return {
                 ...state,
                 loggedIn: true,
@@ -79,7 +78,7 @@ const applicationReducer = (state = {}, action) => {
                 activeProfile: newProfilee,
             }
             return JSON.parse(JSON.stringify(newSound));
-        //    TODO: redo
+        //    TODO: redo now that data is local only
         case CREATE_GROUP:
             return {
                 ...state,
@@ -113,8 +112,6 @@ const applicationReducer = (state = {}, action) => {
                 groups: state.groups.map(group => group.id === action.group.id ? action.group : group)
 
             }
-
-        // TODO: Remove once connected to db, this is only for Leave Group
         case DELETE_GROUP:
             if (action.group) {
                 const newGroups = state.groups;

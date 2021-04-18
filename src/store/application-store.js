@@ -434,7 +434,6 @@ const initialState = {
             progressBar: true,
             members: ['Chad', 'Brian', "Max"],
             chores: [
-                //TODO: required fields- id, done, chorename, rewards,splitrewards, assignor, assignees
                 {
                     id:"1",
                     done:false,

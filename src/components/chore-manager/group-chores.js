@@ -77,51 +77,58 @@ class GroupChores extends React.Component {
                 {/*    {this.props.group.name}*/}
                 {/*</h1>*/}
 
-                <div className="row">
+                <div style={{height: "160px"}}>
+                    <div className="row">
 
-                {/*TODO: evaluate temp fix for duplicate keys- +15*/}
-                <CreateChoreModal key={new Date().getTime() + 15} show={this.state.choreModal}
-                                  hide={() => this.setState({choreModal: false})}
-                                  profileUsername={this.props.profileUsername} createChore={this.props.createChore}/>
+                        {/*TODO: evaluate temp fix for duplicate keys- +15*/}
+                        <CreateChoreModal key={new Date().getTime() + 15} show={this.state.choreModal}
+                                          hide={() => this.setState({choreModal: false})}
+                                          profileUsername={this.props.profileUsername}
+                                          createChore={this.props.createChore}/>
 
-                <div class="col col-xxl-10 group-settings-header-div">
-                    <h4 class="h4-style">
-                        Group Progress
-                    </h4>
-                </div>
-                <div class="col col-auto">
-                    <Link to="/groupSettings" className="">
-                        View Group Settings
-                    </Link>
-                </div>
-                </div>
-                <p></p>
-                {this.props.group.progressBar ? <ProgressBar>
-                    {Object.keys(members).map((member, index) => {
-                        return (<ProgressBar animated={true} variant={this.state.colors[index % 4]} label={member} now={members[member]/this.state.totalPoints*100} key={index}/>)
-                    })
-                    }
-                </ProgressBar> : <div/>}
-                <p></p>
+                        <div className="col col-xxl-10 group-settings-header-div">
+                            <h4 className="h4-style">
+                                Group Progress
+                            </h4>
+                        </div>
 
-                <div className="row">
-                    <div className="col-xl-4 group-name-style">
-                        <h1 class="h1-style">
-                            {this.props.group.name}
-                        </h1>
+                        <div className="col col-auto">
+                            <Link to="/groupSettings" className="">
+                                View Group Settings
+                            </Link>
+                        </div>
                     </div>
-                    <div className="col col-xl-5 create-chore-btn-div-group">
-                        <button className=" create-chore-btn btn btn-info mt-2 mb-1 pt-2 pb-2"
-                                onClick={() => this.setState({choreModal: true})}>
-                            Add a New Chore
-                            <i className="fa fa-plus" style={{paddingLeft: "10px"}}/>
-                        </button>
-                    </div>
+                    <p/>
+                    {this.props.group.progressBar ? <ProgressBar>
+                        {Object.keys(members).map((member, index) => {
+                            return (<ProgressBar animated={true} variant={this.state.colors[index % 4]} label={member}
+                                                 now={members[member] / this.state.totalPoints * 100} key={index}/>)
+                        })
+                        }
+                    </ProgressBar> : <br/>}
+                    <p/>
 
-                    <div className=" col col-auto show-completed-toggle-group">
-                        <ShowCompletedToggle/>
+                    <div className="row">
+                        <div className="col-xl-4 group-name-style">
+                            <h1 className="h1-style">
+                                {this.props.group.name}
+                            </h1>
+                        </div>
+                        <div className="col col-xl-5 create-chore-btn-div-group">
+                            <button className=" create-chore-btn btn btn-info mt-2 mb-1 pt-2 pb-2"
+                                    onClick={() => this.setState({choreModal: true})}>
+                                Add a New Chore
+                                <i className="fa fa-plus" style={{paddingLeft: "10px"}}/>
+                            </button>
+                        </div>
+
+                        <div className=" col col-auto show-completed-toggle-group">
+                            <ShowCompletedToggle/>
+                        </div>
                     </div>
                 </div>
+
+
 
 
 

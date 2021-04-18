@@ -46,7 +46,6 @@ class PersonalChores extends React.Component {
     render() {
         return (
             <div className="container-fluid">
-                {/*TODO: evaluate temp fix for duplicate keys- +15*/}
                 <CreateChoreModal key={new Date().getTime() + 15}
                                   show={this.state.choreModal}
                                   hide={() => this.setState({choreModal: false})}

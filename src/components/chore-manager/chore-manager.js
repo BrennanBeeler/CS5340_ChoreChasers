@@ -108,9 +108,9 @@ const ChoreManager = ({
 
                 {
                     activeGroupId === "All_my_chores" &&
-                        <>
+                        <div className="row border-bottom border-dark" style={{height: "160px"}}>
                             <AllMyChores/>
-                        </>
+                        </div>
                 }
 
                 {

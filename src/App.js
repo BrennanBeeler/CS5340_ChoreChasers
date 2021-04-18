@@ -15,7 +15,7 @@ function App() {
     return (
         <Provider store={applicationStore}>
             <BrowserRouter>
-                <div className="container-fluid">
+                <div className="container-fluid" style={{overflowY: "hidden"}}>
                     <Route path={["/", "/home"]} exact={true}>
                         <Home/>
                     </Route>

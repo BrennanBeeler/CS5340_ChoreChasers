@@ -42,22 +42,26 @@ const SignUp = ({
                 <br/><p/>
                 {/*TODO: figure out floating labels*/}
                 <form>
-                    <div className="form-group">
-                        <label htmlFor="emailFld" className="label form-headers">
-                            <div className="form-text-field-signup">What's your email?*</div>
-                        </label>
+                    <div className=" label-box-pair-signup form-group">
+                        {/*<label htmlFor="emailFld" className="label form-headers">*/}
+                        {/*    /!*<div className="form-text-field-signup">What's your email?*</div>*!/*/}
+                        {/*</label>*/}
+                        <div className="form-email-field-signup">What's your email?*</div>
                         <div>
                             <input type= "text" id="emailFld" placeholder="example@domain.com"
                                    className="form-control"
                                    value={email}
-                                   onChange={(event) => setEmail(event.target.value)}/></div>
+                                   onChange={(event) => setEmail(event.target.value)}/>
+                        </div>
 
                     </div>
 
-                    <div className="form-group">
-                        <label htmlFor="usernameFld" className="label form-headers">
-                            <div className="form-text-field-signup">What would you like to be called?*</div>
-                        </label>
+                    <div className="label-box-pair-signup form-group">
+                        {/*<label htmlFor="usernameFld" className="label form-headers">*/}
+                        {/*    <div className="form-text-field-signup">What would you like to be called?*</div>*/}
+                        {/*</label>*/}
+                        <div className="form-username-field-signup">What would you like to be called?*</div>
+
                         <div>
                             <input type="text" id="usernameFld" placeholder="John" className="form-control"
                                    value={username}
@@ -65,11 +69,12 @@ const SignUp = ({
 
                     </div>
 
-                    <div className="form-group">
-                        <label htmlFor="passwordFld" className="label form-headers">
-                            <div className="form-pass-field-signup">Set up a secure password to access your choice in the future.*</div>
-                        </label>
+                    <div className="label-box-pair-signup form-group">
+                        {/*<label htmlFor="passwordFld" className="label form-headers">*/}
+                        {/*    <div className="form-pass-field-signup">Set up a secure password to access your choice in the future.*</div>*/}
+                        {/*</label>*/}
                         {/*TODO: figure out if want to have confirm password and hidden type*/}
+                        <div className="form-pass-field-signup">Set up a secure password to access your choice in the future.*</div>
                         <div>
                             <input type="password" id="passwordFld" placeholder="Enter a password" className="form-control"
                                    value={password}

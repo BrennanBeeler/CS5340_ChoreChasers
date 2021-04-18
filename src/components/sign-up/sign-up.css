@@ -38,13 +38,29 @@
     float:left;
 }
 
-.form-text-field-signup {
-    padding-left:20px;
+.form-email-field-signup {
+    /*padding-left:20px;*/
+    padding-right:150px;
     width:300px;
+    white-space: nowrap;
     /*float:left;*/
 }
+
+
+.form-username-field-signup {
+    /*padding-left:20px;*/
+    margin-top: 30px;
+    padding-right:50px;
+    width:300px;
+    white-space: nowrap;
+    /*float:left;*/
+}
+
 .form-pass-field-signup {
-    padding-left:20px;
+    /*padding-left:20px;*/
+    margin-top: 30px;
+    white-space: nowrap;
+    padding-right:50px;
     width:300px;
     /*float:left;*/
 }
@@ -70,5 +86,25 @@ input[type=password] {
     border-radius: 4px;
     box-sizing: border-box;
     align-content: center;
+}
 
+.label-box-pair-signup {
+    margin-left: 420px;
+}
+
+@media screen and (max-width: 1000px) {
+    .label-box-pair {
+        margin-left: 210px;
+    }
+}
+
+@media screen and (max-width: 770px) {
+    .label-box-pair-signup {
+        margin-left: 100px;
+    }
+
+    .form-pass-field-signup {
+        white-space: normal;
+        text-align: justify;
+    }
 }

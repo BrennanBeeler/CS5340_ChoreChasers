@@ -2,9 +2,9 @@
     margin-top: 60px;
 }
 
-.container {
-    width: 400px;
-    height: 90%;
+.container-account {
+    width: 70%;
+    /*height: 90%;*/
     margin: 0;
     position: absolute;
     top: 50%;
@@ -28,8 +28,16 @@
     left:20px;
 }
 
-.h4-settings-headers {
+.h4-settings-complete-chores {
     color: #2b2c2c;
+    padding-left:200px;
+    margin-top:50px;
+}
+
+.h4-settings-delete-account{
+    color: #2b2c2c;
+    padding-left:200px;
+    margin-top:40px;
 }
 
 .form-headers {
@@ -52,4 +60,78 @@ input[type=text] {
     padding-right:30px;
     width:200px;
     /*float:left;*/
+}
+
+.toggle-div-profile {
+    margin-left: 170px;
+}
+
+.delete-account-description {
+    padding-right: 150px;
+}
+
+.delete-account-btn {
+    padding: 8px 50px;
+    float:left;
+    border-radius: 4px;
+    -webkit-transition-duration: 0.1s; /* Safari */
+    transition-duration: 0.1s;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    /*margin: 4px 2px;*/
+    cursor: pointer;
+}
+
+.delete-account-btn-div {
+    padding-left: 200px;
+    float: left;
+}
+
+@media screen and (max-width: 650px) {
+    .container-account {
+        width: 80%;
+        margin: 0;
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        background-color: whitesmoke;
+        padding: 0 20px 20px;
+        border-radius: 6px;
+        -webkit-border-radius: 6px;
+        -moz-border-radius: 6px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.075);
+        -webkit-box-shadow: 0 2px 5px rgba(0,0,0,0.075);
+        -moz-box-shadow: 0 2px 5px rgba(0,0,0,0.075);
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 770px) {
+    .h4-settings-complete-chores {
+        padding-left:40px;
+        margin-top: 100px;
+    }
+
+    .toggle-div-profile {
+        margin-top: 20px;
+        margin-left: 20px;
+    }
+
+    .h4-settings-delete-account {
+        padding-left:90px;
+        margin-top: 50px;
+    }
+
+    .delete-account-description {
+        padding-right: 0px;
+    }
+
+    .delete-account-btn-div {
+        padding-left: 80px;
+    }
 }

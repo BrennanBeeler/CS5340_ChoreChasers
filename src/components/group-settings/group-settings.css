@@ -30,15 +30,59 @@
 
 .h4-settings-headers {
   color: #2b2c2c;
+  padding-left:200px;
+  margin-top:50px;
 }
 
+.h4-settings-leave-group {
+  color: #2b2c2c;
+  padding-left:200px;
+  margin-top:20px;
+}
+
+.leave-group-description {
+  padding-right: 270px;
+}
+
+.leave-group-btn {
+  padding: 10px 50px;
+  float:left;
+  border-radius: 4px;
+  -webkit-transition-duration: 0.1s; /* Safari */
+  transition-duration: 0.1s;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  /*margin: 4px 2px;*/
+  cursor: pointer;
+}
+
+.leave-group-btn-div {
+  padding-left: 200px;
+  float: left;
+}
+
+/*.toggle-headers-enable {*/
+/*  padding-right:40px;*/
+/*}*/
+
+/*.toggle-headers-disable {*/
+/*  margin-right:430px;*/
+/*}*/
 
 .toggle-headers-enable {
-  padding-right:20px;
+  padding-right:90px;
 }
 
 .toggle-headers-disable {
-  margin-right:430px;
+  padding-left: 50px;
+  /*margin-right:500px;*/
+}
+
+.toggle-div {
+  margin-left: 170px;
 }
 
 .form-text-field {
@@ -53,15 +97,41 @@ h2 {
   margin-bottom: 15px;
   color: #333;
 }
+
 h4 {
   font-size: 13px;
   color: #00baff;
   letter-spacing: 1px;
   margin-bottom: 25px
 }
+
 p {
   font-size: 16px;
   line-height: 26px;
   margin-bottom: 20px;
   color: #666;
+}
+
+@media screen and (max-width: 770px) {
+  .h4-settings-headers {
+    padding-left:80px;
+  }
+
+  .h4-settings-leave-group {
+    padding-left:160px;
+  }
+
+  .toggle-div {
+    margin-top: 20px;
+    margin-left: 70px;
+  }
+
+  .leave-group-description {
+    padding-right: 0px;
+    padding-left: 10px;
+  }
+
+  .leave-group-btn-div {
+    padding-left: 140px;
+  }
 }

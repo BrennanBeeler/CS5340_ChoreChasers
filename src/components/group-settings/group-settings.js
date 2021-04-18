@@ -29,13 +29,14 @@ const GroupSettings = ({
             </h1>
           <br/>
 
-            <h4 class=" text-left h4-settings-headers" style={{paddingLeft:"200px", marginTop:"50px"}}>
+            <h4 class=" text-left h4-settings-headers">
                 'Weekly Progress Points' bar
             </h4>
-            <div className="custom-control custom-switch d-flex justify-content-around">
-              <p/><p/>
+            {/*<div className="custom-control custom-switch d-flex justify-content-around">*/}
+            <div className="custom-control custom-switch d-flex toggle-div">
+                <p/><p/>
 
-                <p class="toggle-headers-enable ">Disabled</p>
+                <p class="toggle-headers-enable">Disabled</p>
                 <div>
               <input checked={group?.progressBar} value={checked} type="checkbox" className="custom-control-input" id="toggleProgressBar" onChange={toggleProgressBar}/>
               <label className="custom-control-label" htmlFor="toggleProgressBar"></label>
@@ -47,12 +48,12 @@ const GroupSettings = ({
 
         <br/>
 
-        <h4 class="text-left h4-settings-headers" style={{paddingLeft:"200px", marginTop:"20px"}}>
+        <h4 class="text-left h4-settings-leave-group">
           Leave Group
         </h4>
-          <p style={{paddingRight:"270px"}}>You will be removed from this group. All progress will be lost.</p>
-                <div style={{paddingLeft:"200px", float:"left"}}>
-          <button className="btn btn-danger" style={{paddingRight:"50px",paddingLeft:"50px", float:"left"}} onClick={() => setConfirmationModal(true)}>
+          <p className="leave-group-description">You will be removed from this group. All progress will be lost.</p>
+                <div className="leave-group-btn-div">
+          <button className="leave-group-btn btn-danger"  onClick={() => setConfirmationModal(true)}>
             Leave Group
           </button>
                 </div>

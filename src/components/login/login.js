@@ -30,20 +30,22 @@ const Login = ({
                 </h3>
                 <br/><p></p>
                 <form>
-                    <div className="form-group">
-                        <label htmlFor="emailFld" className="label form-headers">
-                            <div className="form-text-field-login">Email *</div>
-                        </label>
+                    <div className="label-box-pair-login form-group">
+                        {/*<label htmlFor="emailFld" className="label form-headers">*/}
+                        {/*    <div className="form-text-field-login">Email *</div>*/}
+                        {/*</label>*/}
+                        <div className="form-email-field-login">Email *</div>
                         <div>
                             <input type="text" id="emailFld" placeholder="example@domain.com" className="form-control"
                                    value={email} onChange={(event => setEmail(event.target.value))}/> </div>
 
                     </div>
 
-                    <div className="form-group">
-                        <label htmlFor="passwordFld" className="label form-headers">
-                            <div class="form-text-field-login">Password * </div>
-                        </label>
+                    <div className="label-box-pair-login form-group">
+                        {/*<label htmlFor="passwordFld" className="label form-headers">*/}
+                        {/*    <div class="form-text-field-login">Password * </div>*/}
+                        {/*</label>*/}
+                        <div className="form-pass-field-login">Password *</div>
                         <input type="password" id="passwordFld" placeholder="Enter your password" className="form-control"
                                value={password} onChange={(event => setPassword(event.target.value))}/>
                     </div>

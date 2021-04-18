@@ -88,7 +88,7 @@ input[type=password] {
     align-content: center;
 }
 
-.label-box-pair {
+.label-box-pair-signup {
     margin-left: 420px;
 }
 
@@ -99,7 +99,7 @@ input[type=password] {
 }
 
 @media screen and (max-width: 770px) {
-    .label-box-pair {
+    .label-box-pair-signup {
         margin-left: 100px;
     }
 

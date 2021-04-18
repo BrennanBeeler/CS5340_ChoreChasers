@@ -33,15 +33,26 @@
 }
 
 .form-headers {
-    /*padding-left:200px;*/
-    /*padding-right: 20px;*/
     float:left;
 }
 
-.form-text-field-login {
-    padding-left:70px;
-    width:180px;
-    /*float:left;*/
+.form-email-field-login {
+    white-space: nowrap;
+    padding-right:240px;
+    width:300px;
+}
+
+.form-pass-field-login {
+    /*padding-left:70px;*/
+    /*width:180px;*/
+    margin-top: 30px;
+    white-space: nowrap;
+    padding-right:210px;
+    width:300px;
+}
+
+.label-box-pair-login {
+    margin-left: 405px;
 }
 
 input[type=text] {
@@ -66,4 +77,21 @@ input[type=password] {
     box-sizing: border-box;
     align-content: center;
 
+}
+
+@media screen and (max-width: 1000px) {
+    .label-box-pair {
+        margin-left: 210px;
+    }
+}
+
+@media screen and (max-width: 770px) {
+    .label-box-pair-login {
+        margin-left: 85px;
+    }
+
+    .form-pass-field-login {
+        white-space: normal;
+        text-align: justify;
+    }
 }

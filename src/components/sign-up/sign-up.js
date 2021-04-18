@@ -42,7 +42,7 @@ const SignUp = ({
                 <br/><p/>
                 {/*TODO: figure out floating labels*/}
                 <form>
-                    <div className=" label-box-pair form-group">
+                    <div className=" label-box-pair-signup form-group">
                         {/*<label htmlFor="emailFld" className="label form-headers">*/}
                         {/*    /!*<div className="form-text-field-signup">What's your email?*</div>*!/*/}
                         {/*</label>*/}
@@ -56,7 +56,7 @@ const SignUp = ({
 
                     </div>
 
-                    <div className="label-box-pair form-group">
+                    <div className="label-box-pair-signup form-group">
                         {/*<label htmlFor="usernameFld" className="label form-headers">*/}
                         {/*    <div className="form-text-field-signup">What would you like to be called?*</div>*/}
                         {/*</label>*/}
@@ -69,7 +69,7 @@ const SignUp = ({
 
                     </div>
 
-                    <div className="label-box-pair form-group">
+                    <div className="label-box-pair-signup form-group">
                         {/*<label htmlFor="passwordFld" className="label form-headers">*/}
                         {/*    <div className="form-pass-field-signup">Set up a secure password to access your choice in the future.*</div>*/}
                         {/*</label>*/}

@@ -46,7 +46,7 @@ const SignUp = ({
                         {/*<label htmlFor="emailFld" className="label form-headers">*/}
                         {/*    /!*<div className="form-text-field-signup">What's your email?*</div>*!/*/}
                         {/*</label>*/}
-                        <div className="form-text-field-signup">What's your email?*</div>
+                        <div className="form-email-field-signup">What's your email?*</div>
                         <div>
                             <input type= "text" id="emailFld" placeholder="example@domain.com"
                                    className="form-control"
@@ -60,7 +60,7 @@ const SignUp = ({
                         {/*<label htmlFor="usernameFld" className="label form-headers">*/}
                         {/*    <div className="form-text-field-signup">What would you like to be called?*</div>*/}
                         {/*</label>*/}
-                        <div className="form-text-field-signup">What would you like to be called?*</div>
+                        <div className="form-username-field-signup">What would you like to be called?*</div>
 
                         <div>
                             <input type="text" id="usernameFld" placeholder="John" className="form-control"

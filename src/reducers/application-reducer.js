@@ -87,8 +87,6 @@ const applicationReducer = (state = {}, action) => {
                 ]
             }
         case CREATE_CHORE:
-            console.log(action)
-
             if (action.groupName === "Personal Chores") {
                 state.activeProfile.chores.push(action.chore);
 

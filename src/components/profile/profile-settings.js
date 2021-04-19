@@ -27,43 +27,43 @@ const ProfileSettings = ({
                     Account Settings
                 </h1>
 
-                <h4 className="text-left h4-settings-headers" style={{paddingLeft:"200px", marginTop:"20px",marginBottom:"30px"}}>
-                    Change Password
-                </h4>
+                {/*<h4 className="text-left h4-settings-headers" style={{paddingLeft:"200px", marginTop:"20px",marginBottom:"30px"}}>*/}
+                {/*    Change Password*/}
+                {/*</h4>*/}
 
 
             <form>
-                <div className="form-group">
-                    <label htmlFor="oldPasswordFld" className="label form-headers">
-                        <div class="form-text-field-group">Enter Old Password</div>
-                    </label>
-                    <input type="text" id="emailFld" placeholder="example@domain.com" className=" form-control "
-                           value={oldPassword} onChange={(event => setOldPassword(event.target.value))}/>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="passwordFld" className="label form-headers">
-                        <div class="form-text-field-group">Enter New Password</div>
-                    </label>
-                    <input type="text" id="passwordFld" placeholder="Enter your password" className=" form-control"
-                           value={newPassword} onChange={(event => setNewPassword(event.target.value))}/>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="passwordFld" className="label form-headers">
-                        <div class="form-text-field-group">Confirm Password</div>
-                    </label>
-                    <input type="text" id="passwordFld" placeholder="Re-enter your password" className="form-control form-text-field"
-                           value={confirmPassword} onChange={(event => setConfirmPassword(event.target.value))}/>
-                </div>
+                {/*<div className="form-group">*/}
+                {/*    <label htmlFor="oldPasswordFld" className="label form-headers">*/}
+                {/*        <div class="form-text-field-group">Enter Old Password</div>*/}
+                {/*    </label>*/}
+                {/*    <input type="text" id="emailFld" placeholder="example@domain.com" className=" form-control "*/}
+                {/*           value={oldPassword} onChange={(event => setOldPassword(event.target.value))}/>*/}
+                {/*</div>*/}
+                {/*<div className="form-group">*/}
+                {/*    <label htmlFor="passwordFld" className="label form-headers">*/}
+                {/*        <div class="form-text-field-group">Enter New Password</div>*/}
+                {/*    </label>*/}
+                {/*    <input type="text" id="passwordFld" placeholder="Enter your password" className=" form-control"*/}
+                {/*           value={newPassword} onChange={(event => setNewPassword(event.target.value))}/>*/}
+                {/*</div>*/}
+                {/*<div className="form-group">*/}
+                {/*    <label htmlFor="passwordFld" className="label form-headers">*/}
+                {/*        <div class="form-text-field-group">Confirm Password</div>*/}
+                {/*    </label>*/}
+                {/*    <input type="text" id="passwordFld" placeholder="Re-enter your password" className="form-control form-text-field"*/}
+                {/*           value={confirmPassword} onChange={(event => setConfirmPassword(event.target.value))}/>*/}
+                {/*</div>*/}
 
 
-                <div style={{paddingLeft:"200px", float:"left",marginTop:"20px"}}>
-                <button className="btn btn-success" style={{paddingRight:"50px",paddingLeft:"50px"}} onClick={(event) =>  handleSubmit(event)}>
-                    Confirm Changes
-                </button>
-                </div>
+                {/*<div style={{paddingLeft:"200px", float:"left",marginTop:"20px"}}>*/}
+                {/*<button className="btn btn-success" style={{paddingRight:"50px",paddingLeft:"50px"}} onClick={(event) =>  handleSubmit(event)}>*/}
+                {/*    Confirm Changes*/}
+                {/*</button>*/}
+                {/*</div>*/}
 
-                <br/>
-                <br/>
+                {/*<br/>*/}
+                {/*<br/>*/}
 
               <h4 className=" text-left h4-settings-complete-chores" >
                 Completed Chore Sound

@@ -1,6 +1,10 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import Carousel from 'react-bootstrap/Carousel'
+// import slide3 from "../css-images/slide3_progress_bar.png"
+import slide1 from "../css-images/slide1_levels_points_progress.png"
+import slide2 from "../css-images/slide2_chore_detail.png"
+import slide3 from "../css-images/slide3_background.png"
 import './home.css';
 
 const Home = () => {
@@ -50,41 +54,45 @@ const Home = () => {
                                 <img
                                     className="d-block w-100"
                                     // src="holder.js/800x400?text=First slide&bg=373940"
+                                    src={slide1}
                                     alt="First slide"
                                     width="500"
                                     height="400"
                                 />
                                 <Carousel.Caption>
-                                    <h3>First slide label</h3>
-                                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                                    <h3 style={{color:"#5f5e5e"}}>Points and Levels</h3>
+                                    <p>Earn points by finishing your chores and levelling up! You can check your own daily progress and your group's progress too.</p>
                                 </Carousel.Caption>
                             </Carousel.Item>
                             <Carousel.Item>
                                 <img
                                     className="d-block w-100"
                                     // src="/src/css-images/hangingclothes2.jpg/"
+                                    src={slide2}
                                     alt="Second slide"
                                     width="500"
                                     height="400"
                                 />
+                                <p></p>
 
                                 <Carousel.Caption>
-                                    <h3>Second slide label</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                    <h3 style={{color:"#5f5e5e"}}>Complete Pending Chores</h3>
+                                    <p>Create, edit, delete and complete your chores! You can also assign chores to other members in your group.</p>
                                 </Carousel.Caption>
                             </Carousel.Item>
                             <Carousel.Item>
                                 <img
                                     className="d-block w-100"
                                     // src="holder.js/800x400?text=Third slide&bg=20232a"
+                                    src={slide3}
                                     alt="Third slide"
                                     width="500"
                                     height="400"
                                 />
 
                                 <Carousel.Caption>
-                                    <h3>Third slide label</h3>
-                                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                                    <h3 style={{color:"#5f5e5e"}}>Customize ChoreChaser</h3>
+                                    <p>Unlock new customization backgrounds as you level up and earn points!</p>
                                 </Carousel.Caption>
                             </Carousel.Item>
                         </Carousel>

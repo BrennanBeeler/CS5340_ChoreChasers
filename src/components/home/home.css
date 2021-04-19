@@ -169,6 +169,15 @@
     margin: 5px;
 }
 
+.carousel .carousel-indicators li {
+    background-color: #fff;
+    background-color: rgba(70, 70, 70, 0.25);
+}
+
+.carousel .carousel-indicators .active {
+    background-color: #444;
+}
+
 
 /*.carousel-control-prev-icon,*/
 /*.carousel-control-next-icon {*/

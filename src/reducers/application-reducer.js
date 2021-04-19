@@ -34,7 +34,6 @@ const applicationReducer = (state = {}, action) => {
             }
         case SIGN_UP:
             let createdProfile = {
-                //TODO: make sure this works to get unique ids
                 id: new Date().getTime(),
                 background: "https://coolbackgrounds.io/images/backgrounds/white/pure-white-background-85a2a7fd.jpg",
                 emailId: action.email,

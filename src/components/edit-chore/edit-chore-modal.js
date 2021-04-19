@@ -11,39 +11,11 @@ const EditChoreModal = ({onHide, show, activeGroupId, profileUsername, chore, ed
         return groups.filter(group => group.id === chore.group)[0].members
     }
 
-    const getInitialDate = () => {
-        if(chore.dueDate === null) {
-            return ""
-        }
-        else {
-            let tempDate = new Date(chore.dueDate)
-            let dateString = tempDate.getFullYear().toString() + "-"
-
-            if ((tempDate.getMonth() + 1).toString().length === 1){
-                dateString = dateString.concat("0" + (tempDate.getMonth() + 1).toString())
-            }
-            else {
-                dateString.concat((tempDate.getMonth() + 1).toString())
-            }
-
-            dateString = dateString.concat("-")
-
-            if ((tempDate.getDate() + 1).toString().length === 1){
-                dateString = dateString.concat("0" + tempDate.getDate().toString())
-            }
-            else {
-                dateString = dateString.concat(tempDate.getDate().toString())
-            }
-
-            return dateString
-        }
-    }
-
     // state.activeGroupId === "Personal Chores" ? {name: "Personal Chores", id: "Personal Chores"} :
     //     state.groups.filter(group => group.id === state.activeGroupId)[0]
 
     const [choreName, setChoreName] = useState(chore.choreName);
-    const [dueDate, setDueDate] = useState(getInitialDate());
+    const [dueDate, setDueDate] = useState(chore.dueDate);
     const [repeatChore, setRepeatChore] = useState(chore.repeatChore);
     const [choreInstructions, setChoreInstructions] = useState(chore.choreInstructions);
     const [rewardMode, setRewardMode] = useState(chore.rewards.points === true || chore.rewards.realLifeItem === true);
@@ -63,7 +35,7 @@ const EditChoreModal = ({onHide, show, activeGroupId, profileUsername, chore, ed
             id: chore.id,
             done:false,
             choreName: choreName,
-            dueDate: dueDate === undefined ? null : new Date(dueDate).toISOString(),
+            dueDate: dueDate === undefined ? null : dueDate,
             repeatChore: repeatChore,
             choreInstructions: choreInstructions,
             rewards:{points:pointsChecked,realLifeItem:prizeChecked},
@@ -75,6 +47,8 @@ const EditChoreModal = ({onHide, show, activeGroupId, profileUsername, chore, ed
             assignees: (chore.group === "Personal Chores" ? [profileUsername] : assignees),
             group: chore.group
         }
+
+        console.log(newChore)
 
         editChore(newChore);
         onHide();

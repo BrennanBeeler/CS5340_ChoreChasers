@@ -22,7 +22,46 @@ const ChoreCard = ({props, chore, group, profile, updateProgress, addPoints, edi
     };
     const cardText = {
         color: "#070707",
-}
+    }
+
+    {console.log(chore)}
+
+    const handleDateFormat = (date) => {
+        // console.log(date)
+        // console.log(date.substring(0, 10))
+
+        // let tempDate = new Date(chore.dueDate)
+        //
+        // let dateString = tempDate.getFullYear().toString() + "-"
+        //
+        // if ((tempDate.getMonth() + 1).toString().length === 1){
+        //     dateString = dateString.concat("0" + (tempDate.getMonth() + 1).toString())
+        // }
+        // else {
+        //     dateString.concat((tempDate.getMonth() + 1).toString())
+        // }
+        //
+        // dateString = dateString.concat("-")
+        //
+        // if ((tempDate.getDate() + 1).toString().length === 1){
+        //     dateString = dateString.concat("0" + tempDate.getDate().toString())
+        // }
+        // else {
+        //     dateString = dateString.concat(tempDate.getDate().toString())
+        // }
+        //
+        // console.log(dateString)
+        //
+        // return dateString
+
+        // console.log(new Date(date.substring(0, 10)).toISOString())
+
+        // return date.substring(0, 10)
+
+        return date
+    }
+
+
 
     const markCompleted = (event) => {
         //TODO: handle promise
@@ -126,7 +165,7 @@ const ChoreCard = ({props, chore, group, profile, updateProgress, addPoints, edi
                         chore.dueDate !== null &&
                         <>
                             <div style = {cardText}>
-                                Due Date: {new Date(chore.dueDate).toDateString()}
+                                Due Date: {chore.dueDate}
                             </div>
 
                             <br/>
@@ -160,7 +199,7 @@ const ChoreCard = ({props, chore, group, profile, updateProgress, addPoints, edi
                         chore.dateAdded !== null &&
                             <>
                                 <div style = {cardText}>
-                                    Date Added: {new Date(chore.dateAdded).toDateString()}
+                                    Date Added: {chore.dateAdded}
                                 </div>
                                 <br/>
                             </>

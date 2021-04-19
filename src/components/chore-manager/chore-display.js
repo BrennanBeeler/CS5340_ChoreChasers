@@ -21,9 +21,6 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress, showComp
     const [futureChores, setFutureChores] = useState([]);
     const [undatedChores, setUndatedChores] = useState([]);
 
-
-
-
     const sortChore = () => {
         let overdueTemp = [];
         let todayTemp = [];
@@ -36,13 +33,13 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress, showComp
                 if(chore.dueDate === null) {
                     undatedTemp.push(chore)
                 }
-                else if (new Date(chore.dueDate).getTime() < new Date().getTime()) {
+                else if (new Date(chore.dueDate).getTime() < new Date(new Date().toISOString().substring(0, 10)).getTime()) {
                     overdueTemp.push(chore)
                 }
-                else if (new Date(chore.dueDate).getTime() < new Date().getTime() + 86400000) {
+                else if (chore.dueDate === new Date().toISOString().substring(0, 10)) {
                     todayTemp.push(chore)
                 }
-                else if (new Date(chore.dueDate).getTime() < new Date().getTime() + 604800000) {
+                else if (new Date(chore.dueDate).getTime() < new Date(new Date().toISOString().substring(0, 10)).getTime() + 604800000) {
                     weeksTemp.push(chore)
                 }
                 else {
@@ -54,13 +51,13 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress, showComp
                     if(chore.dueDate === null) {
                         undatedTemp.push(chore)
                     }
-                    else if (new Date(chore.dueDate).getTime() < new Date().getTime()) {
+                    else if (new Date(chore.dueDate).getTime() < new Date(new Date().toISOString().substring(0, 10)).getTime()) {
                         overdueTemp.push(chore)
                     }
-                    else if (new Date(chore.dueDate).getTime() < new Date().getTime() + 86400000) {
+                    else if (chore.dueDate === new Date().toISOString().substring(0, 10)) {
                         todayTemp.push(chore)
                     }
-                    else if (new Date(chore.dueDate).getTime() < new Date().getTime() + 604800000) {
+                    else if (new Date(chore.dueDate).getTime() < new Date(new Date().toISOString().substring(0, 10)).getTime() + 604800000) {
                         weeksTemp.push(chore)
                     }
                     else {

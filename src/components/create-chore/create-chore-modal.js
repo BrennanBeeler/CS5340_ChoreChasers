@@ -26,16 +26,6 @@ const CreateChoreModal = ({
     const [prizeText, setPrizeText] = useState("");
     const [pointNumber, setPointNumber] = useState(0);
 
-    const handleDate = () => {
-        let newDate = new Date()
-
-        // Due date is now around noon on whatever day is selected, all in local time - subtract 1 because of 0 vs 1 indexing
-        newDate.setFullYear(parseInt(dueDate.substring(0, 4)), parseInt(dueDate.substring(5, 7)) - 1, parseInt(dueDate.substring(8, 10)))
-        newDate.setHours(23, 59)
-
-        return newDate.toISOString()
-    }
-
     const validateChore = () => {
         //TODO: actually validate chores
         if(choreName === "") {
@@ -47,14 +37,14 @@ const CreateChoreModal = ({
             id: Date.now(),
             done:false,
             choreName: choreName,
-            dueDate: dueDate === "" ? null : handleDate(),
+            dueDate: dueDate === "" ? null : dueDate,
             repeatChore: repeatChore,
             choreInstructions: choreInstructions,
             rewards:{points:pointsChecked,realLifeItem:prizeChecked},
             points: pointNumber,
             realLifeItem: prizeText,
             splitReward:{everyoneGetsReward:rewardMode,fcfs:!rewardMode},
-            dateAdded: new Date().toISOString(),
+            dateAdded: new Date().toISOString().substring(0, 10),
             assignor: profileUsername,
             assignees: (choreGroup.name === "Personal Chores" ? [profileUsername] : assignees),
             group: choreGroup.id

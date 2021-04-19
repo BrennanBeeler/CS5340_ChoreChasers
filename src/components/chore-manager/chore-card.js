@@ -22,7 +22,7 @@ const ChoreCard = ({props, chore, group, profile, updateProgress, addPoints, edi
     };
     const cardText = {
         color: "#070707",
-}
+    }
 
     const markCompleted = (event) => {
         //TODO: handle promise
@@ -126,7 +126,7 @@ const ChoreCard = ({props, chore, group, profile, updateProgress, addPoints, edi
                         chore.dueDate !== null &&
                         <>
                             <div style = {cardText}>
-                                Due Date: {new Date(chore.dueDate).toDateString()}
+                                Due Date: {chore.dueDate}
                             </div>
 
                             <br/>
@@ -160,7 +160,7 @@ const ChoreCard = ({props, chore, group, profile, updateProgress, addPoints, edi
                         chore.dateAdded !== null &&
                             <>
                                 <div style = {cardText}>
-                                    Date Added: {new Date(chore.dateAdded).toDateString()}
+                                    Date Added: {chore.dateAdded}
                                 </div>
                                 <br/>
                             </>

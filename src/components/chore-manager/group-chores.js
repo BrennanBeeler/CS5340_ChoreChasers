@@ -75,6 +75,12 @@ class GroupChores extends React.Component {
                             </Link>
                         </div>
                     </div>
+
+                    <div className="">
+                        <Link to="/" className="log-out-btn">
+                            Log Out
+                        </Link>
+                    </div>
                     <p/>
                     {this.props.group.progressBar ? <ProgressBar>
                         {Object.keys(members).map((member, index) => {

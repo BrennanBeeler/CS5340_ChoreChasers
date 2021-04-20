@@ -54,6 +54,12 @@
     top:15px;
 }
 
+.log-out-btn {
+    position: absolute;
+    top:25px;
+    right:14px;
+}
+
 
 
 @media screen and (max-width: 850px) {

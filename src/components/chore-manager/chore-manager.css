@@ -13,10 +13,12 @@
     margin-right: 5px;
 }
 
+.nav-link {
+    margin-left: 1px !important;
+}
 
 .vertical-scrollable {
     /*margin-left: 2px;*/
-    padding-right: 15px;
     overflow-y: auto;
     overflow-x: hidden;
 }

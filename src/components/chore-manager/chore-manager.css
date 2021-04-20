@@ -95,8 +95,8 @@
 
 @media screen and (max-width: 650px) {
     .group-button {
-        width: 105%;
-        max-width: 105%;
+        width: 102%;
+        max-width: 102%;
         text-align: justify;
         font-size: 1.2vh;
         margin-left: 12px;

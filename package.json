@@ -16,6 +16,7 @@
     "express": "^4.17.1",
     "mongodb": "^3.6.5",
     "mongoose": "^5.12.2",
+    "particlesjs": "^2.2.3",
     "react": "^17.0.1",
     "react-bootstrap": "^1.5.2",
     "react-bootstrap-typeahead": "^5.1.4",

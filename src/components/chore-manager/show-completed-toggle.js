@@ -5,9 +5,9 @@ import applicationActions from "../../actions/actions";
 const ShowCompletedToggle = ({showCompleted, toggleShowCompleted}) => {
 
     return (
-        <span className="form-check">
-            <input className="form-check-input" type="checkbox" id="showCompletedToggle" checked={showCompleted} onClick={() => toggleShowCompleted()}/>
-            <label style = {{paddingLeft: "5px"}} className="form-check-label" htmlFor="showCompletedToggle">Show Completed Chores</label>
+        <span className="form-check custom-control custom-switch">
+            <input className="form-check-input custom-control-input" type="checkbox" id="showCompletedToggle" checked={showCompleted} onClick={() => toggleShowCompleted()}/>
+            <label style = {{paddingLeft: "5px"}} className="form-check-label custom-control-label" htmlFor="showCompletedToggle">Show Completed Chores</label>
         </span>
     )
 }

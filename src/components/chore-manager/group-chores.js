@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import "./group-chores.css"
 import LogOutModal from "../logout/logout-modal";
 import ChoreDisplay from "./chore-display";
@@ -81,13 +81,14 @@ class GroupChores extends React.Component {
                     </div>
 
                     <div >
-                        <Link to="/" className="log-out-group-btn" onClick={() => this.setState({loggedIn: false})}>
-                            Log Out
-                        </Link>
+                        {/*<Link to="/" className="log-out-group-btn" onClick={() => this.setState({loggedIn: false})}>*/}
+                        {/*    Log Out*/}
+                        {/*</Link>*/}
+                        <a className="log-out-group-btn" onClick={() => this.setState({showLogOutModal: true})}>Log Out</a>
                     </div>
-                    {/*<LogOutModal show={this.state.showLogOutModal}*/}
-                    {/*             hide={() => this.setState({showLogOutModal: false})}/>*/}
-                    {/*<p/>*/}
+                    <LogOutModal key={new Date().getTime()} show={this.state.showLogOutModal}
+                                 hide={() => this.setState({showLogOutModal: false})}/>
+                    <p/>
                     {this.props.group.progressBar ? <ProgressBar>
                         {Object.keys(members).map((member, index) => {
                             return (<ProgressBar animated={true} variant={this.state.colors[index % 4]} label={member}

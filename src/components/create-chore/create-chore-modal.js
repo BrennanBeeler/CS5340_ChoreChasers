@@ -27,7 +27,6 @@ const CreateChoreModal = ({
     const [pointNumber, setPointNumber] = useState(0);
 
     const validateChore = () => {
-        //TODO: actually validate chores
         if(choreName === "") {
             alert("Please make sure to include a name for your chore")
             return;

@@ -41,8 +41,8 @@ const CreateChoreModal = ({
             repeatChore: repeatChore,
             choreInstructions: choreInstructions,
             rewards:{points:pointsChecked,realLifeItem:prizeChecked},
-            points: pointNumber,
-            realLifeItem: prizeText,
+            points: pointsChecked === true ? pointNumber : 0,
+            realLifeItem: prizeChecked === true ? prizeText : "",
             splitReward:{everyoneGetsReward:rewardMode,fcfs:!rewardMode},
             dateAdded: new Date().toISOString().substring(0, 10),
             assignor: profileUsername,
@@ -50,7 +50,6 @@ const CreateChoreModal = ({
             group: choreGroup.id
         }
 
-        //TODO: fix this use of name as identifier
         createChore(choreGroup.id, newChore)
         hide()
     }
@@ -69,7 +68,7 @@ const CreateChoreModal = ({
                     </Form.Group>
 
                     <Form.Group>
-                        <Form.Label>When is it due? If not, it will appear in Undated Chores</Form.Label>
+                        <Form.Label>When is it due? If empty, it will appear in Undated Chores</Form.Label>
                         <div>
                             <Form.Control type="date" value={dueDate} onChange={event => {setDueDate(event.target.value)}}/>
                             <btn className="btn btn-info" onClick={event => {setDueDate("")}}>Clear</btn>

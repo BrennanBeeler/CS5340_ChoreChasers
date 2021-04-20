@@ -9,14 +9,14 @@ const DeleteChoreModal = ({deleteChore, hide, show, chore}) => {
                 <Modal.Title className="text-center">Delete Chore?</Modal.Title>
             </Modal.Header>
             <Modal.Footer>
-                <Row>
+                <Row style={{width: "100%"}}>
                     <Col xs={6}>
-                        <Button variant="success" onClick={hide}>
+                        <Button  variant="success" block onClick={hide}>
                             No, Keep it!
                         </Button>
                     </Col>
                     <Col xs={6}>
-                        <Button variant="danger" onClick={() => deleteChore(chore)}>
+                        <Button  variant="danger" block onClick={() => deleteChore(chore)}>
                             Yes, delete this chore!
                         </Button>
                     </Col>

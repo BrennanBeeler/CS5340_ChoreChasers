@@ -1,5 +1,6 @@
 import React from "react";
 import "./personal-chores.css"
+import LogOutModal from "../logout/logout-modal";
 import {ProgressBar} from "react-bootstrap";
 import CreateChoreModal from "../create-chore/create-chore-modal"
 import ChoreDisplay from "./chore-display";
@@ -24,6 +25,7 @@ class PersonalChores extends React.Component {
         });
         this.state = {
             choreModal: false,
+            showLogOutModal:false,
             completedPoints,
             totalPoints,
             completedChores,
@@ -57,10 +59,14 @@ class PersonalChores extends React.Component {
                 </h4>
                 <p/>
                 <div>
-                    <Link to="/" className="log-out-personal-btn" onClick={() => this.setState({loggedIn: false})}>
-                        Log Out
-                    </Link>
+                    {/*<Link to="/" className="log-out-personal-btn" onClick={() => this.setState({loggedIn: false})}>*/}
+                    {/*    Log Out*/}
+                    {/*</Link>*/}
+                    <a className="log-out-personal-btn" onClick={() => this.setState({showLogOutModal: true})}>Log Out</a>
                 </div>
+                <LogOutModal key={new Date().getTime()} show={this.state.showLogOutModal}
+                             hide={() => this.setState({showLogOutModal: false})}/>
+
                 <ProgressBar>
                     <ProgressBar variant="success" now={this.state.completedChores/this.props.chores.length *100} key={1}/>
                 </ProgressBar>

@@ -89,16 +89,16 @@ const CreateGroupModal = ({props, createGroup, profile, groups}) => {
             </Modal.Body>
 
             <Modal.Footer>
-                <Row>
+                <Row style={{width: "100%"}}>
                     {/*TODO: figure out layout*/}
                     <Col xs={6}>
-                        <Button variant="danger" onClick={props.onHide}>
+                        <Button variant="danger" block onClick={props.onHide}>
                             Nevermind
                         </Button>
                     </Col>
                     <Col xs={6}>
                         {/*TODO: need to make create group validate and submit data*/}
-                        <Button variant="primary" onClick={handleCreateGroup}>
+                        <Button variant="primary" block onClick={handleCreateGroup}>
                             Create Group
                         </Button>
                     </Col>

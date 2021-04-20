@@ -214,16 +214,16 @@ const EditChoreModal = ({onHide, show, activeGroupId, profileUsername, chore, ed
             </Modal.Body>
 
             <Modal.Footer>
-                <Row>
+                <Row style={{width: "100%"}}>
                     {/*TODO: figure out layout*/}
                     <Col xs={6}>
-                        <Button variant="danger" onClick={onHide}>
+                        <Button variant="danger" block onClick={onHide}>
                             Nevermind
                         </Button>
                     </Col>
                     <Col xs={6}>
                         {/*TODO: need to make creat chore validate and submit data*/}
-                        <Button variant="primary" onClick={validateChore}>
+                        <Button  variant="primary" block onClick={validateChore}>
                             Save & Exit
                         </Button>
                     </Col>

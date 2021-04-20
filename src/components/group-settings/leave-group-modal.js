@@ -33,18 +33,18 @@ const LeaveGroupModal = ({props,
               </p>
             </Modal.Body>
           <Modal.Footer>
-                <Row>
+                <Row style={{width: "100%"}}>
                     {/*TODO: figure out layout*/}
                     <Col xs={6}>
-                        <Button variant="info" onClick={props.onHide}>
+                        <Button variant="success" block onClick={props.onHide}>
                             No, go back!
                         </Button>
                     </Col>
                     <Col xs={6}>
                         {/*TODO: need to make creat chore validate and submit data*/}
-                        <button to="/choreManager" className="btn btn-danger" onClick={handleLeave}>
+                        <Button to="/choreManager" className="btn btn-danger" block onClick={handleLeave}>
                             Yes, delete
-                        </button>
+                        </Button>
                       {
                         leave &&
                           <Redirect to="/choreManager"/>}

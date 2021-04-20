@@ -9,7 +9,8 @@ const Home = () => {
     const slide2 = "/slide2_chore_detail.png";
     const slide3 = "/slide3_background.png";
     return(
-        <div>
+        <body>
+        <div className="page-bg">
             <div className="row">
                 <div className="col-4">
                     <h1 class="header">
@@ -130,6 +131,7 @@ const Home = () => {
                 </div>
             </div>
         </div>
+        </body>
     )
 };
 

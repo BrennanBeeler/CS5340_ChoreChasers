@@ -37,7 +37,7 @@ const ChoreManager = ({
     return (
         <div className="hci-full-height row" style={{overflowY: "hidden"}}>
             {/*LEFT COLUMN*/}
-            <div className="col-2 border-right hci-full-height" style={{backgroundColor: "#f6f2f2"}}>
+            <div className="col-2 border-right hci-full-height">
                 {/*PROFILE AREA*/}
                 <div className="row border-bottom border-right border-dark pb-4" style={{height : "160px"}}>
                     <div className="col level-header">

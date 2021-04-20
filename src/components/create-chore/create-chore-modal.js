@@ -68,12 +68,15 @@ const CreateChoreModal = ({
                                       onChange={event => setChoreName(event.target.value)}/>
                     </Form.Group>
 
-                    {/*TODO: need way to clear date*/}
                     <Form.Group>
                         <Form.Label>When is it due? If not, it will appear in Undated Chores</Form.Label>
-                        <Form.Control type="date" value={dueDate} onChange={event => setDueDate(event.target.value)}/>
+                        <div>
+                            <Form.Control type="date" value={dueDate} onChange={event => {setDueDate(event.target.value)}}/>
+                            <btn className="btn btn-info" onClick={event => {setDueDate("")}}>Clear</btn>
+                        </div>
                     </Form.Group>
 
+                    {dueDate !== "" ?
                     <Form.Group>
                         <Form.Label>Does the chore need to repeat itself?</Form.Label>
                         <Form.Control as="select" value={repeatChore}
@@ -84,7 +87,7 @@ const CreateChoreModal = ({
                             <option value="Monthly">Monthly</option>
                             <option value="Yearly">Yearly</option>
                         </Form.Control>
-                    </Form.Group>
+                    </Form.Group> : <div/>}
 
                     <Form.Group>
                         <Form.Label>Have any chore instructions?</Form.Label>

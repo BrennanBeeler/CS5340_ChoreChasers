@@ -74,12 +74,12 @@ const ChoreCard = ({props, chore, group, profile, updateProgress, addPoints, edi
 
                 {completed ?
                  <div style = {cardText}>
-                     <input id="undo" type="checkbox" checked="checked" className="btn" style={{position: "absolute", top: "10px", right: "10px"}} onClick={undoCompleted} />
+                     <input id="undo" type="checkbox" checked="checked" className="btn" style={{position: "absolute", top: "10px", right: "10px"}} onChange={undoCompleted} />
                      <label htmlFor="undo" className="undo-resize" style={{position: "absolute", top: "8px", right: "40px"}}> Undo </label>
                  </div>
                            :
                  <div style = {cardText}>
-                 <input id="done" type="checkbox" style={{position: "absolute", top: "10px", right: "10px"}} onClick={markCompleted}/>
+                 <input id="done" type="checkbox" style={{position: "absolute", top: "10px", right: "10px"}} onChange={markCompleted}/>
                      <label htmlFor="undo" className="done-resize" style={{position: "absolute", top: "8px", right: "40px"}}> Done </label>
                  </div>
                 }

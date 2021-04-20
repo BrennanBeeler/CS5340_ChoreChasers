@@ -41,13 +41,16 @@ const ChoreManager = ({
                 {/*PROFILE AREA*/}
                 <div className="row border-bottom border-dark pb-4" style={{height : "160px"}}>
                     <div className="col level-header">
-                        Level {level}
+                        Level
+                        <br/>
+                        {level}
                     </div>
-                    <div className="profile-points">
+                    <div className="col profile-points">
                         <Link to="/profile" className="btn fa fa-user-circle fa-2x"/>
+                        <br/>
                         {points}/{maxPoints} points
                     </div>
-                    <div className="col profile-link">
+                    <div className="row justify-content-center profile-link" style={{width: "100%"}}>
                         <Link to="/profile">
                             View {profileUsername}'s Account
                         </Link>
@@ -89,6 +92,16 @@ const ChoreManager = ({
                                         {activeGroupId === group.id ? group.name : "View " + group.name}
                                     </li>
                                 )
+                            }
+
+                            {
+                                groups.length === 0 &&
+                                    <div className="text-center">
+                                        <br/>
+                                        Created groups will
+                                        <br/>
+                                        show up here!
+                                    </div>
                             }
 
                         </ul>

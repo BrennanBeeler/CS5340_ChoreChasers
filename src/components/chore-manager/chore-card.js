@@ -34,6 +34,8 @@ const ChoreCard = ({props, chore, group, profile, updateProgress, addPoints, edi
         updateProgress(parseInt(chore.points), completed);
         setCompleted(!completed);
         chore.done = !chore.done;
+        chore.pastAssignees = chore.assignees;
+        chore.assignees = [profile.username]
         editChore(chore, group);
 
         // timeOut()
@@ -53,6 +55,7 @@ const ChoreCard = ({props, chore, group, profile, updateProgress, addPoints, edi
         updateProgress(-parseInt(chore.points), completed);
         setCompleted(!completed);
         chore.done = !chore.done;
+        chore.assignees = chore.pastAssignees ? chore.pastAssignees : chore.assignees;
         editChore(chore, group);
     }
 

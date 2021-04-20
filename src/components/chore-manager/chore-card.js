@@ -18,7 +18,8 @@ const ChoreCard = ({props, chore, group, profile, updateProgress, addPoints, edi
     const successSound = new Audio("/success.wav");
 
     const cardStyle = {
-        boxShadow: "0 15px 15px 0 rgba(0, 0, 0, 0.1), 0 15px 15px 0 rgba(0, 0, 0, 0.1)"
+        boxShadow: "0 15px 15px 0 rgba(0, 0, 0, 0.1), 0 15px 15px 0 rgba(0, 0, 0, 0.1)",
+        borderRadius:"8px"
     };
     const cardText = {
         color: "#070707",

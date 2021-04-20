@@ -51,7 +51,7 @@ class PersonalChores extends React.Component {
             <div className="container-fluid">
                 <CreateChoreModal key={new Date().getTime() + 15}
                                   show={this.state.choreModal}
-                                  hide={() => this.setState({choreModal: false})}
+                                  hide={() => this.setState({...this.state, choreModal: false})}
                                   profileUsername={this.state.profileUsername}
                 />
                 <h4 className="h4-style">
@@ -59,13 +59,10 @@ class PersonalChores extends React.Component {
                 </h4>
                 <p/>
                 <div>
-                    {/*<Link to="/" className="log-out-personal-btn" onClick={() => this.setState({loggedIn: false})}>*/}
-                    {/*    Log Out*/}
-                    {/*</Link>*/}
                     <a className="log-out-personal-btn" onClick={() => this.setState({showLogOutModal: true})}>Log Out</a>
                 </div>
-                <LogOutModal key={new Date().getTime()} show={this.state.showLogOutModal}
-                             hide={() => this.setState({showLogOutModal: false})}/>
+                <LogOutModal show={this.state.showLogOutModal}
+                             hide={() => this.setState({...this.state, showLogOutModal: false})}/>
 
                 <ProgressBar>
                     <ProgressBar variant="success" now={this.state.completedChores/this.props.chores.length *100} key={1}/>

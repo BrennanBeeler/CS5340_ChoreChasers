@@ -59,6 +59,10 @@ class GroupChores extends React.Component {
         const {members} = this.state;
         return(
             <div className="container-fluid">
+                {
+                    console.log(this.state)
+                }
+
                 <div style={{height: "160px"}}>
                     <div className="row">
 
@@ -80,14 +84,11 @@ class GroupChores extends React.Component {
                         </div>
                     </div>
 
-                    <div >
-                        {/*<Link to="/" className="log-out-group-btn" onClick={() => this.setState({loggedIn: false})}>*/}
-                        {/*    Log Out*/}
-                        {/*</Link>*/}
+                    <div>
                         <a className="log-out-group-btn" onClick={() => this.setState({showLogOutModal: true})}>Log Out</a>
                     </div>
-                    <LogOutModal key={new Date().getTime()} show={this.state.showLogOutModal}
-                                 hide={() => this.setState({showLogOutModal: false})}/>
+                    <LogOutModal show={this.state.showLogOutModal}
+                                 hide={() => this.setState({...this.state, showLogOutModal: false})}/>
                     <p/>
                     {this.props.group.progressBar ? <ProgressBar>
                         {Object.keys(members).map((member, index) => {

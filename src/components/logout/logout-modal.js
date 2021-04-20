@@ -1,13 +1,15 @@
 import React from "react";
 import {Modal, Button, Row, Col} from "react-bootstrap";
-import { useHistory } from 'react-router-dom'
+import applicationActions from "../../actions/actions";
+import {connect} from "react-redux";
 
-const LogOutModal = ({hide, show}) => {
-    let history = useHistory();
+const LogOutModal = ({hide, show, logOut}) => {
 
     function redirectLogout() {
-        history.push("/");
+        logOut()
+        hide()
     }
+
     return (
         <Modal onHide={hide} animation={false} show={show} backdrop="static">
             <Modal.Header closeButton>
@@ -31,4 +33,13 @@ const LogOutModal = ({hide, show}) => {
     )
 }
 
-export default LogOutModal;
+const stpm = (state, ownProps) => ({
+    hide: ownProps.hide,
+    show: ownProps.show
+})
+
+const dtpm = (dispatch) => ({
+    logOut : () => applicationActions.logOut(dispatch)
+})
+
+export default connect(stpm, dtpm)(LogOutModal);

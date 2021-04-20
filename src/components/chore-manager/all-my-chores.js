@@ -6,6 +6,7 @@ import ChoreDisplay from "./chore-display";
 import applicationActions from "../../actions/actions";
 import {connect} from "react-redux";
 import ShowCompletedToggle from "./show-completed-toggle";
+import LogOutModal from "../logout/logout-modal";
 
 class AllMyChores extends React.Component {
     constructor(props) {
@@ -26,6 +27,7 @@ class AllMyChores extends React.Component {
             completedPoints,
             completedChores,
             totalPoints,
+            showLogOutModal: false
         };
         this.handleDelete = this.handleDelete.bind(this);
         this.updateProgress = this.updateProgress.bind(this);
@@ -61,11 +63,17 @@ class AllMyChores extends React.Component {
                     Today's Progress
                 </h4>
                 <p/>
+                <div>
+                    <a className="log-out-personal-btn" onClick={() => this.setState({showLogOutModal: true})}>Log Out</a>
+                </div>
                 <ProgressBar>
                     <ProgressBar variant="success" now={this.state.completedChores/this.props.chores.length *100} key={1}/>
                 </ProgressBar>
                 {this.state.completedChores}/{this.props.chores.length} Tasks
                 <p/>
+
+                <LogOutModal show={this.state.showLogOutModal}
+                             hide={() => this.setState({...this.state, showLogOutModal: false})}/>
 
                 <div className="row">
                     <div className="col-xl-auto ">

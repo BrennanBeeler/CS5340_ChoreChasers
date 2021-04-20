@@ -19,7 +19,6 @@ const SignUp = ({
             alert("That email address is already associated with an account.")
         }
         else {
-            console.log(email, password, profiles)
             logIn(email, password, profiles)
         }
     }

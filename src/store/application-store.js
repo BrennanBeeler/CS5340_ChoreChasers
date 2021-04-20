@@ -5,7 +5,7 @@ const initialState = {
     loggedIn: false,
     activeProfile : {
         id: "1",
-        background: "https://coolbackgrounds.io/images/backgrounds/white/pure-white-background-85a2a7fd.jpg",
+        background: "/cool-background2.svg",
         emailId: 'test@email.com',
         points: 0,
         soundEnabled: true,
@@ -160,7 +160,7 @@ const initialState = {
     showCompleted: false,
     profiles : [{
         id: "1",
-        background: "https://coolbackgrounds.io/images/backgrounds/white/pure-white-background-85a2a7fd.jpg",
+        background: "/cool-background2.svg",
         emailId: 'test@email.com',
         points: 0,
         soundEnabled: true,
@@ -314,7 +314,7 @@ const initialState = {
     },
         {
             id: "2",
-            background: "https://coolbackgrounds.io/images/backgrounds/white/pure-white-background-85a2a7fd.jpg",
+            background: "/cool-background2.svg",
             emailId: 'jess@email.com',
             points: 0,
             soundEnabled: true,

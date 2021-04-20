@@ -35,7 +35,7 @@ const applicationReducer = (state = {}, action) => {
         case SIGN_UP:
             let createdProfile = {
                 id: new Date().getTime(),
-                background: "https://coolbackgrounds.io/images/backgrounds/white/pure-white-background-85a2a7fd.jpg",
+                background: "/cool-background2.svg",
                 emailId: action.email,
                 points: 0,
                 soundEnabled: true,

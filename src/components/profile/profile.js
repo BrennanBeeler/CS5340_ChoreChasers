@@ -5,12 +5,6 @@ import {Link} from "react-router-dom";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import {ProgressBar} from "react-bootstrap";
-import img1 from "../css-images/cool-background2.svg"
-import img2 from "../css-images/cool-background1.png";
-import img3 from "../css-images/cool-background3.png"
-import img4 from "../css-images/cool-background4.png"
-import img5 from "../css-images/cool-background5.png"
-import img6 from "../css-images/cool-background6.png"
 
 import applicationActions from "../../actions/actions";
 
@@ -43,7 +37,7 @@ const Profile = ({
   //   "https://i.pinimg.com/originals/48/e4/cc/48e4cccf453801f8af4cc28b701a52ee.jpg",
   //   "https://www.fau.edu/publicaffairs/branding/images/backgrounds/fau-background-2.jpg",
   //   "https://cdn.shopify.com/s/files/1/0235/8415/files/ZoomBackground_ResizedPPMCD12-008_00-FRONT_Cover_OL.jpg?v=1597779554&format=jpg"];
-  const unlockableBackgrounds = [img1,img2,img3,img4,img5,img6];
+  const unlockableBackgrounds = ["/cool-background2.svg", "/cool-background1.png", "/cool-background3.png", "/cool-background4.png", "/cool-background5.png", "/cool-background6.png"];
 
   const renderTooltip = (props) => (
   <Tooltip id="button-tooltip" {...props}>

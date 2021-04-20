@@ -37,7 +37,7 @@ const Profile = ({
   //   "https://i.pinimg.com/originals/48/e4/cc/48e4cccf453801f8af4cc28b701a52ee.jpg",
   //   "https://www.fau.edu/publicaffairs/branding/images/backgrounds/fau-background-2.jpg",
   //   "https://cdn.shopify.com/s/files/1/0235/8415/files/ZoomBackground_ResizedPPMCD12-008_00-FRONT_Cover_OL.jpg?v=1597779554&format=jpg"];
-  const unlockableBackgrounds = ["/cool-background2.svg", "/cool-background1.png", "/cool-background3.png", "/cool-background4.png", "/cool-background5.png", "/cool-background6.png"];
+  const unlockableBackgrounds = ["/cool-background-white.png", "/cool-background2.svg", "/cool-background3.png", "/cool-background4.png", "/cool-background5.png", "/cool-background6.png"];
 
   const renderTooltip = (props) => (
   <Tooltip id="button-tooltip" {...props}>

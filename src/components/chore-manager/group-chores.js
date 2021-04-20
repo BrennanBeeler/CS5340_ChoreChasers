@@ -75,6 +75,12 @@ class GroupChores extends React.Component {
                             </Link>
                         </div>
                     </div>
+
+                    <div className="">
+                        <Link to="/" className="log-out-btn">
+                            Log Out
+                        </Link>
+                    </div>
                     <p/>
                     {this.props.group.progressBar ? <ProgressBar>
                         {Object.keys(members).map((member, index) => {
@@ -106,13 +112,14 @@ class GroupChores extends React.Component {
                 </div>
 
 
-
-
-
-
                 <br/>
+                <div className="chore-display-box"></div>
 
-                <ChoreDisplay key={new Date().getTime()} chores={this.props.group.chores} deleteChore={this.handleDelete} updateProgress={this.updateProgress}/>
+
+                <ChoreDisplay key={new Date().getTime()}
+                              chores={this.props.group.chores}
+                              deleteChore={this.handleDelete}
+                              updateProgress={this.updateProgress}/>
             </div>
         )}
 }

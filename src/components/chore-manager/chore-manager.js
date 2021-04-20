@@ -39,15 +39,18 @@ const ChoreManager = ({
             {/*LEFT COLUMN*/}
             <div className="col-2 border-right hci-full-height">
                 {/*PROFILE AREA*/}
-                <div className="row border-bottom border-dark pb-4" style={{height : "160px"}}>
+                <div className="row border-bottom border-right border-dark pb-4" style={{height : "160px"}}>
                     <div className="col level-header">
-                        Level {level}
+                        Level
+                        <br/>
+                        {level}
                     </div>
-                    <div className="profile-points">
+                    <div className="col profile-points">
                         <Link to="/profile" className="btn fa fa-user-circle fa-2x"/>
+                        <br/>
                         {points}/{maxPoints} points
                     </div>
-                    <div className="col profile-link">
+                    <div className="row justify-content-center profile-link" style={{width: "100%"}}>
                         <Link to="/profile">
                             View {profileUsername}'s Account
                         </Link>
@@ -55,8 +58,9 @@ const ChoreManager = ({
                 </div>
 
                 {/*CREATE GROUP BUTTON*/}
-                <div className="row" style={{height: "100px"}}>
-                    <button className="btn btn-info hci-create-group btn-block mt-2 pt-2 pb-2" onClick={() => setCreateGroupModal(true)}>
+                <div className="row border-bottom border-dark" style={{height: "100px"}}>
+                    <button className="btn btn-info hci-create-group btn-block mt-3 pt-2 pb-2 bord"
+                            onClick={() => setCreateGroupModal(true)}>
                         Create Group
                         <i className="fa fa-plus" style={{paddingLeft: "10px"}}/>
                     </button>
@@ -66,9 +70,9 @@ const ChoreManager = ({
                                   onHide={()=> setCreateGroupModal(false)}/>
 
                 {/* GROUP SELECT*/}
-                <div className="row justify-content-center">
-                    <div className="vertical-scrollable" style={{height: "calc(100vh - 260px)"}}>
-                        <ul className="nav flex-column nav-pills mt-4" role="navigation">
+                <div className="justify-content-center">
+                    <div className="vertical-scrollable" style={{height: "calc(100vh - 260px)", paddingRight: "4px", paddingLeft: "4px"}}>
+                        <ul className="nav flex-column nav-pills mt-4" role="navigation" style={{marginLeft: "1px !important"}}>
                             <li className={`nav-link nav-item mb-4 pt-3 pb-4 border border-dark group-button ${activeGroupId === "Personal Chores" ? 'active':''}`}
                                 onClick={() => setActiveGroup("Personal Chores")}>
                                 {activeGroupId === "Personal Chores" ? "Personal Chores" : "View Personal Chores"}
@@ -89,6 +93,16 @@ const ChoreManager = ({
                                         {activeGroupId === group.id ? group.name : "View " + group.name}
                                     </li>
                                 )
+                            }
+
+                            {
+                                groups.length === 0 &&
+                                    <div className="text-center">
+                                        <br/>
+                                        Created groups will
+                                        <br/>
+                                        show up here!
+                                    </div>
                             }
 
                         </ul>

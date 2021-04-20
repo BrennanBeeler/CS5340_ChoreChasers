@@ -34,13 +34,15 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress, showComp
                 if(chore.dueDate === null) {
                     undatedTemp.push(chore)
                 }
-                else if (new Date(chore.dueDate).getTime() < new Date(new Date().toISOString().substring(0, 10)).getTime()) {
+                else if (new Date(chore.dueDate).getTime() <
+                    new Date(new Date().toISOString().substring(0, 10)).getTime()) {
                     overdueTemp.push(chore)
                 }
                 else if (chore.dueDate === new Date().toISOString().substring(0, 10)) {
                     todayTemp.push(chore)
                 }
-                else if (new Date(chore.dueDate).getTime() < new Date(new Date().toISOString().substring(0, 10)).getTime() + 604800000) {
+                else if (new Date(chore.dueDate).getTime() <
+                    new Date(new Date().toISOString().substring(0, 10)).getTime() + 604800000) {
                     weeksTemp.push(chore)
                 }
                 else {
@@ -52,13 +54,15 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress, showComp
                     if(chore.dueDate === null) {
                         undatedTemp.push(chore)
                     }
-                    else if (new Date(chore.dueDate).getTime() < new Date(new Date().toISOString().substring(0, 10)).getTime()) {
+                    else if (new Date(chore.dueDate).getTime() <
+                        new Date(new Date().toISOString().substring(0, 10)).getTime()) {
                         overdueTemp.push(chore)
                     }
                     else if (chore.dueDate === new Date().toISOString().substring(0, 10)) {
                         todayTemp.push(chore)
                     }
-                    else if (new Date(chore.dueDate).getTime() < new Date(new Date().toISOString().substring(0, 10)).getTime() + 604800000) {
+                    else if (new Date(chore.dueDate).getTime() <
+                        new Date(new Date().toISOString().substring(0, 10)).getTime() + 604800000) {
                         weeksTemp.push(chore)
                     }
                     else {
@@ -84,16 +88,39 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress, showComp
             <div className="hero vertical-scrollable" style={style}>
                 <Row>
                     <Col xs={6} style={{paddingLeft: "30px", paddingRight : "30px"}}>
+                        {
+                            (overdueChores.length === 0 && todayChores.length === 0 && weeksChores.length === 0
+                                && futureChores.length === 0) &&
+                                <div className="text-center">
+                                    <h2 className="h2-undated" style={{color:"black", backgroundColor: "#e8fcff",
+                                        borderRadius:"25px", paddingLeft:"10px", marginTop:"5px" }}>
+                                        Dated Chores
+                                    </h2>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <div style={{color: "black", backgroundColor: "#e8fcff",borderRadius:"25px",
+                                        paddingLeft:"10px",marginTop:"5px"}}>
+                                        Chores with due dates assigned up here!
+                                    </div>
+                                </div>
+
+                        }
+
+
                         <>
                             {
                                 overdueChores.length !== 0 &&
-                                <>
-                                    <h2 className="h2-dated" style={{color:"#ff0404", backgroundColor: "#FFFFF5", borderRadius:"25px", paddingLeft:"10px", marginTop:"5px" }}>
+                                <div>
+                                    <h2 className="h2-dated text-center" style={{color: "black", backgroundColor: "#e8fcff",
+                                        borderRadius:"25px", paddingLeft:"10px", marginTop:"5px"}}>
                                         Overdue
-                                        <span className="btn fa fa-exclamation-triangle fa"/>
+                                        <i className="fa fa-exclamation-triangle"
+                                              style={{color: "red", marginLeft: "10px"}} />
                                     </h2>
                                     <br/>
-                                </>
+                                </div>
                             }
                             {
                                 overdueChores.map(chore => {
@@ -108,8 +135,8 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress, showComp
                         {
                             todayChores.length !== 0 &&
                             <>
-                                {/*FFF1FF*/}
-                                <h2 className="h2-due-today" style={{backgroundColor: "#e8fcff",borderRadius:"25px", paddingLeft:"10px",marginTop:"5px" }}>
+                                <h2 className="h2-due-today text-center" style={{color: "black", backgroundColor: "#e8fcff",
+                                    borderRadius:"25px", paddingLeft:"10px",marginTop:"5px" }}>
                                     Due Today
                                 </h2>
                                 <br/>
@@ -129,7 +156,8 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress, showComp
                         {
                             weeksChores.length !== 0 &&
                             <>
-                                <h2 className="h2-due-next-week" style={{backgroundColor: "#e8fcff",borderRadius:"25px", paddingLeft:"10px", marginTop:"5px" }}>
+                                <h2 className="h2-due-next-week text-center" style={{color: "black", backgroundColor: "#e8fcff",
+                                    borderRadius:"25px", paddingLeft:"10px", marginTop:"5px" }}>
                                     Due Next Week
                                 </h2>
 
@@ -153,7 +181,8 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress, showComp
                         {
                             futureChores.length !== 0 &&
                             <>
-                                <h2 className="h2-due-future "style={{backgroundColor: "#e8fcff",borderRadius:"25px", paddingLeft:"10px",marginTop:"5px" }}>
+                                <h2 className="h2-due-future text-center" style={{color: "black", backgroundColor: "#e8fcff",
+                                    borderRadius:"25px", paddingLeft:"10px",marginTop:"5px" }}>
                                     Due In The Future
                                 </h2>
 
@@ -174,9 +203,29 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress, showComp
                     </Col>
 
                     <Col xs={6} style={{paddingRight: "30px", paddingLeft: "30px"}}>
-                        <h2 className="h2-undated" style={{backgroundColor: "#e8fcff",borderRadius:"25px", paddingLeft:"10px",marginTop:"5px"}}>
-                            Undated Chores
-                        </h2>
+                        {
+                            undatedChores.length === 0 ?
+                                <div className="text-center">
+                                    <h2 className="h2-undated" style={{color: "black", backgroundColor: "#e8fcff",borderRadius:"25px",
+                                        paddingLeft:"10px",marginTop:"5px"}}>
+                                        Undated Chores
+                                    </h2>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <div style={{color: "black", backgroundColor: "#e8fcff",borderRadius:"25px",
+                                        paddingLeft:"10px",marginTop:"5px"}}>
+                                        Chores without assigned due dates end up here!
+                                    </div>
+                                </div>
+                                :
+                                <h2 className="h2-undated text-center" style={{color: "black", backgroundColor: "#e8fcff",
+                                    borderRadius:"25px", paddingLeft:"10px",marginTop:"5px"}}>
+                                    Undated Chores
+                                </h2>
+                        }
+
 
                         <br/>
 
@@ -192,7 +241,6 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress, showComp
 
                     </Col>
                 </Row>
-                {/*<br/>*/}
             </div>
         </div>
     )

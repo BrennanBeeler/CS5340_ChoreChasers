@@ -19,10 +19,12 @@
     margin-right: 5px;
 }
 
+.nav-link {
+    margin-left: 1px !important;
+}
 
 .vertical-scrollable {
     /*margin-left: 2px;*/
-    padding-right: 15px;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -37,13 +39,12 @@
 .profile-points {
     font-family: Verdana, Geneva, sans-serif;
     font-size: 18px;
-    margin-left: 20px;
 }
 
 .profile-link {
     font-family: Verdana, Geneva, sans-serif;
     font-size: 16px;
-    text-align: center;
+    margin-top: 7px;
 }
 
 .group-button {

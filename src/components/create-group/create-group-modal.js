@@ -24,7 +24,7 @@ const CreateGroupModal = ({props, createGroup, profile, groups}) => {
                 progressBar: true,
                 chores: [],
                 //TODO: REMOVE!
-                members: ["Jules", "Mikey", "Max"],
+                members: memberList.concat([profile.username]),
             };
             createGroup(profile, group);
 
@@ -109,7 +109,7 @@ const CreateGroupModal = ({props, createGroup, profile, groups}) => {
 }
 
 const stpm = (state, ownProps) => ({
-    profile: state.profile,
+    profile: state.activeProfile,
     props: ownProps,
     groups: state.groups
 })

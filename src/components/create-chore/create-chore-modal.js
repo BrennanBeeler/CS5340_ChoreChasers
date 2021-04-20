@@ -51,7 +51,7 @@ const CreateChoreModal = ({
         }
 
         //TODO: fix this use of name as identifier
-        createChore(choreGroup.name, newChore)
+        createChore(choreGroup.id, newChore)
         hide()
     }
 
@@ -269,7 +269,7 @@ const stpm = (state) => {
 }
 
 const dtpm = (dispatch) => ({
-    createChore : (groupName, chore) => applicationActions.createChore(dispatch, groupName, chore)
+    createChore : (groupId, chore) => applicationActions.createChore(dispatch, groupId, chore)
 })
 
 export default connect(stpm, dtpm)(CreateChoreModal);

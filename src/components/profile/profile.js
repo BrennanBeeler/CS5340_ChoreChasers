@@ -1,5 +1,8 @@
 import React from "react";
 import "./profile.css";
+import {useState} from "react";
+import {Col, Row, Button} from "react-bootstrap";
+import Toast from 'react-bootstrap/Toast'
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
@@ -44,6 +47,7 @@ const Profile = ({
     Every time you unlock a new level, you can customize ChoreChasers to have an exciting new image as the background!
   </Tooltip>
 );
+    const [show, setShow] = useState(false);
 
     return (
         <div className="container">
@@ -140,7 +144,7 @@ const Profile = ({
                                                         <img src={value} style={{height: "50px", width: "250px", padding: '4px'}}/>
                                                     </div>
                                                     <div className="col">
-                                                        <button className=" set-background-btn btn-info" onClick={(event) => setBackground(value)}>
+                                                        <button className=" set-background-btn btn-info" onClick={(event) => {setBackground(value);setShow(true)}}>
                                                             Set Background
                                                         </button>
                                                     </div>
@@ -149,7 +153,23 @@ const Profile = ({
                                     </div>
                                 )})}
                         </div>
-
+                    </div>
+                    <div className="toast-position ">
+                    <Row>
+                        <Col xs={6}>
+                            <Toast onClose={() => setShow(false)} show={show} delay={2000} autohide className="bg-success">
+                                <Toast.Header>
+                                    <img
+                                        // src="holder.js/20x20?text=%20"
+                                        className="rounded mr-2"
+                                        alt=""
+                                    />
+                                    <strong className="mr-auto">Successfully Updated Background!</strong>
+                                </Toast.Header>
+                                {/*<Toast.Body>Woohoo, you're reading this text in a Toast!</Toast.Body>*/}
+                            </Toast>
+                        </Col>
+                    </Row>
                     </div>
                     <br/>
                     <Link to="/choreManager" className=" back-button btn">

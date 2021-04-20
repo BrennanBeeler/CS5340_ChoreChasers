@@ -39,7 +39,7 @@ const ChoreManager = ({
             {/*LEFT COLUMN*/}
             <div className="col-2 border-right hci-full-height">
                 {/*PROFILE AREA*/}
-                <div className="row border-bottom border-right border-dark pb-4" style={{height : "160px"}}>
+                <div className="row border-bottom rounded-bottom border-right border-dark pb-4" style={{height : "160px"}}>
                     <div className="col level-header">
                         Level
                         <br/>
@@ -115,21 +115,21 @@ const ChoreManager = ({
             <div className="col col-10 hci-full-height">
                 {
                     activeGroupId === "Personal Chores" &&
-                        <div className="row border-bottom border-dark" style={{height: "160px"}}>
+                        <div className="row border-bottom rounded border-dark" style={{height: "160px"}}>
                             <PersonalChores/>
                         </div>
                 }
 
                 {
                     activeGroupId === "All_my_chores" &&
-                        <div className="row border-bottom border-dark" style={{height: "160px"}}>
+                        <div className="row border-bottom rounded border-dark" style={{height: "160px"}}>
                             <AllMyChores/>
                         </div>
                 }
 
                 {
                     (activeGroupId !== "Personal Chores" && activeGroupId !== "All_my_chores") &&
-                    <div className="row border-bottom border-dark" style={{height: "160px"}}>
+                    <div className="row border-bottom rounded border-dark" style={{height: "160px"}}>
                         <GroupChores key={activeGroupId}/>
                     </div>
                 }

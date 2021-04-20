@@ -19,6 +19,7 @@ const ChoreCard = ({props, chore, group, profile, updateProgress, addPoints, edi
 
     const cardStyle = {
         boxShadow: "0 15px 15px 0 rgba(0, 0, 0, 0.1), 0 15px 15px 0 rgba(0, 0, 0, 0.1)",
+        backgroundColor:"#fffdfb",
         borderRadius:"8px"
     };
     const cardText = {
@@ -64,7 +65,7 @@ const ChoreCard = ({props, chore, group, profile, updateProgress, addPoints, edi
     return(visibility &&
       <>
 
-        <Navbar style={cardStyle} bg="light" expand="xs" >
+        <Navbar style={cardStyle} expand="xs" >
             <div className="row">
             <Navbar.Text>
                 <h4 className="col chore-name" style = {cardText}>

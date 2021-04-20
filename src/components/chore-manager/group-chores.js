@@ -1,5 +1,6 @@
-import React from "react";
+import React, {useState} from "react";
 import "./group-chores.css"
+import LogOutModal from "../logout/logout-modal";
 import ChoreDisplay from "./chore-display";
 import {Link} from "react-router-dom";
 import applicationActions from "../../actions/actions";
@@ -7,6 +8,7 @@ import {connect} from "react-redux";
 import CreateChoreModal from "../create-chore/create-chore-modal";
 import {ProgressBar} from "react-bootstrap";
 import ShowCompletedToggle from "./show-completed-toggle";
+import DeleteChoreModal from "../delete-chore/delete-chore-modal";
 
 class GroupChores extends React.Component {
     constructor(props) {
@@ -32,6 +34,7 @@ class GroupChores extends React.Component {
         const colors = ['success', 'danger', 'warning', 'info'];
         this.state = {
             choreModal: false,
+            showLogOutModal:false,
             completedPoints,
             totalPoints,
             members,
@@ -40,6 +43,7 @@ class GroupChores extends React.Component {
         this.handleDelete = this.handleDelete.bind(this);
         this.updateProgress = this.updateProgress.bind(this);
     }
+
 
     updateProgress(points) {
         const temp = this.state.members;
@@ -81,7 +85,9 @@ class GroupChores extends React.Component {
                             Log Out
                         </Link>
                     </div>
-                    <p/>
+                    {/*<LogOutModal show={this.state.showLogOutModal}*/}
+                    {/*             hide={() => this.setState({showLogOutModal: false})}/>*/}
+                    {/*<p/>*/}
                     {this.props.group.progressBar ? <ProgressBar>
                         {Object.keys(members).map((member, index) => {
                             return (<ProgressBar animated={true} variant={this.state.colors[index % 4]} label={member}

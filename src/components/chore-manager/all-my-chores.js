@@ -53,10 +53,6 @@ class AllMyChores extends React.Component {
     render() {
         return (
             <div className="container-fluid">
-                {
-                    console.log(this.props.state)
-                }
-
                 <CreateChoreModal key={new Date().getTime() + 15}
                                   show={this.state.choreModal}
                                   hide={() => this.setState({choreModal: false})}

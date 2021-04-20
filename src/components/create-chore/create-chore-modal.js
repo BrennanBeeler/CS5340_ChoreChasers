@@ -99,8 +99,13 @@ const CreateChoreModal = ({
                         <Form.Label>Choose group for chore *</Form.Label>
                         <Form.Control as="select" value={choreGroup.id}
                                       onChange={event => {
-                                        setChoreGroup(groupOptions.find(group =>
-                                          group.id === event.target.value))}
+                                          if (event.target.value === "Personal Chores") {
+                                              setChoreGroup(groupOptions.find(group => group.id === event.target.value))
+                                          }
+                                          else {
+                                              setChoreGroup(groupOptions.find(group =>
+                                                  group.id === parseInt(event.target.value)))}
+                                          }
                                       }>
                             {
                                 groupOptions.map(option =>
@@ -257,7 +262,6 @@ const stpm = (state) => {
     else {
         temp = state.groups.filter(group => group.id === state.activeGroupId)[0]
     }
-
     return ({
         currentGroup:  temp,
         groupOptions: [{name: "Personal Chores", id : "Personal Chores", members: []}]

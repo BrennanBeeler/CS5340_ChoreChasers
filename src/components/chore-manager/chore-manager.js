@@ -130,7 +130,7 @@ const ChoreManager = ({
                 {
                     (activeGroupId !== "Personal Chores" && activeGroupId !== "All_my_chores") &&
                     <div className="row border-bottom border-dark" style={{height: "160px"}}>
-                        <GroupChores/>
+                        <GroupChores key={activeGroupId}/>
                     </div>
                 }
             </div>

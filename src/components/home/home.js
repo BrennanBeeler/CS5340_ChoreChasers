@@ -2,12 +2,12 @@ import React from "react";
 import {Link} from "react-router-dom";
 import Carousel from 'react-bootstrap/Carousel'
 // import slide3 from "../css-images/slide3_progress_bar.png"
-import slide1 from "../css-images/slide1_levels_points_progress.png"
-import slide2 from "../css-images/slide2_chore_detail.png"
-import slide3 from "../css-images/slide3_background.png"
 import './home.css';
 
 const Home = () => {
+    const slide1 = "/slide1_levels_points_progress.png";
+    const slide2 = "/slide2_chore_detail.png";
+    const slide3 = "/slide3_background.png";
     return(
         <div>
             <div className="row">
@@ -34,7 +34,7 @@ const Home = () => {
                 </div>
             </div>
 
-            <div class="body-background position-relative">
+            <div class="body-background position-relative" style={{backgroundImage: "url(/hangingclothes2.jpg)"}}>
                 <blockquote id="intro1">
                     Manage those pesky chores with ease... <br/>
                 </blockquote>

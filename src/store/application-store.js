@@ -5,7 +5,7 @@ const initialState = {
     loggedIn: false,
     activeProfile : {
         id: "1",
-        background: "/cool-background2.svg",
+        background: "/cool-background-white.png",
         emailId: 'test@email.com',
         points: 0,
         soundEnabled: true,
@@ -160,7 +160,7 @@ const initialState = {
     showCompleted: false,
     profiles : [{
         id: "1",
-        background: "/cool-background2.svg",
+        background: "/cool-background-white.png",
         emailId: 'test@email.com',
         points: 0,
         soundEnabled: true,
@@ -314,7 +314,7 @@ const initialState = {
     },
         {
             id: "2",
-            background: "/cool-background2.svg",
+            background: "/cool-background-white.png",
             emailId: 'jess@email.com',
             points: 0,
             soundEnabled: true,

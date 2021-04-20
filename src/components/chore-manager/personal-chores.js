@@ -6,6 +6,7 @@ import ChoreDisplay from "./chore-display";
 import applicationActions from "../../actions/actions";
 import {connect} from "react-redux";
 import ShowCompletedToggle from "./show-completed-toggle";
+import {Link} from "react-router-dom";
 
 class PersonalChores extends React.Component {
     constructor(props) {
@@ -55,6 +56,11 @@ class PersonalChores extends React.Component {
                     Today's Personal Progress
                 </h4>
                 <p/>
+                <div>
+                    <Link to="/" className="log-out-personal-btn" onClick={() => this.setState({loggedIn: false})}>
+                        Log Out
+                    </Link>
+                </div>
                 <ProgressBar>
                     <ProgressBar variant="success" now={this.state.completedChores/this.props.chores.length *100} key={1}/>
                 </ProgressBar>

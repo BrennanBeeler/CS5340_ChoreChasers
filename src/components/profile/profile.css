@@ -75,6 +75,15 @@ p {
   cursor: pointer;
 }
 
+.toast-position {
+  /*position: absolute;*/
+  /*left: 55%;*/
+  /*transform: translate(-50%, -50%);*/
+  /*margin: 0 auto;*/
+  /*width: 300px;*/
+  margin-left: 33%;
+}
+
 @media screen and (max-width: 750px) {
   .set-background-btn{
     font-size: 1.2vh;

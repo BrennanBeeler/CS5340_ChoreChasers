@@ -53,3 +53,11 @@
     white-space: nowrap;
     top:15px;
 }
+
+
+
+@media screen and (max-width: 850px) {
+    .chore-display-box {
+        padding-top: 60px;
+    }
+}

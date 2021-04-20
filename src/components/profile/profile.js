@@ -5,8 +5,8 @@ import {Link} from "react-router-dom";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import {ProgressBar} from "react-bootstrap";
-import img1 from "../css-images/cool-background1.png";
-import img2 from "../css-images/cool-background2.svg"
+import img1 from "../css-images/cool-background2.svg"
+import img2 from "../css-images/cool-background1.png";
 import img3 from "../css-images/cool-background3.png"
 import img4 from "../css-images/cool-background4.png"
 import img5 from "../css-images/cool-background5.png"

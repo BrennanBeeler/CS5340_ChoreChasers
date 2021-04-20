@@ -10,6 +10,7 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress, showComp
     const style = {
         backgroundImage: "url("+background+")",
         backgroundRepeat: "no-repeat",
+        borderRadius:"5px",
         backgroundSize: "cover",
         width: "100%",
         height: "calc(100vh - 190px)",

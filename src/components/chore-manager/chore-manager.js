@@ -58,7 +58,7 @@ const ChoreManager = ({
                 </div>
 
                 {/*CREATE GROUP BUTTON*/}
-                <div className="row border-bottom border-dark" style={{height: "100px"}}>
+                <div className="row" style={{height: "100px"}}>
                     <button className="btn btn-info hci-create-group btn-block mt-3 pt-2 pb-2 bord"
                             onClick={() => setCreateGroupModal(true)}>
                         Create Group

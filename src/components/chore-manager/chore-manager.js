@@ -37,9 +37,9 @@ const ChoreManager = ({
     return (
         <div className="hci-full-height row" style={{overflowY: "hidden"}}>
             {/*LEFT COLUMN*/}
-            <div className="col-2 border-right hci-full-height">
+            <div className="col-2 border-right hci-full-height" style={{backgroundColor: "#f6f2f2"}}>
                 {/*PROFILE AREA*/}
-                <div className="row border-bottom border-dark pb-4" style={{height : "160px"}}>
+                <div className="row border-bottom border-right border-dark pb-4" style={{height : "160px"}}>
                     <div className="col level-header">
                         Level
                         <br/>
@@ -58,8 +58,9 @@ const ChoreManager = ({
                 </div>
 
                 {/*CREATE GROUP BUTTON*/}
-                <div className="row" style={{height: "100px"}}>
-                    <button className="btn btn-info hci-create-group btn-block mt-2 pt-2 pb-2" onClick={() => setCreateGroupModal(true)}>
+                <div className="row border-bottom border-dark" style={{height: "100px"}}>
+                    <button className="btn btn-info hci-create-group btn-block mt-3 pt-2 pb-2 bord"
+                            onClick={() => setCreateGroupModal(true)}>
                         Create Group
                         <i className="fa fa-plus" style={{paddingLeft: "10px"}}/>
                     </button>
@@ -70,7 +71,7 @@ const ChoreManager = ({
 
                 {/* GROUP SELECT*/}
                 <div className="justify-content-center">
-                    <div className="vertical-scrollable" style={{height: "calc(100vh - 260px)", paddingRight: "4px"}}>
+                    <div className="vertical-scrollable" style={{height: "calc(100vh - 260px)", paddingRight: "4px", paddingLeft: "4px"}}>
                         <ul className="nav flex-column nav-pills mt-4" role="navigation" style={{marginLeft: "1px !important"}}>
                             <li className={`nav-link nav-item mb-4 pt-3 pb-4 border border-dark group-button ${activeGroupId === "Personal Chores" ? 'active':''}`}
                                 onClick={() => setActiveGroup("Personal Chores")}>

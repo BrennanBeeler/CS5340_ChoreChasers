@@ -66,7 +66,7 @@ const ChoreManager = ({
                                   onHide={()=> setCreateGroupModal(false)}/>
 
                 {/* GROUP SELECT*/}
-                <div className="row">
+                <div className="row justify-content-center">
                     <div className="vertical-scrollable" style={{height: "calc(100vh - 260px)"}}>
                         <ul className="nav flex-column nav-pills mt-4" role="navigation">
                             <li className={`nav-link nav-item mb-4 pt-3 pb-4 border border-dark group-button ${activeGroupId === "Personal Chores" ? 'active':''}`}

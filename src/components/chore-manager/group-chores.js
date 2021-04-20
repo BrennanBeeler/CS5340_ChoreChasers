@@ -76,8 +76,8 @@ class GroupChores extends React.Component {
                         </div>
                     </div>
 
-                    <div className="">
-                        <Link to="/" className="log-out-btn">
+                    <div >
+                        <Link to="/" className="log-out-group-btn" onClick={() => this.setState({loggedIn: false})}>
                             Log Out
                         </Link>
                     </div>

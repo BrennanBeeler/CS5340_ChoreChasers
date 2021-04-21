@@ -6,6 +6,7 @@ import ChoreDisplay from "./chore-display";
 import applicationActions from "../../actions/actions";
 import {connect} from "react-redux";
 import ShowCompletedToggle from "./show-completed-toggle";
+import LogOutModal from "../logout/logout-modal";
 
 class AllMyChores extends React.Component {
     constructor(props) {
@@ -26,6 +27,7 @@ class AllMyChores extends React.Component {
             completedPoints,
             completedChores,
             totalPoints,
+            showLogOutModal: false
         };
         this.handleDelete = this.handleDelete.bind(this);
         this.updateProgress = this.updateProgress.bind(this);
@@ -43,7 +45,7 @@ class AllMyChores extends React.Component {
     updateProgress(points, undo) {
         const newPoints = this.state.completedPoints + points;
         const magnitude = undo ? -1 : 1;
-        const newCompleted = this.state.completedChores + 1 * magnitude;
+        const newCompleted = this.state.completedChores + magnitude;
         this.setState({completedPoints: newPoints, completedChores: newCompleted})
     }
 
@@ -61,11 +63,17 @@ class AllMyChores extends React.Component {
                     Today's Progress
                 </h4>
                 <p/>
+                <div>
+                    <a className="log-out-personal-btn" onClick={() => this.setState({showLogOutModal: true})}>Log Out</a>
+                </div>
                 <ProgressBar>
                     <ProgressBar variant="success" now={this.state.completedChores/this.props.chores.length *100} key={1}/>
                 </ProgressBar>
                 {this.state.completedChores}/{this.props.chores.length} Tasks
                 <p/>
+
+                <LogOutModal show={this.state.showLogOutModal}
+                             hide={() => this.setState({...this.state, showLogOutModal: false})}/>
 
                 <div className="row">
                     <div className="col-xl-auto ">
@@ -88,23 +96,7 @@ class AllMyChores extends React.Component {
                     </div>
                 </div>
 
-                {/*<div className="personal-chore-name-style">*/}
-                {/*    <h1 className="h1-style">*/}
-                {/*        All my assigned chores*/}
-                {/*    </h1>*/}
-                {/*</div>*/}
-                {/*<div className="create-chore-btn-div">*/}
-                {/*    <button className=" create-chore-btn btn btn-info mt-2 mb-1 pt-2 pb-2"*/}
-                {/*            onClick={() => this.setState({choreModal: true})}>*/}
-                {/*        Add a New Chore*/}
-                {/*        <i className="fa fa-plus" style={{paddingLeft: "10px"}}/>*/}
-                {/*    </button>*/}
-                {/*</div>*/}
-
-                {/*<ShowCompletedToggle/>*/}
-
                 <br/>
-
 
                 <ChoreDisplay key={new Date().getTime()}
                               chores={this.props.chores}
@@ -119,14 +111,16 @@ class AllMyChores extends React.Component {
 const sortForAssignee = (groups, targetUser) => {
     let assignedChores = []
     groups.forEach(group => {
-        group.chores.forEach(chore => {
-            if (chore.assignees.includes(targetUser)) {
-                assignedChores.push({
-                    ...chore,
-                    members : group.members
-                })
-            }
-        })
+        if (group.members.includes(targetUser)) {
+            group.chores.forEach(chore => {
+                if (chore.assignees.includes(targetUser)) {
+                    assignedChores.push({
+                        ...chore,
+                        members : group.members
+                    })
+                }
+            })
+        }
     })
     return assignedChores
 }
@@ -135,7 +129,8 @@ const stpm = (state) => ({
     activeGroupId: state.activeGroupId,
     activeProfile: state.activeProfile,
     chores : (state.activeProfile.chores).concat(sortForAssignee(state.groups, state.activeProfile.username)),
-    profileUsername : state.activeProfile.username
+    profileUsername : state.activeProfile.username,
+    state: state
 })
 
 const dtpm = (dispatch) => ({

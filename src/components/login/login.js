@@ -12,7 +12,11 @@ const Login = ({
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        checkLoginCredentials(email, password, profiles)
+
+        if (checkLoginCredentials(email, password, profiles) === false) {
+            alert("The email and password provided don't match any Chore Chaser's account. " +
+                "Please make sure they are entered correctly.")
+        }
     }
 
     const [password, setPassword] = useState("");

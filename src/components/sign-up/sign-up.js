@@ -15,12 +15,24 @@ const SignUp = ({
     const handleSubmit = (event) => {
         event.preventDefault()
         // TODO: need to handle user feedback on bad input
-        if (!signUp(email, username, password, profiles)) {
-            alert("That email address is already associated with an account.")
+        if (!email.match(/.+@.+\..+/g)) {
+            alert("Please make sure that you have entered a properly formatted email.")
+        }
+        else if (username === "") {
+            alert("Please enter the name you want to be known by to other users!")
+        }
+        else if (password === "" || password.length < 8) {
+            alert("Your password should be at least 8 characters long and hopefully unique! " +
+                "Try a series of words or a phrase that might be easier to remember.")
         }
         else {
-            console.log(email, password, profiles)
-            logIn(email, password, profiles)
+            if (!signUp(email, username, password, profiles)) {
+                alert("Sorry! That email address is already associated with an account. " +
+                    "You might already have an account with us?")
+            }
+            else {
+                logIn(email, password, profiles)
+            }
         }
     }
 
@@ -39,10 +51,9 @@ const SignUp = ({
                     Join Chore Chasers!
                 </h3>
                 <br/><p/>
-                {/*TODO: figure out floating labels*/}
                 <form>
-                    <div className=" label-box-pair-signup form-group">
-                        <div className="form-email-field-signup">What's your email?*</div>
+                    <div className="label-box-pair-signup form-group">
+                        <div className="form-email-field-signup">What's your email? *</div>
                         <div>
                             <input type= "text" id="emailFld" placeholder="example@domain.com"
                                    className="form-control"
@@ -53,7 +64,7 @@ const SignUp = ({
                     </div>
 
                     <div className="label-box-pair-signup form-group">
-                        <div className="form-username-field-signup">What would you like to be called?*</div>
+                        <div className="form-username-field-signup">What would you like to be called? *</div>
 
                         <div>
                             <input type="text" id="usernameFld" placeholder="John" className="form-control"
@@ -64,15 +75,14 @@ const SignUp = ({
 
                     <div className="label-box-pair-signup form-group">
                         {/*TODO: figure out if want to have confirm password and hidden type*/}
-                        <div className="form-pass-field-signup">Set up a secure password to access your choice in the future.*</div>
+                        <div className="form-pass-field-signup">Set up a secure password to access your choice in the future *</div>
                         <div>
                             <input type="password" id="passwordFld" placeholder="Enter a password" className="form-control"
                                    value={password}
                                    onChange={(event) => setPassword(event.target.value)}/></div>
                     </div>
 
-                    {// TODO: Sign up user
-                    }
+
                     <div style={{paddingLeft:"30px",marginTop:"40px"}}>
                         <button onClick={handleSubmit} className=" btn btn-success" style={{paddingRight:"100px",paddingLeft:"100px"}}>
                             Start Chores

@@ -68,13 +68,15 @@ const EditChoreModal = ({onHide, show, activeGroupId, profileUsername, chore, ed
                                       onChange={event => setChoreName(event.target.value)}/>
                     </Form.Group>
 
-                    {/*TODO: need way to clear date*/}
                     <Form.Group>
-                        <Form.Label>When is it due? If not, it will appear in Undated Chores</Form.Label>
-                        <Form.Control type="date" value={dueDate} onChange={event => setDueDate(event.target.value)}/>
+                        <Form.Label>When is it due? If empty, it will appear in Undated Chores</Form.Label>
+                        <div>
+                            <Form.Control type="date" value={dueDate} onChange={event => {setDueDate(event.target.value)}}/>
+                            <btn className="btn btn-info" onClick={event => {setDueDate("")}}>Clear</btn>
+                        </div>
                     </Form.Group>
 
-                    {/*TODO: decide how no-repeat looks*/}
+                    {dueDate !== "" ?
                     <Form.Group>
                         <Form.Label>Does the chore need to repeat itself?</Form.Label>
                         <Form.Control as="select" value={repeatChore}
@@ -85,12 +87,11 @@ const EditChoreModal = ({onHide, show, activeGroupId, profileUsername, chore, ed
                             <option value="Monthly">Monthly</option>
                             <option value="Yearly">Yearly</option>
                         </Form.Control>
-                    </Form.Group>
+                    </Form.Group> : <div/>}
 
-                    {/*TODO: time a bad placeholder since we don't want to focus on time?*/}
                     <Form.Group>
                         <Form.Label>Have any chore instructions?</Form.Label>
-                        <Form.Control as="textarea" placeholder="eg: finish before 5pm" value={choreInstructions}
+                        <Form.Control as="textarea" placeholder="eg: Location is 50 Market Street" value={choreInstructions}
                                       onChange={event => setChoreInstructions(event.target.value)}/>
                     </Form.Group>
                     {

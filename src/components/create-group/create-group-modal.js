@@ -17,13 +17,11 @@ const CreateGroupModal = ({props, createGroup, profile, groups}) => {
 
     const handleCreateGroup = () => {
         if(groupName !== "") {
-            //TODO: construct group object here- likely ignore emails that aren't in database
             let group = {
                 name: groupName,
-                id: (groups.length + 1).toString(),
+                id: Date.now(),
                 progressBar: true,
                 chores: [],
-                //TODO: REMOVE!
                 members: memberList.concat([profile.username]),
             };
             createGroup(profile, group);

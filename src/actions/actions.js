@@ -32,10 +32,9 @@ const logIn = (dispatch, email, password, profiles) => {
     }
 }
 
-const logOut = (dispatch, email) =>
+const logOut = (dispatch) =>
     dispatch({
-        type : LOG_OUT,
-        email
+        type : LOG_OUT
     })
 
 const signUp = (dispatch, email, username, password, profiles) => {
@@ -106,10 +105,10 @@ const editChore = (dispatch, chore) => {
     })
 }
 
-const createChore = (dispatch, groupName, chore) => {
+const createChore = (dispatch, groupId, chore) => {
     dispatch({
         type: CREATE_CHORE,
-        groupName,
+        groupId,
         chore
     })
 }

@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import "./profile-settings.css"
+import DeleteAccountModal from "./delete-account-modal";
 import applicationActions from "../../actions/actions";
 import {connect} from "react-redux";
 
@@ -18,6 +19,7 @@ const ProfileSettings = ({
 
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
+  const [deleteAccountModal, setDeleteAccountModal] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState("");
   const [checked, setChecked] = useState(profile.soundEnabled || true);
     return (
@@ -64,6 +66,7 @@ const ProfileSettings = ({
 
                 {/*<br/>*/}
                 {/*<br/>*/}
+              <DeleteAccountModal show={deleteAccountModal} onHide={() => setDeleteAccountModal(false)}/>
 
               <h4 className=" text-left h4-settings-complete-chores" >
                 Completed Chore Sound
@@ -76,7 +79,6 @@ const ProfileSettings = ({
                   <input checked={profile.soundEnabled} value={checked} type="checkbox" className="custom-control-input"
                          id="toggleProgressBar" onChange={toggleSoundOnProfile}/>
                   <label className="custom-control-label" htmlFor="toggleProgressBar"></label>
-                  {console.log(profile.soundEnabled)}
                 </div>
                 <p className="toggle-headers-disable">Enabled</p>
 
@@ -92,10 +94,9 @@ const ProfileSettings = ({
                     </p>
 
                     <div className="delete-account-btn-div">
-                    {/*    TODO: actually handle delete account and triple check they want to*/}
-                    <Link to="/" className="delete-account-btn btn-danger mt-2">
+                    <btn onClick={() => setDeleteAccountModal(true)} className="delete-account-btn btn-danger mt-2">
                         Delete Account
-                    </Link>
+                    </btn>
                     </div>
                 </div>
             </form>

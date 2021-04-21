@@ -76,7 +76,7 @@ const ChoreManager = ({
                             <div className="justify-content-center">
                                 <div className="vertical-scrollable" style={{height: "calc(100vh - 260px)", paddingRight: "4px", paddingLeft: "4px"}}>
                                     <ul className="nav flex-column nav-pills mt-4" role="navigation" style={{marginLeft: "1px !important"}}>
-                                        <li className={`nav-link nav-item mb-4 pt-3 pb-4 border border-dark group-button ${activeGroupId === "Personal Chores" ? 'active':''}`}
+                                        <li className={`nav-link nav-item  mb-4 pt-3 pb-4 border border-dark group-button ${activeGroupId === "Personal Chores" ? 'active':''}`}
                                             onClick={() => setActiveGroup("Personal Chores")}>
                                             {activeGroupId === "Personal Chores" ? "Personal Chores" : "View Personal Chores"}
                                         </li>

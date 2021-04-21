@@ -89,9 +89,13 @@ const ChoreCard = ({props, chore, group, profile, updateProgress, addPoints, edi
                 }
 
                 {
-                    (chore.rewards.points === true || chore.rewards.realLifeItem === true) &&
+                    (chore.rewards.points === true || chore.rewards.realLifeItem === true) ?
                         <div className="col" style = {cardText}>
                             Reward:
+                        </div>
+                        :
+                        <div>
+                            <br/>
                         </div>
                 }
                 {

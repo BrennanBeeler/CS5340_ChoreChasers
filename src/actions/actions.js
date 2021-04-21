@@ -105,10 +105,10 @@ const editChore = (dispatch, chore) => {
     })
 }
 
-const createChore = (dispatch, groupName, chore) => {
+const createChore = (dispatch, groupId, chore) => {
     dispatch({
         type: CREATE_CHORE,
-        groupName,
+        groupId,
         chore
     })
 }

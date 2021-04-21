@@ -59,10 +59,6 @@ class GroupChores extends React.Component {
         const {members} = this.state;
         return(
             <div className="container-fluid">
-                {
-                    console.log(this.state)
-                }
-
                 <div style={{height: "160px"}}>
                     <div className="row">
 

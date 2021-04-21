@@ -86,7 +86,7 @@ const applicationReducer = (state = {}, action) => {
                 ]
             }
         case CREATE_CHORE:
-            if (action.groupName === "Personal Chores") {
+            if (action.groupId === "Personal Chores") {
                 state.activeProfile.chores.push(action.chore);
 
                 return {
@@ -95,7 +95,7 @@ const applicationReducer = (state = {}, action) => {
             }
             else {
                 let tempGroups = state.groups;
-                tempGroups.forEach(group => group.name === action.groupName ? group.chores = [...group.chores, action.chore] : group)
+                tempGroups.forEach(group => group.id === action.groupId ? group.chores = [...group.chores, action.chore] : group)
 
                 return {
                     ...state,

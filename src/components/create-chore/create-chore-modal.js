@@ -27,7 +27,6 @@ const CreateChoreModal = ({
     const [pointNumber, setPointNumber] = useState(0);
 
     const validateChore = () => {
-        //TODO: actually validate chores
         if(choreName === "") {
             alert("Please make sure to include a name for your chore")
             return;
@@ -41,8 +40,8 @@ const CreateChoreModal = ({
             repeatChore: repeatChore,
             choreInstructions: choreInstructions,
             rewards:{points:pointsChecked,realLifeItem:prizeChecked},
-            points: pointNumber,
-            realLifeItem: prizeText,
+            points: pointsChecked === true ? pointNumber : 0,
+            realLifeItem: prizeChecked === true ? prizeText : "",
             splitReward:{everyoneGetsReward:rewardMode,fcfs:!rewardMode},
             dateAdded: new Date().toISOString().substring(0, 10),
             assignor: profileUsername,
@@ -50,8 +49,7 @@ const CreateChoreModal = ({
             group: choreGroup.id
         }
 
-        //TODO: fix this use of name as identifier
-        createChore(choreGroup.name, newChore)
+        createChore(choreGroup.id, newChore)
         hide()
     }
 
@@ -69,7 +67,7 @@ const CreateChoreModal = ({
                     </Form.Group>
 
                     <Form.Group>
-                        <Form.Label>When is it due? If not, it will appear in Undated Chores</Form.Label>
+                        <Form.Label>When is it due? If empty, it will appear in Undated Chores</Form.Label>
                         <div>
                             <Form.Control type="date" value={dueDate} onChange={event => {setDueDate(event.target.value)}}/>
                             <btn className="btn btn-info" onClick={event => {setDueDate("")}}>Clear</btn>
@@ -99,8 +97,13 @@ const CreateChoreModal = ({
                         <Form.Label>Choose group for chore *</Form.Label>
                         <Form.Control as="select" value={choreGroup.id}
                                       onChange={event => {
-                                        setChoreGroup(groupOptions.find(group =>
-                                          group.id === event.target.value))}
+                                          if (event.target.value === "Personal Chores") {
+                                              setChoreGroup(groupOptions.find(group => group.id === event.target.value))
+                                          }
+                                          else {
+                                              setChoreGroup(groupOptions.find(group =>
+                                                  group.id === parseInt(event.target.value)))}
+                                          }
                                       }>
                             {
                                 groupOptions.map(option =>
@@ -257,7 +260,6 @@ const stpm = (state) => {
     else {
         temp = state.groups.filter(group => group.id === state.activeGroupId)[0]
     }
-
     return ({
         currentGroup:  temp,
         groupOptions: [{name: "Personal Chores", id : "Personal Chores", members: []}]
@@ -269,7 +271,7 @@ const stpm = (state) => {
 }
 
 const dtpm = (dispatch) => ({
-    createChore : (groupName, chore) => applicationActions.createChore(dispatch, groupName, chore)
+    createChore : (groupId, chore) => applicationActions.createChore(dispatch, groupId, chore)
 })
 
 export default connect(stpm, dtpm)(CreateChoreModal);

@@ -374,7 +374,7 @@ const initialState = {
     groups : [{
         id: "1",
         name: 'Family',
-        progressBar: false,
+        progressBar: true,
         members: ["Marie", "Abby", "Vinnie", "Alan", "Max"],
         chores: [
             {
@@ -412,7 +412,7 @@ const initialState = {
 
             {
                 id:"3",
-                done:false,
+                done:true,
                 choreName: 'Take out the trash',
                 dueDate: "2025-03-23",
                 repeatChore: "Weekly",
@@ -423,7 +423,7 @@ const initialState = {
                 splitReward:{everyoneGetsReward:false,fcfs:false},
                 dateAdded: "2025-03-23",
                 assignor: "Max",
-                assignees: ['Vinnie'],
+                assignees: ['Vinnie', 'Abby'],
                 group: "1"
             }
         ]

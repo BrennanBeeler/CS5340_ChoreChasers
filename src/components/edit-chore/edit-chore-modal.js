@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import {Typeahead} from "react-bootstrap-typeahead";
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 
-const EditChoreModal = ({onHide, show, activeGroupId, profileUsername, chore, editChore, groups}) => {
+const EditChoreModal = ({onHide, show, activeGroupId, profileUsername, chore, editChore, groups, currentGroup, groupOptions}) => {
 
     const getMembers = (groups) => {
         return groups.filter(group => group.id === chore.group)[0].members
@@ -18,6 +18,7 @@ const EditChoreModal = ({onHide, show, activeGroupId, profileUsername, chore, ed
     const [dueDate, setDueDate] = useState(chore.dueDate);
     const [repeatChore, setRepeatChore] = useState(chore.repeatChore);
     const [choreInstructions, setChoreInstructions] = useState(chore.choreInstructions);
+    const [choreGroup, setChoreGroup] = useState(currentGroup);
     const [rewardMode, setRewardMode] = useState(chore.rewards.points === true || chore.rewards.realLifeItem === true);
     const [assignees, setAssignees] = useState(chore.assignees)
     const [pointsChecked, setPointsChecked] = useState(chore.rewards.points)
@@ -68,13 +69,15 @@ const EditChoreModal = ({onHide, show, activeGroupId, profileUsername, chore, ed
                                       onChange={event => setChoreName(event.target.value)}/>
                     </Form.Group>
 
-                    {/*TODO: need way to clear date*/}
                     <Form.Group>
-                        <Form.Label>When is it due? If not, it will appear in Undated Chores</Form.Label>
-                        <Form.Control type="date" value={dueDate} onChange={event => setDueDate(event.target.value)}/>
+                        <Form.Label>When is it due? If empty, it will appear in Undated Chores</Form.Label>
+                        <div>
+                            <Form.Control type="date" value={dueDate} onChange={event => {setDueDate(event.target.value)}}/>
+                            <btn className="btn btn-info" onClick={event => {setDueDate("")}}>Clear</btn>
+                        </div>
                     </Form.Group>
 
-                    {/*TODO: decide how no-repeat looks*/}
+                    {dueDate !== "" ?
                     <Form.Group>
                         <Form.Label>Does the chore need to repeat itself?</Form.Label>
                         <Form.Control as="select" value={repeatChore}
@@ -85,23 +88,45 @@ const EditChoreModal = ({onHide, show, activeGroupId, profileUsername, chore, ed
                             <option value="Monthly">Monthly</option>
                             <option value="Yearly">Yearly</option>
                         </Form.Control>
-                    </Form.Group>
+                    </Form.Group> : <div/>}
 
-                    {/*TODO: time a bad placeholder since we don't want to focus on time?*/}
                     <Form.Group>
                         <Form.Label>Have any chore instructions?</Form.Label>
-                        <Form.Control as="textarea" placeholder="eg: finish before 5pm" value={choreInstructions}
+                        <Form.Control as="textarea" placeholder="eg: Location is 50 Market Street" value={choreInstructions}
                                       onChange={event => setChoreInstructions(event.target.value)}/>
                     </Form.Group>
+
+                    <Form.Group>
+                        <Form.Label>Choose group for chore *</Form.Label>
+                        <Form.Control as="select" value={choreGroup.id}
+                                      onChange={event => {
+                                          if (event.target.value === "Personal Chores") {
+                                              setChoreGroup(groupOptions.find(group => group.id === event.target.value))
+                                          }
+                                          else {
+                                              setChoreGroup(groupOptions.find(group =>
+                                                  group.id === event.target.value))
+                                          }
+                                          setAssignees([]);
+                                          }
+                                      }>
+                            {
+                                groupOptions.map(option =>
+                                    <option key={option.id} value={option.id}>{option.name}</option>
+                                )
+                            }
+                        </Form.Control>
+                    </Form.Group>
+
                     {
-                        //TODO: find better solution for users
-                        chore.group !== "Personal Chores" &&
+                        choreGroup.name !== "Personal Chores" &&
+
                         <Form.Group>
                             <Form.Label>Assignees</Form.Label>
                             <Typeahead
                                 id="assignees"
                                 onChange={setAssignees}
-                                options={getMembers(groups)}
+                                options={choreGroup.members}
                                 placeholder="Type the name of the person this chore is assigned to..."
                                 selected={assignees}
                                 multiple
@@ -233,13 +258,25 @@ const EditChoreModal = ({onHide, show, activeGroupId, profileUsername, chore, ed
     )
 }
 
-const stpm = (state) => ({
-    activeGroupId: state.activeGroupId,
-    groupOptions: [{name: "Personal Chores", id : "Personal Chores", members: []}]
-        .concat(state.groups.map(group => ({name: group.name, id: group.id, members: group.members}))),
-    profileUsername : state.activeProfile.username,
-    groups: state.groups
-})
+const stpm = (state) => {
+    let temp = {}
+
+    if (state.activeGroupId === "Personal Chores" || state.activeGroupId === "All_my_chores"){
+        temp = {name: "Personal Chores", id: "Personal Chores"}
+    }
+    else {
+        temp = state.groups.filter(group => group.id === state.activeGroupId)[0]
+    }
+    return ({
+        currentGroup:  temp,
+        groupOptions: [{name: "Personal Chores", id : "Personal Chores", members: []}]
+            .concat(state.groups.filter(group =>
+                group.members.includes(state.activeProfile.username)).map(group =>
+                    ({name: group.name, id: group.id, members: group.members}))),
+        profileUsername : state.activeProfile.username,
+        activeGroupId: state.activeGroupId
+    })
+}
 
 const dtpm = (dispatch) => ({
     editChore : (chore) => applicationActions.editChore(dispatch, chore)

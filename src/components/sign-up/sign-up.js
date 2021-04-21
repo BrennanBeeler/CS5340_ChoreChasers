@@ -107,6 +107,10 @@ const SignUp = ({
                     </div>
                 </form>
             </div>
+            <Link to="/" className=" back-button btn">
+                <i className="fa fa-caret-left" style={{paddingLeft: "10px", paddingRight:"15px"}}/>
+                Go Back to Home
+            </Link>
         </div>
     )
 }

@@ -96,28 +96,6 @@ const EditChoreModal = ({onHide, show, activeGroupId, profileUsername, chore, ed
                                       onChange={event => setChoreInstructions(event.target.value)}/>
                     </Form.Group>
 
-                    <Form.Group>
-                        <Form.Label>Choose group for chore *</Form.Label>
-                        <Form.Control as="select" value={choreGroup.id}
-                                      onChange={event => {
-                                          if (event.target.value === "Personal Chores") {
-                                              setChoreGroup(groupOptions.find(group => group.id === event.target.value))
-                                          }
-                                          else {
-                                              setChoreGroup(groupOptions.find(group =>
-                                                  group.id === event.target.value))
-                                          }
-                                          setAssignees([]);
-                                          }
-                                      }>
-                            {
-                                groupOptions.map(option =>
-                                    <option key={option.id} value={option.id}>{option.name}</option>
-                                )
-                            }
-                        </Form.Control>
-                    </Form.Group>
-
                     {
                         choreGroup.name !== "Personal Chores" &&
 

@@ -70,7 +70,7 @@ const CreateChoreModal = ({
                         <Form.Label>When is it due? If empty, it will appear in Undated Chores</Form.Label>
                         <div>
                             <Form.Control type="date" value={dueDate} onChange={event => {setDueDate(event.target.value)}}/>
-                            <btn className="btn btn-info" onClick={event => {setDueDate("")}}>Clear</btn>
+                            {dueDate !== "" ? <btn className="btn btn-info" onClick={event => {setDueDate("")}}>Clear</btn> : <div/>}
                         </div>
                     </Form.Group>
 

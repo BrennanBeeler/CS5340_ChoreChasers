@@ -73,7 +73,7 @@ const EditChoreModal = ({onHide, show, activeGroupId, profileUsername, chore, ed
                         <Form.Label>When is it due? If empty, it will appear in Undated Chores</Form.Label>
                         <div>
                             <Form.Control type="date" value={dueDate} onChange={event => {setDueDate(event.target.value)}}/>
-                            <btn className="btn btn-info" onClick={event => {setDueDate("")}}>Clear</btn>
+                            {dueDate !== "" ? <btn className="btn btn-info" onClick={event => {setDueDate("")}}>Clear</btn> : <div/>}
                         </div>
                     </Form.Group>
 
@@ -94,28 +94,6 @@ const EditChoreModal = ({onHide, show, activeGroupId, profileUsername, chore, ed
                         <Form.Label>Have any chore instructions?</Form.Label>
                         <Form.Control as="textarea" placeholder="eg: Location is 50 Market Street" value={choreInstructions}
                                       onChange={event => setChoreInstructions(event.target.value)}/>
-                    </Form.Group>
-
-                    <Form.Group>
-                        <Form.Label>Choose group for chore *</Form.Label>
-                        <Form.Control as="select" value={choreGroup.id}
-                                      onChange={event => {
-                                          if (event.target.value === "Personal Chores") {
-                                              setChoreGroup(groupOptions.find(group => group.id === event.target.value))
-                                          }
-                                          else {
-                                              setChoreGroup(groupOptions.find(group =>
-                                                  group.id === event.target.value))
-                                          }
-                                          setAssignees([]);
-                                          }
-                                      }>
-                            {
-                                groupOptions.map(option =>
-                                    <option key={option.id} value={option.id}>{option.name}</option>
-                                )
-                            }
-                        </Form.Control>
                     </Form.Group>
 
                     {

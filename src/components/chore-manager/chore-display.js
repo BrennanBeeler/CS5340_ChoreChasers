@@ -93,7 +93,7 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress, showComp
                                 && futureChores.length === 0) &&
                                 <div className="text-center">
                                     <h2 className="h2-undated" style={{color:"black", backgroundColor: "#e8fcff",
-                                        borderRadius:"25px", paddingLeft:"10px", marginTop:"5px" }}>
+                                        borderRadius:"5px", paddingLeft:"10px", marginTop:"5px" }}>
                                         Dated Chores
                                     </h2>
                                     <br/>
@@ -102,7 +102,7 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress, showComp
                                     <br/>
                                     <div style={{color: "black", backgroundColor: "#e8fcff",borderRadius:"25px",
                                         paddingLeft:"10px",marginTop:"5px"}}>
-                                        Chores with due dates assigned up here!
+                                        Chores with assigned due dates end up here!
                                     </div>
                                 </div>
 
@@ -114,7 +114,7 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress, showComp
                                 overdueChores.length !== 0 &&
                                 <div>
                                     <h2 className="h2-dated text-center" style={{color: "black", backgroundColor: "#e8fcff",
-                                        borderRadius:"25px", paddingLeft:"10px", marginTop:"5px"}}>
+                                        borderRadius:"5px", paddingLeft:"10px", marginTop:"5px"}}>
                                         Overdue
                                         <i className="fa fa-exclamation-triangle"
                                               style={{color: "red", marginLeft: "10px"}} />
@@ -136,7 +136,7 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress, showComp
                             todayChores.length !== 0 &&
                             <>
                                 <h2 className="h2-due-today text-center" style={{color: "black", backgroundColor: "#e8fcff",
-                                    borderRadius:"25px", paddingLeft:"10px",marginTop:"5px" }}>
+                                    borderRadius:"5px", paddingLeft:"10px",marginTop:"5px" }}>
                                     Due Today
                                 </h2>
                                 <br/>
@@ -157,7 +157,7 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress, showComp
                             weeksChores.length !== 0 &&
                             <>
                                 <h2 className="h2-due-next-week text-center" style={{color: "black", backgroundColor: "#e8fcff",
-                                    borderRadius:"25px", paddingLeft:"10px", marginTop:"5px" }}>
+                                    borderRadius:"5px", paddingLeft:"10px", marginTop:"5px" }}>
                                     Due Next Week
                                 </h2>
 
@@ -182,7 +182,7 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress, showComp
                             futureChores.length !== 0 &&
                             <>
                                 <h2 className="h2-due-future text-center" style={{color: "black", backgroundColor: "#e8fcff",
-                                    borderRadius:"25px", paddingLeft:"10px",marginTop:"5px" }}>
+                                    borderRadius:"5px", paddingLeft:"10px",marginTop:"5px" }}>
                                     Due In The Future
                                 </h2>
 
@@ -206,7 +206,7 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress, showComp
                         {
                             undatedChores.length === 0 ?
                                 <div className="text-center">
-                                    <h2 className="h2-undated" style={{color: "black", backgroundColor: "#e8fcff",borderRadius:"25px",
+                                    <h2 className="h2-undated" style={{color: "black", backgroundColor: "#e8fcff",borderRadius:"5px",
                                         paddingLeft:"10px",marginTop:"5px"}}>
                                         Undated Chores
                                     </h2>
@@ -221,7 +221,7 @@ const ChoreDisplay = ({chores, background, deleteChore, updateProgress, showComp
                                 </div>
                                 :
                                 <h2 className="h2-undated text-center" style={{color: "black", backgroundColor: "#e8fcff",
-                                    borderRadius:"25px", paddingLeft:"10px",marginTop:"5px"}}>
+                                    borderRadius:"5px", paddingLeft:"10px",marginTop:"5px"}}>
                                     Undated Chores
                                 </h2>
                         }

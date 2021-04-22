@@ -128,7 +128,7 @@ const Profile = ({
                                                         <p>Level {index + 1}</p>
                                                     </div>
                                                     <div className="col" style = {{paddingRight:"20px",paddingLeft:"20px"}}>
-                                                        <img src={value} style={{height: "50px", width: "250px", padding: '4px'}}/>
+                                                        <img className="border border-dark" src={value} style={{height: "50px", width: "250px", padding: '4px'}}/>
                                                     </div>
                                                     <div className="col">
                                                         <button className="  btn btn-success disabled">

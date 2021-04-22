@@ -55,6 +55,12 @@
     margin-left: 405px;
 }
 
+.back-button {
+    position: absolute;
+    top:20px;
+    left:20px;
+}
+
 input[type=text] {
     width: 300px;
     /*padding: 12px 20px;*/

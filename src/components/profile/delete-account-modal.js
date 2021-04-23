@@ -24,7 +24,6 @@ const DeleteAccountModal = ({props,
             </Modal.Body>
           <Modal.Footer>
                 <Row style={{width: "100%"}}>
-                    {/*TODO: figure out layout*/}
                     <Col xs={6}>
                         <Button variant="success" block onClick={props.onHide}>
                             No, go back!

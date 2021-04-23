@@ -152,7 +152,6 @@ const CreateChoreModal = ({
                             {
                                 pointsChecked &&
                                     <Col>
-                                        {/*TODO: fix appearance*/}
                                         {/*0 20*/} {pointNumber}
                                         <Form.Group controlId="formBasicRange">
                                             <Form.Control type="range" value={pointNumber} min="0" max="20"
@@ -235,14 +234,12 @@ const CreateChoreModal = ({
 
             <Modal.Footer>
                 <Row style={{width: "100%"}}>
-                    {/*TODO: figure out layout*/}
                     <Col xs={6}>
                         <Button variant="danger" block onClick={hide}>
                             Nevermind
                         </Button>
                     </Col>
                     <Col xs={6}>
-                        {/*TODO: need to make creat chore validate and submit data*/}
                         <Button variant="primary" block onClick={validateChore}>
                             Create Chore
                         </Button>

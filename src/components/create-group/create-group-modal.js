@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Button, Col, Form, Modal, OverlayTrigger, Row, Tooltip} from "react-bootstrap";
+import {Button, Card, Col, Form, Modal, OverlayTrigger, Row, Tooltip} from "react-bootstrap";
 import {connect} from "react-redux";
 import applicationActions from "../../actions/actions";
 
@@ -9,10 +9,16 @@ const CreateGroupModal = ({props, createGroup, profile, groups}) => {
     const [memberList, setMemberList] = useState([]);
 
     const handleMemberAdd = () => {
-        if(memberName !== "" && !(memberName in memberList)) {
-            setMemberList(memberList => [...memberList, memberName])
+        if (!memberName.match(/.+@.+\..+/g)) {
+            alert("Please make sure that you have entered a properly formatted email.")
         }
-        setMemberName('');
+        else if (memberList.includes(memberName)){
+            alert("You've already included that email.")
+        }
+        else {
+            setMemberList(memberList => [...memberList, memberName])
+            setMemberName('');
+        }
     }
 
     const handleCreateGroup = () => {
@@ -28,6 +34,10 @@ const CreateGroupModal = ({props, createGroup, profile, groups}) => {
 
             props.onHide();
         }
+    }
+
+    const handleRemoveGroup = (member) => {
+        setMemberList(memberList.filter(element => element !== member))
     }
 
 
@@ -65,22 +75,24 @@ const CreateGroupModal = ({props, createGroup, profile, groups}) => {
                                               onChange={event => setMemberName(event.target.value)}/>
                             </Col>
                             <Col xs={2}>
-                                <Button onClick={() => handleMemberAdd()}>
+                                <Button onClick={handleMemberAdd}>
                                     Add
                                 </Button>
                             </Col>
                         </Form.Row>
+                        <br/>
 
                         {
-                            //TODO: create pretty member tags/ allow removal
                             memberList.map(member =>
-                                <div>
-                                    {member}
-                                </div>
+                                <Card style={{marginRight: "30px", paddingLeft: "10px"}}>
+                                    <div>
+                                        {member}
+                                        <i className="fa fa-times float-right" style={{color: "red", paddingRight: "7px", paddingTop: "5px"}}
+                                           onClick={() => handleRemoveGroup(member)}/>
+                                    </div>
+                                </Card>
                             )
                         }
-
-
                     </Form.Group>
                 </Form>
 
@@ -88,14 +100,12 @@ const CreateGroupModal = ({props, createGroup, profile, groups}) => {
 
             <Modal.Footer>
                 <Row style={{width: "100%"}}>
-                    {/*TODO: figure out layout*/}
                     <Col xs={6}>
                         <Button variant="danger" block onClick={props.onHide}>
                             Nevermind
                         </Button>
                     </Col>
                     <Col xs={6}>
-                        {/*TODO: need to make create group validate and submit data*/}
                         <Button variant="primary" block onClick={handleCreateGroup}>
                             Create Group
                         </Button>

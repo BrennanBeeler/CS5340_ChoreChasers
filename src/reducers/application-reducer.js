@@ -17,7 +17,6 @@ import {
 
 const applicationReducer = (state = {}, action) => {
     switch (action.type) {
-        //TODO: figure out where log out buttons will go
         case LOG_OUT:
             return {
                 ...state,
@@ -76,7 +75,6 @@ const applicationReducer = (state = {}, action) => {
                 activeProfile: newProfilee,
             }
             return JSON.parse(JSON.stringify(newSound));
-        //    TODO: redo now that data is local only
         case CREATE_GROUP:
             return {
                 ...state,

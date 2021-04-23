@@ -27,7 +27,6 @@ const ChoreCard = ({props, chore, group, profile, updateProgress, addPoints, edi
     }
 
     const markCompleted = (event) => {
-        //TODO: handle promise
         if (profile.soundEnabled) {
             successSound.play();
         }
@@ -42,13 +41,6 @@ const ChoreCard = ({props, chore, group, profile, updateProgress, addPoints, edi
         // timeOut()
     }
 
-    //TODO: figure out hiding completed chores
-    //TODO: this is causing a memory leak- need to investigate more thoroughly - needs to be cleared
-    // async function timeOut() {
-    //     await new Promise(res => setTimeout(() => setCountDown(countDown - 1), 10000))
-    //     //setVisibility(false);
-    // }
-
     const [showDeleteModal, setShowDeleteModal] = useState(false);
 
     const undoCompleted = () => {
@@ -61,7 +53,6 @@ const ChoreCard = ({props, chore, group, profile, updateProgress, addPoints, edi
     }
 
 
-    // TODO: probably want to handle visibility as the chore display level
     return(visibility &&
       <>
 

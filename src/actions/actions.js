@@ -69,7 +69,6 @@ const setBackground = (dispatch, url) => {
     })
 }
 
-//TODO: figure out how to deal with adding people to group
 const createGroup = (dispatch, profile, group) => {
     dispatch({
         type : CREATE_GROUP,

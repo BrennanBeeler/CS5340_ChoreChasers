@@ -14,7 +14,6 @@ const SignUp = ({
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        // TODO: need to handle user feedback on bad input
         if (!email.match(/.+@.+\..+/g)) {
             alert("Please make sure that you have entered a properly formatted email.")
         }
@@ -74,7 +73,6 @@ const SignUp = ({
                     </div>
 
                     <div className="label-box-pair-signup form-group">
-                        {/*TODO: figure out if want to have confirm password and hidden type*/}
                         <div className="form-pass-field-signup">Set up a secure password to access your choice in the future *</div>
                         <div>
                             <input type="password" id="passwordFld" placeholder="Enter a password" className="form-control"

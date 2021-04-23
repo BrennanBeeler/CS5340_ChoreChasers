@@ -31,7 +31,6 @@ const ChoreManager = ({
             maxPoints = 1000000;
         }
     };
-    // TODO: It doesn't affect performance but this is pretty bad practice, change later
     updateLevel();
 
     return (

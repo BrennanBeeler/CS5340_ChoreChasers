@@ -58,7 +58,6 @@ class AllMyChores extends React.Component {
                                   hide={() => this.setState({choreModal: false})}
                                   profileUsername={this.state.profileUsername}
                 />
-                {/*TODO: decide what to do with all chores and bar*/}
                 <h4 className="h4-style">
                     Today's Progress
                 </h4>

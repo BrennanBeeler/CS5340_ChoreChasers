@@ -135,8 +135,7 @@ const EditChoreModal = ({onHide, show, activeGroupId, profileUsername, chore, ed
                             {
                                 pointsChecked &&
                                     <Col>
-                                        {/*TODO: decide on bar visuals*/}
-                                        {/*0 20*/} {pointNumber}
+                                        {pointNumber}
                                         <Form.Group controlId="formBasicRange">
                                             <Form.Control type="range" value={pointNumber} min="0" max="20"
                                                           onChange={event => setPointNumber(parseInt(event.target.value))}/>
@@ -218,14 +217,12 @@ const EditChoreModal = ({onHide, show, activeGroupId, profileUsername, chore, ed
 
             <Modal.Footer>
                 <Row style={{width: "100%"}}>
-                    {/*TODO: figure out layout*/}
                     <Col xs={6}>
                         <Button variant="danger" block onClick={onHide}>
                             Nevermind
                         </Button>
                     </Col>
                     <Col xs={6}>
-                        {/*TODO: need to make creat chore validate and submit data*/}
                         <Button  variant="primary" block onClick={validateChore}>
                             Save & Exit
                         </Button>

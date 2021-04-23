@@ -31,7 +31,6 @@ const Profile = ({
         maxPoints = 1000000;
       }
     };
-    // TODO: It doesn't affect performance but this is pretty bad practice, change later
     updateLevel();
 
   // const unlockableBackgrounds = ["https://coolbackgrounds.io/images/backgrounds/white/pure-white-background-85a2a7fd.jpg",

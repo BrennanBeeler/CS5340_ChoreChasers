@@ -15,7 +15,6 @@ const LeaveGroupModal = ({props,
     event.preventDefault();
     group.members.pop(profileUsername)
     editGroup(group);
-    //TODO: remove after T4
     deleteGroup(group);
     setLeave(true);
   }
@@ -34,14 +33,12 @@ const LeaveGroupModal = ({props,
             </Modal.Body>
           <Modal.Footer>
                 <Row style={{width: "100%"}}>
-                    {/*TODO: figure out layout*/}
                     <Col xs={6}>
                         <Button variant="success" block onClick={props.onHide}>
                             No, go back!
                         </Button>
                     </Col>
                     <Col xs={6}>
-                        {/*TODO: need to make creat chore validate and submit data*/}
                         <Button to="/choreManager" className="btn btn-danger" block onClick={handleLeave}>
                             Yes, delete
                         </Button>

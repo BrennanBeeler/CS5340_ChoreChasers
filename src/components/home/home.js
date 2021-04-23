@@ -13,7 +13,7 @@ const Home = () => {
         <div className="page-bg" style={{overflowY: "scroll", overflowX:"hidden",paddingLeft:"5px"}}>
             <div className="row">
                 <div className="col-4">
-                    <h1 class="header">
+                    <h1 className="header">
                         Chore Chasers
                     </h1>
                 </div>
@@ -35,7 +35,7 @@ const Home = () => {
                 </div>
             </div>
 
-            <div class="body-background position-relative" style={{backgroundImage: "url(/hangingclothes2.jpg)"}}>
+            <div className="body-background position-relative" style={{backgroundImage: "url(/hangingclothes2.jpg)"}}>
                 <blockquote id="intro1">
                     Manage those pesky chores with ease... <br/>
                 </blockquote>
@@ -100,7 +100,7 @@ const Home = () => {
                         <div className="font-weight-bolder about-header">
                             So what do we do?
                         </div>
-                        <div class="about">
+                        <div className="about">
                             We help you keep track of your chores and make sure you have fun doing them!
                             Earn rewards and compete with group members to ultimately become the best Chore Chaser.
                         </div>
@@ -124,7 +124,7 @@ const Home = () => {
 
                 <br/>
 
-                <div class="extra-body-space">
+                <div className="extra-body-space">
                 </div>
             </div>
         </div>

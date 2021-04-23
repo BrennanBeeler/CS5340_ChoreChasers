@@ -7,13 +7,6 @@ import 'react-bootstrap-typeahead/css/Typeahead.css';
 
 const EditChoreModal = ({onHide, show, activeGroupId, profileUsername, chore, editChore, groups, currentGroup, groupOptions}) => {
 
-    const getMembers = (groups) => {
-        return groups.filter(group => group.id === chore.group)[0].members
-    }
-
-    // state.activeGroupId === "Personal Chores" ? {name: "Personal Chores", id: "Personal Chores"} :
-    //     state.groups.filter(group => group.id === state.activeGroupId)[0]
-
     const [choreName, setChoreName] = useState(chore.choreName);
     const [dueDate, setDueDate] = useState(chore.dueDate);
     const [repeatChore, setRepeatChore] = useState(chore.repeatChore);

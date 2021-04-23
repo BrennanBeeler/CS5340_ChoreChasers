@@ -7,7 +7,6 @@ import ChoreDisplay from "./chore-display";
 import applicationActions from "../../actions/actions";
 import {connect} from "react-redux";
 import ShowCompletedToggle from "./show-completed-toggle";
-import {Link} from "react-router-dom";
 
 class PersonalChores extends React.Component {
     constructor(props) {

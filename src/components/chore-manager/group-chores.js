@@ -8,7 +8,6 @@ import {connect} from "react-redux";
 import CreateChoreModal from "../create-chore/create-chore-modal";
 import {ProgressBar} from "react-bootstrap";
 import ShowCompletedToggle from "./show-completed-toggle";
-import DeleteChoreModal from "../delete-chore/delete-chore-modal";
 
 class GroupChores extends React.Component {
     constructor(props) {

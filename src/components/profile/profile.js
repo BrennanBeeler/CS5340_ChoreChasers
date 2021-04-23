@@ -1,7 +1,7 @@
 import React from "react";
 import "./profile.css";
 import {useState} from "react";
-import {Col, Row, Button} from "react-bootstrap";
+import {Col, Row} from "react-bootstrap";
 import Toast from 'react-bootstrap/Toast'
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
@@ -33,12 +33,6 @@ const Profile = ({
     };
     updateLevel();
 
-  // const unlockableBackgrounds = ["https://coolbackgrounds.io/images/backgrounds/white/pure-white-background-85a2a7fd.jpg",
-  //   "https://globetrender.com/wp-content/uploads/2020/05/Caribbean-beach.jpg",
-  //   "https://images.pexels.com/photos/1054289/pexels-photo-1054289.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-  //   "https://i.pinimg.com/originals/48/e4/cc/48e4cccf453801f8af4cc28b701a52ee.jpg",
-  //   "https://www.fau.edu/publicaffairs/branding/images/backgrounds/fau-background-2.jpg",
-  //   "https://cdn.shopify.com/s/files/1/0235/8415/files/ZoomBackground_ResizedPPMCD12-008_00-FRONT_Cover_OL.jpg?v=1597779554&format=jpg"];
   const unlockableBackgrounds = ["/cool-background-white.png", "/cool-background2.svg", "/cool-background3.png", "/cool-background4.png", "/cool-background5.png", "/cool-background6.png"];
 
   const renderTooltip = (props) => (

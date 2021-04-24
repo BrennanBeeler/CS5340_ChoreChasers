@@ -66,7 +66,7 @@ const EditChoreModal = ({onHide, show, activeGroupId, profileUsername, chore, ed
                         <Form.Label>When is it due? If empty, it will appear in Undated Chores</Form.Label>
                         <div>
                             <Form.Control type="date" value={dueDate} onChange={event => {setDueDate(event.target.value)}}/>
-                            {dueDate !== "" ? <btn className="btn btn-info" onClick={event => {setDueDate("")}}>Clear</btn> : <div/>}
+                            {dueDate !== "" ? <btn className="btn btn-info mt-2" onClick={event => {setDueDate("")}}>Clear</btn> : <div/>}
                         </div>
                     </Form.Group>
 

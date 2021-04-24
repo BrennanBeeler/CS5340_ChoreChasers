@@ -6,7 +6,7 @@ const initialState = {
     activeProfile : {
         id: "1",
         background: "/cool-background-white.png",
-        emailId: 'test@email.com',
+        emailId: 'max@gmail.com',
         points: 0,
         soundEnabled: true,
         username: 'Max',
@@ -78,70 +78,6 @@ const initialState = {
             },
             {
                 id: "5",
-                done: false,
-                choreName: 'Read Chapter 14',
-                dueDate: "2021-04-04",
-                repeatChore: "Never",
-                choreInstructions: "Online textbook",
-                rewards: {points: true, realLifeItem: false},
-                points: 10,
-                realLifeItem: "",
-                splitReward: {everyoneGetsReward: true, fcfs: false},
-                dateAdded: "2021-03-23",
-                assignor: "Max",
-                assignees: ["Max"],
-                group: "Personal Chores"
-            },
-            {
-                id: "6",
-                done: false,
-                choreName: 'Read Chapter 14',
-                dueDate: "2021-04-04",
-                repeatChore: "Never",
-                choreInstructions: "Online textbook",
-                rewards: {points: true, realLifeItem: false},
-                points: 10,
-                realLifeItem: "",
-                splitReward: {everyoneGetsReward: true, fcfs: false},
-                dateAdded: "2021-03-23",
-                assignor: "Max",
-                assignees: ["Max"],
-                group: "Personal Chores"
-            },
-            {
-                id: "7",
-                done: false,
-                choreName: 'Read Chapter 14',
-                dueDate: "2021-04-04",
-                repeatChore: "Never",
-                choreInstructions: "Online textbook",
-                rewards: {points: true, realLifeItem: false},
-                points: 10,
-                realLifeItem: "",
-                splitReward: {everyoneGetsReward: true, fcfs: false},
-                dateAdded: "2021-03-23",
-                assignor: "Max",
-                assignees: ["Max"],
-                group: "Personal Chores"
-            },
-            {
-                id: "8",
-                done: false,
-                choreName: 'Read Chapter 14',
-                dueDate: "2021-04-04",
-                repeatChore: "Never",
-                choreInstructions: "Online textbook",
-                rewards: {points: true, realLifeItem: false},
-                points: 10,
-                realLifeItem: "",
-                splitReward: {everyoneGetsReward: true, fcfs: false},
-                dateAdded: "2021-03-23",
-                assignor: "Max",
-                assignees: ["Max"],
-                group: "Personal Chores"
-            },
-            {
-                id: "9",
                 done: false,
                 choreName: 'Read Chapter 14',
                 dueDate: "2021-04-04",
@@ -246,130 +182,8 @@ const initialState = {
                 assignor: "Max",
                 assignees: ["Max"],
                 group: "Personal Chores"
-            },
-            {
-                id: "6",
-                done: false,
-                choreName: 'Read Chapter 14',
-                dueDate: "2021-04-04",
-                repeatChore: "Never",
-                choreInstructions: "Online textbook",
-                rewards: {points: true, realLifeItem: false},
-                points: 10,
-                realLifeItem: "",
-                splitReward: {everyoneGetsReward: true, fcfs: false},
-                dateAdded: "2021-03-23",
-                assignor: "Max",
-                assignees: ["Max"],
-                group: "Personal Chores"
-            },
-            {
-                id: "7",
-                done: false,
-                choreName: 'Read Chapter 14',
-                dueDate: "2021-04-04",
-                repeatChore: "Never",
-                choreInstructions: "Online textbook",
-                rewards: {points: true, realLifeItem: false},
-                points: 10,
-                realLifeItem: "",
-                splitReward: {everyoneGetsReward: true, fcfs: false},
-                dateAdded: "2021-03-23",
-                assignor: "Max",
-                assignees: ["Max"],
-                group: "Personal Chores"
-            },
-            {
-                id: "8",
-                done: false,
-                choreName: 'Read Chapter 14',
-                dueDate: "2021-04-04",
-                repeatChore: "Never",
-                choreInstructions: "Online textbook",
-                rewards: {points: true, realLifeItem: false},
-                points: 10,
-                realLifeItem: "",
-                splitReward: {everyoneGetsReward: true, fcfs: false},
-                dateAdded: "2021-03-23",
-                assignor: "Max",
-                assignees: ["Max"],
-                group: "Personal Chores"
-            },
-            {
-                id: "9",
-                done: false,
-                choreName: 'Read Chapter 14',
-                dueDate: "2021-04-04",
-                repeatChore: "Never",
-                choreInstructions: "Online textbook",
-                rewards: {points: true, realLifeItem: false},
-                points: 10,
-                realLifeItem: "",
-                splitReward: {everyoneGetsReward: true, fcfs: false},
-                dateAdded: "2021-03-23",
-                assignor: "Max",
-                assignees: ["Max"],
-                group: "Personal Chores"
             }]
-    },
-        {
-            id: "2",
-            background: "/cool-background-white.png",
-            emailId: 'jess@email.com',
-            points: 0,
-            soundEnabled: true,
-            username: 'Jessie',
-            password: 'password',
-            chores: [
-                {
-                    id: "1",
-                    done: false,
-                    choreName: 'Call Anne about the party',
-                    dueDate: "2021-04-07",
-                    repeatChore: "Never",
-                    choreInstructions: "Call before 6PM",
-                    rewards: {points: true, realLifeItem: false},
-                    points: 20,
-                    realLifeItem: "",
-                    splitReward: {everyoneGetsReward: false, fcfs: false},
-                    dateAdded: "2021-03-15",
-                    assignor: "Jessie",
-                    assignees: ["Jessie"],
-                    group: "Personal Chores"
-                },
-                {
-                    id: "2",
-                    done: false,
-                    choreName: "Don't smoke",
-                    dueDate: "2021-04-07",
-                    repeatChore: "Daily",
-                    choreInstructions: "Call before 6PM",
-                    rewards: {points: false, realLifeItem: true},
-                    points: 0,
-                    realLifeItem: "Cookie per day",
-                    splitReward: {everyoneGetsReward: true, fcfs: false},
-                    dateAdded: "2025-03-23",
-                    assignor: "Jessie",
-                    assignees: ["Jessie"],
-                    group: "Personal Chores"
-                },
-                {
-                    id: "3",
-                    done: false,
-                    choreName: 'Practice piano',
-                    dueDate: "2021-04-03",
-                    repeatChore: "Weekly",
-                    choreInstructions: "Call before 6PM",
-                    rewards: {points: true, realLifeItem: false},
-                    points: 20,
-                    realLifeItem: "snack",
-                    splitReward: {everyoneGetsReward: false, fcfs: false},
-                    dateAdded: "2021-02-01",
-                    assignor: "Jessie",
-                    assignees: ["Jessie"],
-                    group: "Personal Chores"
-                }]
-        }],
+    }],
     activeGroupId : "Personal Chores",
     groups : [{
         id: "1",
@@ -450,7 +264,6 @@ const initialState = {
                     assignees: ["Max"],
                     group: "2"
                 },
-
                 {
                     id:"2",
                     done:false,
@@ -467,27 +280,6 @@ const initialState = {
                     assignees: ["Max"],
                     group: "2"
                 }]
-        },
-        {
-            id: "3",
-            name: 'test',
-            progressBar: false,
-            members: ["Marie", "Abby", "Vinnie", "Alan", "Max"],
-            chores: []
-        },
-        {
-            id: "4",
-            name: 'test2',
-            progressBar: false,
-            members: ["Jessie", "Max"],
-            chores: []
-        },
-        {
-            id: "5",
-            name: 'test3',
-            progressBar: false,
-            members: ["Marie", "Abby", "Vinnie", "Alan", "Max"],
-            chores: []
         }
     ]
 }

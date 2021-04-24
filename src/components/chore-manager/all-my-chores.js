@@ -63,7 +63,7 @@ class AllMyChores extends React.Component {
                 </h4>
                 <p/>
                 <div>
-                    <a className="log-out-personal-btn" onClick={() => this.setState({showLogOutModal: true})}>Log Out</a>
+                    <button className="log-out-personal-btn btn btn-primary" onClick={() => this.setState({showLogOutModal: true})}>Log Out</button>
                 </div>
                 <ProgressBar>
                     <ProgressBar variant="success" now={this.state.completedChores/this.props.chores.length *100} key={1}/>

@@ -58,7 +58,7 @@ class PersonalChores extends React.Component {
                 </h4>
                 <p/>
                 <div>
-                    <a className="log-out-personal-btn" onClick={() => this.setState({showLogOutModal: true})}>Log Out</a>
+                    <button className="log-out-personal-btn btn btn-primary " onClick={() => this.setState({showLogOutModal: true})}>Log Out</button>
                 </div>
                 <LogOutModal show={this.state.showLogOutModal}
                              hide={() => this.setState({...this.state, showLogOutModal: false})}/>

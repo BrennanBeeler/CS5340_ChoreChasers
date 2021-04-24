@@ -48,6 +48,14 @@
     float: left;
 }
 
+.view-group-settings {
+    position: absolute;
+    top:2px;
+    right:100px;
+    cursor: pointer;
+}
+
+
 .show-completed-toggle-group {
     position:absolute;
     white-space: nowrap;
@@ -56,7 +64,7 @@
 
 .log-out-group-btn {
     position: absolute;
-    top:25px;
+    top:2px;
     right:14px;
     cursor: pointer;
 }

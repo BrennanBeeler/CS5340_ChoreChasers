@@ -72,7 +72,7 @@ class GroupChores extends React.Component {
                             </h4>
                         </div>
 
-                        <div className="col col-auto">
+                        <div className="view-group-settings col col-auto">
                             <Link to="/groupSettings" className="">
                                 View Group Settings
                             </Link>
@@ -80,7 +80,7 @@ class GroupChores extends React.Component {
                     </div>
 
                     <div>
-                        <a className="log-out-group-btn" onClick={() => this.setState({showLogOutModal: true})}>Log Out</a>
+                        <button className="log-out-group-btn btn btn-primary" onClick={() => this.setState({showLogOutModal: true})}>Log Out</button>
                     </div>
                     <LogOutModal show={this.state.showLogOutModal}
                                  hide={() => this.setState({...this.state, showLogOutModal: false})}/>

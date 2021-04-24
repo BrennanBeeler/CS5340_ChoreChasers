@@ -34,6 +34,9 @@ const CreateGroupModal = ({props, createGroup, profile, groups}) => {
 
             props.onHide();
         }
+        else {
+            alert("Please enter a name for the group.")
+        }
     }
 
     const handleRemoveGroup = (member) => {

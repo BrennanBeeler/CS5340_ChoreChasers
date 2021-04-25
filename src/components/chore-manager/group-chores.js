@@ -58,6 +58,8 @@ class GroupChores extends React.Component {
 
     render() {
         const {members} = this.state;
+        let points = 0;
+        points = this.props.group.chores.reduce(function(acc, val) { return acc + val.points; }, 0);
         return(
             <div className="container-fluid">
                 <div style={{height: "160px"}}>
@@ -87,14 +89,16 @@ class GroupChores extends React.Component {
                     <LogOutModal show={this.state.showLogOutModal}
                                  hide={() => this.setState({...this.state, showLogOutModal: false})}/>
                     <p/>
-                    {this.props.group.progressBar ? <ProgressBar>
-                        {Object.keys(members).map((member, index) => {
-                            return (<ProgressBar animated={true} variant={this.state.colors[index % 4]} label={member}
-                                                 now={members[member] === 0 ? 0 : members[member] / this.state.totalPoints * 100}
-                                                 key={index}/>)
-                        })
-                        }
-                    </ProgressBar> : <br/>}
+                    {this.props.group.progressBar ?
+                        <ProgressBar>
+                          {Object.keys(members).map((member, index) => {
+                              return (<ProgressBar animated={true} variant={this.state.colors[index % 4]} label={member}
+                                                   now={members[member] === 0 ? 0 : members[member] / points * 100}
+                                                   key={index}/>)
+                          })
+                          }
+                      </ProgressBar>
+                    : <br/>}
                     <p/>
 
                     <div className="row">

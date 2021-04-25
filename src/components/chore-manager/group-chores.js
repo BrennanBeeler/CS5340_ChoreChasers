@@ -20,6 +20,8 @@ class GroupChores extends React.Component {
         group.members.map(member => members[member] = 0);
 
         group.chores.map(chore => {
+            console.log("NOPE!")
+            console.log(chore.choreName)
             const multiplier = chore.assignees.length > 0 ? chore.assignees.length : 1
             totalPoints += chore.points * multiplier;
             if (chore.done) {
@@ -88,7 +90,8 @@ class GroupChores extends React.Component {
                     {this.props.group.progressBar ? <ProgressBar>
                         {Object.keys(members).map((member, index) => {
                             return (<ProgressBar animated={true} variant={this.state.colors[index % 4]} label={member}
-                                                 now={members[member] / this.state.totalPoints * 100} key={index}/>)
+                                                 now={members[member] === 0 ? 0 : members[member] / this.state.totalPoints * 100}
+                                                 key={index}/>)
                         })
                         }
                     </ProgressBar> : <br/>}

@@ -20,6 +20,8 @@ class GroupChores extends React.Component {
         group.members.map(member => members[member] = 0);
 
         group.chores.map(chore => {
+            console.log("NOPE!")
+            console.log(chore.choreName)
             const multiplier = chore.assignees.length > 0 ? chore.assignees.length : 1
             totalPoints += chore.points * multiplier;
             if (chore.done) {
